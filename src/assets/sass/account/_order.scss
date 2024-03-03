@@ -1,0 +1,195 @@
+.order {
+  .table > :not(caption) > * > * {
+    border-bottom-width: 0;
+  }
+  .section-fluid {
+    margin-top: 64px;
+    padding: 0 74px;
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        h3 {
+          color: #fff;
+          font-family: Lato;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 48px;
+          text-align: center;
+          text-transform: uppercase;
+          @media (max-width: 576px) {
+            font-size: 24px;
+          }
+        }
+      }
+      .img-fluid {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+      }
+    }
+    @media (max-width: 992px) {
+      padding: 0 38px;
+    }
+    @media (max-width: 768px) {
+      margin-top: 24px;
+      padding: 0 32px;
+    }
+    @media (max-width: 576px) {
+      padding: 0 12px;
+    }
+  }
+  .container-fluid {
+    margin-top: 120px;
+    padding: 0 74px;
+    margin-bottom: 120px;
+    @media (max-width: 992px) {
+      padding: 0 48px;
+    }
+    @media (max-width: 768px) {
+      margin-top: 40px;
+      padding: 0 42px;
+    }
+    @media (max-width: 576px) {
+      padding: 0 22px;
+    }
+    h3 {
+      font-family: Montserrat;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 64px;
+      color: #4a3024;
+      margin-bottom: 23px;
+      span {
+        color: #d59729;
+      }
+      @media (max-width: 768px) {
+        font-size: 24px;
+      }
+    }
+    .col-md-3 {
+      border-radius: 12px;
+      background: #f7f2e8;
+      display: flex;
+      padding: 64px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 34px;
+      @media (max-width: 1100px) {
+        padding: 64px 24px;
+      }
+      .d-flex {
+        cursor: pointer;
+        span {
+          margin-right: 8px;
+          color: #979797;
+        }
+        p {
+          white-space: nowrap;
+          font-family: Lato;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px;
+          color: #979797;
+        }
+      }
+      .d-flex.active{
+        span{
+          color: #4A3024;
+        }
+        p{
+          color: #4A3024;
+        }
+      }
+    }
+    .col-md-8.col-lg-7 {
+      border-radius: 12px;
+      border: 1px solid #ffe7b2;
+      background: #fff;
+      display: flex;
+      padding: 48px;
+      flex-direction: column;
+      align-items: center;
+      @media (max-width: 992px) {
+        padding: 48px 22px;
+      }
+      @media (max-width: 576px) {
+        padding: 64px 24px;
+      }
+      table {
+        thead {
+          border-bottom: 1px solid #ffe7b2;
+          tr {
+            margin: 34px 0;
+            border-bottom: 1px solid #ffe7b2;
+           
+            th {
+              padding: 34px 0 !important;
+              font-family: Lato;
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 24px;
+              color: #6b4a3c;
+            }
+          }
+        }
+        tbody {
+          tr {
+            border-bottom: 1px solid #ffe7b2;
+            &:last-child {
+              border-bottom: none;
+            }
+            td {
+              padding: 34px 0 !important;
+              color: #979797;
+              font-family: Lato;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+            }
+            .button {
+              border-radius: 100px;
+              background: rgba(227, 177, 66, 0.3);
+              display: flex;
+              padding: 4px 12px;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              color: #d59729;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      button {
+        margin-top: 20px;
+        display: flex;
+        padding: 12px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 8px;
+        border: 1px solid #979797;
+        cursor: pointer;
+      }
+    }
+  }
+}

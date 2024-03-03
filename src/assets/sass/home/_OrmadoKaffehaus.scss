@@ -1,0 +1,252 @@
+.OrmadoKaffehaus{
+  .container-fluid {
+    .row {
+      .OrmadoKaffehausAll{ 
+        @media (max-width: 768px) {
+          position: relative;
+          padding: 0;
+          margin: 0;
+        }
+        @media (min-width: 768px) {
+          padding: 0;
+          margin: 0;
+        }
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+        .OrmadoKaffehausText {
+          padding-left: 84px;
+          .d-flex{
+            .ormadoBox{
+              width: 120%;
+              height: 250px;
+              position: relative;
+              @media (max-width: 1100px) {
+                max-width: 120%;
+                max-height: 180px;
+              }
+              .ormadoText{
+                position: absolute;
+                width: auto;
+                height: auto;
+                top: -20%;
+                left: 50%;
+                transform: translate(-60%, 0);
+                .ormadoTitle {
+                  h2 {
+                    color:  #D59729;
+                    font-family: Montserrat;
+                    font-size: 64px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 110%; 
+                    span {
+                      color:  #4A3024;
+                    }
+                    @media (max-width: 1330px) {
+                      font-size: 50px;
+                    }
+                    @media (max-width: 1100px) {
+                      font-size: 40px;
+                    }
+                    @media (max-width: 1034px) {
+                      font-size: 34px;         
+                    }
+                    @media(max-width:320px){
+                      font-family: Lato;
+                      font-size: 28px;
+                      line-height: 28px; 
+                    }
+                  }
+                }
+                .ormadoDesc {
+                  p {
+                    max-width: 440px;
+                    color:  #979797;
+                    font-family: Lato;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px; 
+                    @media (max-width: 1100px) {
+                      line-height: 20px;
+                      font-size: 15px;
+                    }
+                    @media(max-width:320px){
+                      width: 266px;
+                      font-size: 16px;
+                      font-weight: 400;
+                      line-height: 24px; 
+                    }
+                  }
+                }
+                .ormadoBtn {
+                  button {
+                    display: flex;
+                    padding: 8px 16px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 8px;
+                    background: #D59729;
+                    border: none;
+                    a {
+                      color:  #F7F2E8;
+                      font-family: Lato;
+                      font-size: 16px;
+                      font-style: normal;
+                      font-weight: 500;
+                      line-height: 24px; 
+                      text-decoration: none;
+                    }
+                    @media (max-width: 880px) {
+                      padding: 6px 12px;
+                      font-size: x-small;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .swiperCol {
+          @media (max-width: 769px) {
+            display: none;
+          }
+        }
+
+        .OrmadoKaffehausSwiper {
+          .swiperMobile {
+            width: calc(100% - 0%);
+            height: auto;
+            position: relative;
+            .swiperImgBox{
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-attachment: fixed;
+              position: relative;
+            .imagesfluid{
+              max-height:564px;
+              max-width:800px;
+              border-radius: 16px 0px 0px 16px!important;
+              img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 16px 0px 0px 16px!important;
+              }
+              @media (min-width: 1300px) {
+                max-width:1000px;
+                width: 100%;
+              }
+            }
+            @media (max-width: 768px) {
+              .swiperOpacity {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.42) 100%);
+                background-blend-mode: multiply;
+                display: flex;
+                justify-content:flex-start;;
+                align-items: center;
+                text-align: start;
+                .swiperMobileContainer {
+                  margin: 0 26px!important;
+                  .ormadoTitle {
+                    h2 {
+                      color:  #D59729;
+                      font-family: Montserrat;
+                      font-size: 35px;
+                      font-style: normal;
+                      font-weight: 900;
+                      line-height: 110%; 
+                      line-height: normal;
+                      span {
+                        color:  #DDBBAC;
+                      }
+                    }
+                  }
+                  .ormadoDesc {
+                    p {
+                      max-width: 400px;
+                      width: 100%;
+                      color:  #979797;
+                      font-family: Montserrat;
+                      font-size: 12.9px;
+                      font-style: normal;
+                      font-weight: 500;
+                      line-height: 19px; 
+                    }
+                  }
+                  .ormadoBtn {
+                    justify-content:flex-start;
+                    align-items: center;
+                    display: flex;
+                    button {
+                      display: flex;
+                      padding: 8px 16px;
+                      justify-content: center;
+                      align-items: center;
+                      gap: 10px;
+                      border-radius: 8px;
+                      background: #D59729;
+                      border: none;
+                      a {
+                        color:  #F7F2E8;
+                        font-family: Montserrat;
+                        font-size: x-small;
+                        font-style: normal;
+                        font-weight:  700;
+                        line-height: 24px; 
+                        text-decoration: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+            .swiperOpacity {
+              display: none;
+            }
+            @media (max-width: 768px) {
+              margin: 0!important;
+            }
+            @media (max-width: 991px) {
+              margin-left: 30px;
+            }
+          @media (min-width: 280px) {
+            .swiperMobileContainer{
+              margin: 15px !important;
+            }
+          }
+            .swiper-pagination {
+              bottom: 10px; 
+            }
+            .swiper-pagination-bullet {
+              width: 10px;
+              height: 10px;
+              background-color: Grey; 
+              opacity: 0.5; 
+              transition: 250ms;
+            }
+            .swiper-pagination-bullet-active {
+              background-color: Grey; 
+              opacity: 1; 
+              width: 20px;
+              border-radius: 30px;
+            }
+          }
+          @media (max-width:768px) {
+            width: 100%;            
+          }
+        }
+      }
+    }
+  }
+}

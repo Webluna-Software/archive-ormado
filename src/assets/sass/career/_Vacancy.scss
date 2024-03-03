@@ -1,0 +1,240 @@
+.Vacancy {
+   width: 100%;
+   height: auto;
+
+
+   .title {
+      width: 50%;
+      height: auto;
+
+      @media(max-width:913px) {
+         width: 80%;
+         height: auto;
+      }
+
+
+
+      h1 {
+         color: #4A3024;
+         font-family: Montserrat;
+         font-size: 60px;
+         font-style: normal;
+         font-weight: 700;
+         line-height: 130%;
+
+         @media(max-width:540px) {
+            font-size: 40px;
+
+         }
+
+         @media(max-width:431px) {
+            font-size: 35px;
+
+         }
+
+         @media(max-width:391px) {
+            font-size: 30px;
+
+         }
+
+         @media(max-width:281px) {
+            font-size: 25px;
+
+         }
+
+         span {
+            color: #E3B142;
+         }
+      }
+
+      p {
+         color: #A19FA1;
+
+         @media(max-width:540px) {
+            font-size: 12px;
+
+         }
+
+         @media(max-width:431px) {
+            font-size: 10px;
+
+         }
+
+         @media(max-width:281px) {
+            font-size: 7px;
+         }
+      }
+
+      .btn {
+         background-color: #4A3024;
+         color: white;
+         border: none;
+         padding: 10px 15px;
+         font-size: 15px;
+
+         @media(max-width:540px) {
+            padding: 7px 10px;
+            font-size: 10px;
+         }
+
+         @media(max-width:391px) {
+            padding: 5px 10px;
+         }
+
+         @media(max-width:281px) {
+            font-size: 7px;
+         }
+
+      }
+   }
+
+   .sendingbox {
+      width: auto;
+      height: auto;
+      
+
+
+      .firstbox,
+      .secondbox,
+      .thirdbox {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         height: auto;
+         border-radius: 10px;
+         padding: 20px;
+         border: 1px solid #E3B142;
+
+         .writingbox {
+            width: 30%;
+            height: auto;
+
+            @media(max-width:913px) {
+               width: 50%;
+               height: auto;
+            }
+
+            @media(max-width:540px) {
+               width: 70%;
+               height: auto;
+            }
+
+            @media(max-width:281px) {
+               width: 90%;
+               height: auto;
+            }
+
+            .upperside {
+               width: 100%;
+               height: auto;
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+
+
+               h2 {
+                  color: #4A3024;
+                  font-family: Lato;
+                  font-size: 30px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: 24px;
+
+                  @media(max-width:540px) {
+                     font-size: 20px;
+                  }
+
+                  @media(max-width:281px) {
+                     font-size: 15px;
+                  }
+
+
+               }
+
+               .timebtn {
+                  background-color: red;
+                  border: none;
+                  padding: 5px 15px;
+                  border-radius: 50px;
+                  font-size: 15px;
+
+                  @media(max-width:540px) {
+                     font-size: 10px;
+
+                  }
+
+                  
+                  @media(max-width:281px) {
+                     font-size: 9px;
+                     padding: 5px 15px;
+                  }
+
+               }
+            }
+
+            .lowerside {
+               width: 100%;
+               height: auto;
+               height: auto;
+               display: flex;
+               align-items: center;
+
+               h2 {
+                  color: #A19FA1;
+                  font-family: Lato;
+                  font-size: 13px;
+                  font-style: normal;
+                  line-height: 35px;
+
+                  @media(max-width:431px) {
+                     font-size: 10px;
+                  }
+
+               }
+
+            }
+         }
+
+
+         .click{
+            .myicon{
+               color: #4A3024;
+            }
+         }
+      }
+
+   }
+
+
+
+}
+
+.centerbtn{
+   width: 80%;
+   height: auto;
+   
+   display: flex;
+   justify-content: center;
+
+
+   .lowbtn{
+     
+      border: 2px solid #4A3024;
+      padding: 9px 15px;
+      border-radius: 10px;
+      font-size: 15px;
+
+
+      @media(max-width:541px){
+         padding: 6px 10px;
+         font-size: 10px;
+         border-radius: 5px;
+      }
+
+      @media(max-width:375px){
+         padding: 3px 8px;
+         font-size: 10px;
+         border-radius: 5px;
+      }
+   }
+}

@@ -1,0 +1,241 @@
+.ourstory {
+  padding: 64px 84px 120px 84px;
+  @media (max-width: 768px) {
+    padding: 0 10px;
+    overflow-x: hidden;
+  }
+  .container-fluid {
+    .row {
+      .desc {
+        h3 {
+          color: #4a3024;
+          text-align: start;
+          font-family: "Montserrat", sans-serif;
+          font-size: 48px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 64px;
+        }
+        p {
+          color: #4a3024;
+          font-family: "Lato", sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+        }
+      }
+      .ourstoryImg {
+        img {
+          width: 659px;
+          height: 332px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  
+  .roasting {
+    margin-top: 50px;
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }padding: 0px 84px 0px 84px;
+
+    @media (max-width:1070px) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media (max-width:730px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    h3 {
+      color: #4a3024;
+      text-align: start;
+      // font-family: "Montserrat", sans-serif;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 64px;
+      //styleName: H3/Bold;
+      font-family: Montserrat;
+      letter-spacing: 0em;
+
+    }
+    p {
+      max-width: 570px;
+      width: 100%;
+      color: #4a3024;
+      font-family: Lato;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+  }
+  .missionVision {
+    padding: 120px 0;
+    .container-fluid {
+      .row {
+        h1 {
+          color: #f6e7c5;
+          font-family: Lato;
+          font-size: 220px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 60%;
+        }
+        .missonDesc {
+          h3 {
+            color: #4a3024;
+            text-align: start;
+            font-family: Montserrat;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 64px;
+          }
+          p {
+            // width: 482px;
+            color: #979797;
+            font-family: Lato;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            // line-height: 24px;
+          }
+        }
+        .visionDesc {
+          h3 {
+            color: #d59729;
+            text-align: start;
+            font-family: Montserrat;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 64px;
+          }
+          p {
+            // width: 482px;
+            color: #979797;
+            font-family: Lato;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            // line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+  .weareperfect {
+    .container-fluid {
+      .row {
+        .imgBox {
+          position: relative;
+          img {
+            border-radius: 10px;
+          }
+          .overlayImg {
+            position: absolute;
+            inset: 0;
+          }
+        }
+        .weAreDesc {
+          h3 {
+            color: #4a3024;
+            font-family: Montserrat;
+            font-size: 48px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 54px;
+            @media (min-width:1500px){
+
+              font-size: 50px;
+            }
+            @media (min-width:1600px){
+              line-height: 60px;
+              font-size: 58px;
+            }
+            @media (max-width:768px){
+              font-size: 25px;
+              line-height: normal;
+            }
+          }
+          p {
+            max-width: 625px;
+            width: 100%;
+            color: #979797;
+            font-family: "Lato", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            @media (min-width:1500px){
+              max-width: 700px;
+              font-size: 17px;
+              line-height: 26px;
+
+            }
+            @media (min-width:1600px){
+              max-width: 800px;
+              font-size: 19px;
+              line-height: 29px;
+            }
+          }
+        }
+        .counter {
+          h2 {
+            color: #d59729;
+            text-align: start;
+            font-family: Montserrat;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 130%;
+            @media (min-width:1500px){
+
+              font-size: 70px;
+              line-height: 150%;
+            }
+            @media (min-width:1600px){
+              font-size: 80px;
+              line-height: 150%;
+            }
+          }
+          p {
+            color:  #979797;
+            font-family: Lato;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px; 
+            @media (min-width:1500px){
+
+              font-size: 20px;
+            }
+            @media (min-width:1600px){
+              font-size: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.franchise-cards{
+  .row{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    img{
+      width: 33%;
+      border-radius: 12px;
+      @media (max-width:650px){
+        width: 90%;
+      }
+    }
+  }
+}

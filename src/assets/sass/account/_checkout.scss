@@ -1,0 +1,190 @@
+.checkout {
+  .section-fluid {
+    margin-top: 64px;
+    padding: 0 64px;
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        h3 {
+          color: #fff;
+          font-family: Lato;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 48px;
+          text-align: center;
+          text-transform: uppercase;
+          @media (max-width: 576px) {
+            font-size: 24px;
+          }
+        }
+      }
+      .img-fluid {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+      }
+    }
+    @media (max-width: 992px) {
+      padding: 0 38px;
+    }
+    @media (max-width: 768px) {
+      margin-top: 24px;
+      padding: 0 32px;
+    }
+    @media (max-width: 576px) {
+      padding: 0 12px;
+    }
+  }
+  .row {
+    margin: 120px 64px;
+    @media (max-width:992px) {
+      justify-content: center;
+    }
+    @media (max-width:768px) {
+      margin: 40px 12px ;
+    }
+    .col-12 {
+      background-color: #f7f2e8;
+    }
+    .col-lg-7 {
+      padding: 64px;
+      border-radius: 12px;
+      width: 55%;
+      .shopping-information {
+        h5 {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 40px;
+          color: #4a3024;
+        }
+        form {
+          p {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 600;
+            font-family: Lato;
+            margin-top: 15px;
+          }
+          input[type="checkbox"]{
+            accent-color: #4A3024;
+          }
+          textarea {
+            resize: none;
+          }
+        }
+      }
+      @media (max-width:1200px) {
+        padding: 32px;
+      }
+      @media (max-width:992px) {
+        width: 80%;
+      }
+      @media (max-width:576px) {
+        width: 100%;
+        // margin-top: 0 !important;
+      }
+    }
+    .col-lg-5 {
+      padding: 34px;
+      border-radius: 12px;
+      border: 1px solid #d59729;
+      height: 60%;
+      .order-summary {
+        h6 {
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 24px;
+          margin-bottom: 20px;
+        }
+        .checkout-item {
+          .checkout-img {
+            width: 72px;
+            height: 72px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          p {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: #979797;
+            font-family: Lato;
+            margin-bottom: 0;
+            span {
+              color: #4a3024;
+            }
+          }
+          .checkout-price {
+            color: #d59729;
+          }
+        }
+        .pays {
+          .price-sec {
+            border-bottom: 1px solid #d59729;
+            margin-top: 20px;
+            &:last-child{
+              border-bottom: none;
+            }
+            p {
+              font-family: Lato;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              &:first-child {
+                color: #979797;
+              }
+              &:last-child {
+                color: #4a3024;
+              }
+            }
+            .color-text {
+              font-weight: 700;
+              color: #d59729 !important;
+            }
+          }
+        }
+        input[type="radio"]{
+          accent-color: #d59729;
+        }
+        label{
+          color: #343A40;
+          font-size: 16px;
+          font-family: Lato;
+          font-weight: 400;
+        }
+        .order-btn{
+          margin-top: 20px;
+          background-color: #502D1E;
+          color: #fff;
+          border-radius: 8px;
+          padding: 12px 16px;
+        }
+      }
+      @media (max-width:1200px) {
+        padding: 20px;
+      }
+      @media (max-width:1200px) {
+        padding: 20px;
+      }
+    }
+  }
+}

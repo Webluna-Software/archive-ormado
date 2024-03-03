@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Montserrat:wght@500;700&family=Noto+Sans&family=Poppins&family=Vujahday+Script&display=swap');
+body{
+    background-color: #f3f3f3
+}
+a{
+    text-decoration:none ;
+ }
+@import 'header';
+@import 'footer';
+@import './home/home';
+
+//Blogs pages
+@import './blog/Blogs';
+@import './blog/blogdetails';
+
+//Account pages
+@import './account/password';
+@import './account/order';
+@import './account/orderdetails';
+@import './account/account';
+@import './account/checkout';
+@import './account/wishlist';
+@import './account/cart';
+@import './account/login';
+@import './account/signup';
+@import './account/forgotpass';
+
+
+//Product pages
+@import './product/products';
+@import './product/productdetails';
+@import './product/productinformation';                           
+@import './product/carousel';
+
+
+// Contact pages
+@import "./contact/Contact";
+@import "./contact/Contactcard";
+@import "./contact/Contactus";
+
+// Franchise pages
+@import './franchise/FranchiseForm';
+@import './reserve/Reserve';
+@import './franchise/FranchiseCopmany.scss';
+
+// About us page
+@import './ourstory/ourstory';
+
+// Career page
+@import './career/Vacancy';
+@import './career/Vacancydetail';
+@import './career/Vacancydetail';
+@import './career/careerform';
+

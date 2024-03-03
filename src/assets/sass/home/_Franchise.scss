@@ -1,0 +1,308 @@
+.myfranchise {
+  width: 100%;
+  height: auto;
+  margin-top: 100px;
+  padding: 0px 84px 0px 84px;
+
+    @media (max-width:1070px) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media (max-width:730px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+  .franc-con {
+    display: flex;
+    width: 100%;
+    background-color: #4a3024;
+    border-radius: 20px 20px 20px 20px;
+    
+
+    .left {
+      width: 50%;
+      height: auto;
+      border-radius: 20px 0px 0px 20px;
+      background-color: #4a3024;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      // clip-path: polygon(0 0, 88% 0, 100% 100%, 0 97%);
+      clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);
+
+   
+
+      .text {
+        width: 70%;
+        display: flex;
+
+        @media(max-width:1417px) {
+          width: 60%;
+        }
+
+        @media(max-width:1025px) {
+          width: 60%;
+        }
+
+        @media(max-width:992px) {
+          width: 70%;
+        }
+
+        p {
+          color: #fff;
+          font-family: Montserrat;
+          font-size: 64px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 130%;
+
+          @media(max-width:1417px) {
+            font-size: 54px;
+          }
+
+          @media(max-width:1025px) {
+            font-size: 40px;
+          }
+
+          @media(max-width:992px) {
+            font-size: 32px;
+          }
+
+          @media(max-width:768px) {
+            font-size: 32px !important;
+          }
+
+        
+          @media(max-width:541px) {
+            font-size: 25px !important;
+          }
+
+          @media(max-width:431px) {
+            font-size: 20px !important;
+          }
+
+          @media(max-width:415px) {
+            font-size: 18px !important;
+          }
+
+          @media(max-width:391px) {
+            font-size: 18px !important;
+          }
+
+          @media(max-width:376px) {
+            font-size: 16px !important;
+          }
+
+          @media(max-width:291px) {
+            font-size: 12px !important;
+          }
+
+
+        }
+
+        span {
+          color: #e3b142;
+        }
+      }
+
+      .ormado-about {
+        color: #fff;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Lato;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        @media(max-width:1417px) {
+          width: 60%;
+        }
+
+        @media(max-width:1025px) {
+          width: 60%;
+        }
+
+        @media(max-width:992px) {
+          font-size: 12px;
+          width: 70%;
+        }
+
+        @media(max-width:768px) {
+          font-size: 9px;
+          line-height: 20px;
+        }
+
+        
+        @media(max-width:541px) {
+          font-size: 8px !important;
+          line-height: 16px;
+        }
+
+        @media(max-width:431px) {
+          font-size: 6px !important;
+          line-height: 12px;
+        }
+
+        @media(max-width:391px) {
+          font-size: 6px !important;
+          line-height: 10px;
+        }
+
+        
+        @media(max-width:376px) {
+          font-size: 6px !important;
+          line-height: 9px;
+        }
+
+        @media(max-width:291px) {
+          font-size: 4px !important;
+          line-height: 9px;
+        }
+
+      }
+
+      .ormado-button {
+        width: 70%;
+
+        @media(max-width:1417px) {
+          width: 60%;
+        }
+
+        @media(max-width:992px) {
+          width: 70%;
+        }
+
+        button {  
+          width: 150px; 
+          height: 40px;
+          border-radius: 8px;
+          // padding: 12px 16px;
+          border: none;
+          background-color: #E3B142;
+          outline: none;
+          font-family: Lato;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @media(max-width:992px) {
+            // padding: 6px 13px !important;
+            width: 110px; 
+            height: 30px;
+           font-size: 11px;
+          }
+
+          @media(max-width:768px) {
+            padding: 4px 10px !important;
+            width: 90px; 
+            height: 30px;
+            font-size: 9px;
+          }
+
+          
+          @media(max-width:541px) {
+           width: 70px;
+           height: 25px;
+            font-size: 7px ;
+          }
+
+          @media(max-width:431px) {
+            font-size: 6px ;
+            width: 65px;
+           height: 18px;
+          }
+
+
+          @media(max-width:391px) {
+            font-size: 5px;
+            width: 55px;
+           height: 15px;
+          }
+
+          @media(max-width:376px) {
+            font-size: 4px;
+            width: 50px;
+           height: 12px;
+          }
+
+          @media(max-width:291px) {
+            font-size: 3px;
+            width: 45px;
+           height: 12px;
+          }
+  
+
+        }
+      }
+    }
+
+    .right {
+      width: 50%;
+      height: auto;
+      z-index: 3232;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 28% 100%);
+
+      // clip-path: polygon(0 0, 100% 0, 100% 100%, 7% 100%);
+      img {
+        border-radius: 0px 20px 20px 0px;
+        width: 100%;
+        height: auto;
+        flex-shrink: 0;
+
+      }
+    }
+
+  }
+}
+.roasting {
+  margin-top: 50px;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
+  padding: 0px 84px 0px 84px;
+
+    @media (max-width:1070px) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media (max-width:730px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+  h3 {
+    color: #4a3024;
+    text-align: start;
+    // font-family: "Montserrat", sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px;
+    //styleName: H3/Bold;
+    font-family: Montserrat;
+    letter-spacing: 0em;
+
+  }
+  p {
+    max-width: 100%;
+    width: 100%;
+    color: #4a3024;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+

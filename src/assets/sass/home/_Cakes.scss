@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Montserrat:wght@700&display=swap');
+
+.CakesSection {
+    display: flex;
+    justify-content: center;
+
+    .headText {
+        color: #4A3024;
+        font-family: Montserrat;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 64px;
+
+     @media(max-width:1492px){
+        font-size: 40px;
+     }
+
+     @media(max-width:718px){
+        font-size: 30px;
+     }
+
+     @media(max-width:552px){
+        font-size: 20px;
+     }
+
+     @media(max-width:328px){
+        font-size: 15px;
+     }
+
+
+        span {
+            color: #D59729;
+        }
+    }
+
+    .card-parts {
+        .card {
+            border: none !important;
+
+
+
+            .cardHeadText {
+                color: var(--Brown-Main-color, #4A3024);
+                overflow: hidden;
+                font-family: Lato;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 48px;
+                text-overflow: ellipsis;
+
+                @media(max-width: 1258px){
+                    font-size: 28px;
+                }
+
+                @media(max-width:860px){
+                    font-size: 23px; 
+                }
+
+                @media(max-width:718px){
+                    font-size: 19px;
+                }
+
+                @media(max-width: 425px){
+                    font-size: 17px;
+                }
+
+                @media(max-width: 328px){
+                    font-size: 13px;
+                }
+
+
+                /* 150% */
+            }
+
+            .card-body {
+                // height: 100vh;
+                // padding-top: 20px;
+                margin-top: -15px;
+                padding-top: 40px;
+                background-color: #F7F2E8;
+
+                @media(max-width: 541px){
+                    margin-top: -25px !important;
+                }
+
+                @media(max-width: 431px){
+                    margin-top: -35px !important;
+                    padding-top: 30px;
+                }
+
+
+                @media(max-width: 400px){
+                    padding-top: 27px !important;
+                }
+
+              
+            }
+
+            .card-img-top {
+                border-radius: 16px;
+                z-index: 10;
+                // margin-bottom: -10px;
+                // padding-bottom: 20px;
+            }
+
+            .card-price {
+                color: #D59729;
+
+                font-family: Lato;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 48px;
+                /* 200% */
+                gap: 20px !important;
+
+
+                @media(max-width:860px){
+                    font-size: 20px; 
+                }
+
+                @media(max-width: 592px){
+                    font-size: 15px;
+                }
+
+                
+                @media(max-width: 471px){
+                    font-size: 12px;
+                 }
+
+                 @media(max-width: 376px){
+                    font-size: 10px;
+                 }
+
+                 @media(max-width: 328px){
+                    font-size: 8px;
+                 }
+
+            }
+
+            .card-bottom-part {
+                margin-top: 20px;
+
+                display: flex;
+                justify-content: space-between;
+
+
+                @media(max-width: 431px){
+                    margin-top: 5px;
+                }
+
+                @media(max-width: 400px){
+                    padding-top: -10px !important;
+                }
+
+                @media(max-width:291px){
+                    margin-top: -18px;
+                }      
+            }
+
+            .cardBtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                border: none;
+                height: 6vh;
+                padding: 12px 16px;
+                gap: 10px;
+                background: #E3B142;
+                color: #4A3024;
+                font-family: Lato;
+             
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+
+
+                @media(max-width: 1025px){
+                    width: 146px;
+                    height: 50px;
+                }
+
+                @media(max-width:860px){    
+                    width: 140px !important;
+                    height: 40px !important;
+                }
+                
+
+                @media(max-width: 592px){
+                    width: 139px !important;
+                    height: 40px !important;
+                  
+                }
+                 @media(max-width: 471px){
+                    margin-top: 7px !important;
+                    width: 90px !important;
+                    height: 30px !important;
+                 }
+
+                 
+                @media(max-width: 435px){  
+                    font-size: 10px;
+                    padding: 4px 6px;
+                }
+
+                @media(max-width: 415px){  
+                    // font-size: 10px;
+                    width: 68px !important;
+                    height: 19px !important;
+                    font-size: 7px;
+                    margin-top: 12px !important;
+                }
+
+                @media(max-width: 376px){    
+                    width: 82px ;
+                    height: 30px ;
+                }
+
+
+                @media(max-width:291px){
+                    height: 14px !important;
+                    font-size: 4px;
+                    margin-top: 16px !important;
+                    margin-left: 8px;
+                }
+
+
+                .arrow {
+                    // margin-left: 3px !important;
+                    width: 24px;
+                    height: 24px;
+                   
+                    @media(max-width:860px){
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    @media(max-width: 592px){
+                        width: 16px;
+                        height: 16px;
+
+                     }
+
+                     @media(max-width: 471px){
+                        width: 14px;
+                        height: 14px;
+                     }
+
+                     @media(max-width: 425px){  
+                        width: 10px;
+                        height: 10px;
+                    }
+                    @media(max-width: 328px){  
+                        width: 7px;
+                        height: 7px;
+                    }
+                    
+
+                @media(max-width:291px){
+                    width: 5px;
+                        height: 5px;
+                 
+                }
+                }
+            }
+        }
+    }
+} 
+
+.width-90 {
+    width: 90%;
+}

@@ -1,0 +1,183 @@
+.VacancyDetail {
+    width: auto;
+    height: auto;
+
+
+    .title {
+        width: auto;
+        height: auto;
+
+        h1 {
+            font-family: Lato;
+            font-size: 33px;
+            font-style: normal;
+            line-height: 35px;
+            color: #4A3024;
+        }
+    }
+
+    .firstbox {
+
+        margin-top: 30px;
+
+        .upperside {
+            position: relative;
+
+            h5 {
+                margin-bottom: 20px;
+                color: #E3B142;
+                font-family: Lato;
+                font-size: 20px;
+                font-style: normal;
+                line-height: 35px;
+
+            }
+
+            p {
+                color: #A19FA1;
+                font-family: Lato;
+                line-height: 17px;
+                font-style: normal;
+                position: relative;
+                font-size: 15px;
+
+                @media(max-width: 912px) {
+                    line-height: 24px;
+                }
+
+                @media(max-width: 768px) {
+                    font-size: 12px;
+                    line-height: 20px;
+                }
+                @media(max-width: 541px) {
+                    font-size: 12px;
+                    line-height: 20px;
+                    margin-left: 20px ;
+                }
+
+
+
+            }
+
+
+            .one {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #E3B142;
+
+                top: 58px;
+                left: -25px;
+                border-radius: 50%;
+
+
+                @media(max-width: 912px) {
+                    top: 65px;
+                    left: -25px;
+                    width: 8px;
+                    height: 8px;
+                }
+
+                @media(max-width: 768px) {
+                    top: 62px;
+                    left: -15px;
+                }
+
+                @media(max-width: 541px) {
+                    // top: 60px;
+                    left: 0px;
+                }
+
+                
+            }
+
+            .two {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #E3B142;
+                bottom: 36px;
+                left: -25px;
+                border-radius: 50%;
+
+                @media(max-width: 912px) {
+                    bottom: 48px;
+                    left: -25px;
+                    width: 8px;
+                    height: 8px;
+                }
+
+                @media(max-width: 768px) {
+                    bottom: 40px;
+                    left: -15px;
+                }
+
+                @media(max-width: 541px) {
+                    // bottom: 42px;
+                    left: 0px;
+                }
+             
+                @media(max-width: 431px) {
+                    bottom: 62px;
+                    left: 0px;
+                }
+
+            }
+
+            .three {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #E3B142;
+                bottom: 0;
+                left: -25px;
+                border-radius: 50%;
+
+                @media(max-width: 912px) {
+                    bottom: 5px;
+                    left: -25px;
+                    width: 8px;
+                    height: 8px;
+                }
+
+                @media(max-width: 768px) {
+                    bottom: 5px;
+                    left: -15px;
+                }
+
+                @media(max-width: 541px) {
+                    // bottom: 7px;
+                    left: 0px;
+                }
+                @media(max-width: 431px) {
+                    // bottom: 7px;
+                   
+                }
+             
+            }
+        }
+    }
+}
+
+
+.btn {
+    background-color: #4A3024;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+
+    @media(max-width:540px) {
+       padding: 7px 10px;
+       font-size: 10px;
+    }
+
+    @media(max-width:391px) {
+       padding: 5px 10px;
+    }
+
+    @media(max-width:281px) {
+       font-size: 7px;
+    }
+
+ }

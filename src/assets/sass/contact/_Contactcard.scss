@@ -1,0 +1,94 @@
+.Contactcards {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .innercard {
+        padding: 64px 84px 0px 84px;
+        height: auto;
+        @media (max-width:1070px) {
+            padding-left: 50px;
+            padding-right: 50px;
+         }
+      
+         @media (max-width:730px) {
+            padding-left: 20px;
+            padding-right: 20px;
+         }
+        .row{
+            width: 100%;
+            display: flex;
+            row-gap: 24px;
+        }
+
+        .image1,.image2,.image3,.image4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            @media(max-width: 575px){
+                width: 100%; 
+               
+            }
+
+            img {
+                // width: 624px;
+                height: 342px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 12px;
+
+                @media(max-width: 1200px){
+                    height: 300px;  
+                }
+
+                @media(max-width: 998px){
+                    height: 200px;  
+                }
+                
+                @media(max-width: 768px){
+                    height: 150px;  
+
+                }
+
+                @media(max-width: 575px){
+                    height: auto;
+                }
+
+                // @media(max-width: 913px){
+                //     width: 534px;
+                //     height: 312px;  
+                // }
+
+                // @media(max-width: 768px){
+                //     width: 454px;
+                //     height: 312px;  
+                // }
+
+                // @media(max-width: 540px){
+                //     width: 354px;
+                //     height: 250px;  
+                // }
+
+                // @media(max-width: 430px){
+                //     width: 304px;
+                //     height: 220px;  
+                // }
+
+                // @media(max-width: 390px){
+                //     width: 284px;
+                //     height: 200px;  
+                // }
+
+                // @media(max-width: 281px){
+                //     width: 200px;
+                //     height: 140px;  
+                // }
+            }
+        }
+
+
+    }
+}

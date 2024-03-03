@@ -1,0 +1,330 @@
+.desktop-footer {
+    footer {
+        background-color: #FFE7B2;
+        padding: 32px 50px;
+        margin-top: 50px;
+        .footer-top {
+            width: 100%;
+            display: flex;
+            .logo-div {
+                width: 30%;
+
+                .flex-column {
+                    .form-control {
+                        max-width: 268px;
+                        padding: 12px 16px;
+                        border-radius: 8px;
+                        border: 1px solid #DDBBAC;
+                        background: #F7F2E8;
+                    }
+
+                    button {
+                        max-width: 100px;
+                        padding: 12px 16px;
+                        margin-top: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: none;
+                        border-radius: 8px;
+                        background: #502D1E;
+                        color: #F7F2E8;
+                        font-family: Lato;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 24px;
+                    }
+                }
+            }
+            .footer-services {
+                padding-left: 5%;
+            }
+            .footer-services,
+            .footer-contact {
+                width: 22%;
+
+                h5 {
+                    color: #4A3024;
+                    font-family: Lato;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px;
+                }
+
+                .nav li a {
+                    color: #6B4A3C;
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                    margin-bottom: 10px;
+                }
+            }
+            .desktop-apps {
+                width: 26%;
+
+                img {
+                    width: 114px;
+                    height: 114px;
+                }
+
+                .download-apps {
+
+                    .google-play,
+                    .app-store {
+                        width: 139px;
+                        height: 49px;
+                        border-radius: 8px;
+                        background-color: #4A3024;
+                        padding-left: 15px;
+                        display: flex;
+                        align-items: center;
+
+                        .google-play-inner,
+                        .app-store-inner {
+                            margin-top: 5px;
+                            margin-left: 10px;
+
+                            p {
+                                color: #FFF;
+                                font-family: Lato;
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 111.951%;
+                                margin-bottom: 3px;
+                            }
+
+                            h3 {
+                                color: #FFF;
+                                font-family: Lato;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer-bottom {
+            border-top: 1px solid #E3B142;
+
+            p a {
+                color: #6B4A3C;
+                font-family: Lato;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
+
+            select {
+                margin-bottom: 16px;
+                border: none;
+                background: none;
+                width: 50px;
+                color: #4A3024;
+                font-family: Lato;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+            }
+        }
+    }
+}
+.mobile-footer {
+    display: none;
+}
+@media (max-width:991px) {
+    .desktop-footer {
+        footer {
+            .footer-top {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+
+                .logo-div {
+                    width: 120%;
+                }
+
+                .footer-services {
+                    padding-left: 30%;
+                    margin-left: 50px;
+                }
+
+                .footer-contact {
+                    padding-left: 30%;
+                }
+
+                .footer-services,
+                .footer-contact {
+                    width: 100%;
+                }
+            }
+
+            .footer-top div:nth-child(4) {
+                grid-column: span 3;
+                margin-top: 30px;
+                width: 100%;
+            }
+        }
+    }
+}
+@media (max-width:768px) {
+    .desktop-footer {
+        display: none;
+    }
+    .mobile-footer {
+        display: block;
+        footer {
+            background-color: #FFE7B2;
+            padding: 32px 15px;
+            margin-top: 50px;
+            .services-contact {
+                margin-top: 36px;
+
+                .footer-services,
+                .footer-contact {
+                    h5 {
+                        color: #4A3024;
+                        font-family: Lato;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 24px;
+                    }
+
+                    .nav li a {
+                        color: #6B4A3C;
+                        font-family: Lato;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+                }
+
+                .footer-contact {
+                    margin-top: -98px;
+                }
+            }
+            .flex-column {
+                .form-control {
+                    padding: 12px 16px;
+                    border-radius: 8px;
+                    border: 1px solid #DDBBAC;
+                    background: #F7F2E8;
+                }
+
+                button {
+                    padding: 12px 16px;
+                    margin-top: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    border-radius: 8px;
+                    background: #502D1E;
+                    color: #F7F2E8;
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 24px;
+                }
+            }
+            p {
+                color: #535353;
+                font-family: Lato;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
+            .mobile-apps {
+                img {
+                    width: 114px;
+                    height: 114px;
+                }
+
+                .download-apps {
+                    width: 100%;
+
+                    .google-play,
+                    .app-store {
+                        border-radius: 8px;
+                        background-color: #4A3024;
+                        padding-left: 15px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .google-play-inner,
+                        .app-store-inner {
+                            margin-top: 5px;
+                            margin-left: 10px;
+
+                            p {
+                                color: #FFF;
+                                font-family: Lato;
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 111.951%;
+                                margin-bottom: 3px;
+                            }
+
+                            h3 {
+                                color: #FFF;
+                                font-family: Lato;
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                            }
+                        }
+                    }
+                }
+            }
+             .footer-bottom {
+                border-top: 1px solid #E3B142;
+                p a {
+                    color: #6B4A3C;
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 24px;
+                }
+                select {
+                    margin-bottom: 16px;
+                    border: none;
+                    background: none;
+                    width: 50px;
+                    color: #4A3024;
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
+
+
+.socialmedia-icons{
+    a{
+        i{
+            font-size: 24px;
+            color: #4A3024;
+            margin-right: 10px;
+        }
+    }
+}

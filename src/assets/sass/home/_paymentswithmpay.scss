@@ -1,0 +1,107 @@
+.payments {
+  margin-top: 120px;
+  .store{
+    .download {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        @media (min-width:768px){
+          justify-content: start;
+        }
+        .storePay{
+            max-width: 250px;
+            max-height: 250px;
+            .google-play,
+            .app-store {
+                width: 139px;
+                height: 49px;
+                border-radius: 8px;
+                background-color: #4A3024;
+                padding-left: 15px;
+                display: flex;
+                align-items: center;
+
+                .google-play-inner,
+                .app-store-inner {
+                    margin-top: 5px;
+                    margin-left: 10px;
+
+                    p {
+                        color: #fff;
+                        // font-family: "Proxima Nova";
+                        font-size: 10px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 111.951%;
+                        margin-bottom: 3px;
+                      
+                    }
+
+                    h3 {
+                        color: #FFF;
+                        // font-family: "Proxima Nova";
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+    }
+
+}
+  .container-fluid {
+    .row {
+      padding: 0 84px;
+      @media (max-width:768px){
+        padding: 0;
+      }
+      .description {
+        max-width: 570px;
+        width: 100%;
+        // background-color: red;
+        h2 {
+          color: #4a3024;
+          font-size: 64px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 130%;
+          font-family: "Montserrat", sans-serif;
+          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          span {
+            color: #d59729;
+            font-family: Montserrat;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 130%;
+          }
+        }
+        p {
+          color: #4a3024;
+          font-family: "Lato", sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          // line-height: 24px;
+        }
+      }
+    }
+    .btnRow {
+      .btnGooglePlay {
+        button {
+          width: 159px;
+          height: 49px;
+          flex-shrink: 0;
+          background-color: #4A3024;
+          border: none;
+          border-radius: 8px;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
