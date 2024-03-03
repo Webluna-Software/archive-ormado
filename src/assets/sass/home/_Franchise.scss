@@ -15,6 +15,7 @@
 
 
   .franc-con {
+  height: 80vh;
     display: flex;
     width: 100%;
     background-color: #4a3024;
@@ -252,10 +253,10 @@
       height: auto;
       z-index: 3232;
       clip-path: polygon(0 0, 100% 0, 100% 100%, 28% 100%);
-
+      overflow: hidden;
       // clip-path: polygon(0 0, 100% 0, 100% 100%, 7% 100%);
+      border-radius: 0px 20px 20px 20px;
       img {
-        border-radius: 0px 20px 20px 0px;
         width: 100%;
         height: auto;
         flex-shrink: 0;
@@ -283,12 +284,10 @@
   h3 {
     color: #4a3024;
     text-align: start;
-    // font-family: "Montserrat", sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: 700;
     line-height: 64px;
-    //styleName: H3/Bold;
     font-family: Montserrat;
     letter-spacing: 0em;
 

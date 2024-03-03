@@ -47,16 +47,7 @@ const Franchise = () => {
         <p className="ms-1 w-50">
         As Ormado Kaffeehaus, we offer coffees with a unique composition. If you also want to own a coffee shop that offers quality coffee with a unique taste to your customers, our franchise is exactly what you are looking for.
         </p>
-        {/* <iframe
-          width="100%"
-          height="437"
-          src="https://www.youtube.com/embed/GWIAwS09PpM?si=xVOqPoLLwQxS9CTs"
-          className="rounded"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe> */}
+    
         <div className="franchise-cards mb-5">
           <div className="row">
             <img className='img' src={cardimg} alt="" />

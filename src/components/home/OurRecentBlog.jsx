@@ -23,10 +23,10 @@ useEffect(() => {
 }, []);
   return (
     <>
-    <section className='OurRecentBlog mt-5 '>
-        <div className="container">
+    <section className='OurRecentBlog ormado-con-main mt-5 '>
+        <div className="ormado-con">
           <div className="row">
-            <div className="blogs d-flex justify-content-center">
+            <div className="blogs ">
               <div className="title"> 
                 <h3>Our recent <span>blog</span> </h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim. </p>

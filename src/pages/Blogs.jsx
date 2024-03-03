@@ -37,12 +37,12 @@ const Blogs = () => {
             <div className="cardsBlogs justify-content-md-center row">
                 {blog.map((item,i)=>(
                  
-                  <div className="blogcard col-12   col-md-3 col-sm-6">
+                  <div className="blogcard col-12   col-md-3 col-sm-6" style={{height:"700px"}}>
                   <figure><img src={item.coverImage} alt="rectangle127" /></figure>
                   <div className="card-header">
                     <p className='p-title'>{item.title}</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim.
-                    <Link to={ `/blogDetails/${item ._id}`}> <span> Read more</span></Link></p>
+                    <p className='p-body'>
+                    <Link to={ `/blogDetails/${item._id}`}> <span> Read more</span></Link></p>
                     <div className='date-number'>
                       <span>1K read</span>
                       <span>{item.date}</span>
@@ -52,96 +52,13 @@ const Blogs = () => {
 
                  
                 ))}
-                {/* <div className="blogcard col-12    col-md-3 col-sm-6">
-                  <figure><img src={img127} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img128} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img129} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img126} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img127} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img128} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="blogcard col-12   col-md-3 col-sm-6">
-                  <figure><img src={img129} alt="rectangle127" /></figure>
-                  <div className="card-header">
-                    <p className='p-title'>Integer Maecenas Eget Viverra</p>
-                    <p className='p-body'>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. <span> Read more</span></p>
-                    <div className='date-number'>
-                      <span>1K read</span>
-                      <span>June 28, 2023</span>
-                    </div>
-                  </div>
-                </div> */}
+              
             </div>
-            {/* <div className="centerbtn">
-              <div className="button">
-                <button className="btn">
-                  Lead more
-                </button>
-              </div>
-            </div> */}
+          
           </div>
         </div>
       </div>
     </section>
-    <Faq/>
     </>
   )
 }

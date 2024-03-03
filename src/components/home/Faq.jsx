@@ -22,7 +22,7 @@ const Faq = () => {
   return (
     <>
       <section className="Faqs mt-5">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-12 ">
               <div className="title">
@@ -35,59 +35,31 @@ const Faq = () => {
                 <h3> ? </h3>
                 <span>Look here.</span>
               </div>
-              <div className="accordion " id="accordionExample">
-                {faq.map((item, i) => {
-                  return (
-                    <div className="accordion-item" id={`first${i}`}>
-                      <h2 className="accordion-header">
-                        <button
-                          id={i}
-                          className="accordion-button collapsed"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target={`#collapse${i}`}
-                          aria-expanded="false"
-                          aria-controls={`collapse${i}`}
-                        >
-                          <h6>{item.title}</h6>
+              <div className="container-fluid mt-4">
+                <div class="accordion" id="accordionExample">
+                  {faq.map((item, i) => (
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapseTwo${i}`} aria-expanded="false" aria-controls="collapseTwo">
+                          {item.title}
                         </button>
                       </h2>
-                      <div
-                        id={`collapse${i}`}
-                        className={`accordion-collapse collapse ${
-                          i == 0 ? "show" : ""
-                        } `}
-                        data-bs-parent="#accordionExample"
-                      >
-                        <div className="accordion-body">
-                          <p className="lorem1 "> {item.text} </p>
+                      <div id={`collapseTwo${i}`} class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          {item.text}
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    </div>))
+                  }
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* <section className="Faqs">
-      <div className="container1">
-        <div className="Center">
-          <div className="title">
-            <div className="line"></div>
-            <div className="upper">  <h5>FAQ</h5></div>
-          </div>
-          <div className="question">
-            <h1>Questions </h1>
-            <h3> ? </h3>
-            <span className="lookHere">Look here</span>
-          </div>
 
-        </div>
-      </div>
-    </section> */}
+
     </>
   );
 };

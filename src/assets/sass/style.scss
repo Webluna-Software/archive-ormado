@@ -54,3 +54,15 @@ a{
 @import './career/Vacancydetail';
 @import './career/careerform';
 
+
+
+.ormado-con-main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .ormado-con{
+        width: 90%;
+    }
+}
