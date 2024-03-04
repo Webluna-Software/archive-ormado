@@ -135,6 +135,7 @@ header {
   
       ul {
         .navA {
+          width: 100%;
           text-decoration: none;
           color: #4a3024;
           font-family: Lato;
@@ -188,6 +189,15 @@ header {
   
   .mobile-header {
     display: none;
+    .mobile-icons{
+      color: transparent;
+      .icon{
+        display: none;
+      }
+      button{
+        background-color: transparent;
+      }
+    }
   }
   
   @media(max-width:1200px) {
@@ -305,10 +315,7 @@ header {
   
         .offcanvas-body {
           .row {
-            div {
-              padding: 0 !important;
-  
-              a {
+            .mobile-title {
                 text-decoration: none;
                 font-family: Montserrat;
                 font-size: small;
@@ -324,11 +331,15 @@ header {
               }
   
               &:hover {
-                a {
+                .mobile-title {
                   color: var(--nav-a);
                   cursor: pointer;
                 }
               }
+            div {
+              padding: 0 !important;
+  
+              
             }
           }
   

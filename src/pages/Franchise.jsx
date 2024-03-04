@@ -38,9 +38,7 @@ const Franchise = () => {
           <img className="img-fluid" src={franchise} alt="" />
           </div>
         </div>
-     
-    </section>
-  <div className="roasting">
+        <div className="roasting">
         <h3 className="ms-1 my-5">
            <font color="#D59729">Coffee</font>
         </h3>
@@ -56,6 +54,9 @@ const Franchise = () => {
           </div>
         </div>
       </div>
+     
+    </section>
+  
  
     <Testimonials senddata={testimonalsforfranchise} />
       <div className="franchisecompany">

@@ -36,9 +36,14 @@
     }
 
     .card-parts {
+        .col-6{
+            @media(max-width:500px) {
+                width: 100% !important;
+              }
+        }
         .card {
             border: none !important;
-
+            
 
 
             .cardHeadText {
