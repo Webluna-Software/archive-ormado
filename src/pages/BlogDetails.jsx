@@ -249,7 +249,9 @@ const BlogDetails = () => {
                     <div className="blog-details-lastes">
                       {blog.slice(-2).map((fd, i) => (
                         <div className="blogcard col-12 col-md-3 col-sm-6" key={i}>
-                          <Link to={`/blogDetails/${fd._id}`}>
+                          <Link to={`/blogDetails/${fd._id}`} onClick={()=>{
+                            window.scrollTo({top:0})
+                          }}>
                             <figure>
                               <img src={fd.coverImage} alt="rectangle127" />
                             </figure>
