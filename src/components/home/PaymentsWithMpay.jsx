@@ -1,5 +1,5 @@
 import React from "react";
-import mobile from "../../assets/img/mobile.png";
+import mobile from "../../assets/img/MockUp.jpg";
 import PlayMarketBtn from "./PlayMarketBtn";
 
 
