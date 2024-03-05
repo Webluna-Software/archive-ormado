@@ -15,14 +15,14 @@ const ProductDetails = () => {
   const { ApiLink } = useContext(ApiLinkContext)
   const { id } = useParams()
   const [productDetails, setProductDetails] = useState([]);
-
+  const path = window.location.pathname;
   useEffect(() => {
     axios.get(`${ApiLink}/product/${id}`)
       .then((res) => {
         console.log(res.data, "ProductDetailsData");
         setProductDetails(res.data.product);
       })
-  }, []);
+  }, [path]);
 
 
   return (

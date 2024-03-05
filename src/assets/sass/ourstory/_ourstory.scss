@@ -39,16 +39,17 @@
     margin-top: 50px;
     @media (max-width: 768px) {
       margin-top: 0;
-    }padding: 0px 84px 0px 84px;
+    }
+    // padding: 0px 84px 0px 84px;
 
-    @media (max-width:1070px) {
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-    @media (max-width:730px) {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+    // @media (max-width:1070px) {
+    //     padding-left: 50px;
+    //     padding-right: 50px;
+    // }
+    // @media (max-width:730px) {
+    //     padding-left: 20px;
+    //     padding-right: 20px;
+    // }
     h3 {
       color: #4a3024;
       text-align: start;
