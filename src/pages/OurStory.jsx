@@ -37,9 +37,7 @@ const OurStory = () => {
               <h3>
                 {about.headerText}
               </h3>
-              <p>
-                {about.text}
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: about.text }}/>
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
