@@ -3,6 +3,8 @@ import productImg from "../../assets/img/product-img.png"
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
+import Logo from "../../assets/img/Logo.png";
+
 
 const ProductDetails = () => {
 
@@ -28,7 +30,9 @@ const ProductDetails = () => {
   return (
       <>
       
-      {productDetails.length === 0 ?<h1>Loading...</h1>:
+      {productDetails.length === 0 ? <div className='d-flex align-items-center justify-content-center'>
+        <img width={150} className='loading-rotate' src={Logo} alt="" />
+      </div> :
   <section className='productdetails-page'>
       <div className="img-transparent">
         <div className="image-container">

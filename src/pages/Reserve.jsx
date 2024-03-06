@@ -60,13 +60,12 @@ const reserveTypeRadio=(value)=>{
                     </div>
                     <img className='background img-fluid' src={background} alt="" />
                     <div className='firtst-card-title'>
-                        <p >Reserve</p>
                     </div>
                 </div>
                 <div className="reserve-form-header">
                     <div className="reserve-header-text">
-                        <h1>COFFEE</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                        <h1>Reservation</h1>
+                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p> */}
                     </div>
                 </div>
                 <div className="reserve-form">

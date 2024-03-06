@@ -47,7 +47,7 @@ useEffect(() => {
                       </div>
                       <div className="ormadoBtn">
                         <button>
-                          <Link to="/products">Learn more</Link>
+                          <Link to="/about">Learn more</Link>
                         </button>
                       </div>
                   </div>

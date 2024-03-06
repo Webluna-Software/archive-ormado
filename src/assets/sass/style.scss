@@ -66,3 +66,13 @@ a{
         width: 90%;
     }
 }
+
+.loading-rotate{
+    animation: loading 5s infinite linear;
+}
+
+@keyframes loading{
+    100%{
+        transform: rotate(360deg) ;
+    }
+}

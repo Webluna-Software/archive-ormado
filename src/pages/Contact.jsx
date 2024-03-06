@@ -10,7 +10,7 @@ const Contact = () => {
     <>
       <Contactus/>
       <Contactlocation/>
-      <Contactcards/>
+      {/* <Contactcards/> */}
 
     </>
   )

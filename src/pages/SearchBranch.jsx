@@ -12,11 +12,11 @@ const SearchBranch = () => {
                     </div>
                     <img className='background img-fluid' src={background} alt="" />
                     <div className='firtst-card-title'>
-                        <p >Search a brnach</p>
+                        <p >Search a branch</p>
                     </div>
                 </div>
       <Contactlocation />
-      <Contactcards />
+      {/* <Contactcards /> */}
 
     </div>
   )
