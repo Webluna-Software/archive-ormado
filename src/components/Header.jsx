@@ -332,7 +332,7 @@ const Header = () => {
                     <hr />
                   </div>
                   </Link>
-                  <Link to={'/#react'} className="mobile-title">
+                  <Link to="/career" className="mobile-title">
                   <div className="col-11 ">
                     <div className="d-flex justify-content-between">
                       <div>

@@ -56,10 +56,10 @@ const Franchise = () => {
         </div>
         <div className="roasting">
           <h3 className="ms-1 my-5">
-            <font color="#D59729">Coffee</font>
+            <font color="#D59729">We provide everything you need for a successful business  </font>
           </h3>
           <p className="ms-1 w-50">
-            As Ormado Kaffeehaus, we offer coffees with a unique composition. If you also want to own a coffee shop that offers quality coffee with a unique taste to your customers, our franchise is exactly what you are looking for.
+          Based on mutual agreement, we share and provide mentorship on all the necessary information required for a successful and risk-free start to the business. This includes interior design, furnishings, beverage and dessert menus, and more.
           </p>
 
           <div className="franchise-cards mb-5">
