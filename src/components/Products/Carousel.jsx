@@ -1,93 +1,40 @@
-
-
 import React, { useState } from 'react';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 
-const items = [
-  <div className="item" data-value="1">
-    <img src="https://images.bolt.eu/store/2022/2022-01-05/b84dcd88-4dc9-472c-9a88-6f49acfc793a.jpeg" alt="" />
-  </div>,
-  <div className="item" data-value="2">
-    <img src="https://images.bolt.eu/store/2022/2022-01-05/b84dcd88-4dc9-472c-9a88-6f49acfc793a.jpeg" alt="" />
-  </div>,
-  <div className="item" data-value="3">
-    <img src="https://images.pexels.com/photos/7362647/pexels-photo-7362647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-  </div>,
-  <div className="item" data-value="4">
-    <img src="https://s3-alpha-sig.figma.com/img/e3ee/94e6/7954dadb4be2faa26d1003d079be902b?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PL-Ox5UMwpKTGrENmQY2gI0iHKfbWei-NN5ut~QMNGFgD-SGDvH9WftZn8comRXm9XQbD-ctK9UAu7Sx9~CsgF0xb6oB5DPIZPtQGRvin4TNeRNhTtKFxzg1NIt3iYW5Vtt9NUiOs7LoTzTSYhM7fFK5zIDLyooGuuk2S1EhOhwY24kbVCbNsFAbUrlMv2tuA9GrIUj9Tr9JLuI6xUZGtAUQH0ydc7AGP3TsHkGHlFTRRmjDh5BiN3kqtj0KlmsCsoJ2fBz~UhKbinO0nN3kUWuuyTqBtOELhsKND4L3ZcAV0BmkR-PsHMGoGOfh5RYNeePEBVpLNRIrqsU1gzIITQ__" alt="" />
-  </div>,
-  <div className="item" data-value="5">
-    <img src="https://s3-alpha-sig.figma.com/img/e3ee/94e6/7954dadb4be2faa26d1003d079be902b?Expires=1707696000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PL-Ox5UMwpKTGrENmQY2gI0iHKfbWei-NN5ut~QMNGFgD-SGDvH9WftZn8comRXm9XQbD-ctK9UAu7Sx9~CsgF0xb6oB5DPIZPtQGRvin4TNeRNhTtKFxzg1NIt3iYW5Vtt9NUiOs7LoTzTSYhM7fFK5zIDLyooGuuk2S1EhOhwY24kbVCbNsFAbUrlMv2tuA9GrIUj9Tr9JLuI6xUZGtAUQH0ydc7AGP3TsHkGHlFTRRmjDh5BiN3kqtj0KlmsCsoJ2fBz~UhKbinO0nN3kUWuuyTqBtOELhsKND4L3ZcAV0BmkR-PsHMGoGOfh5RYNeePEBVpLNRIrqsU1gzIITQ__" alt="" />
-  </div>,
-];
+const Carousel = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-const thumbItems = (items, thumbIndex) => {
-  const reorderedItems = [...items.slice(thumbIndex), ...items.slice(0, thumbIndex)];
-  return reorderedItems.slice(0, 3).map((item, i) => (
-    <div className="thumb" key={i}>
-      {item}
-    </div>
-  ));
-};
-
-const Carousel = () => {
-  const [mainIndex, setMainIndex] = useState(0);
-  const [thumbIndex, setThumbIndex] = useState(0);
-  const slideTop = () => {
-    const newThumbIndex = (thumbIndex - 1 + items.length) % items.length;
-    setThumbIndex(newThumbIndex);
-    setMainIndex(newThumbIndex);
+  const handleClickPrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
-  const slideBottom = () => {
-    const newThumbIndex = (thumbIndex + 1) % items.length;
-    setThumbIndex(newThumbIndex);
-    setMainIndex(newThumbIndex);
-  };
-
-  const thumbs = thumbItems(items, thumbIndex);
-
-  const syncThumbs = (e) => {
-    setThumbIndex(e.item);
-    setMainIndex(e.item);
+  const handleClickNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
-    <div className="carousel-container">
-      <div className="main-photo">
-        <AliceCarousel
-          activeIndex={mainIndex}
-          animationType="fadeout"
-          animationDuration={800}
-          disableDotsControls
-          disableButtonsControls
-          items={items}
-          mouseTracking={false}
+    <div style={{ display: 'flex', flexDirection: 'row' }} className='slider-container'>
+      <div style={{ flex: 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }} className='index-photo'>
+          {images.map((photo, index) => (
+            <img
+              key={index}
+              src={photo}
+              alt={`Thumbnail ${index}`}
+              style={{ marginBottom: '10px', cursor: 'pointer' }}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
+        </div>
+      </div>
+      <div style={{ flex: 2 }} className='main-photo'>
+        <img
+          src={images[currentIndex]}
+          alt={`Main Photo`}
         />
       </div>
-      <div className="thumbs">
-        <AliceCarousel
-          activeIndex={thumbIndex}
-          autoWidth
-          disableDotsControls
-          disableButtonsControls
-          items={thumbs}
-          mouseTracking={false}
-          onSlideChanged={syncThumbs}
-        />
-        <div className="btn-top" onClick={slideTop}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle opacity="0.5" cx="12" cy="12" r="10" transform="rotate(90 12 12)" stroke="#DDBBAC" stroke-width="1.5" />
-            <path d="M15 13.5L12 10.5L9 13.5" stroke="#DDBBAC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div className="btn-bottom" onClick={slideBottom}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle opacity="0.5" cx="10" cy="10" r="10" transform="matrix(4.37114e-08 -1 -1 -4.37114e-08 22 22)" stroke="#DDBBAC" stroke-width="1.5" />
-            <path d="M15 10.5L12 13.5L9 10.5" stroke="#DDBBAC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
+      <div className='buttons'>
+        <button onClick={handleClickPrev}>Prev</button>
+        <button onClick={handleClickNext}>Next</button>
       </div>
     </div>
   );

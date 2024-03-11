@@ -199,3 +199,24 @@
     }
   }
 }
+
+.slider-container{
+  width: 50%;
+  background-color: red;
+  .index-photo{
+    background-color: blue;
+    width: 10%;
+  }
+  .main-photo{
+    width: 10%;
+    background-color: green($color: #000000);
+    img{
+      width: 10%;
+      height: 200px;
+    }
+  }
+  .buttons{
+    width: 50%;
+    background-color: aquamarine;
+  }
+}

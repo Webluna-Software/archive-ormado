@@ -3,6 +3,7 @@ import productImg from "../../assets/img/product-img.png"
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
+import Carousel from './Carousel';
 
 const ProductDetails = () => {
 
@@ -51,38 +52,7 @@ const ProductDetails = () => {
 
       <div className="row my-5">
         <div className="col-sm-12 col-md-12 col-lg-6">
-          <div id="carouselExample" className="carousel slide">
-            <div className="carousel-inner">
-            <div className="carousel-item active">
-                  <img src={productDetails.images[0]} className="d-block w-100" alt="err" style={{height:"400px",objectFit:"contain"}} />
-                </div>
-
-                  <div className="carousel-item ">
-                  <img src={productDetails.images[1]} className="d-block w-100" alt="err" style={{height:"400px",objectFit:"contain"}} />
-                </div>
-
-                  <div className="carousel-item ">
-                  <img src={productDetails.images[2]===undefined?productDetails.images[0]:productDetails.images[2]} className="d-block w-100" alt="err" style={{height:"400px",objectFit:"contain"}} />
-                </div>
-
-                  <div className="carousel-item ">
-                  <img src={productDetails.images[3]===undefined?productDetails.images[0]:productDetails.images[3]} className="d-block w-100" alt="err" style={{height:"400px",objectFit:"contain"}} />
-                </div>
-                
-            
-            
-            
-              
-            </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="visually-hidden">Next</span>
-            </button>
-          </div>
+          <Carousel images={productDetails.images} />
 
         </div>
         <div className="col-sm-12 col-md-12 col-lg-6 details-content">
