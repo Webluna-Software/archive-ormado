@@ -48,7 +48,7 @@ const EnjoyOurCoffee = () => {
                 </div>
                 <div className="getsomeoffer">
                   <p className="subtitle">Get Some Offer</p>
-                  <p className="body-text">Free Shipping process and reviews</p>
+                  <p className="body-text">Offers valid for a limited time</p>
                 </div>
                 <div className="product">
                   <div className="learnmore">
@@ -139,7 +139,7 @@ const EnjoyOurCoffee = () => {
                                 <div className="imagefluid">
                                   <img src={i.coverImage} alt="energy_drink" />
                                 </div>
-                                <p className="name">Ormado Energy drink</p>
+                                <p className="name">{i.title}</p>
                               </div>
                             </div>
                           </div>
@@ -150,31 +150,7 @@ const EnjoyOurCoffee = () => {
                   <div className="learn-button">
                     <Link to="/products" className="btn">Learn more</Link>
                   </div>
-                  <div className="ourmenu">
-                    <p>Our Menu</p>
-                  </div>
-                  <div className="buttons">
-                    <button className="btn">
-                      {" "}
-                      <span> Latte</span>
-                    </button>
-                    <button className="btn">
-                      {" "}
-                      <span>America</span>{" "}
-                    </button>
-                    <button className="btn">
-                      {" "}
-                      <span>Cappucino</span>{" "}
-                    </button>
-                    <button className="btn">
-                      {" "}
-                      <span>More menu</span>{" "}
-                    </button>
-                    <button className="btn">
-                      {" "}
-                      <span> More menu</span>
-                    </button>
-                  </div>
+                
                 </div>
               </div>
             </div>

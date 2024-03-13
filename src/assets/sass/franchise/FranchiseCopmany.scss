@@ -1,11 +1,64 @@
+.franchise-mobile{
+    height: 40vh;
+    background-image: url('https://ormado.de/assets/franchisebanner-FAxOoFz5.jpg');
+    background-size: cover;
+    padding: 10vh 0;
+    position: relative;
+    .bg-clr{
+        height: 40vh;
+        position: absolute;
+        top: 0;
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
+    }
+    p{
+        color: #fff;
+        margin-left: 20px;
+    }
+    .ormado-button{
+        margin-left:20px ;
+        width: 150px; 
+          height: 40px;
+          border-radius: 8px;
+          // padding: 12px 16px;
+          border: none;
+          background-color: #E3B142;
+          outline: none;
+          font-family: Lato;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+    }
+
+}
+
+@media(max-width:1070px){
+    .franc-con{
+        display: none !important;
+    }
+    .franchise-mobile{
+        display: block !important;
+    }
+}
+
 .franchisecompany {
     max-width: 100%;
     width: 100%;
     padding: 0px 84px 0px 84px;
 
+    
+
     @media (max-width:1070px) {
         padding-left: 50px;
         padding-right: 50px;
+        
     }
     @media (max-width:730px) {
         padding-left: 20px;

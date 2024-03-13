@@ -53,6 +53,7 @@ a{
 @import './career/Vacancydetail';
 @import './career/Vacancydetail';
 @import './career/careerform';
+@import './career/careerpage';
 
 
 
@@ -64,5 +65,15 @@ a{
     flex-direction: column;
     .ormado-con{
         width: 90%;
+    }
+}
+
+.loading-rotate{
+    animation: loading 5s infinite linear;
+}
+
+@keyframes loading{
+    100%{
+        transform: rotate(360deg) ;
     }
 }

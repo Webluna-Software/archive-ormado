@@ -41,13 +41,12 @@ useEffect(() => {
                       </div>
                       <div className="ormadoDesc">
                         <p>
-                        Ormado Kaffeehaus is an international German brand. Our story started in Berlin in 2017. We are proud to have already developed and refined our business models not only in the German capital, and also in Baku, Odessa, and Dubai. We have tested various strategies, products, and services to determine what works best across different locations. Ormado Kaffeehaus offers franchise opportunities to partners.
-                        Branches in Azerbaijan, Germany, Ukraine and UAE are franchise operated.
+                        Ormado Kaffeehaus is a global brand originating from Germany. Our journey began in Berlin in 2017, and since then, we have expanded our business model to cities like Baku, Odessa, and Dubai. Through rigorous testing and refinement, we have identified successful strategies, products, and services tailored to each location. Ormado Kaffeehaus provides franchise opportunities for partners, with branches in Azerbaijan, Germany, Ukraine, and the UAE operating under the franchise model.
                         </p>
                       </div>
                       <div className="ormadoBtn">
                         <button>
-                          <Link to="/products">Learn more</Link>
+                          <Link to="/about">Learn more</Link>
                         </button>
                       </div>
                   </div>
@@ -83,14 +82,12 @@ useEffect(() => {
                               </div>
                               <div className="ormadoDesc">
                                 <p>
-                                  It is best to start your day with a cup of coffee. Discover
-                                  the best flavour coffee you will ever have. We provide the
-                                  best for our customers.
+                                Ormado Kaffeehaus is a global brand originating from Germany. Our journey began in Berlin in 2017, and since then, we have expanded our business model to cities like Baku, Odessa, and Dubai. Through rigorous testing and refinement, we have identified successful strategies, products, and services tailored to each location. Ormado Kaffeehaus provides franchise opportunities for partners, with branches in Azerbaijan, Germany, Ukraine, and the UAE operating under the franchise model.
                                 </p>
                               </div>                   
                               <div className="ormadoBtn">
                                 <button>
-                                  <a href="#react">Learn more</a>
+                                  <Link href="/about">Learn more</Link>
                                 </button>
                               </div>
                             </div>

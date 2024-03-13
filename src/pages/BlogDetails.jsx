@@ -245,7 +245,7 @@ const BlogDetails = () => {
                     }
                   })}
                   <div className="blog-details-card my-5">
-                    <p>Latest news</p>
+                    <p className="latest-news">Latest news</p>
                     <div className="blog-details-lastes">
                       {blog.slice(-2).map((fd, i) => (
                         <div className="blogcard col-12 col-md-3 col-sm-6" key={i}>

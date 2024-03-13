@@ -23,6 +23,7 @@ import Account from './pages/Account';
 import Checkout from './pages/Checkout';
 import Cart from './pages/Cart';
 import CareerForm from './pages/CareerForm';
+import CareerPage from './pages/CareerPage';
 import SignUp from './pages/SignUp';
 import ForgotPass from './pages/ForgotPass';
 import SearchBranch from './pages/SearchBranch';
@@ -55,6 +56,7 @@ const App = () => {
                 <Route path='/checkout' element={<Checkout />}  ></Route>
                 <Route path='/basket' element={<Cart />}  ></Route>
                 <Route path='/careerform' element={<CareerForm />}  ></Route>
+                <Route path='/careerpage' element={<CareerPage/>}></Route>
                 <Route path='/forgotpass' element={<ForgotPass />}  ></Route>
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
                 <Route path='/signup' element={<SignUp />}  ></Route>

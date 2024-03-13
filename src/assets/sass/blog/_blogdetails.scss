@@ -218,7 +218,7 @@
                 flex-direction: row;
             }
            
-            p {
+            .latest-news {
                 color: #4A3024;
                 font-family: Lato;
                 font-size: 24px;
@@ -340,15 +340,16 @@
                         }
 
                         .p-body {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
                             overflow: hidden;
-                            color: #4A3024;
-                            text-overflow: ellipsis;
                             font-family: Lato;
                             font-size: 16px;
-                            font-style: normal;
                             font-weight: 400;
                             line-height: 24px;
-
+                            letter-spacing: 0em;
+                            text-align: left;
                             @media (min-width:"1600px") {
                                 font-size: 18px;
                                 line-height: 28px;

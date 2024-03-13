@@ -56,7 +56,7 @@ const NewSweets = () => {
               <div className="swiper-background"></div>
               <div className="swiper-text container">
                 <h1 className='mb-3'>NEW <span>SWEETS</span></h1>
-                <p>Good morning! ☕ Welcome to Ormado Kaffeehaus, where every cup is brewed with love and served with a side of smiles. Take a moment to savor the rich aroma swirling in the air – it's the scent of freshly roasted dreams and cozy conversations. Let our baristas craft the perfect blend for you, because just like your coffee, you're one of a kind. Cheers to shared moments and the simple joy found in a cup of warmth. We're here to make your day brew-tiful! 🌞☕</p>
+                <p>You can be sure that you will meet new desserts every time you visit our coffee shop. Don't miss the chance to get acquainted with our delicious desserts that are updated every day.</p>
             </div>
             </div>
         </SwiperSlide>

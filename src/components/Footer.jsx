@@ -12,12 +12,12 @@ const Footer = () => {
                         <div className="logo-div">
                             <img src={logo} alt="" />
                             <div className="d-flex flex-column flex-sm-row gap-2 mt-4 mb-3">
-                                <input id="newsletter1" type="text" className="form-control" placeholder="Enter your email" />
-                                <button className="btn btn-primary" type="button">Join the family!</button>
+                                <input id="newsletter1" type="text" className="form-control" placeholder="Join the family!" />
+                                <button className="btn btn-primary" type="button">Send</button>
                             </div>
                             <p>Sign up for email subscription to be aware of discounts and updates! You get email only offers when you join</p>
                             <div className='socialmedia-icons'>
-                                <a target='_blank' href="https://www.facebook.com/ormado.de">
+                                <a target='_blank' href="https://www.instagram.com/ormado_kaffeehaus/">
                                 <i className="fa-brands fa-square-instagram" />
                                 </a>
                                 <a target='_blank' href="https://www.facebook.com/ormado.de">
@@ -110,7 +110,7 @@ const Footer = () => {
                         <div className="logo-div d-flex align-items-center justify-content-between">
                             <img src={logo} alt="" />
                             <div className='socialmedia-icons'>
-                            <a target='_blank' href="https://www.facebook.com/ormado.de">
+                            <a target='_blank' href="https://www.instagram.com/ormado_kaffeehaus/">
                                 <i className="fa-brands fa-square-instagram" />
                                 </a>
                                 <a target='_blank' href="https://www.facebook.com/ormado.de">
@@ -160,7 +160,7 @@ const Footer = () => {
 
                         <div className="d-flex flex-column flex-sm-row gap-2 mt-4 mb-3">
                             <input id="newsletter1" type="text" className="form-control" placeholder="Enter your email" />
-                            <button className="btn btn-primary" type="button">Join the family!</button>
+                            <button className="btn btn-primary" type="button">Send</button>
                         </div>
                         <p>Sign up for email subscription to be aware of discounts and updates! You get email only offers when you join</p>
 

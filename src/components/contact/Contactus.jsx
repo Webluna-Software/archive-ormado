@@ -77,7 +77,7 @@ const Contactus = () => {
                                     <div className="container px-5">
 
                                         <div className="titlebox">
-                                            <p>Biling information</p>
+                                            <p>Contact Form</p>
                                         </div>
 
                                         <div className="row g-5">
@@ -95,26 +95,21 @@ const Contactus = () => {
                                                 </div>
                                             </div>
 
+
+
                                             <div className="col-6">
                                                 <div className="inputbox">
-                                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path d="M19 9L12 15L5 9" stroke="#A19FA1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg> */}
                                                     <label htmlFor="">Country/Region<span>*</span></label>
-                                                    <select className='myselect' aria-label="Default select example" onChange={(e) => setcountry(e.target.value)}>
-                                                        <option selected><h6 >Select</h6></option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-
-                                                    </select>
+                                                    <input placeholder='example@gmail.com' className='myinput' type="email" onChange={(e) => setemail(e.target.value)} />
                                                 </div>
                                             </div>
+
+                
 
                                             <div className="col-6">
                                                 <div className="inputbox">
                                                     <label htmlFor="">Phone<span>*</span></label>
-                                                    <input placeholder='___-__-__-__' className='myinput' type="number" onChange={(e) => setnumber(e.target.value)} />
+                                                    <input placeholder='+994-__-__-__' className='myinput' type="tel" onChange={(e) => setnumber(e.target.value)} />
                                                 </div>
                                             </div>
 
@@ -127,13 +122,8 @@ const Contactus = () => {
 
                                             <div className="col-6">
                                                 <div className="inputbox">
-                                                    <label htmlFor="">Interested in</label>
-                                                    <select className='myselect' aria-label="Default select example" onChange={(e) => setinterestedIn(e.target.value)}>
-                                                        <option selected>select </option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
-                                                    </select>
+                                                    <label htmlFor="">Subject</label>
+                                                    <input placeholder='Enter subject' className='myinput' type="text" onChange={(e) => setcompanyName(e.target.value)} />
                                                 </div>
                                             </div>
 

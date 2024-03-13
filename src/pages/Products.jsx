@@ -36,9 +36,9 @@ const Products = () => {
       <section className="container-fluid">
         <div className="products-page row pb-5 my-5 d-flex justify-content-center">
       
-
           <div className="col-md-9">
-            <div className="img-transparent d-none d-md-block d-lg-block">
+            <div className="img-transparent  d-md-block d-lg-block">
+
               <div className="image-container">
                 <img
                   src={productImg}
@@ -50,7 +50,7 @@ const Products = () => {
             </div>
 
         
-            <div className="product-cards d-none d-md-block d-lg-block p-0 mt-5">
+            <div className="product-cards  d-md-block d-lg-block p-0 mt-5">
               <div className="yourormado-products row g-3">
                 {products.map((fd,i)=>(
                   <div className="col-12 col-sm-6 col-md-4">
@@ -74,7 +74,7 @@ const Products = () => {
                         <i className="fa-solid fa-star"></i>
                         <i className="fa-solid fa-star"></i>
                         <i className="fa-solid fa-star"></i>
-                        <i className="fa-regular fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
                       </div>
                       <div className="price-addtocart">
                         <div className="price-box">
