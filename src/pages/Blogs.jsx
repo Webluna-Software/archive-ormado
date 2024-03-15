@@ -1,9 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import img126 from "../assets/img/Rectangle 1317 (4).png";
-import img127 from "../assets/img/Rectangle 1317 (5).png";
-import img128 from "../assets/img/Rectangle 1317 (6).png";
-import img129 from "../assets/img/Rectangle 1317 (7).png";
-import Faq from '../components/home/Faq';
+
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link } from 'react-router-dom';
