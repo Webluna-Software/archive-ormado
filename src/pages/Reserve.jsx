@@ -260,7 +260,7 @@ const Reserve = () => {
                   </div>
                 </div>
 
-                <div className="reserve-btn">
+                <div className="reserve-btn mt-4">
                   <button
                     type="submit"
                     data-bs-toggle="modal"
