@@ -10,7 +10,9 @@
             width: 100%;
             padding: 64px 84px 0px 84px;
             position: relative;
-            border-radius: 12px;
+            img{
+                border-radius: 12px;
+            }
             @media (max-width:1070px) {
                 padding-left: 50px;
                 padding-right: 50px;

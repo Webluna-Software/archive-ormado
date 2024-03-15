@@ -1,9 +1,5 @@
 import Slider from "react-slick";
-import client1 from "../../assets/img/client1.png";
-import client2 from "../../assets/img/client2.png";
-import client3 from "../../assets/img/client3.png";
-import client4 from "../../assets/img/client4.png";
-import client5 from "../../assets/img/client5.png";
+import removebg from '../../assets/img/removebg.png';
 
 const Clients = () => {
   const settings = {
@@ -78,7 +74,7 @@ const Clients = () => {
                 </div>
                 <div className="col-12 col-md-2">
                   <div className="clients-img">
-                    <img src='https://mein-immergruen.de/wp-content/uploads/2022/06/Immergruen-header-logo.svg' alt="" className="img-fluid" />
+                    <img src={removebg} alt="" className="img-fluid" />
                   </div>
                 </div>
                 <div className="col-12 col-md-2">

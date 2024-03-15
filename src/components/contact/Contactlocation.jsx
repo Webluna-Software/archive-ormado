@@ -24,7 +24,7 @@ const Contactlocation = () => {
     <>
     <div className="titlebox">
               <h1>Select address</h1>
-              <p>Quod tempore doloribus blanditiis. Quod quibusdam atque qui blanditiis et nihil atque. Error aut enim. Id et suscipit.</p>
+              <p>Enjoy the unique Ormado Kaffeehaus experience in our flagship stores and franchising shops.</p>
             </div>
       <div className="ormadolocation ">
         <div className="mysize-width boxcontainer">

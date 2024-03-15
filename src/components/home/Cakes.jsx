@@ -20,14 +20,17 @@ const Cakes = () => {
             <div className="row">
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={waffle} height={500} className="card-img-top" alt="..." />
+                        <img src={waffle} className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Waffle</h5>
                             
                             <div className="card-bottom-part">
-                            
-
-
+                            <p className="card-price">
+                                $20.00
+                            </p>
+                            <a href="#" className="cardBtn btn btn-primary">
+                                Taste now 
+                            </a>
                             </div>
                         </div>                        
                     </div>
@@ -36,12 +39,17 @@ const Cakes = () => {
 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={sansebastian} height={500} className="card-img-top" alt="..." />
+                        <img src={sansebastian}  className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">San Sebastian </h5>
                             
                             <div className="card-bottom-part">
-                            
+                            <p className="card-price">
+                                $20.00
+                            </p>
+                            <a href="#" className="cardBtn btn btn-primary">
+                                Taste now 
+                            </a>
                             </div>
                         </div>                        
                     </div>
@@ -49,12 +57,17 @@ const Cakes = () => {
 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={croissant} height={500} className="card-img-top" alt="..." />
+                        <img src={croissant} className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Croissant</h5>
                             
                             <div className="card-bottom-part">
-                        
+                            <p className="card-price">
+                                $20.00
+                            </p>
+                            <a href="#" className="cardBtn btn btn-primary">
+                                Taste now 
+                            </a>
                             </div>
                         </div>                        
                     </div>
@@ -62,13 +75,17 @@ const Cakes = () => {
 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={cheesecake} height={500} className="card-img-top" alt="..." />
+                        <img src={cheesecake} className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Cheese Cake</h5>
                             
                             <div className="card-bottom-part">
-                        
-                        
+                            <p className="card-price">
+                                $20.00
+                            </p>
+                            <a href="#" className="cardBtn btn btn-primary">
+                                Taste now 
+                            </a>
                             </div>
                         </div>                        
                     </div>
