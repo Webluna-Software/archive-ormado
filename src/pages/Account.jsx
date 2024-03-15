@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import bgimg from '../assets/img/bgimg.png'
 import { useState } from 'react';
-
+ 
 const Account = () => {
     const navigate=useNavigate();
     const [selectedGender, setSelectedGender] = useState(null);
