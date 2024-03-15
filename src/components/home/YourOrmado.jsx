@@ -43,7 +43,7 @@ const YourOrmado = () => {
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
                 <i className="fa-solid fa-star"></i>
-                <i className="fa-regular fa-star"></i>
+                <i className="fa-solid fa-star"></i>
               </div>
               <div className="price-addtocart">
                 <div className="price-box">

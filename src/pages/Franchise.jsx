@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import franchise from "../assets/img/franchisebanner.jpg"
 import Testimonials from '../components/home/Testimonials'
 import Faq from '../components/home/Faq'
-import cardimg from '../assets/img/first.png'
+import cardimg1 from '../assets/img/1.jpg'
+import cardimg2 from '../assets/img/2.jpg'
+import cardimg3 from '../assets/img/3.jpg'
 import { testimonalsforfranchise } from '../data/data'
 import Franchisepdf from '../assets/img/Franchise.pdf'
 const Franchise = () => {
@@ -59,9 +61,9 @@ const Franchise = () => {
 
           <div className="franchise-cards mb-5">
             <div className="row">
-              <img className='img' src={cardimg} alt="" />
-              <img src={cardimg} alt="" />
-              <img src={cardimg} alt="" />
+              <img className='img' src={cardimg1} alt="" />
+              <img src={cardimg2} alt="" />
+              <img src={cardimg3} alt="" />
             </div>
           </div>
         </div>

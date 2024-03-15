@@ -12,7 +12,7 @@ const Footer = () => {
                         <div className="logo-div">
                             <img src={logo} alt="" />
                             <div className="d-flex flex-column flex-sm-row gap-2 mt-4 mb-3">
-                                <input id="newsletter1" type="text" className="form-control" placeholder="Join the family!" />
+                                <input id="newsletter1" type="text" className="form-control" placeholder="Sign Up" />
                                 <button className="btn btn-primary" type="button">Send</button>
                             </div>
                             <p>Sign up for email subscription to be aware of discounts and updates! You get email only offers when you join</p>
