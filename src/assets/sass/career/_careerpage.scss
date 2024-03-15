@@ -1,0 +1,310 @@
+.career-page{
+    padding: 0 84px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .image-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+        .image-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%; 
+          border-radius: 6px;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 12px;
+          h3{
+              color:#FFF;
+              font-family: Lato;
+              font-size: 32px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 48px; 
+              text-align: center;
+          }
+        }
+        .img-fluid {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 12px;
+        }
+    }
+    .career-page-coffee{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 70px;
+        h2{
+            max-width: 657px;
+            font-size: 64px;
+            font-family: Montserrat;
+            font-weight: 700;
+            line-height: 83px;
+            color: rgba(74, 48, 36, 1);
+        }
+        p{
+            max-width: 657px;
+            color: rgba(151, 151, 151, 1);
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+        .career-page-iframe{
+            width: 100%;
+            position: relative;
+            iframe{
+                border-radius: 12px;
+            }
+            .image-overlay{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; 
+                border-radius: 6px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 12px;
+            }
+        }
+        h6{
+            max-width: 814px;
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: center;
+            color: rgba(74, 48, 36, 1);
+            margin-top: 20px;
+        }   
+    }
+    .career-page-team{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 70px;
+        h2{
+            max-width: 657px;
+            font-size: 64px;
+            font-family: Montserrat;
+            font-weight: 700;
+            line-height: 83px;
+            color: rgba(74, 48, 36, 1);
+        }
+        p{
+            max-width: 657px;
+            color: rgba(151, 151, 151, 1);
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: center;
+            margin-bottom: -10px;
+        }
+        .slick-slider{
+            width: 100%;
+            .slick-prev:before {
+                border: 1.5px solid rgba(213, 151, 41, 1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15.4881 4.43057C15.8026 4.70014 15.839 5.17361 15.5694 5.48811L9.98781 12L15.5694 18.5119C15.839 18.8264 15.8026 19.2999 15.4881 19.5695C15.1736 19.839 14.7001 19.8026 14.4306 19.4881L8.43056 12.4881C8.18981 12.2072 8.18981 11.7928 8.43056 11.5119L14.4306 4.51192C14.7001 4.19743 15.1736 4.161 15.4881 4.43057Z' fill='rgba(213, 151, 41, 1)'/%3E%3C/svg%3E") !important;
+            }
+            .slick-next:before {
+                border: 1.5px solid rgba(213, 151, 41, 1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z' fill='rgba(213, 151, 41, 1)'/%3E%3C/svg%3E") !important;
+            }
+        }
+        .testimonials-inner {
+            .card {
+                margin-top: 40px;
+                position: relative;
+                margin-left: 7px;
+                margin-right: 7px;
+                border: none;
+                background: #F7F2E8;
+                border-radius: 12px;
+                .card-body{
+                    padding: 24px;
+                    .card-title {
+                        font-family: Lato;
+                        font-size: 24px;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0em;
+                        color: rgba(78, 41, 34, 1);
+                    }
+                    .card-subtitle{
+                        font-family: Lato;
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        letter-spacing: 0em;
+                        color: rgba(151, 151, 151, 1);
+                        margin-bottom: 16px;
+                    }
+                    .card-text {
+                        font-family: Lato;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 6;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+    .career-page-vacancies{
+        width: 100%;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        h3{
+            max-width: 517px;
+            font-family: Montserrat;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 64px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(74, 48, 36, 1);
+            span{
+                color: rgba(213, 151, 41, 1);
+            }
+        }
+        .text{
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(74, 48, 36, 1);
+            max-width: 527px;
+        }
+       .vacancies-card{
+        display: flex;
+        .card{
+            border: 1px solid rgba(255, 231, 178, 1);
+            border-radius: 12px;
+            .card-body{
+                .card-text{
+                    text-align: end;
+                }
+                .vacancy-title{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 80%;
+                    .card-title{
+                        font-family: Lato;
+                        font-size: 32px;
+                        font-weight: 700;
+                        line-height: 40px;
+                        letter-spacing: 0em;
+                        color: rgba(74, 48, 36, 1);
+                    }
+                    .vacancy-date{
+                        border-radius: 100px;
+                        padding: 4px 12px;
+                        background: rgba(237, 0, 6, 1);
+                        text-align: center;
+                        p{
+                            font-family: Lato;
+                            font-size: 16px;
+                            font-weight: 400;
+                            color: white;
+                            width: auto;
+                            margin-bottom: 0;
+                            margin-top: 0;
+                        }
+                    }
+                }
+                .location{
+                    font-family: Lato;
+                    font-size: 16px;
+                    font-weight: 400;
+                    letter-spacing: 0em;
+                    width: auto;
+                    color: rgba(151, 151, 151, 1);
+                    span{
+                        margin: 4px 0 0 5px;
+                    }
+                }
+            }
+        }
+       }
+       .view-all-btn{
+        width: 88px;
+        height: 48px;
+        align-self: center;
+        border-radius: 8px;
+        border: none;
+        background: rgba(80, 45, 30, 1);
+        color: white;
+        margin-top: 20px;
+       }
+    }
+    .career-page-events{
+        width: 100%;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        h3{
+            max-width: 517px;
+            font-family: Montserrat;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 64px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(74, 48, 36, 1);
+            span{
+                color: rgba(213, 151, 41, 1);
+            }
+        }
+        .text{
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: rgba(74, 48, 36, 1);
+            max-width: 527px;
+        }
+    }
+}

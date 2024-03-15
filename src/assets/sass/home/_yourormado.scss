@@ -19,16 +19,14 @@
             border: none;
             border-radius: 10px;
             position: relative;
-            max-height: 462px;
+            max-height: 482px;
             .card-img-top{
-                display: block;
                 transition: transform .4s;
                 cursor: pointer;
                 object-fit: contain;
                 height: 300px;
                 &:hover{
-                    transform: scale(1.3);
-                    transform-origin: 50% 50%;
+                    transform: scale(1.1);
                 }
             }
             .wishlist-modal{
