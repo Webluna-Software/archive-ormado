@@ -483,6 +483,10 @@
                             font-style: normal;
                             font-weight: 450;
                             line-height: 24px;
+                            outline: none;
+                            &:focus{
+                                border: 1px solid #c38a2f;
+                            }
                             @media (min-width:1600px) {
                                 font-size: 20px;
                             }
@@ -564,7 +568,11 @@
                             font-style: normal;
                             font-weight: 450;
                             line-height: 24px;
-
+                            outline: none;
+                            transition: 250ms;
+                            &:focus{
+                                border: 1px solid #c38a2f;
+                            }
                             @media (min-width:1600px) {
                                 font-size: 20px;
                             }
@@ -626,6 +634,15 @@
                                 font-size: 11px;
                                 padding: 5px 10px;
                             }
+                        }
+                        .invalid{
+                            border: 1px solid red;
+                        }
+                        .invalid_message{
+                            color: red;
+                            font-size: small;
+                            font-weight: bold;
+                            font-family: "Lato",sans-serif;
                         }
                     }
                     
@@ -706,7 +723,7 @@
 
                         display: flex;
                         align-items: center;
-                        
+                     
                         input[type='radio'] {
                             accent-color: #c38a2f;
                         }

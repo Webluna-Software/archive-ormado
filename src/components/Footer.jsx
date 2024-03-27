@@ -104,14 +104,14 @@ const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <a href="/contact" className="nav-link p-0">
-                    Contact
+                    Contact Form
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="footer-contact">
-              <h5>Contact</h5>
+              <h5>Contact Details</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
                   <a href="mailto:info@ormado.de" className="nav-link p-0">
@@ -286,14 +286,14 @@ const Footer = () => {
                   </li>
                   <li className="nav-item mb-2">
                     <a href="/contact" className="nav-link p-0">
-                      Contact
+                      Contact Form
                     </a>
                   </li>
                 </ul>
               </div>
 
               <div className="footer-contact">
-                <h5>Contact</h5>
+                <h5>Contact Details</h5>
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
                     <a href="mailto:info@ormado.de" className="nav-link p-0">

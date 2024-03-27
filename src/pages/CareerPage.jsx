@@ -198,11 +198,7 @@ const CareerPage = () => {
         </div>
         <center><Link to="/vacancy"><button className='view-all-btn'>View all</button></Link></center>
       </div>
-      {/* <div className="career-page-events">
-        <h3>Our <span>events</span></h3>
-        <p className='text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae, nullam lobortis enim. </p>
-      </div>
-      <Faq /> */}
+      <Faq />
     </section>
   )
 }

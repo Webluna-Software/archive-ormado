@@ -47,10 +47,6 @@ const Contactus = () => {
           <div className="row">
             <div className=" col-12  col-lg-6  leftside">
               <div className="conbox">
-                <div className="title">
-                  <h1>Contact Us</h1>
-                </div>
-
                 <div className="middle">
                   <h1>Get in Touch with us! </h1>
                 </div>
@@ -70,6 +66,12 @@ const Contactus = () => {
                       now!
                     </h6>
                   </div>
+                  <br /> <br />
+                  <div className="text text-white">
+                    <p>
+                    Connecting Through Coffee, One Message at a Time
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,7 +82,7 @@ const Contactus = () => {
                 <div className="inner">
                   <div className="container px-5">
                     <div className="titlebox">
-                      <p>Contact Form</p>
+                      <p>Contact Us</p>
                     </div>
 
                     <div className="row g-5">

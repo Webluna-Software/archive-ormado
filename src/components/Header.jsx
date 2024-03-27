@@ -161,11 +161,11 @@ const Header = () => {
         </div>
         <nav>
           <ul className="ps-0"><Link to="/" className={` navA ${active == 1 ? "active" : ""}`} onClick={() => setActive(1)}><li>HOME</li></Link></ul>
-          <ul><Link to="/products" className={` navA ${active == 2 ? "active" : ""}`} onClick={() => setActive(2)}><li>PRODUCT</li></Link></ul>
+          <ul><Link to="/products" className={` navA ${active == 2 ? "active" : ""}`} onClick={() => setActive(2)}><li>PRODUCTS</li></Link></ul>
           <ul><Link to="/about" className={` navA ${active == 3 ? "active" : ""}`} onClick={() => setActive(3)}><li>OUR STORY</li></Link></ul>
           <ul><Link to="/franchise" className={` navA ${active == 4 ? "active" : ""}`} onClick={() => setActive(4)}><li>FRANCHISE</li></Link></ul>
           <ul><Link to="/career" className={` navA ${active == 5 ? "active" : ""}`} onClick={() => setActive(5)}><li>CAREER</li></Link></ul>
-          <ul><Link to="/reserve" className={` navA ${active == 6 ? "active" : ""}`} onClick={() => setActive(6)}><li>RESERVE</li></Link></ul>
+          <ul><Link to="/reserve" className={` navA ${active == 6 ? "active" : ""}`} onClick={() => setActive(6)}><li>RESERVATION</li></Link></ul>
           <ul><Link to="/blogs" className={` navA ${active == 7 ? "active" : ""}`} onClick={() => setActive(7)}><li>BLOGS</li></Link></ul>
           <ul><Link to="/contact" className={` navA ${active == 8 ? "active" : ""}`} onClick={() => setActive(8)}><li>CONTACT</li></Link></ul>
         </nav>
@@ -255,7 +255,7 @@ const Header = () => {
                   <div className="col-11 ">
                     <div className="d-flex justify-content-between">
                       <div>
-                          PRODUCT
+                          PRODUCTS
                       </div>
                       <div>
                         <svg
@@ -363,7 +363,7 @@ const Header = () => {
                   <div className="col-11 ">
                     <div className="d-flex justify-content-between">
                       <div>
-                          RESERVE
+                          RESERVATION
                       </div>
                       <div>
                         <svg
