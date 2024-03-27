@@ -67,7 +67,7 @@ const Blogs = () => {
                   <h3>Blog</h3>
                 </div>
                 <div className="cardsBlogs row m-0">
-                  {blog.map((item, i) => (
+                  {blog.slice(-4).map((item, i) => (
 
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
                       <figure><img src={item.coverImage} alt="rectangle127" /></figure>
