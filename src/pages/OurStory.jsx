@@ -6,6 +6,9 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import roasting1 from "../assets/img/roasting1.png"
+import roasting2 from "../assets/img/roasting2.png"
+import roasting3 from "../assets/img/roasting3.png"
 const OurStory = () => {
 
   const { ApiLink } = useContext(ApiLinkContext)
@@ -55,16 +58,19 @@ const OurStory = () => {
         <p className="ms-1">
           Blending coffee is both a science and an art, requiring expertise, creativity, and a keen understanding of flavor profiles. At our roasting house, we take pride in our mastery of the blending process, meticulously fine-tuning each blend to achieve the perfect balance of acidity, body, and aroma.
         </p>
-        <iframe
-          width="100%"
-          height="437"
-          src="https://www.youtube.com/embed/GWIAwS09PpM?si=xVOqPoLLwQxS9CTs"
-          className="rounded"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+      <div className="container-fluid">
+        <div className="row g-3">
+          <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
+            <img src={roasting1} alt="" className="img-fluid" />
+          </div>
+          <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
+            <img src={roasting2} alt="" className="img-fluid" />
+          </div>
+          <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
+            <img src={roasting3} alt="" className="img-fluid" />
+          </div>
+        </div>
+      </div>
       </div>
       <div className="missionVision">
         <div className="container-fluid">

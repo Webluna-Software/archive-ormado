@@ -16,7 +16,8 @@ const Reserve = () => {
   const [branch, setbranch] = useState();
   const [remark, setremark] = useState();
   const [reserveType, setreserveType] = useState();
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  // const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [modal,setModal] = useState(false)
   // Validation
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -73,11 +74,12 @@ const Reserve = () => {
         })
         .then((res) => {
           console.log(res.data, "Reserve Form");
-          setSubmissionStatus("success");
+          // setSubmissionStatus("success");
+          setModal(true)
         })
         .catch((err) => {
           console.log(err);
-          setSubmissionStatus("error");
+          // setSubmissionStatus("error");
         });
     }
   };
@@ -423,38 +425,42 @@ const Reserve = () => {
                     <p>Reserve</p>
                   </button>
                 </div>
-                {/* {submissionStatus === "success" && (
-                  <div
-                    className="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div className="modal-dialog modal-dialog-centered">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h1
-                            className="modal-title fs-5"
-                            id="exampleModalLabel"
-                          >
-                            Thank you!
-                          </h1>
-                          <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div className="modal-body">
-                          Your form has been submitted successfully!
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {modal && (
+                  alert("Thank You  ")
+              // <>
+              //   <h1>Thank You</h1>
+              //     <div
+              //       className="modal fade"
+              //       id="exampleModal"
+              //       tabindex="-1"
+              //       aria-labelledby="exampleModalLabel"
+              //       aria-hidden="true"
+              //     >
+              //       <div className="modal-dialog modal-dialog-centered">
+              //         <div className="modal-content">
+              //           <div className="modal-header">
+              //             <h1
+              //               className="modal-title fs-5"
+              //               id="exampleModalLabel"
+              //             >
+              //               Thank you!
+              //             </h1>
+              //             <button
+              //               type="button"
+              //               className="btn-close"
+              //               data-bs-dismiss="modal"
+              //               aria-label="Close"
+              //             ></button>
+              //           </div>
+              //           <div className="modal-body">
+              //             Your form has been submitted successfully!
+              //           </div>
+              //         </div>
+              //       </div>
+              //     </div>
+              // </>
                 )}
-                {submissionStatus === "error" && (
+                {/* {submissionStatus === "error" && (
                   <div
                     className="modal fade"
                     id="exampleModal"
@@ -486,6 +492,7 @@ const Reserve = () => {
                   </div>
                 )} */}
               </form>
+            
             </div>
           </div>
         </div>
