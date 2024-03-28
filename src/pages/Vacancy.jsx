@@ -10,7 +10,7 @@ const Vacancy = () => {
         <div className="container">
           <div className="title">
             <h1>Our <span>Vacancies</span></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor inventore excepturi quibusdam illum id alias dicta nostrum veritatis, labore magnam?</p>
+            <p>If you want to evaluate the career opportunities at Ormado Kaffeehaus, fill out the form right now and we will contact you when our vacancy becomes active!</p>
             <Link to="/careerform" className='btn btn-warning' href="">Add CV</Link>
           </div>
 

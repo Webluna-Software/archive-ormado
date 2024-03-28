@@ -2,7 +2,7 @@ import React from 'react'
 import Contactlocation from '../components/contact/Contactlocation'
 import Contactcards from '../components/contact/Contactcards'
 import background from '../assets/img/Frame.png'
-import card from '../assets/img/Rectangle.png'
+import card from '../assets/img/searchbanner.png'
 const SearchBranch = () => {
   return (
     <div className='reserve'>

@@ -23,7 +23,7 @@ const Home = () => {
       <NewSweets />
       <Cakes />
       <Franchise />
-      <OurRecentBlog/>
+      {/* <OurRecentBlog/> */}
       <PaymentsWithMpay/>
     </>
   )

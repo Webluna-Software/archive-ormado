@@ -21,7 +21,7 @@ const locations = [
     
     {
       id:2,
-      name: 'Ormado Kaffeehaus | Dubay',
+      name: 'Ormado Kaffeehaus | Dubai',
       email: 'ibnbattutamall@ormado.de',
       phone: '+4917685589190',
       hours: '09:00 - 17:00',
@@ -30,7 +30,7 @@ const locations = [
     },
     {
       id:3,
-      name: 'Ormado Kaffeehaus | Bakı',
+      name: 'Ormado Kaffeehaus | Baku',
       email: 'einbecker@ormado.de',
       phone: '+4917685589190',
       hours: '09:00 - 17:00',
@@ -39,20 +39,20 @@ const locations = [
     },
     {
       id:4,
-      name: 'Ormado Kaffeehaus | Bakı 2',
+      name: 'Ormado Kaffeehaus | Baku 2',
       email: 'einbecker@ormado.de',
       phone: '+4917685589190',
       hours: '09:00 - 17:00',
-      address: 'Zefir Mall, Bakı',
+      address: 'Zefir Mall, Baku',
       map:"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12157.827254551332!2d49.7939749!3d40.3765671!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d608afa6217%3A0x5db17242f9b9744f!2sOrmado%20Kaffeehaus%20Zefir%20Mall!5e0!3m2!1sen!2saz!4v1709205890516!5m2!1sen!2saz"  
     },
     {
       id:5,
-      name: 'Ormado Kaffeehaus | Ukraniya',
+      name: 'Ormado Kaffeehaus | Ukraine',
       email: 'einbecker@ormado.de',
       phone: '+4917685589190',
       hours: '09:00 - 17:00',
-      address: "Spyrydonivs'ka St, 2, Odesa, Odes'ka oblast, Ukraine, 65000",
+      address: "Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000",
       map:"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10989.317349725608!2d30.7303241!3d46.4817908!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c6318ef70aba15%3A0x74edfbf47849f34b!2sOrmado%20Kaffeehaus!5e0!3m2!1sen!2saz!4v1709206048005!5m2!1sen!2saz"  
     }
     

@@ -70,7 +70,7 @@ const Faq = () => {
                     data-bs-parent="#accordionExample"
                   >
                     <div className="accordion-body  ">
-                      <p className="lorem1 "> {item.text}</p>
+                      <p className="lorem1 " dangerouslySetInnerHTML={{ __html: item.text }}/>
                     </div>
                   </div>
                 </div>
