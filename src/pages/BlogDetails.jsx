@@ -223,7 +223,33 @@ const BlogDetails = () => {
                   </div>
                 </div>
               </div>
-              <Blogs />
+              {/* <Blogs /> */}
+              <div className="cardsBlogs row m-0">
+                  {blog.slice(-4).map((item, i) => (
+                        <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
+                      <figure><img src={item.coverImage} alt="rectangle127" /></figure>
+                      <div className="card-header">
+                        <p className='p-title'>{item.title}</p>
+                        <p
+                          className='p-body-text'
+                          dangerouslySetInnerHTML={{
+                            __html: findFirstSection(item),
+                          }}
+                        />
+                        <p className='p-body-read'>
+                          <Link to={`/blogDetails/${item._id}`}> <span> Read more</span></Link>
+                        </p>
+                        <div className='date-number'>
+                          <span>{item.readCount} read</span>
+                          <span>{item.date}</span>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  ))}
+
+                </div>
             </div>
           </div>
         )}

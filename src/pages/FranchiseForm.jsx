@@ -16,10 +16,14 @@ const FranchiseForm = () => {
   const [phone, setphone] = useState()
   const [city, setcity] = useState()
   const [country, setcountry] = useState()
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  // const [submissionStatus, setSubmissionStatus] = useState(null);
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+
+  const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+
   const fromPost = (e) => {
     e.preventDefault()
     if (!fullName.trim()) {
@@ -47,13 +51,13 @@ const FranchiseForm = () => {
         phone: phone,
         city: city,
         country: country
-      }).then((res) => {
-        console.log(res.data, 'FranchiseForm Post')
-        setSubmissionStatus('success');
-      })
+    }).then((res) => {
+      if (res.data.status == "success") {
+        setShowModal(true);
+      }
+    })
       .catch((err) => {
-        console.log(err)
-        setSubmissionStatus('error');
+        setShowErrorModal(true)
       })
   }
 
@@ -118,42 +122,51 @@ const FranchiseForm = () => {
               <div className="franchiseform-btn mb-2">
                 <button type='submit' data-bs-toggle="modal" data-bs-target="#exampleModal"><p>Submit</p></button>
               </div>
-              {submissionStatus === 'success' && (
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body">
-                        Your form has been submitted successfully!
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            )}
-            {submissionStatus === 'error' && (
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div className="modal-body">
-                        Something went wrong. Please try again.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-       
-            )}
+
             </form>
             
-
-
-
+                  <div className="btn-form-modal">
+                    <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                           <div className="modal-header">
+                            <h5 className="modal-title">Thank you !</h5>
+                            <button type="button" 
+                              onClick={() => {
+                              window.location.reload()
+                              setShowModal(false)
+                              }}
+                              className="btn-close" data- bs-dismiss="modal" aria-label="Close">
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            <p>Your form has been submitted successfully!</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className="btn-form-modal">
+                    <div className={`modal fade ${showErrorModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showErrorModal ? 'block' : 'none' }}>
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                           <div className="modal-header">
+                            <h5 className="modal-title">Something went wrong!</h5>
+                            <button type="button" 
+                              onClick={() => {
+                              window.location.reload()
+                              setShowErrorModal(false)
+                              }}
+                              className="btn-close" data- bs-dismiss="modal" aria-label="Close">
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            <p>Something went wrong. Please try again.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
           </div>
         </div>
       </div>
@@ -162,3 +175,5 @@ const FranchiseForm = () => {
 }
 
 export default FranchiseForm
+
+

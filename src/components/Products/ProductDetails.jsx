@@ -90,7 +90,7 @@ const ProductDetails = () => {
                 <p className="lastprice">${productDetails.salePrice}</p>
                 {/* <div className='discount'><p>%64 Off</p></div> */}
               </div>
-
+    
               <div className="size-div">
                 <p>Size:</p>
                 <span className={selectedSize === '150ml' ? 'selected' : ''}

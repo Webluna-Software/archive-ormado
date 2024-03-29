@@ -318,13 +318,45 @@
               width: 280px;
             }
 
-            @media (max-width: 310px) {
-              width: 240px;
+                        @media(max-width:310px) {
+                            width: 240px;
+                        }
+
+
+                    }
+                }
+
             }
-          }
+            .modal {
+                .modal-dialog {
+                    .modal-content {
+                        background-color: #dbc8af;
+    
+                        .modal-header {
+                            color: var(--Brown-Main-color, #311a0f);
+                            font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 64px;
+                            .modal-title{
+                                color: #4A3024;
+                                font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 30px;
+                            }
+    
+                        }
+                        .modal-body{
+                            color: #4A3024;
+                            font-family: Montserrat;
+                            font-style: normal;
+                            font-weight: 400;
+                            padding: 50px 0px 50px 20px;
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
-  
 }
