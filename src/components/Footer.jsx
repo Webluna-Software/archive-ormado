@@ -2,8 +2,10 @@ import React from "react";
 import logo from "../assets/img/Logo.png";
 import qrimg from "../assets/img/qr-img.png";
 const Footer = () => {
+
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
+  
   return (
     <>
       <div className="desktop-footer">

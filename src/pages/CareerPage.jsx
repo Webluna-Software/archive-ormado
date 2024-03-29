@@ -9,6 +9,9 @@ import baristatwo from '../assets/img/Leyla.png';
 import baristathree from '../assets/img/Thomas.png';
 import baristafour from '../assets/img/Jenny.png';
 import { Link } from 'react-router-dom';
+
+
+
 const CareerPage = () => {
   const settings = {
     dots: false,
@@ -108,36 +111,6 @@ const CareerPage = () => {
                 <h6 class="card-subtitle">Barista</h6>
                 <p className="card-text">
                 Working at Ormado Kaffeehaus has been an enriching journey filled with aromatic brews and genuine connections. From the first aromatic espresso pull to the final latte art flourish, every moment is infused with a sense of purpose and passion. The supportive team atmosphere and commitment to excellence create an environment where I'm not just an employee, but a valued member of a tight-knit community. Ormado's dedication to quality and customer satisfaction sets the stage for unforgettable coffee experiences, making each day a rewarding adventure. Proud to be a part of such a vibrant coffee culture!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="testimonials-inner">
-            <div class="card">
-              <img src={Team} class="card-img-top" alt="..."></img>
-              <div className="card-body">
-                <h5 className="card-title">Lucia moura</h5>
-                <h6 class="card-subtitle">Developer</h6>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="testimonials-inner">
-            <div class="card">
-              <img src={Team} class="card-img-top" alt="..."></img>
-              <div className="card-body">
-                <h5 className="card-title">Lucia moura</h5>
-                <h6 class="card-subtitle">Developer</h6>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
               </div>
             </div>
