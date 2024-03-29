@@ -229,7 +229,7 @@ const BlogDetails = () => {
         )}
       </section>
     </>
-  );
+  ); 
 };
 
 export default BlogDetails;
