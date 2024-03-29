@@ -16,7 +16,7 @@ const Reserve = () => {
   const [branch, setbranch] = useState();
   const [remark, setremark] = useState();
   const [reserveType, setreserveType] = useState();
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  // const [submissionStatus, setSubmissionStatus] = useState(null);
   // Validation
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -26,6 +26,11 @@ const Reserve = () => {
   const [timeError,setTimeError] = useState(false)
   const [branchError,setBranchError] = useState(false)
   const [remarkError,setRemarkError] = useState(false)
+
+  
+  const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+
 
   useEffect(() => {
     axios.get(`${ApiLink}/reserve`).then((res) => {
@@ -72,12 +77,12 @@ const Reserve = () => {
           reserveType: reserveType,
         })
         .then((res) => {
-          console.log(res.data, "Reserve Form");
-          setSubmissionStatus("success");
+          if (res.data.status == "success") {
+            setShowModal(true);
+          }
         })
         .catch((err) => {
-          console.log(err);
-          setSubmissionStatus("error");
+          setShowErrorModal(true)
         });
     }
   };
@@ -415,14 +420,17 @@ const Reserve = () => {
                 </div>
 
                 <div className="reserve-btn mt-4">
-                  <button
+                <button type='submit' data-bs-toggle="modal" data-bs-target="#exampleModal">       <p>Reserve</p></button>
+                  {/* <button
                     type="submit"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                   >
                     <p>Reserve</p>
-                  </button>
+                  </button> */}
                 </div>
+                          
+
                 {/* {submissionStatus === "success" && (
                   <div
                     className="modal fade"
@@ -486,6 +494,28 @@ const Reserve = () => {
                   </div>
                 )} */}
               </form>
+              
+                  <div className="btn-form-modal">
+                    <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+                      <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                           <div className="modal-header">
+                            <h5 className="modal-title">Thank you !</h5>
+                            <button type="button" 
+                              onClick={() => {
+                              window.location.reload()
+                              setShowModal(false)
+                              }}
+                              className="btn-close" data- bs-dismiss="modal" aria-label="Close">
+                            </button>
+                          </div>
+                          <div className="modal-body">
+                            <p>Your form has been submitted successfully!</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
           </div>
         </div>
