@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import productImg from "../../assets/img/product-img.png"
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -66,7 +66,7 @@ const ProductDetails = () => {
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
                   <i className="fa-solid fa-star"></i>
-                  <i className="fa-regular fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                 </div>
                 <p>4 Reviews</p>
                 <a href="">Write a review</a>
@@ -75,7 +75,7 @@ const ProductDetails = () => {
               <div className="price-div">
                 <p className='preprice'><del>${productDetails.price}</del></p>
                 <p className="lastprice">${productDetails.salePrice}</p>
-                <div className='discount'><p>%64 Off</p></div>
+                {/* <div className='discount'><p>%64 Off</p></div> */}
               </div>
 
               <div className="size-div">
@@ -94,8 +94,7 @@ const ProductDetails = () => {
               </div>
 
               <div className="details-information-box">
-                <p>{productDetails.description}
-                </p>
+                <div dangerouslySetInnerHTML={{ __html: productDetails.description }} />
                 <a href="/productinformation">Read more in our allergen guide.</a>
               </div>
 

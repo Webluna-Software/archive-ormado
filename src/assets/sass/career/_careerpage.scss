@@ -45,9 +45,10 @@
         flex-direction: column;
         margin-top: 70px;
         h2{
-            max-width: 657px;
-            font-size: 64px;
+            max-width: 700px;
+            font-size: 58px;
             font-family: Montserrat;
+            text-align: center;
             font-weight: 700;
             line-height: 83px;
             color: rgba(74, 48, 36, 1);
@@ -65,6 +66,13 @@
         .career-page-iframe{
             width: 100%;
             position: relative;
+            .career-page_teamimg{
+                img{
+                    height: 600px;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
             iframe{
                 border-radius: 12px;
             }

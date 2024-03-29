@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 
 const Carousel = ({ images }) => {
   const [startIndex, setStartIndex] = useState(0);
   
   const handleClickPrev = () => {
     setStartIndex((prevStartIndex) => {
-      const newIndex = prevStartIndex === 0 ? images.length - 3 : prevStartIndex - 1;
+      const newIndex = prevStartIndex === 0 ? images.length - 1 : prevStartIndex - 1;
       return newIndex < 0 ? 0 : newIndex;
     });
   };
@@ -13,7 +14,7 @@ const Carousel = ({ images }) => {
 
   const handleClickNext = () => {
     setStartIndex((prevStartIndex) => {
-      const newIndex = prevStartIndex === images.length - 3 ? 0 : prevStartIndex + 1;
+      const newIndex = prevStartIndex === images.length - 1 ? 0 : prevStartIndex + 1;
       return newIndex;
     });
   };
