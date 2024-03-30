@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './assets/sass/style.scss';
 import { ApiLinkProvider } from './context/ApiLinkContext';
 import App from './App'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -2,8 +2,24 @@ import React from 'react'
 import card from '../assets/img/Rectangle.png'
 import background from '../assets/img/Frame.png'
 import { Link } from 'react-router-dom'
-
+import { useContext } from 'react'
+import ApiLinkContext from "../context/ApiLinkContext";
+import { useEffect } from 'react'
+import axios from 'axios'
 const CareerForm = () => {
+
+  const {ApiLink} = useContext(ApiLinkContext)
+
+  useEffect(()=>{
+    axios.get(`${ApiLink}/career`)
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[])
+
   return (
     <>
       <div className="careerForm">
