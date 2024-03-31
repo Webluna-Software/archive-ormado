@@ -1,10 +1,29 @@
 import logo from "../assets/img/Logo.png";
 import qrimg from "../assets/img/qr-img.png";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import ApiLinkContext from "../context/ApiLinkContext";
+import { useEffect } from "react";
+import axios from "axios";
 const Footer = () => {
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
+
+  const {ApiLink} = useContext(ApiLinkContext)
+
+  const [data,setData] = useState([])
+
+  useEffect(()=>{
+    axios.get(`${ApiLink}/contactSetting`)
+    .then((res)=>{
+      const contact = res.data.data.contactSettings[0]
+      setData(contact)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  },[])
   
   return (
     <>
@@ -36,16 +55,16 @@ const Footer = () => {
               <div className="socialmedia-icons">
                 <a
                   target="_blank"
-                  href="https://www.instagram.com/ormado_kaffeehaus/"
+                  href={data.instagram}
                 >
                   <i className="fa-brands fa-square-instagram" />
                 </a>
-                <a target="_blank" href="https://www.facebook.com/ormado.de">
+                <a target="_blank" href={data.facebook}>
                   <i className="fa-brands fa-facebook"></i>
                 </a>
                 <a
                   target="_blank"
-                  href="https://www.linkedin.com/company/72933606/admin/feed/posts/"
+                  href={data.linkedin}
                 >
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
@@ -119,17 +138,17 @@ const Footer = () => {
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
                   <a href="mailto:info@ormado.de" className="nav-link p-0">
-                    info@ormado.de
+                    {data.email}
                   </a>
                 </li>
                 <li className="nav-item mb-2">
                   <a href="tel:+4917685589190" className="nav-link p-0">
-                    +4917685589190
+                    {data.phone}
                   </a>
                 </li>
                 <li className="nav-item mb-2">
                   <a href="#" className="nav-link p-0">
-                    Einbecker Str. 18, 10317 Berlin
+                    {data.address}
                   </a>
                 </li>
               </ul>
@@ -226,16 +245,16 @@ const Footer = () => {
               <div className="socialmedia-icons">
                 <a
                   target="_blank"
-                  href="https://www.instagram.com/ormado_kaffeehaus/"
+                  href={data.instagram}
                 >
                   <i className="fa-brands fa-square-instagram" />
                 </a>
-                <a target="_blank" href="https://www.facebook.com/ormado.de">
+                <a target="_blank" href={data.facebook}>
                   <i className="fa-brands fa-facebook"></i>
                 </a>
                 <a
                   target="_blank"
-                  href="https://www.linkedin.com/company/72933606/admin/feed/posts/"
+                  href={data.linkedin}
                 >
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
@@ -310,17 +329,17 @@ const Footer = () => {
                 <ul className="nav flex-column">
                   <li className="nav-item mb-2">
                     <a href="mailto:info@ormado.de" className="nav-link p-0">
-                      info@ormado.de
+                      {data.email}
                     </a>
                   </li>
                   <li className="nav-item mb-2">
                     <a href="tel:+4917685589190" className="nav-link p-0">
-                      +4917685589190
+                      {data.phone}
                     </a>
                   </li>
                   <li className="nav-item mb-2">
                     <a href="#" className="nav-link p-0">
-                      Einbecker Str. 18, 10317 Berlin
+                      {data.address}
                     </a>
                   </li>
                 </ul>
