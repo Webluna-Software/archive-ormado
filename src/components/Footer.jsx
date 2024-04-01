@@ -233,7 +233,7 @@ const Footer = () => {
           </div>
         </footer>
       </div>
-
+ 
       <div className="mobile-footer">
         <footer>
           <div className="footer-top">
