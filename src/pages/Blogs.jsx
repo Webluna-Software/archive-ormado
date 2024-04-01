@@ -10,6 +10,8 @@ const Blogs = () => {
   const [blog, setBlog] = useState([]);
   const [blogSection, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [visible,setVisible] = useState(3)
   useEffect(() => {
     //Blog
     axios.get(`${ApiLink}/blog`)
@@ -50,6 +52,11 @@ const Blogs = () => {
       return false;
     }
   };
+
+ const visibleShow = () =>{
+  setVisible(fd=>fd += 6)
+ }
+
   return (
     <>
       <section className='blogsPage'>
@@ -57,13 +64,13 @@ const Blogs = () => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <div className="row m-0">
+            <div className="row m-0 justify-content-center">
               <div className="blogs">
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
                 <div className="cardsBlogs row m-0">
-                  {blog.map((item, i) => (
+                  {blog.slice(0,visible).map((item, i) => (
 
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
                       <figure><img src={item.coverImage} alt="rectangle127" /></figure>
@@ -87,9 +94,17 @@ const Blogs = () => {
 
 
                   ))}
+           
 
                 </div>
-
+           
+              </div>
+              <div className="col-4 col-sm-2 col-md-2 col-lg-2">
+                <div className="loadMoreBtn mt-4">
+                 <button onClick={visibleShow}>
+                 Load More
+                 </button>
+                </div>
               </div>
             </div>
           )}

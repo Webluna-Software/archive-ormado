@@ -226,7 +226,7 @@ const BlogDetails = () => {
               {/* <Blogs /> */}
               <div className="cardsBlogs row m-0 mt-5">
                   {blog.slice(-4).map((item, i) => (
-                        <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
+                        <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
                       <figure><img src={item.coverImage} alt="rectangle127" /></figure>
                       <div className="card-header">
                         <p className='p-title'>{item.title}</p>
