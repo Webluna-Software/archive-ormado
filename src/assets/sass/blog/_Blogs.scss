@@ -215,6 +215,23 @@
                 }
 
             }
+            .loadMoreBtn{
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+                button{
+                    border: 1px solid #4A3024;
+                    padding: 10px;
+                    border-radius: 8px;
+                    font-family: 'Lato',sans-serif;
+                    font-weight: 500;
+                    transition: 250ms;
+                    &:hover{
+                        background-color: #4A3024;
+                        color: #fff;
+                    }
+                }
+            }
         }
     }
 }
