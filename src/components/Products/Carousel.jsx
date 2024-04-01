@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
 import { Carousel } from "react-responsive-carousel";
 const Carousel1 = ({ images }) => {
 

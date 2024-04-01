@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import productImg from "../../assets/img/product-img.png"
+import productImg from "../../assets/img/products-banner.png"
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
@@ -18,7 +18,7 @@ import {
 
 const ProductDetails = () => {
 
-  const shareUrl = "https://ormado.de/";
+  // const shareUrl = "https://ormado.de/";
 
   const [selectedSize, setSelectedSize] = useState(null);
 
@@ -51,8 +51,8 @@ const ProductDetails = () => {
                 alt="..."
               />
               <div className="img-text-context">
-                <h4>Best Deals</h4>
-                <h2>Sale of the Month</h2>
+                <h4>New Product</h4>
+                <h2>Ormado Espresso Barista Edition</h2>
                 <Link to="/products">
                   <button>
                     Shop now

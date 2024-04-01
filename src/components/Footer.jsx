@@ -6,25 +6,25 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
 const Footer = () => {
-
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
 
-  const {ApiLink} = useContext(ApiLinkContext)
+  const { ApiLink } = useContext(ApiLinkContext);
 
-  const [data,setData] = useState([])
+  const [data, setData] = useState([]);
 
-  useEffect(()=>{
-    axios.get(`${ApiLink}/contactSetting`)
-    .then((res)=>{
-      const contact = res.data.data.contactSettings[0]
-      setData(contact)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  },[])
-  
+  useEffect(() => {
+    axios
+      .get(`${ApiLink}/contactSetting`)
+      .then((res) => {
+        const contact = res.data.data.contactSettings[0];
+        setData(contact);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <div className="desktop-footer">
@@ -53,19 +53,13 @@ const Footer = () => {
                 updates! You get email only offers when you join
               </p>
               <div className="socialmedia-icons">
-                <a
-                  target="_blank"
-                  href={data.instagram}
-                >
+                <a target="_blank" href={data.instagram}>
                   <i className="fa-brands fa-square-instagram" />
                 </a>
                 <a target="_blank" href={data.facebook}>
                   <i className="fa-brands fa-facebook"></i>
                 </a>
-                <a
-                  target="_blank"
-                  href={data.linkedin}
-                >
+                <a target="_blank" href={data.linkedin}>
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <a
@@ -195,7 +189,12 @@ const Footer = () => {
                       </div>
                     </div>
                   </Link>
-                  <Link to={"https://play.google.com/store/apps/details?id=de.ormado&pli=1"}    target="_blank">
+                  <Link
+                    to={
+                      "https://play.google.com/store/apps/details?id=de.ormado&pli=1"
+                    }
+                    target="_blank"
+                  >
                     <div className="app-store mt-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -243,19 +242,13 @@ const Footer = () => {
             <div className="logo-div d-flex align-items-center justify-content-between">
               <img src={logo} alt="" />
               <div className="socialmedia-icons">
-                <a
-                  target="_blank"
-                  href={data.instagram}
-                >
+                <a target="_blank" href={data.instagram}>
                   <i className="fa-brands fa-square-instagram" />
                 </a>
                 <a target="_blank" href={data.facebook}>
                   <i className="fa-brands fa-facebook"></i>
                 </a>
-                <a
-                  target="_blank"
-                  href={data.linkedin}
-                >
+                <a target="_blank" href={data.linkedin}>
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <a
@@ -424,11 +417,8 @@ const Footer = () => {
           </div>
           <div className="d-flex flex-sm-row justify-content-between py-4 mt-4 footer-bottom">
             <p>
-              Copyright © {currentYear}{" "}
-              <a target="_blank" href="https://webluna.org">
-                Webluna Software
-              </a>
-              . All rights reserved.
+              Copyright © {currentYear} Ormado Roasting House Ltd . All rights
+              reserved.
             </p>
           </div>
         </footer>

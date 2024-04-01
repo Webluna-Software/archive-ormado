@@ -35,20 +35,21 @@ const Products = () => {
     <>
       <section className="container-fluid">
         <div className="products-page row pb-5 my-5 d-flex justify-content-center">
-
           <div className="col-md-9">
             <div className="img-transparent  d-md-block d-lg-block">
-
-              <div className="image-container">
-                <img
-                  src={productImg}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
-
+            <div className="image-container">
+              <img
+                src={productImg}
+                className="img-fluid rounded-start"
+                alt="..."
+              />
+              <div className="img-text-context">
+                <h4>New Product</h4>
+                <h2>Ormado Espresso Barista Edition</h2>
+              
               </div>
             </div>
-
+            </div>
 
             <div className="product-cards  d-md-block d-lg-block p-0 mt-5">
               <div className="yourormado-products row g-3">
