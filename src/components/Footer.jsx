@@ -228,7 +228,7 @@ const Footer = () => {
             <p>
               Copyright © {currentYear}{" "}
              
-              Ormado Roasting House Ltd.All rights reserved.
+              Ormado Roasting House Ltd. All rights reserved.
             </p>
           </div>
         </footer>
