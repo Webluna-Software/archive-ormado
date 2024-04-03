@@ -5,7 +5,7 @@ import { useState } from 'react';
 const Account = () => {
     const navigate=useNavigate();
     const [selectedGender, setSelectedGender] = useState(null);
-
+ 
   const handleGenderBackground = (gender) => {
     setSelectedGender(prevGender => prevGender === gender ? null : gender);
   };
