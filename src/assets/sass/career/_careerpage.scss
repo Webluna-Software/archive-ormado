@@ -3,6 +3,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width:1024px ){
+        padding: 0 38px;
+    }
+    @media (max-width:768px ){
+        padding: 0 28px;
+    }
+    @media (max-width:425px ){
+        padding: 0 8px;
+    }
     .image-container {
         position: relative;
         width: 100%;
@@ -52,6 +61,18 @@
             font-weight: 700;
             line-height: 83px;
             color: rgba(74, 48, 36, 1);
+            @media (max-width:1024px ){
+                font-size: 48px;
+                line-height: 63px;
+            }
+            @media (max-width:768px ){
+                font-size: 38px;
+                line-height: 53px;
+            }
+            @media (max-width:520px ){
+                font-size: 28px;
+                line-height: 43px;
+            }
         }
         p{
             max-width: 657px;
@@ -100,6 +121,7 @@
             text-align: center;
             color: rgba(74, 48, 36, 1);
             margin-top: 20px;
+            
         }   
     }
     .career-page-team{
@@ -109,6 +131,9 @@
         justify-content: center;
         flex-direction: column;
         margin-top: 70px;
+        @media (max-width:768px ){
+            padding: 0 30px;
+        }
         h2{
             max-width: 657px;
             font-size: 64px;
@@ -116,6 +141,18 @@
             font-weight: 700;
             line-height: 83px;
             color: rgba(74, 48, 36, 1);
+            @media (max-width:1024px ){
+                font-size: 48px;
+                line-height: 63px;
+            }
+            @media (max-width:768px ){
+                font-size: 38px;
+                line-height: 53px;
+            }
+            @media (max-width:520px ){
+                font-size: 28px;
+                line-height: 43px;
+            }
         }
         p{
             max-width: 657px;
@@ -209,6 +246,18 @@
             letter-spacing: 0em;
             text-align: left;
             color: rgba(74, 48, 36, 1);
+            @media (max-width:1024px ){
+                font-size: 48px;
+                line-height: 63px;
+            }
+            @media (max-width:768px ){
+                font-size: 38px;
+                line-height: 53px;
+            }
+            @media (max-width:520px ){
+                font-size: 28px;
+                line-height: 43px;
+            }
             span{
                 color: rgba(213, 151, 41, 1);
             }
