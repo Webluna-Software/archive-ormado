@@ -59,19 +59,19 @@
             font-family: Montserrat;
             text-align: center;
             font-weight: 700;
-            line-height: 83px;
+            line-height: normal;
             color: rgba(74, 48, 36, 1);
             @media (max-width:1024px ){
                 font-size: 48px;
-                line-height: 63px;
+                line-height: normal;
             }
             @media (max-width:768px ){
                 font-size: 38px;
-                line-height: 53px;
+                line-height: normal;
             }
             @media (max-width:520px ){
                 font-size: 28px;
-                line-height: 43px;
+                line-height: normal;
             }
         }
         p{
@@ -89,9 +89,10 @@
             position: relative;
             .career-page_teamimg{
                 img{
-                    height: 600px;
                     width: 100%;
+                    height: auto;
                     object-fit: cover;
+                    border-radius: 10px;
                 }
             }
             iframe{
@@ -109,6 +110,7 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: 12px;
+                display: none;
             }
         }
         h6{
