@@ -18,8 +18,7 @@ const CareerForm = () => {
   const [age, setAge] = useState();
   const [nationality, setNationality] = useState();
   const [gender, setGender] = useState();
-  const [portfolio, setPortfolio] = useState();
-  const [residence, setResidence] = useState();
+  const [portfolio, setPortfolio] = useState(null);
   const [workplace, setWorkplace] = useState();
   const [marital, setMarital] = useState();
   const [education, setEducation] = useState();
@@ -45,6 +44,30 @@ const CareerForm = () => {
   const [branchError,setBranchError] = useState(false)
   const [positionError,setPositionError] = useState(false)
   const [fullNameError,setFullNameError] = useState(false)
+  const [emailError,setEmailError] = useState(false)
+  const [phoneError,setPhoneError] = useState(false)
+  const [ageError,setAgeError] = useState(false)
+  const [nationalityError,setNationalityError] = useState(false)
+  const [genderError,setGenderError] = useState(false)
+  const [portfolioError,setPortfolioError] = useState(false)
+  const [workplaceError,setWorkplaceError] = useState(false)
+  const [maritalError,setMaritalError] = useState(false)
+  const [educationError,setEducationError] = useState(false)
+  const [applyingError,setApplyingError] = useState(false)
+  const [languagesError,setLanguagesError] = useState(false)
+  const [responsibilityError,setResponsibilityError] = useState(false)
+  const [aboutError,setAboutError] = useState(false)
+  const [workedError,setWorkedError] = useState(false)
+  const [longWorkError,setLongWorkError] = useState(false)
+  const [salaryError,setSalaryError] = useState(false)
+  const [availabilityError,setAvailabilityError] = useState(false)
+  const [chooseError,setChooseError] = useState(false)
+  const [feedbackError,setFeedBackError] = useState(false)
+  const [chronicError,setChronicError] = useState(false)
+  const [aboutUsError,setAboutUsError] = useState(false)
+  const [informationError,setInformationError] = useState(false)
+  const [lastError,setLastWorkError] = useState(false)
+  
 
   useEffect(() => {
     axios
@@ -59,13 +82,36 @@ const CareerForm = () => {
 
 
   const formPost =(e)=>{
-
+    e.preventDefault()
     let isValid = true
 
     const fieldCheck = [
       {value:branch,error:setBranchError},
       {value:position,error:setPositionError},
       {value:fullName,error:setFullNameError},
+      {value:email,error:setEmailError},
+      {value:phone,error:setPhoneError},
+      {value:age,error:setAgeError},
+      {value:nationality,error:setNationalityError},
+      {value:gender,error:setGenderError},
+      {value:portfolio,error:setPortfolioError},
+      {value:workplace,error:setWorkplaceError},
+      {value:marital,error:setMaritalError},
+      {value:education,error:setEducationError},
+      {value:applying,error:setApplyingError},
+      {value:languages,error:setLanguagesError},
+      {value:responsibility,error:setResponsibilityError},
+      {value:about,error:setAboutError},
+      {value:worked,error:setWorkedError},
+      {value:longWork,error:setLongWorkError},
+      {value:salary,error:setSalaryError},
+      {value:availability,error:setAvailabilityError},
+      {value:choose,error:setChooseError},
+      {value:chronic,error:setChronicError},
+      {value:aboutUs,error:setAboutUsError},
+      {value:information,error:setInformationError},
+      {value:lastWork,error:setLastWorkError},
+      {value:feedback,error:setFeedBackError},
     ]
 
     fieldCheck.map((item)=>{
@@ -77,20 +123,20 @@ const CareerForm = () => {
       }
     })
 
-    e.preventDefault()
+
     const formData = new FormData();
     
     formData.append("branch", branch);
     formData.append("position", position);
     formData.append("fullname", fullName);
-    formData.append("location", location);
     formData.append("phone", phone);
     formData.append("email", email);
     formData.append("age", age);
     formData.append("nationality", nationality);
-    formData.append("gender", gender);
-    formData.append("file", portfolio);
-    formData.append("contentType", residence);
+    formData.append("gender", gender); 
+    if (portfolio) {
+      formData.append("file", portfolio);
+    }
     formData.append("reason", workplace);
     formData.append("status", marital);
     formData.append("education", education);
@@ -108,48 +154,19 @@ const CareerForm = () => {
     formData.append("lastWork", lastWork);
     formData.append("howKnowAboutUs", aboutUs);
     formData.append("additionalInfo", information);
-    console.log(formData)
+    console.log(formData.get("lastWork"))
 
     if (isValid) {
-      axios.post(`https://ormadoapi.webluna.org/api/client/career`,{formData})
+      axios.post(`https://ormadoapi.webluna.org/api/client/career`, formData)
     .then((res)=>{
       console.log(res,"POSTED")
+      alert("Thank you !")
     })
     .catch((err)=>{
       console.log("APIDE PROBLEM",err)
     })
     }
-    // {
-    //   branch:branch,
-    //   position:position,
-    //   fullname:fullName,
-    //   phone:phone,
-    //   email:email,
-    //   age:age,
-    //   nationality:nationality,
-    //   gender:gender,
-    //   file:portfolio,
-    //   contentType:residence,
-    //   reason:workplace,
-    //   status:marital,
-    //   education:education,
-    //   experience:applying,
-    //   language:languages,
-    //   criminal:responsibility,
-    //   aboutUs:about,
-    //   ourBranches:worked,
-    //   longTime:longWork,
-    //   minSalary:salary,
-    //   availability:availability,
-    //   whyYou:choose,
-    //   yourFeedback:feedback,
-    //   diseases:chronic,
-    //   // 2 denesi yoxdu dizaynda
-    //   lastWork:lastWork,
-    //   howKnowAboutUs:aboutUs,
-    //   // 
-    //   additionalInfo:information
-    // }
+  
 
 
    
@@ -199,6 +216,9 @@ const CareerForm = () => {
                             setBranchError(false)
                           }}
                         >
+                          <option value="" disabled selected>
+                            Branch :
+                          </option>
                           <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                             Einbecker Str. 18, 10317 Berlin, Germany
                           </option>
@@ -297,9 +317,15 @@ const CareerForm = () => {
                           placeholder="Redlands"
                           type="email"
                           onChange={(e) => {
-                            setEmail(e.target.value);
+                            setEmail(e.target.value)
+                            setEmailError(false)
                           }}
                         />
+                        {
+                          emailError && (
+                            <span className="invalid_message">Email is required</span>
+                          )
+                        }
                       </div>
                     </div>
                   </div>
@@ -318,9 +344,15 @@ const CareerForm = () => {
                           placeholder="+994"
                           type="text"
                           onChange={(e) => {
-                            setPhone(e.target.value);
+                            setPhone(e.target.value)
+                            setPhoneError(false)
                           }}
                         />
+                        {
+                          phoneError && (
+                            <span className="invalid_message">Phone is required</span>
+                          )
+                        }
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -337,9 +369,15 @@ const CareerForm = () => {
                           placeholder="Write your age"
                           type="number"
                           onChange={(e) => {
-                            setAge(e.target.value);
+                            setAge(e.target.value)
+                            setAgeError(false)
                           }}
                         />
+                        {
+                          ageError && (
+                            <span className="invalid_message">Age is required</span>
+                          )
+                        }
                       </div>
                     </div>
                   </div>
@@ -358,9 +396,15 @@ const CareerForm = () => {
                           placeholder="Write your nationality"
                           type="text"
                           onChange={(e) => {
-                            setNationality(e.target.value);
+                            setNationality(e.target.value)
+                            setNationalityError(false)
                           }}
                         />
+                        {
+                          nationalityError && (
+                            <span className="invalid_message">Nationality is required</span>
+                          )
+                        }
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -374,12 +418,21 @@ const CareerForm = () => {
                           name="gender"
                           id="gender"
                           onChange={(e) => {
-                            setGender(e.target.value);
+                            setGender(e.target.value)
+                            setGenderError(false)
                           }}
                         >
+                          <option value="" disabled selected>
+                            Gender : 
+                          </option>
                           <option value="man">Man</option>
                           <option value="woman">Woman</option>
                         </select>
+                        {
+                          genderError && (
+                            <span className="invalid_message">Gender is required</span>
+                          )
+                        }
                       </div>
                     </div>
                   </div>
@@ -397,11 +450,12 @@ const CareerForm = () => {
                           type="file"
                           id="portfolio"
                           name="portfolio"
-                          accept="image/*"
+                          accept=".pdf"
                           style={{ display: "none" }}
                           onChange={(e) => {
                             const uploadImage = e.target.files[0];
-                            setPortfolio(uploadImage);
+                            setPortfolio(uploadImage)
+                            setPortfolioError(false)
                           }}
                         />
                         <label
@@ -434,24 +488,36 @@ const CareerForm = () => {
                             </svg>
                           </div>
                         </label>
+                        {
+                          portfolioError && (
+                            <span className="invalid_message">Portfolio is required</span>
+                          )
+                        }
                       </div>
                     </div>
                     <div className="careerForm-part1">
-                      <div className="careerForm-input-text">
-                        <label htmlFor="residence">
-                          <p>Place of residence</p>
-                        </label>
-                      </div>
-                      <div className="careerForm-input">
-                        <input
-                          id="residence"
-                          placeholder="Enter your address"
-                          type="text"
-                          onChange={(e) => {
-                            setResidence(e.target.value);
-                          }}
-                        />
-                      </div>
+                    <div className="careerForm-input-text">
+                    <label htmlFor="information">
+                      <p>Last Work</p>
+                    </label>
+                  </div>
+                  <div className="careerForm-input">
+                    <input
+                      id="information"
+                      placeholder="Last Work"
+                      type="text"
+                      onChange={(e)=>{
+                        setLastWork(e.target.value)
+                        setLastWorkError(false)
+
+                      }}
+                    />
+                     {
+                      lastError && (
+                        <span className="invalid_message">Last work is required</span>
+                      )
+                     }
+                  </div>
                     </div>
                   </div>
                   <div className="careerForm-input-text">
@@ -465,9 +531,15 @@ const CareerForm = () => {
                       placeholder="Enter reasons"
                       type="text"
                       onChange={(e) => {
-                        setWorkplace(e.target.value);
+                        setWorkplace(e.target.value)
+                        setWorkplaceError(false)
                       }}
                     />
+                                        {
+                      workplaceError && (
+                        <span className="invalid_message">Workplace is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="status">
@@ -479,12 +551,21 @@ const CareerForm = () => {
                       name="status"
                       id="status"
                       onChange={(e) => {
-                        setMarital(e.target.value);
+                        setMarital(e.target.value)
+                        setMaritalError(false)
                       }}
                     >
+                      <option value="" disabled selected>
+                        Marital :
+                      </option>
                       <option value="married">Married</option>
                       <option value="unmarried">Unmarried</option>
                     </select>
+                    {
+                      maritalError && (
+                        <span className="invalid_message">Marital is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="level">
@@ -496,9 +577,13 @@ const CareerForm = () => {
                       name="level"
                       id="level"
                       onChange={(e) => {
-                        setEducation(e.target.value);
+                        setEducation(e.target.value)
+                        setEducationError(false)
                       }}
                     >
+                      <option value="" disabled selected>
+                        Education :
+                      </option>
                       <option value="Less than high school">
                         Less than high school
                       </option>
@@ -515,6 +600,11 @@ const CareerForm = () => {
                       <option value="Master's degree">Master's degree</option>
                       <option value="Doctoral degree">Doctoral degree</option>
                     </select>
+                    {
+                      educationError && (
+                        <span className="invalid_message">Education is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="experience">
@@ -530,9 +620,15 @@ const CareerForm = () => {
                       placeholder="JWrite the company names and the duration of employment at each"
                       type="text"
                       onChange={(e) => {
-                        setApplying(e.target.value);
+                        setApplying(e.target.value)
+                        setApplyingError(false)
                       }}
                     />
+                    {
+                      applyingError && (
+                        <span className="invalid_message">Applying is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="languages">
@@ -545,9 +641,15 @@ const CareerForm = () => {
                       placeholder="Enter languages"
                       type="text"
                       onChange={(e) => {
-                        setLanguages(e.target.value);
+                        setLanguages(e.target.value)
+                        setLanguagesError(false)
                       }}
                     />
+                    {
+                      languagesError && (
+                        <span className="invalid_message">Languages is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="responsibility">
@@ -560,9 +662,15 @@ const CareerForm = () => {
                       placeholder="Enter criminal responsibility"
                       type="text"
                       onChange={(e) => {
-                        setResponsibility(e.target.value);
+                        setResponsibility(e.target.value)
+                        setResponsibilityError(false)
                       }}
                     />
+                    {
+                      responsibilityError && (
+                        <span className="invalid_message">Responsibility is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="about">
@@ -575,9 +683,15 @@ const CareerForm = () => {
                       placeholder="Write your answer"
                       type="text"
                       onChange={(e) => {
-                        setAbout(e.target.value);
+                        setAbout(e.target.value)
+                        setAboutError(false)
                       }}
                     />
+                    {
+                      aboutError && (
+                        <span className="invalid_message">About us is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="branches">
@@ -590,9 +704,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setWorked(e.target.value);
+                        setWorked(e.target.value)
+                        setWorkedError(false)
                       }}
                     />
+                    {
+                      workedError && (
+                        <span className="invalid_message">Branches is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="like">
@@ -605,9 +725,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setLongWork(e.target.value);
+                        setLongWork(e.target.value)
+                        setLongWorkError(false)
                       }}
                     />
+                    {
+                      longWorkError && (
+                        <span className="invalid_message">How long would you like to work with us ? - is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="salary">
@@ -620,9 +746,15 @@ const CareerForm = () => {
                       placeholder="Write the amount"
                       type="text"
                       onChange={(e) => {
-                        setSalary(e.target.value);
+                        setSalary(e.target.value)
+                        setSalaryError(false)
                       }}
                     />
+                    {
+                      salaryError && (
+                        <span className="invalid_message">Salary is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="time">
@@ -635,9 +767,15 @@ const CareerForm = () => {
                       placeholder="Full time / part time"
                       type="text"
                       onChange={(e) => {
-                        setAvailability(e.target.value);
+                        setAvailability(e.target.value)
+                        setAvailabilityError(false)
                       }}
                     />
+                    {
+                      availabilityError && (
+                        <span className="invalid_message">Availability is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="choose">
@@ -653,9 +791,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setChoose(e.target.value);
+                        setChoose(e.target.value)
+                        setChooseError(false)
                       }}
                     />
+                    {
+                      chooseError && (
+                        <span className="invalid_message">Choose is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="feedback">
@@ -668,9 +812,15 @@ const CareerForm = () => {
                       placeholder="Share your thoughts"
                       type="text"
                       onChange={(e) => {
-                        setFeedBack(e.target.value);
+                        setFeedBack(e.target.value)
+                        setFeedBackError(false)
                       }}
                     />
+                    {
+                      feedbackError && (
+                        <span className="invalid_message">Feedback is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="share">
@@ -685,27 +835,19 @@ const CareerForm = () => {
                       placeholder="Share with us"
                       type="text"
                       onChange={(e) => {
-                        setChronic(e.target.value);
+                        setChronic(e.target.value)
+                        setChronicError(false)
                       }}
                     />
+                    {
+                      chronicError && (
+                        <span className="invalid_message">Chronis is required</span>
+                      )
+                    }
                   </div>
 
 
-                  <div className="careerForm-input-text">
-                    <label htmlFor="information">
-                      <p>Last Work</p>
-                    </label>
-                  </div>
-                  <div className="careerForm-input">
-                    <input
-                      id="information"
-                      placeholder="Last Work"
-                      type="text"
-                      onChange={(e)=>{
-                        setLastWork(e.target.value)
-                      }}
-                    />
-                  </div>
+              
                   <div className="careerForm-input-text">
                     <label htmlFor="information">
                       <p>How Know About Us</p>
@@ -718,8 +860,14 @@ const CareerForm = () => {
                       type="text"
                       onChange={(e)=>{
                         setAboutUs(e.target.value)
+                        setAboutUsError(false)
                       }}
                     />
+                    {
+                      aboutUsError && (
+                        <span className="invalid_message">About us is required</span>
+                      )
+                    }
                   </div>
 
 
@@ -738,8 +886,14 @@ const CareerForm = () => {
                       type="text"
                       onChange={(e)=>{
                         setInformation(e.target.value)
+                        setInformationError(false)
                       }}
                     />
+                    {
+                      informationError && (
+                        <span className="invalid_message">Information is required</span>
+                      )
+                    }
                   </div>
                   <div className="careerForm-btn">
                   <button className="mt-4" type="submit">
