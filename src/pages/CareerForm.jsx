@@ -37,6 +37,14 @@ const CareerForm = () => {
   const [information,setInformation] = useState()
   const [lastWork,setLastWork] = useState()
   const [aboutUs,setAboutUs] = useState()
+  
+  
+  // VALIDATION
+  
+  
+  const [branchError,setBranchError] = useState(false)
+  const [positionError,setPositionError] = useState(false)
+  const [fullNameError,setFullNameError] = useState(false)
 
   useEffect(() => {
     axios
@@ -51,6 +59,24 @@ const CareerForm = () => {
 
 
   const formPost =(e)=>{
+
+    let isValid = true
+
+    const fieldCheck = [
+      {value:branch,error:setBranchError},
+      {value:position,error:setPositionError},
+      {value:fullName,error:setFullNameError},
+    ]
+
+    fieldCheck.map((item)=>{
+      if (!item.value || item.value.trim() === "") {
+        item.error(true)
+          isValid = false
+        } else {
+        isValid = true
+      }
+    })
+
     e.preventDefault()
     const formData = new FormData();
     
@@ -61,40 +87,38 @@ const CareerForm = () => {
     formData.append("phone", phone);
     formData.append("email", email);
     formData.append("age", age);
-
     formData.append("nationality", nationality);
     formData.append("gender", gender);
     formData.append("file", portfolio);
-    
     formData.append("contentType", residence);
     formData.append("reason", workplace);
     formData.append("status", marital);
-   
     formData.append("education", education);
     formData.append("experience", applying);
     formData.append("language", languages);
- 
- 
- 
     formData.append("criminal", responsibility);
     formData.append("aboutUs", about);
     formData.append("ourBranches", worked);
-  
-  
     formData.append("longTime", longWork);
     formData.append("minSalary", salary);
     formData.append("availability", availability);
-
-
     formData.append("whyYou", choose);
     formData.append("yourFeedback", feedback);
     formData.append("diseases", chronic);
-
-
     formData.append("lastWork", lastWork);
     formData.append("howKnowAboutUs", aboutUs);
     formData.append("additionalInfo", information);
     console.log(formData)
+
+    if (isValid) {
+      axios.post(`https://ormadoapi.webluna.org/api/client/career`,{formData})
+    .then((res)=>{
+      console.log(res,"POSTED")
+    })
+    .catch((err)=>{
+      console.log("APIDE PROBLEM",err)
+    })
+    }
     // {
     //   branch:branch,
     //   position:position,
@@ -128,13 +152,7 @@ const CareerForm = () => {
     // }
 
 
-    axios.post(`https://ormadoapi.webluna.org/api/client/career`,{formData})
-    .then((res)=>{
-      console.log(res,"POSTED")
-    })
-    .catch((err)=>{
-      console.log("APIDE PROBLEM",err)
-    })
+   
   }
 
   return (
@@ -177,7 +195,8 @@ const CareerForm = () => {
                           name="branch"
                           id="branch"
                           onChange={(e) => {
-                            setBranch(e.target.value);
+                            setBranch(e.target.value)
+                            setBranchError(false)
                           }}
                         >
                           <option value="Einbecker Str. 18, 10317 Berlin, Germany">
@@ -207,6 +226,11 @@ const CareerForm = () => {
                             Ukraine, 65000
                           </option>
                         </select>
+                        {
+                          branchError && (
+                            <span className="invalid_message">Branch is required</span>
+                          )
+                        }
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -221,9 +245,15 @@ const CareerForm = () => {
                           placeholder="Select"
                           type="text"
                           onChange={(e) => {
-                            setPosition(e.target.value);
+                            setPosition(e.target.value)
+                            setPositionError(false)
                           }}
                         />
+                        {
+                          positionError && (
+                            <span className="invalid_message">Position is required</span>
+                          )
+                        }
                       </div>
                     </div>
                   </div>
@@ -242,9 +272,15 @@ const CareerForm = () => {
                           placeholder="Write yor full name"
                           type="text"
                           onChange={(e) => {
-                            setFullName(e.target.value);
+                            setFullName(e.target.value)
+                            setFullNameError(false)
                           }}
                         />
+                        {
+                          fullNameError && (
+                            <span className="invalid_message">Full name is required</span>
+                          )
+                        }
                       </div>
                     </div>
                     <div className="careerForm-part1">

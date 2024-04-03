@@ -28,6 +28,9 @@ const OurStory = () => {
     });
   }, []);
 
+  const iframeVideo = mission.videoUrl ? mission.videoUrl.replace("watch?v=", "embed/") : ""; 
+
+
   return (
     <section className="ourstory">
       <div className="container-fluid ">
@@ -111,12 +114,17 @@ const OurStory = () => {
           <div className="row g-3">
             <div className="col-12 col-sm-12 col-md-5 col-lg-5 ">
               <div className="imgBox">
-                <img src={weare} alt="" className="img-fluid w-100" />
-                {/* <Link to={}> */}
-                  <div className="overlayImg">
-                    <img src={overlay} alt="" className="img-fluid w-100" />
-                  </div>
-                {/* </Link> */}
+                <iframe
+                width="100%"
+                height="600px"
+                src={iframeVideo}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+          
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7 ">
