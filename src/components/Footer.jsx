@@ -227,13 +227,13 @@ const Footer = () => {
           <div className="d-flex flex-column flex-sm-row justify-content-between py-4 mt-4 footer-bottom">
             <p>
               Copyright © {currentYear}{" "}
-             
-              Ormado Roasting House Ltd.All rights reserved.
+              
+              Ormado Roasting House Ltd. All rights reserved.
             </p>
           </div>
         </footer>
       </div>
-
+ 
       <div className="mobile-footer">
         <footer>
           <div className="footer-top">

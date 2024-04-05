@@ -64,6 +64,7 @@ const App = () => {
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
                 <Route path='/signup' element={<SignUp />}  ></Route>
                 <Route path='/franchise' element={<Franchise />}  ></Route>
+                <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             <Footer />
         </BrowserRouter>

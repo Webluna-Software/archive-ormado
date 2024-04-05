@@ -26,13 +26,7 @@ const Contactus = () => {
     const [messageError,setMessageError] = useState(false)
 
   const { ApiLink } = useContext(ApiLinkContext);
-  useEffect(() => {
-    axios
-      .get(`https://ormadoapi.webluna.org/api/client/contactForm`)
-      .then((res) => {
-        console.log(res.data, "ContactForm");
-      });
-  }, []);
+
 
   const ContactPost = (e) => {
     e.preventDefault();
@@ -87,7 +81,7 @@ const Contactus = () => {
             <div className=" col-12  col-lg-6  leftside">
               <div className="conbox">
                 <div className="middle">
-                  <h1>Get in Touch with us! </h1>
+                  <h1>Get in Touch <font color="#e3b142">with us!</font>  </h1>
                 </div>
 
                 <div className="loremone">
@@ -114,16 +108,16 @@ const Contactus = () => {
             </div>
 
             {/* <div className=" col-12 col-sm-8 col-md-8 rightside "> */}
-            <div className=" col-12  col-lg-6  rightside ">
+            <div className=" col-12  col-lg-6  rightside">
               <form onSubmit={ContactPost}>
                 <div className="inner">
-                  <div className="container px-5">
+                  <div className="container">
                     <div className="titlebox">
                       <p>Contact Us</p>
                     </div>
 
-                    <div className="row g-5">
-                      <div className="col-6">
+                    <div className="row inputRow justify-content-center">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">
                             Full name <span>*</span>
@@ -145,7 +139,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">
                             Email address<span>*</span>
@@ -158,6 +152,7 @@ const Contactus = () => {
                               setemail(e.target.value);
                               setEmailError(false);
                             }}
+                            
                           />
                           {emailError && (
                             <span className="invalid_message">
@@ -167,7 +162,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">
                             Country/Region<span>*</span>
@@ -194,7 +189,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">
                             Phone<span>*</span>
@@ -218,7 +213,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">Company Name</label>
                           <input
@@ -238,7 +233,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-11 col-sm-6 col-md-6 col-lg-6">
                         <div className="inputbox">
                           <label htmlFor="">Subject</label>
                           <input
@@ -258,7 +253,7 @@ const Contactus = () => {
                         </div>
                       </div>
 
-                      <div className="col-12 ">
+                      <div className="col-11 col-sm-12 col-md-12  ">
                         <label for="floatingTextarea">Message</label>
                         <div className="form-floating">
                           <textarea
@@ -287,6 +282,8 @@ const Contactus = () => {
                   </div>
                 </div>
               </form>
+
+
               <div className="btn-form-modal">
                     <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
                       <div className="modal-dialog modal-dialog-centered">
