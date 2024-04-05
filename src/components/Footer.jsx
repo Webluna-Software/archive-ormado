@@ -357,7 +357,11 @@ const Footer = () => {
               <h5>Download our Mobile App</h5>
               <div className="d-flex flex-column flex-sm-row w-100 gap-2 mt-3">
                 <div className="download-apps">
-                  <div className="google-play">
+                  <Link to={
+                      "https://apps.apple.com/az/app/ormado-rewards/id1497136091"
+                    }
+                    target="_blank">
+                      <div className="google-play">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -387,6 +391,12 @@ const Footer = () => {
                       <h3>Google Play</h3>
                     </div>
                   </div>
+                    </Link>
+                  
+                  <Link  to={
+                      "https://play.google.com/store/apps/details?id=de.ormado&pli=1"
+                    }
+                    target="_blank">
                   <div className="app-store mt-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -408,7 +418,8 @@ const Footer = () => {
                       <p>Download on the</p>
                       <h3>App Store</h3>
                     </div>
-                  </div>
+                  </div>0
+                  </Link>
                 </div>
               </div>
             </div>
