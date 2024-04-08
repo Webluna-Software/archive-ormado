@@ -84,7 +84,7 @@ const ProductDetails = () => {
                   <i className="fa-solid fa-star"></i>
                 </div>
                 <p>4 Reviews</p>
-                <a href="">Write a review</a>
+                <a href="#">Write a review</a>
               </div>
 
               <div className="price-div">
@@ -92,7 +92,7 @@ const ProductDetails = () => {
                 <p className="lastprice">${productDetails.salePrice}</p>
                 {/* <div className='discount'><p>%64 Off</p></div> */}
               </div>
-    
+{/*     
               <div className="size-div">
                 <p>Size:</p>
                 <span className={selectedSize === '150ml' ? 'selected' : ''}
@@ -101,10 +101,13 @@ const ProductDetails = () => {
                   onClick={() => handleSizeBackground('250ml')}>250ml</span>
                 <span className={selectedSize === '350ml' ? 'selected' : ''}
                   onClick={() => handleSizeBackground('350ml')}>350ml</span>
-              </div>
+              </div> */}
 
               <div className="information-div">
-                <p>{productDetails.miniDescription}
+
+                <p>
+                <div dangerouslySetInnerHTML={{ __html:  productDetails.miniDescription }} />
+                 
                 </p>
               </div>
 
@@ -116,7 +119,7 @@ const ProductDetails = () => {
               <div className="category">
                 <p>Category: <span>{productDetails.category}</span></p>
               </div>
-
+{/* 
               <div className="addtocart">
                 <div className="counts">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -130,7 +133,7 @@ const ProductDetails = () => {
                   </svg>
                 </div>
                 <button>Add to cart</button>
-              </div>
+              </div> */}
 
               <div className="share">
                 <p className='pt-3'>Share:</p>
