@@ -2,4 +2,4 @@ const vacancy = [
   
     ]
 
-  export default vacancy;
+  export default vacancy; 
