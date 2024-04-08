@@ -221,8 +221,8 @@ const CareerPage = () => {
           </div>
         </div>
         <center>
-          <Link to="/vacancy">
-            <button className="view-all-btn">View all</button>
+          <Link to="/careerform">
+            <button className="view-all-btn">ADD CV</button>
           </Link>
         </center>
       </div>
