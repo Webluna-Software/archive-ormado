@@ -49,7 +49,7 @@ const ProductDetails = () => {
             <div className="image-container">
               <img
                 src={productImg}
-                className="img-fluid rounded-start"
+                className="img-fluid rounded"
                 alt="..."
               />
               <div className="img-text-context">

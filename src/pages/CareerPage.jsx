@@ -2,7 +2,7 @@
 import career from "../assets/img/karyerabanner.png";
 import careerteam from "../assets/img/careerteam.jpg";
 import Slider from "react-slick";
-import Team from "../assets/img/career-team.png";
+// import Team from "../assets/img/career-team.png";
 // import Faq from "../components/home/Faq";
 // import location from "../assets/img/icon.png";
 import baristaone from "../assets/img/Nihad.png";

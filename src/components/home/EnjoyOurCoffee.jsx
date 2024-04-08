@@ -80,7 +80,7 @@ const EnjoyOurCoffee = () => {
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={1}
-                      loop={true}
+                      // loop={true}
                       autoplay={{
                         delay: Infinity,
                         disableOnInteraction: false,
@@ -96,11 +96,11 @@ const EnjoyOurCoffee = () => {
                           slidesPerView: 1,
                           spaceBetween: 10,
                         },
-                        640: {
-                          slidesPerView: 1,
+                        480: {
+                          slidesPerView: 2,
                           spaceBetween: 10,
                         },
-                        700: {
+                        650: {
                           slidesPerView: 3,
                           spaceBetween: 10,
                         },
@@ -129,7 +129,7 @@ const EnjoyOurCoffee = () => {
                       {products.map((i) => (
                         <SwiperSlide key={i._id}>
                           <div className="swiper" id="swiper-2">
-                            <div className="swiper-wrapper">
+                            <div className="swiper-wrapper justify-content-center">
                               <div className="card">
                                 <div className="disc">
                                   {/* <div className="discount">
@@ -139,7 +139,7 @@ const EnjoyOurCoffee = () => {
                                 <div className="imagefluid">
                                   <img src={i.coverImage} alt="energy_drink" />
                                 </div>
-                                <p className="name">{i.title}</p>
+                                <p className="name text-center">{i.title}</p>
                               </div>
                             </div>
                           </div>
