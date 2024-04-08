@@ -11,7 +11,7 @@ const Vacancy = () => {
           <div className="title">
             <h1>Our <span>Vacancies</span></h1>
             <p>If you want to evaluate the career opportunities at Ormado Kaffeehaus, fill out the form right now and we will contact you when our vacancy becomes active!</p>
-            <Link to="/careerform" className='btn btn-warning' href="">Add CV</Link>
+            <Link to="/careerform" className='btn btn-warning ' href="">Add CV</Link>
           </div>
 
           {careerdata.length===0?<div className='text-center my-5 alert alert-warning'>There are currently no vacancies</div>:careerdata.map((item) => {
