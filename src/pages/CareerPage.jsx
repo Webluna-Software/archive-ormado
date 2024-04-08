@@ -39,7 +39,7 @@ const CareerPage = () => {
           slidesToScroll: 1,
         },
       },
-    ],
+    ],  
   };
   return (
     <section className="career-page">
