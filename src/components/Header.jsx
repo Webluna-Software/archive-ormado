@@ -168,6 +168,7 @@ const Header = () => {
           <ul><Link to="/reserve" className={` navA ${active == 6 ? "active" : ""}`} onClick={() => setActive(6)}><li>RESERVATION</li></Link></ul>
           <ul><Link to="/blogs" className={` navA ${active == 7 ? "active" : ""}`} onClick={() => setActive(7)}><li>BLOGS</li></Link></ul>
           <ul><Link to="/contact" className={` navA ${active == 8 ? "active" : ""}`} onClick={() => setActive(8)}><li>CONTACT</li></Link></ul>
+          <ul><Link to="/gallery" className={` navA ${active == 9 ? "active" : ""}`} onClick={() => setActive(9)}><li>GALLERY</li></Link></ul>
         </nav>
       </header>
 
@@ -418,6 +419,33 @@ const Header = () => {
                     <div className="d-flex justify-content-between">
                       <div>
                           CONTACT
+                      </div>
+                      <div>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="15"
+                          viewBox="0 0 11 18"
+                          fill="none"
+                        >
+                          <path
+                            d="M2 2L9 9L2 16"
+                            stroke="#D1D1D1"
+                            stroke-width="2.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  </Link>
+                  <Link to={'/gallery'} className="mobile-title">
+                  <div className="col-11 ">
+                  <hr />
+                    <div className="d-flex justify-content-between">
+                      <div>
+                          GALLERY
                       </div>
                       <div>
                         <svg

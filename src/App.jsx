@@ -29,6 +29,7 @@ import ForgotPass from './pages/ForgotPass';
 import SearchBranch from './pages/SearchBranch';
 import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
+import Gallery from './pages/Gallery';
 
 const App = () => {
     return (
@@ -59,7 +60,7 @@ const App = () => {
                 <Route path='/checkout' element={<Checkout />}  ></Route>
                 <Route path='/basket' element={<Cart />}  ></Route>
                 <Route path='/faqs' element={<Faq />}  ></Route>
-                
+                <Route path='/gallery' element={<Gallery />}  ></Route>
                 <Route path='/forgotpass' element={<ForgotPass />}  ></Route>
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
                 <Route path='/signup' element={<SignUp />}  ></Route>

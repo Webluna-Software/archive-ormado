@@ -8,6 +8,7 @@ const Products = () => {
   const { ApiLink } = useContext(ApiLinkContext)
   const [products, setProducts] = useState([])
 
+  
   useEffect(() => {
     axios.get(`${ApiLink}/product`)
       .then((res) => {
