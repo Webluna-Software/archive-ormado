@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
+import { loginAction } from '../utils/login'
+import { deleteCookie, getCookie, setCookie } from '../utils/cookie'
+import { validateUser } from '../utils/user'
+
 
 const LogIn = () => {
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
+
+    const [email , setEmail] = useState();
+    const [password , setPassword] = useState();
+    
+
+
     return (
         <>
             <div className="login">
@@ -23,13 +34,13 @@ const LogIn = () => {
                                     <label htmlFor="email"><p>Email</p></label>
                                 </div>
                                 <div className="login-input">
-                                    <input id='email' placeholder='Enter your e-mail' type="email" />
+                                    <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
                                 </div>
                                 <div className="login-input-text">
                                     <label htmlFor="password"><p>Password</p></label>
                                 </div>
                                 <div className="login-input">
-                                    <input id='password' placeholder='Enter your password' type="password" />
+                                    <input id='password' placeholder='Enter your password' type="password"  onChange={(e)=> setPassword(e.target.value)}/>
                                 </div>
                                 <div className="remember-me">
                                     <div className='inputDiv'>
@@ -41,7 +52,13 @@ const LogIn = () => {
                             </form>
                         </div>
                         <div className="login-btn">
-                            <button><p>Sing in</p></button>
+                            <button onClick={()=> {
+                                    loginAction( email, password)
+                                    .then((res)=>{
+                                        
+                                    })
+                                } 
+                            }><p>Sing in</p></button>
                         </div>
                         <div className="goSignUp">
                             <p>Don’t have an account? </p><button onClick={() => { navigate('/signup') }}>Sign up</button>
