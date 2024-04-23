@@ -210,7 +210,11 @@ const BlogDetails = () => {
                                 __html: findFirstSection(fd),
                               }}
                             />
-                            <p className="p-body"> <span> Read more</span></p>
+                          <Link to={`/blogDetails/${fd._id}`} onClick={()=>{
+                            window.scrollTo({top:0})
+                          }}>
+                          <p className="p-body"> <span> Read more</span></p>
+                          </Link>
                             <div className="date-number">
                               <span>1K read</span>
                               <span>June 28, 2023</span>
@@ -218,7 +222,6 @@ const BlogDetails = () => {
                           </div>
                         </div>
                       ))}
-
                     </div>
                   </div>
                 </div>
