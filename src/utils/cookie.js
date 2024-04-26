@@ -23,5 +23,5 @@ export  function setCookie(cname, cvalue, exdays) {
   }
  
  export function deleteCookie(item){
-   document.cookie = ` ${item} = ; expires = Thu, 01 Jan 1970 00:00:00 GMT`
+   document.cookie = ` ${item} = ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`
  }

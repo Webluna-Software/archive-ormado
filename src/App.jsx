@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Password from './pages/Password';
-import Order from './pages/Order';
 import OrderDetails from './pages/OrderDetails';
 import Wishlist from './pages/Wishlist';
 import Products from './pages/Products';
@@ -19,7 +17,6 @@ import FranchiseForm from './pages/FranchiseForm';
 import OurStory from './pages/OurStory';
 import Vacancy from './pages/Vacancy';
 import VacancyDetail from './pages/VacancyDetail';
-import Account from './pages/Account';
 import Checkout from './pages/Checkout';
 import Cart from './pages/Cart';
 import CareerForm from './pages/CareerForm';
@@ -31,6 +28,9 @@ import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
 import Gallery from './pages/Gallery';
 import { validateUser } from './utils/user';
+import Order from './pages/account/Order';
+import Password from './pages/account/Password';
+import Account from './pages/account/Account';
 
 const App = () => {
 
@@ -41,7 +41,7 @@ const App = () => {
         setValidRoutes( validateUser() );
 
         if(validateUser() !== null && (window.location.pathname.includes('signup') || window.location.pathname.includes('login')) ) {
-            navigate('/account');
+            navigate('/account/details');
         }
 
     },[useLocation()])
@@ -71,7 +71,7 @@ const App = () => {
                     <>
                         <Route path='/login' element={<Account />}  ></Route>
                         <Route path='/signup' element={<Account />}  ></Route>
-                        <Route path='/account' element={<Account />}  ></Route>
+                        <Route path='/account/:page' element={<Account />}  ></Route>
                     </>
                     :
                     // Login Olmayibsa

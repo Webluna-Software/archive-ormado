@@ -53,7 +53,7 @@ const LogIn = () => {
                         </div>
                         <div className="login-btn">
                             <button onClick={()=> {
-                                        loginAction( email, password , "/account")                                    
+                                        loginAction( email, password , "account/details")                                    
                                 } 
                             }><p>Sing in</p></button>
                         </div>
