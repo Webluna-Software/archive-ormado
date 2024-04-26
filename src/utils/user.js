@@ -1,4 +1,4 @@
-import { getCookie, setCookie } from "./cookie"
+import { deleteCookie, getCookie, setCookie } from "./cookie"
 
 
 const validityTime = 1 ; //days

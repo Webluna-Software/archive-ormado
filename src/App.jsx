@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,11 +30,28 @@ import SearchBranch from './pages/SearchBranch';
 import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
 import Gallery from './pages/Gallery';
+import { validateUser } from './utils/user';
 
 const App = () => {
+
+    const navigate = useNavigate();
+    const [validRoutes , setValidRoutes] = useState();
+
+    useEffect(()=>{
+        setValidRoutes( validateUser() );
+
+        if(validateUser() !== null && (window.location.pathname.includes('signup') || window.location.pathname.includes('login')) ) {
+            navigate('/account');
+        }
+
+    },[useLocation()])
+
+    
+
     return (
-        <BrowserRouter>
+        <>
             <Header />
+
             <Routes>
                 <Route path='/' element={<Home />}  ></Route>
                 <Route path='/password' element={<Password />}  ></Route>
@@ -47,7 +64,26 @@ const App = () => {
                 <Route path='/blogs' element={<Blogs />}  ></Route>
                 <Route path='/blogDetails/:id' element={<BlogDetails />}  ></Route>
                 <Route path='/reserve' element={<Reserve />}  ></Route>
-                <Route path='/login' element={<LogIn />}  ></Route>
+
+                {
+                    validRoutes !== null ? 
+                    
+                    <>
+                        <Route path='/login' element={<Account />}  ></Route>
+                        <Route path='/signup' element={<Account />}  ></Route>
+                        <Route path='/account' element={<Account />}  ></Route>
+                    </>
+                    :
+                    // Login Olmayibsa
+                    <>
+                        <Route path='/login' element={<LogIn />}  ></Route>
+                        <Route path='/account' element={<LogIn />}  ></Route>
+                        <Route path='/signup' element={<SignUp />}  ></Route>
+                    </>
+                }
+
+
+
                 <Route path='/franchiseform' element={<FranchiseForm />}  ></Route>
                 <Route path='/contact' element={<Contact />}  ></Route>
                 <Route path='/about' element={<OurStory />}  ></Route>
@@ -56,19 +92,17 @@ const App = () => {
                 <Route path='/career' element={<CareerPage/>}></Route>
                 <Route path='/careerdetails' element={<VacancyDetail />}  ></Route>
                 <Route path='/about' element={<OurStory />}  ></Route>
-                <Route path='/account' element={<Account />}  ></Route>
                 <Route path='/checkout' element={<Checkout />}  ></Route>
                 <Route path='/basket' element={<Cart />}  ></Route>
                 <Route path='/faqs' element={<Faq />}  ></Route>
                 <Route path='/gallery' element={<Gallery />}  ></Route>
                 <Route path='/forgotpass' element={<ForgotPass />}  ></Route>
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
-                <Route path='/signup' element={<SignUp />}  ></Route>
                 <Route path='/franchise' element={<Franchise />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             <Footer />
-        </BrowserRouter>
+        </>
     )
 }
 

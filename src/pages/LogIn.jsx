@@ -53,10 +53,7 @@ const LogIn = () => {
                         </div>
                         <div className="login-btn">
                             <button onClick={()=> {
-                                    loginAction( email, password)
-                                    .then((res)=>{
-                                        
-                                    })
+                                        loginAction( email, password , "/account")                                    
                                 } 
                             }><p>Sing in</p></button>
                         </div>

@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import img from '../assets/img/SignUp.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
+import ApiLinkContext from '../context/ApiLinkContext'
+import axios from 'axios'
+import { loginApiLink } from '../utils/login'
 
 const SignUp = () => {
+
+  const {apiLink , headers} = useContext(ApiLinkContext);
   const navigate = useNavigate()
   const [characterslenght, setCharacterlenght] = useState(false)
   const [cappitalletter, setCapitalletter] = useState(false)
   const [onesymbol, setOnesymbol] = useState(false)
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  
+  const [name , setName] = useState(); 
+  const [surname , setSurname] = useState(); 
+  const [email , setEmail] = useState(); 
+  const [privacyCheck , setPrivacyCheck] = useState(false);
+  
+
 
   const handleConfirmPasswordChange = (value) => {
     setConfirmPassword(value);
@@ -23,28 +36,61 @@ const SignUp = () => {
     setOnesymbol(/[!. @#\$%\^&\*]/.test(value));
     setPassword(value)
 
-    if (characters.test(value)) {
-      setCharacterlenght(true)
-    } else {
-      setCharacterlenght(false)
-    }
-    if (capital.test(value)) {
-      setCapitalletter(true)
-    } else {
-      setCapitalletter(false)
-    }
-    if (symbol.test(value)) {
-      setOnesymbol(true)
-    } else {
-      setOnesymbol(false)
-    }
+    // if (characters.test(value)) {
+    //   setCharacterlenght(true)
+    // } else {
+    //   setCharacterlenght(false)
+    // }
+    // if (capital.test(value)) {
+    //   setCapitalletter(true)
+    // } else {
+    //   setCapitalletter(false)
+    // }
+    // if (symbol.test(value)) {
+    //   setOnesymbol(true)
+    // } else {
+    //   setOnesymbol(false)
+    // }
 
 
   }
 
   const passwordsMatch = password === confirmPassword;
+  const isPasswordValid = characterslenght && cappitalletter && onesymbol;
 
-  const isPasswordValid = characterslenght && cappitalletter && onesymbol
+
+
+const handleSubmit =(e)=>{
+  e.preventDefault();
+  
+  console.log("submitted");
+  const formData = new FormData();
+
+  formData.append('name' , name);
+  formData.append('surname', surname);
+  formData.append('email', email);
+  formData.append('password' , password);
+
+
+  if(!privacyCheck){
+    alert("Check privacy policy !");
+    throw new Error("Privacy policy checkbox is empty");
+  }
+
+  axios.post(`${loginApiLink}/user` , formData)
+  .then((res)=>{
+
+    console.log(res);
+    
+  })
+  .catch((e)=>{
+    console.log(e);
+  })
+
+
+}
+
+
   return (
     <>
       <div className="signup">
@@ -58,24 +104,36 @@ const SignUp = () => {
               <p>It’s free and easy</p>
             </div>
             <div className="signup-form">
-              <form>
+              <form onSubmit={(e)=>{
+                  handleSubmit(e);
+                  console.log("button");
+                }}>
                 <div className="signup-input-text">
-                  <label htmlFor="name"><p>Full name</p></label>
+                  <label htmlFor="name"><p>Name</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='name' placeholder='Enter your name' type='text' />
+                  <input id='name' placeholder='Enter your name' type='text'  onChange={(e)=> setName(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
+                  <label htmlFor="surname"><p>Surname</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='surname' placeholder='Enter your surname' type='text' onChange={(e)=> setSurname(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="email"><p>Email</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='email' placeholder='Enter your e-mail' type="email" />
+                  <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="password"><p>Password</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='password' placeholder='Enter your password' type='password' onChange={(e) => handleCase(e.target.value)} />
+                  <input id='password' placeholder='Enter your password' type='password' onChange={(e) => {
+                    handleCase(e.target.value);
+                    setPassword(e.target.value);
+                  }} />
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="confirm-password"><p>Confirm password</p></label>
@@ -152,13 +210,15 @@ const SignUp = () => {
             </div>
             <div className="remember-me">
               <div className='remember-me-input'>
-                <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required />
+                <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required onChange={(e)=> setPrivacyCheck(e.target.checked)} />
                 <label for="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
               </div>
             </div>
 
             <div className="signup-btn">
-              <button className={`signin-btn-main ${isPasswordValid && passwordsMatch ? '' : 'disabled'}`} disabled={!isPasswordValid || !passwordsMatch}>
+              <button className={`signin-btn-main ${isPasswordValid && passwordsMatch ? '' : 'disabled'}`} disabled={!isPasswordValid || !passwordsMatch}
+                onClick={handleSubmit}
+              >
                 <p>Sign up</p>
               </button>
               <button className='signin-with-btn mt-2'>
