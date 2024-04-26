@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import { loginApiLink } from '../utils/login'
+import { saveUserData } from '../utils/user'
 
 const SignUp = () => {
 
@@ -20,6 +21,8 @@ const SignUp = () => {
   const [name , setName] = useState(); 
   const [surname , setSurname] = useState(); 
   const [email , setEmail] = useState(); 
+  const [phone , setPhone] = useState();
+  const [address , setAdress] = useState();
   const [privacyCheck , setPrivacyCheck] = useState(false);
   
 
@@ -63,24 +66,25 @@ const SignUp = () => {
 const handleSubmit =(e)=>{
   e.preventDefault();
   
-  console.log("submitted");
-  const formData = new FormData();
-
-  formData.append('name' , name);
-  formData.append('surname', surname);
-  formData.append('email', email);
-  formData.append('password' , password);
-
 
   if(!privacyCheck){
     alert("Check privacy policy !");
     throw new Error("Privacy policy checkbox is empty");
   }
 
-  axios.post(`${loginApiLink}/user` , formData)
+  axios.post(`${loginApiLink}/user` , {
+    'name': name,
+    'surname': surname,
+    'email': email,
+    'phoneNumber': phone,
+    'address' : address,
+    'password': password
+  })
   .then((res)=>{
-
-    console.log(res);
+    const response = res.data.data;
+    saveUserData(response);
+    // console.log(res);
+    window.location.replace('/account/details');
     
   })
   .catch((e)=>{
@@ -104,10 +108,7 @@ const handleSubmit =(e)=>{
               <p>It’s free and easy</p>
             </div>
             <div className="signup-form">
-              <form onSubmit={(e)=>{
-                  handleSubmit(e);
-                  console.log("button");
-                }}>
+              <form>
                 <div className="signup-input-text">
                   <label htmlFor="name"><p>Name</p></label>
                 </div>
@@ -121,10 +122,22 @@ const handleSubmit =(e)=>{
                   <input id='surname' placeholder='Enter your surname' type='text' onChange={(e)=> setSurname(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
+                  <label htmlFor="phone"><p>Phone</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
                   <label htmlFor="email"><p>Email</p></label>
                 </div>
                 <div className="signup-input">
                   <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
+                  <label htmlFor="address"><p>Adress</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='address' placeholder='Enter your adress' type="text" onChange={(e)=> setAdress(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="password"><p>Password</p></label>
