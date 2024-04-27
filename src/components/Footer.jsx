@@ -53,13 +53,13 @@ const Footer = () => {
                 updates! You get email only offers when you join
               </p>
               <div className="socialmedia-icons">
-                <a target="_blank" href={data.instagram}>
+                <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
                   <i className="fa-brands fa-square-instagram" />
                 </a>
-                <a target="_blank" href={data.facebook}>
+                <a target="_blank" href="https://www.facebook.com/ormado.de">
                   <i className="fa-brands fa-facebook"></i>
                 </a>
-                <a target="_blank" href={data.linkedin}>
+                <a target="_blank" href="https://www.linkedin.com/company/72933606/admin/feed/posts/">
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <a
@@ -101,7 +101,7 @@ const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <a href="/products" className="nav-link p-0">
-                    Product
+                    Products
                   </a>
                 </li>
                 <li className="nav-item mb-2">
@@ -111,7 +111,7 @@ const Footer = () => {
                 </li>
                 <li className="nav-item mb-2">
                   <a href="/reserve" className="nav-link p-0">
-                    Reserve
+                    Reservation
                   </a>
                 </li>
                 <li className="nav-item mb-2">
@@ -154,7 +154,7 @@ const Footer = () => {
                 <div className="download-apps">
                   <Link
                     to={
-                      "https://apps.apple.com/az/app/ormado-rewards/id1497136091"
+                      "https://play.google.com/store/apps/details?id=de.ormado&pli=1"
                     }
                     target="_blank"
                   >
@@ -240,13 +240,13 @@ const Footer = () => {
             <div className="logo-div d-flex align-items-center justify-content-between">
               <img src={logo} alt="" />
               <div className="socialmedia-icons">
-                <a target="_blank" href={data.instagram}>
+                <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
                   <i className="fa-brands fa-square-instagram" />
                 </a>
-                <a target="_blank" href={data.facebook}>
+                <a target="_blank" href="https://www.facebook.com/ormado.de">
                   <i className="fa-brands fa-facebook"></i>
                 </a>
-                <a target="_blank" href={data.linkedin}>
+                <a target="_blank" href="https://www.linkedin.com/company/72933606/admin/feed/posts/">
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <a
@@ -358,7 +358,7 @@ const Footer = () => {
               <div className="d-flex flex-column flex-sm-row w-100 gap-2 mt-3">
                 <div className="download-apps">
                   <Link to={
-                      "https://apps.apple.com/az/app/ormado-rewards/id1497136091"
+                      "https://play.google.com/store/apps/details?id=de.ormado&pli=1"
                     }
                     target="_blank">
                       <div className="google-play">
@@ -394,7 +394,7 @@ const Footer = () => {
                     </Link>
                   
                   <Link  to={
-                      "https://play.google.com/store/apps/details?id=de.ormado&pli=1"
+                      "https://apps.apple.com/az/app/ormado-rewards/id1497136091"
                     }
                     target="_blank">
                   <div className="app-store mt-3">

@@ -4,6 +4,7 @@ import Blogs from "./Blogs";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { Link, useParams } from "react-router-dom";
+import PreLoader from "./PreLoader";
 const BlogDetails = () => {
 
   const { ApiLink } = useContext(ApiLinkContext);
@@ -75,9 +76,7 @@ const BlogDetails = () => {
     <>
       <section className="BlogDetails">
         {loading ? (
-          <div>
-            <p>Loading...</p>
-          </div>
+          <PreLoader/>
         ) : (
           <div className="container-fluid">
             <div className="row ">
@@ -168,14 +167,14 @@ const BlogDetails = () => {
                                 )}
                               </div>
                             </div>
-                            {/* <div className="blog-details-text-part3">
+                            <div className="blog-details-text-part3">
                       {fd.videoLink === "undefined" ?(
                         ""
                       ):(
                         <div>
                         <iframe
                           width="100%"
-                          height={replaceVideoLink ? '100%' : ''}
+                          height={replaceVideoLink ? '400px' : ''}
                           src={`${replaceVideoLink}`}
                           title="YouTube video player"
                           frameborder="0"
@@ -184,7 +183,7 @@ const BlogDetails = () => {
                         ></iframe>
                       </div>
                       )}
-                     </div> */}
+                     </div>
                           </div>
                         </>
                       )

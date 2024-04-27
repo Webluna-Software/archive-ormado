@@ -15,6 +15,7 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
+import PreLoader from '../../pages/PreLoader';
 
 const ProductDetails = () => {
 
@@ -43,7 +44,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      {productDetails.length === 0 ? <h1>Loading...</h1> :
+      {productDetails.length === 0 ? <PreLoader/>:
         <section className='productdetails-page'>
           <div className="img-transparent">
             <div className="image-container">
@@ -72,7 +73,7 @@ const ProductDetails = () => {
             <div className="col-sm-12 col-md-12 col-lg-6 details-content">
               <div className='headline'>
                 <h3>{productDetails.title}</h3>
-                <span >{productDetails.stock === true ? "In Stock" : "Not In Stock"}</span>
+                <span style={{ backgroundColor: productDetails.stock ? "green" : "red",color:"#fff",fontWeight:"bold" }}>{productDetails.stock === true ? "In Stock" : "Not In Stock"}</span>
               </div>
 
               <div className="review">
@@ -92,16 +93,16 @@ const ProductDetails = () => {
                 <p className="lastprice">${productDetails.salePrice}</p>
                 {/* <div className='discount'><p>%64 Off</p></div> */}
               </div>
-{/*     
+    
               <div className="size-div">
                 <p>Size:</p>
-                <span className={selectedSize === '150ml' ? 'selected' : ''}
-                  onClick={() => handleSizeBackground('150ml')}>150ml</span>
+                {/* <span className={selectedSize === '150ml' ? 'selected' : ''}
+                  onClick={() => handleSizeBackground('150ml')}>150ml</span> */}
                 <span className={selectedSize === '250ml' ? 'selected' : ''}
                   onClick={() => handleSizeBackground('250ml')}>250ml</span>
-                <span className={selectedSize === '350ml' ? 'selected' : ''}
-                  onClick={() => handleSizeBackground('350ml')}>350ml</span>
-              </div> */}
+                {/* <span className={selectedSize === '350ml' ? 'selected' : ''}
+                  onClick={() => handleSizeBackground('350ml')}>350ml</span> */}
+              </div>
 
               <div className="information-div">
 

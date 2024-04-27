@@ -3,17 +3,23 @@ import productImg from "../assets/img/products-banner.png"
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import PreLoader from "./PreLoader";
 
 const Products = () => {
   const { ApiLink } = useContext(ApiLinkContext)
   const [products, setProducts] = useState([])
+  const [loading,setLoading] = useState(true)
 
   
   useEffect(() => {
     axios.get(`${ApiLink}/product`)
       .then((res) => {
+        setLoading(false)
         setProducts(res.data.products)
-        console.log(res.data.products, "Products Data")
+      })
+      .catch((err)=>{
+        setLoading(false)
+        console.log(err)
       })
   }, [])
   const [showCategories, setShowCategories] = useState(true);
@@ -34,7 +40,11 @@ const Products = () => {
   };
   return (
     <>
-      <section className="container-fluid">
+     {
+      loading ? (
+        <PreLoader/>
+      ) : (
+        <section className="container-fluid">
         <div className="products-page row pb-5 my-5 d-flex justify-content-center">
           <div className="col-md-9">
             <div className="img-transparent  d-md-block d-lg-block">
@@ -99,6 +109,8 @@ const Products = () => {
           </div>
         </div>
       </section>
+      )
+     }
     </>
   );
 };

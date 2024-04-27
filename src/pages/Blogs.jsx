@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import PreLoader from './PreLoader';
 
 const Blogs = () => {
   const { ApiLink } = useContext(ApiLinkContext);
@@ -62,7 +63,7 @@ const Blogs = () => {
       <section className='blogsPage'>
         <div className="container">
           {loading ? (
-            <p>Loading...</p>
+            <PreLoader/>
           ) : (
             <div className="row m-0 justify-content-center">
               <div className="blogs">
