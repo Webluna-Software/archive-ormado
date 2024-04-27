@@ -25,7 +25,7 @@ export const loginAction =(email , password , redirectPath)=>{
             bcrypt.compare( password , thisUser.password)
             .then((res)=>{
                 if(res){
-                    saveUserData(thisUser);
+                    saveUserData(thisUser._id);
                     alert("You have logged in successfully !");
                     window.location.replace(redirectPath);
                 }else{

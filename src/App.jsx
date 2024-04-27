@@ -27,7 +27,7 @@ import SearchBranch from './pages/SearchBranch';
 import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
 import Gallery from './pages/Gallery';
-import { validateUser } from './utils/user';
+import { validateUserID } from './utils/user';
 import Order from './pages/account/Order';
 import Password from './pages/account/Password';
 import Account from './pages/account/Account';
@@ -35,16 +35,18 @@ import Account from './pages/account/Account';
 const App = () => {
 
     const navigate = useNavigate();
-    const [validRoutes , setValidRoutes] = useState();
+    //birinci null olsunki sehife acilan kimi routelar oturmesin 
+    const [validRoutes , setValidRoutes] = useState(null);
 
     useEffect(()=>{
-        setValidRoutes( validateUser() );
+        setValidRoutes( validateUserID() );
 
-        if(validateUser() !== null && (window.location.pathname.includes('signup') || window.location.pathname.includes('login')) ) {
+        if(validateUserID() !== null && (window.location.pathname.includes('signup') || window.location.pathname.includes('login')) ) {
             navigate('/account/details');
         }
 
     },[useLocation()])
+
 
     
 

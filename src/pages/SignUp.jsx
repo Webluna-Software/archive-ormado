@@ -82,7 +82,7 @@ const handleSubmit =(e)=>{
   })
   .then((res)=>{
     const response = res.data.data;
-    saveUserData(response);
+    saveUserData(response._id);
     // console.log(res);
     window.location.replace('/account/details');
     

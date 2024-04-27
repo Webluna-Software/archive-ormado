@@ -8,7 +8,7 @@ export const saveUserData=(data)=>{
 }
 
 
-export const validateUser=()=>{
+export const validateUserID=()=>{
     const data = getCookie('user');
     if(data){
         return JSON.parse(data);
