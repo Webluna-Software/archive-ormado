@@ -1,6 +1,6 @@
 import axios from "axios"
 import bcrypt from 'bcryptjs-react'
-import { deleteCookie } from "./cookie"
+import { deleteCookie, setCookie } from "./cookie"
 import { saveUserData } from "./user"
 
 
@@ -11,7 +11,7 @@ export const {loginApiLink , loginHeaders} = {
 
 
 
-export const loginAction =(email , password , redirectPath)=>{
+export const loginAction =(email , password , redirectPath , rememberMe)=>{
 
     axios.get(`${loginApiLink}/user` )
     .then((res)=>{
@@ -25,7 +25,11 @@ export const loginAction =(email , password , redirectPath)=>{
             bcrypt.compare( password , thisUser.password)
             .then((res)=>{
                 if(res){
-                    saveUserData(thisUser._id);
+                    if(rememberMe){
+                        saveUserData(thisUser._id);
+                    }
+                    setCookie('rememberMe' , JSON.stringify(rememberMe))
+                    sessionStorage.setItem("userID" , thisUser._id )
                     alert("You have logged in successfully !");
                     window.location.replace(redirectPath);
                 }else{
@@ -44,5 +48,6 @@ export const loginAction =(email , password , redirectPath)=>{
 
 export const logOutUser=(redirectPath)=>{
     deleteCookie('user');
+    sessionStorage.removeItem('userID')
     window.location.replace(redirectPath);
 }

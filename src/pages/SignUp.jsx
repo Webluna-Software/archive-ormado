@@ -81,10 +81,8 @@ const handleSubmit =(e)=>{
     'password': password
   })
   .then((res)=>{
-    const response = res.data.data;
-    saveUserData(response._id);
-    // console.log(res);
-    window.location.replace('/account/details');
+    alert("User has successfully created!")
+    window.location.replace('/login');
     
   })
   .catch((e)=>{

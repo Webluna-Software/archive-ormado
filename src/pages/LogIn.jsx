@@ -3,19 +3,23 @@ import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginAction } from '../utils/login'
-import { deleteCookie, getCookie, setCookie } from '../utils/cookie'
-import { validateUserID } from '../utils/user'
 
 
 const LogIn = () => {
 
     const navigate = useNavigate();
 
+    const [rememberMe , setRememberMe] = useState(false);
+
     const [email , setEmail] = useState();
     const [password , setPassword] = useState();
+
+
+    const handleLoginSubmit=(e)=>{
+        e.preventDefault();
+        loginAction( email, password , "account/details" , rememberMe);                                                            
+    }
     
-
-
     return (
         <>
             <div className="login">
@@ -29,7 +33,7 @@ const LogIn = () => {
                             <p>Meet the good taste today</p>
                         </div>
                         <div className="login-form">
-                            <form>
+                            <form onSubmit={handleLoginSubmit}>
                                 <div className="login-input-text">
                                     <label htmlFor="email"><p>Email</p></label>
                                 </div>
@@ -44,18 +48,16 @@ const LogIn = () => {
                                 </div>
                                 <div className="remember-me">
                                     <div className='inputDiv'>
-                                        <input type="checkbox" id='login-checkbox' name='login-checkbox' className='pt-2' required/>
+                                        <input type="checkbox" id='login-checkbox' name='login-checkbox' className='pt-2'defaultValue={rememberMe} onClick={(e)=> setRememberMe(e.target.checked)}/>
                                         <label for="login-checkbox"> <p className='ms-2'>Remember me</p> </label>
                                     </div>
                                     <Link to={'/forgotpass'} className='forgot-pass'>Forgot password?</Link>
                                 </div>
+                                
+                                <div className="login-btn">
+                                    <button type='submit'><p>Sing in</p></button>
+                                </div>
                             </form>
-                        </div>
-                        <div className="login-btn">
-                            <button onClick={()=> {
-                                        loginAction( email, password , "account/details")                                    
-                                } 
-                            }><p>Sing in</p></button>
                         </div>
                         <div className="goSignUp">
                             <p>Don’t have an account? </p><button onClick={() => { navigate('/signup') }}>Sign up</button>

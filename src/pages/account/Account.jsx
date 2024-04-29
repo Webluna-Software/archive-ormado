@@ -23,9 +23,12 @@ const Account = () => {
   useEffect(()=>{
     axios.get(`${loginApiLink}/user/${validateUserID()}`)
     .then((res)=>{
-        console.log(res);
         setUser(res.data.data)
         setLoading(false)
+    })
+    .catch((err)=>{
+      setLoading(false);
+      setError(true);
     })
   },[])
 
@@ -33,7 +36,6 @@ const Account = () => {
   useLocation(()=>{
       setCurrentPage(page);
   },[])
-  console.log("salam");
 
 
   const [currentPage, setCurrentPage] = useState();
@@ -67,82 +69,86 @@ const Account = () => {
 
             :
 
-                <div className="container-fluid">
-                <div className="row justify-content-between">
-                    <h3>
-                    Hello, <span>{user.name}</span>
-                    </h3>
-                    <div className="col-12 col-md-3">
-                    <div
-                        className={`d-flex ${
-                        window.location.pathname === "/account" ? "active" : ""
-                        }`}
-                        onClick={() => {
-                        navigate("/account/details");
-                        window.scrollTo(0, 0);
-                        }}
-                    >
-                        <span>
-                        <i className="fa-regular fa-user"></i>
-                        </span>
-                        <p>My Account</p>
-                    </div>
-                    <div
-                        className={`d-flex ${
-                        window.location.pathname === "/order" ? "active" : ""
-                        }`}
-                        onClick={() => {
-                        navigate("/account/order");
-                        window.scrollTo(0, 0);
-                        }}
-                    >
-                        <span>
-                        <i className="fa-regular fa-bell"></i>
-                        </span>
-                        <p>My orders</p>
-                    </div>
-                    <div
-                        className={`d-flex ${
-                        window.location.pathname === "/address" ? "active" : ""
-                        }`}
-                        onClick={() => {
-                        navigate("/account/address");
-                        window.scrollTo(0, 0);
-                        }}
-                    >
-                        <span>
-                        <i className="fa-solid fa-location-dot"></i>
-                        </span>
-                        <p>My address</p>
-                    </div>
-                    <div
-                        className={`d-flex ${
-                        window.location.pathname === "/password" ? "active" : ""
-                        }`}
-                        onClick={() => {
-                        navigate("/account/password");
-                        window.scrollTo(0, 0);
-                        }}
-                    >
-                        <span>
-                        <i className="fa-solid fa-key"></i>
-                        </span>
-                        <p>Password</p>
-                    </div>
-                    <div
-                        className="d-flex cursor-pointer"
-                        onClick={() => logOutUser("/")}
-                    >
-                        <span>
-                        <i className="fa-solid fa-right-from-bracket"></i>
-                        </span>
-                        <p>Logout</p>
-                    </div>
-                    </div>
+            error ? <h3>Something went wrong ...</h3>
 
-                    {pageRender(page)}
+            :
+
+            <div className="container-fluid">
+            <div className="row justify-content-between">
+                <h3>
+                Hello, <span>{user.name}</span>
+                </h3>
+                <div className="col-12 col-md-3">
+                <div
+                    className={`d-flex ${
+                    window.location.pathname === "/account" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                    navigate("/account/details");
+                    window.scrollTo(0, 0);
+                    }}
+                >
+                    <span>
+                    <i className="fa-regular fa-user"></i>
+                    </span>
+                    <p>My Account</p>
+                </div>
+                <div
+                    className={`d-flex ${
+                    window.location.pathname === "/order" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                    navigate("/account/order");
+                    window.scrollTo(0, 0);
+                    }}
+                >
+                    <span>
+                    <i className="fa-regular fa-bell"></i>
+                    </span>
+                    <p>My orders</p>
+                </div>
+                <div
+                    className={`d-flex ${
+                    window.location.pathname === "/address" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                    navigate("/account/address");
+                    window.scrollTo(0, 0);
+                    }}
+                >
+                    <span>
+                    <i className="fa-solid fa-location-dot"></i>
+                    </span>
+                    <p>My address</p>
+                </div>
+                <div
+                    className={`d-flex ${
+                    window.location.pathname === "/password" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                    navigate("/account/password");
+                    window.scrollTo(0, 0);
+                    }}
+                >
+                    <span>
+                    <i className="fa-solid fa-key"></i>
+                    </span>
+                    <p>Password</p>
+                </div>
+                <div
+                    className="d-flex cursor-pointer"
+                    onClick={() => logOutUser("/")}
+                >
+                    <span>
+                    <i className="fa-solid fa-right-from-bracket"></i>
+                    </span>
+                    <p>Logout</p>
                 </div>
                 </div>
+
+                {pageRender(page)}
+            </div>
+            </div>      
 
 
         }   

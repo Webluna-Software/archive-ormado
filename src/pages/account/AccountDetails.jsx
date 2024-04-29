@@ -21,7 +21,6 @@ const AccountDetails = () => {
 
   useEffect(() => {
     axios.get(`${loginApiLink}/user/${validateUserID()}`).then((res) => {
-      console.log(res);
       setUser(res.data.data);
       setLoading(false);
     });
@@ -33,7 +32,6 @@ const AccountDetails = () => {
   const [email, setEmail] = useState();
   const [address, setAddress] = useState();
 
-  console.log(user);
   const handleSubmit = (e) => {
     e.preventDefault();
 
