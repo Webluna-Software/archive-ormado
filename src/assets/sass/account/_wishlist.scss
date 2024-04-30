@@ -133,6 +133,13 @@
             padding: 24px 0px;
             vertical-align: middle;
             gap: 138px;
+            .product-img{
+              img{
+                width: 90px;
+                height: 90px;
+                object-fit: cover;
+              }
+            }
             @media (max-width: 992px) {
               gap: 10px;
             }

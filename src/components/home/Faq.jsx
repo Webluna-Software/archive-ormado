@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 // import { FaqContext } from "../context/FaqContext";
 
@@ -48,7 +48,7 @@ const Faq = () => {
           <div className="accordion " id="accordionExample">
             {faqApi.map((item, i) => {
               return (
-                <div className="accordion-item" id={`first${i}`}>
+                <div className="accordion-item" id={`first${i}`} key={item.id}>
                   <h2 className="accordion-header">
                     <button
                       id={i}

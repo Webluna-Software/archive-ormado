@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
@@ -29,10 +28,13 @@ import ForgotPass from './pages/ForgotPass';
 import SearchBranch from './pages/SearchBranch';
 import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
+import { Provider } from 'react-redux';
+import { store } from './features/store';
 
 const App = () => {
     return (
-        <BrowserRouter>
+       <Provider store={store}>
+         <BrowserRouter>
             <Header />
             <Routes>
                 <Route path='/' element={<Home />}  ></Route>
@@ -68,6 +70,7 @@ const App = () => {
             </Routes>
             <Footer />
         </BrowserRouter>
+       </Provider>
     )
 }
 

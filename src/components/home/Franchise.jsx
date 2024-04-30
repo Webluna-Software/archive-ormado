@@ -1,4 +1,3 @@
-import React from "react";
 import franchise from "../../assets/img/franchise.png"
 import { Link } from "react-router-dom";
 

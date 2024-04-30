@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../assets/img/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
+import cart from '../../src/assets/img/cart.svg'
+
 const Header = () => {
   const {ApiLink}=useContext(ApiLinkContext)
   const [searchQuery, setSearchQuery] = useState("");
@@ -129,8 +131,13 @@ const Header = () => {
             </form>
           </div>
           
-          <div className="d-flex" style={{ gap: "20px" }}>
-        
+          <div className="d-flex align-items-center" style={{ gap: "20px" }}>
+            <div className="cart">
+              <img src={cart} alt="" className="img-fluid" onClick={()=>{navigate("/basket")}} />
+            </div>
+            <div className="wishlist">
+            <i className="fa-solid fa-heart"  onClick={()=>{navigate("/wishlist")}}></i>
+            </div>
             <div className="header_location">
               <div className="location_icon">
                 <svg
@@ -268,9 +275,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -295,9 +302,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -322,9 +329,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -349,9 +356,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -376,9 +383,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -403,9 +410,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -430,9 +437,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
