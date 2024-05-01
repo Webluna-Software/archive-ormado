@@ -9,7 +9,6 @@
     align-items: center;
     gap: 10px;
     border-radius: 8px;
-    background: #502d1e;
     color: #f7f2e8;
     font-family: Lato;
     font-size: 16px;
@@ -17,6 +16,13 @@
     font-weight: 500;
     line-height: 24px;
     cursor: pointer;
+  }
+  .addcart{
+    background: #502d1e;
+  }
+  .passivcart{
+    background-color: #DCD5D2;
+    cursor: not-allowed;
   }
   .fa-circle-xmark {
     color: #e3b142;

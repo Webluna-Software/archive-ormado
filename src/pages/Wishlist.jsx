@@ -51,25 +51,25 @@ const Wishlist = () => {
                               src={item.coverImage}
                               alt=""
                               className="img-fluid"
-                            />{" "}
+                            />
                           </div>
                           {item.title}
                         </td>
                         <td className="product-price">${item.price}</td>
                         <td>
-                          <button className="btn stock instock">
+                          <button className={`btn stock ${item.stock ? 'instock' :'outofstock'}`}>
                             {item.stock ? "Stock" : "Out of stock"}
-                          </button>{" "}
+                          </button>
                         </td>
                         <td>
                           <button
-                            className="btn cart"
-                            onClick={() => {
-                              handleAddToCart(item);
+                            className={`btn cart ${item.stock ? "addcart" : 'passivcart'}`}
+                            onClick={() => { item.stock ?
+                              handleAddToCart(item) : '';
                             }}
                           >
                             Add to cart
-                          </button>{" "}
+                          </button>
                         </td>
                         <td
                           onClick={() => {
@@ -79,27 +79,6 @@ const Wishlist = () => {
                           <i className="fa-solid fa-circle-xmark"></i>
                         </td>
                       </tr>
-                      {/* <tr>
-                     <td className="product-title d-flex align-items-center">
-                       <div className="product-img">
-                         <img src={item.coverImage} alt="" className="img-fluid" />{" "}
-                       </div>
-                       {item.title}
-                     </td>
-
-                     <td className="product-price">${item.price}</td>
-                     <td>
-                       <button className="btn stock outofstock">
-                         Out off Stock
-                       </button>{" "}
-                     </td>
-                     <td>
-                       <button className="btn cart">Add to cart</button>{" "}
-                     </td>
-                     <td>
-                       <i className="fa-solid fa-circle-xmark"></i>
-                     </td>
-                   </tr> */}
                     </>
                   ))}
                 </tbody>

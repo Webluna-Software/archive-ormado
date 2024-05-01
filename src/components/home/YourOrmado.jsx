@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cartSlice";
 import { useDispatch } from "react-redux";
-import cart from '../../assets/img/cart.svg'
+import { addToWish, removeFromWish } from "../../features/wishSlice";
 
 // eslint-disable-next-line react/prop-types
 const YourOrmado = ({_id}) => {
@@ -19,7 +19,7 @@ const YourOrmado = ({_id}) => {
       setProducts(res.data.products);
       console.log(res.data.products, "Products Data");
     });
-  }, []);
+  }, [ApiLink]);
 
   useEffect(()=>{
     setQuantity(quantity)
@@ -28,7 +28,7 @@ const YourOrmado = ({_id}) => {
   const localCart = localStorage.getItem('cartItems');
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
 
-  const [cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
+  const [ setCartStatus] = useState(cartData ? 'active' : 'disabled');
 
   const findCart = (_id) => {
     const localCart = localStorage.getItem('cartItems');
@@ -46,17 +46,40 @@ const YourOrmado = ({_id}) => {
         setCartStatus('active');
       }
     },
-    [navigate, dispatch, quantity]
+    [navigate, dispatch, quantity, setCartStatus]
   );
+
+
+  const local = localStorage.getItem("wishItems");
+  const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
+
+  const [ setWishStatus] = useState(wishData ? "solid" : "regular");
+  const findWish = (_id) => {
+    const local = localStorage.getItem("wishItems");
+    const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
+    return wishData ? true : false;
+  }
+
+  const wishClick = useCallback((_id,coverImage,title,price,salePrice,stock) => {
+    if (findWish(_id)) {
+      dispatch(removeFromWish(_id));
+      setWishStatus("regular");
+    } else {
+      const priceToAdd = salePrice ? salePrice : price;
+      dispatch(addToWish({ _id, title,coverImage,salePrice, price:priceToAdd,  stock }));
+      setWishStatus("solid")
+    }
+  }, [dispatch, setWishStatus])
+
   return (
     <div className="yourormado-div my-5">
       <h3>
         Your <span>Ormado</span>
       </h3>
       <div className="yourormado-products row g-3">
-        {products.map((fd, i) => (
-          <div className="col-12 col-sm-6 col-md-3" key={fd.id}>
-            <div className="card w-100" key={i}>
+        {products.map((fd) => (
+          <div className="col-12 col-sm-6 col-md-3" key={fd._id}>
+            <div className="card w-100" >
               <Link to={`/productsdetails/${fd._id}`}>
                 <img
                   src={fd.coverImage}
@@ -65,21 +88,8 @@ const YourOrmado = ({_id}) => {
                 />
               </Link>
               <div className="wishlist-modal">
-                <div className="addtowishlist-box mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M5.62436 4.42508C3.96537 5.18341 2.75 6.98712 2.75 9.13799C2.75 11.3354 3.64922 13.0291 4.93829 14.4807C6.00072 15.677 7.28684 16.6685 8.54113 17.6355C8.83904 17.8652 9.13515 18.0935 9.42605 18.3228C9.95208 18.7375 10.4213 19.1014 10.8736 19.3657C11.3261 19.6301 11.6904 19.7509 12 19.7509C12.3096 19.7509 12.6739 19.6301 13.1264 19.3657C13.5787 19.1014 14.0479 18.7375 14.574 18.3228C14.8649 18.0935 15.161 17.8652 15.4589 17.6355C16.7132 16.6685 17.9993 15.677 19.0617 14.4807C20.3508 13.0291 21.25 11.3354 21.25 9.13799C21.25 6.98712 20.0346 5.18341 18.3756 4.42508C16.7639 3.68836 14.5983 3.88346 12.5404 6.02162C12.399 6.16852 12.2039 6.25152 12 6.25152C11.7961 6.25152 11.601 6.16852 11.4596 6.02162C9.40166 3.88346 7.23607 3.68836 5.62436 4.42508ZM12 4.4597C9.68795 2.39113 7.09896 2.10176 5.00076 3.06085C2.78471 4.07381 1.25 6.42592 1.25 9.13799C1.25 11.8035 2.3605 13.8369 3.81672 15.4767C4.98287 16.7898 6.41022 17.8888 7.67083 18.8595C7.95659 19.0795 8.23378 19.2929 8.49742 19.5008C9.00965 19.9046 9.55954 20.3352 10.1168 20.6608C10.6739 20.9863 11.3096 21.2509 12 21.2509C12.6904 21.2509 13.3261 20.9863 13.8832 20.6608C14.4405 20.3352 14.9903 19.9046 15.5026 19.5008C15.7662 19.2929 16.0434 19.0795 16.3292 18.8595C17.5898 17.8888 19.0171 16.7898 20.1833 15.4767C21.6395 13.8369 22.75 11.8035 22.75 9.13799C22.75 6.42592 21.2153 4.07381 18.9992 3.06085C16.901 2.10176 14.3121 2.39113 12 4.4597Z"
-                      fill="#4A3024"
-                    />
-                  </svg>
+                <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  onClick={() => { wishClick(fd._id,fd.coverImage,fd.title,fd.price,fd.salePrice, fd.stock) }}>
+                  <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
                 </div>
                 <Link to={`/productsdetails/${fd._id}`}>
                   <div className="quick-view">
@@ -133,7 +143,7 @@ const YourOrmado = ({_id}) => {
                       )
                     }
                   >
-                    <img src={cart} alt="cart" className="img-fluid" />
+                     <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                   </div>
                 </div>
               </div>
