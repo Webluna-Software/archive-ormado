@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import bgimg from "../assets/img/bgimg.png";
-// import product1 from "../assets/img/product1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateQuantity } from "../features/cartSlice";
 
@@ -23,7 +22,7 @@ const Cart = () => {
     }
   };
   const totalPrice = cartProducts.reduce((total, product) => {
-    const price = product.price;
+    const price = product.salePrice ? product.salePrice : product.price;
     const quantity = parseInt(product.quantity);
 
     if (!isNaN(price) && !isNaN(quantity)) {
@@ -74,7 +73,8 @@ const Cart = () => {
                     </td>
                     <td className="product-title">{product.title}</td>
                     <td className="product-price">
-                      ${product.salePrice ? product.salePrice : product.price}
+                     <span className="product-firstprice"> ${product.price}</span>
+                      ${product.salePrice}
                     </td>
                     <td>
                       <div className="quantity-part">
@@ -106,7 +106,7 @@ const Cart = () => {
                     <td>
                       <div className="subtotal-sec d-flex align-items-center justify-content-center justify-content-xl-start">
                         <p className="product-price me-3">
-                          ${product.quantity * product.price}
+                          ${product.quantity * (product.salePrice ? product.salePrice : product.price)}
                         </p>
                         <span
                           onClick={() => {
@@ -138,10 +138,9 @@ const Cart = () => {
                           <p className="mb-0 cart-title">{product.title}</p>
                         </div>
                         <p className="mt-4 text-end cart-price">
-                          $
-                          {product.salePrice
-                            ? product.salePrice
-                            : product.price}
+                         <span className="product-firstprice">${product.price}</span>
+                          ${product.salePrice}
+                         
                         </p>
                       </div>
                     </div>
@@ -174,7 +173,7 @@ const Cart = () => {
                       <p className="text-end d-flex">
                         <span>Subtotal:</span>{" "}
                         <span className="me-2 color-text">
-                          ${product.quantity * product.price}
+                          ${product.quantity * (product.salePrice ? product.salePrice : product.price)}
                         </span>
                         <span className="delete-btn">
                           <i className="fa-solid fa-xmark"></i>
@@ -182,34 +181,6 @@ const Cart = () => {
                       </p>
                     </div>
                   </div>
-                  {/* <div className="col-sm-12 col-md-12 col-lg-12 p-4 g-0 rounded-5  flex-md-row mb-4 shadow-sm">
-                <div className="d-flex align-items-center justify-content-between mobile-content">
-                  <div className="cart-img">
-                    <img src={product.coverImage} alt="err" className="img-fluid" />
-                  </div>
-                  <div className="mobile-content-header">
-                    <div className="d-flex content-title text-end">
-                      <p className="mb-0 cart-title">{product.title}</p>
-                    </div>
-                    <p className="mt-4 text-end cart-price">${product.salePrice}</p>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center justify-content-between mt-2">
-                  <div className="quantity-part">
-                    <button className="quantity-btn me-2"  onClick={() => { handleQuantityChange(product._id, product.quantity - 1) }}>
-                      <i className="fa-solid fa-minus"></i>
-                    </button>
-                    <span>1</span>
-                    <button className="quantity-btn ms-2"  onClick={() => { handleQuantityChange(product._id, product.quantity + 1) }}>
-                      <i className="fa-solid fa-plus"></i>
-                    </button>
-                  </div>
-                  <p className="text-end d-flex">
-                    <span>Subtotal:</span> <span className="me-2 color-text">${(product.quantity * product.price)}</span>
-                    <span className="delete-btn"><i className="fa-solid fa-xmark"></i></span>
-                  </p>
-                </div>
-              </div> */}
                 </div>
               </div>
             ))}

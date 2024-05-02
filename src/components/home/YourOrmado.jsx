@@ -28,7 +28,7 @@ const YourOrmado = ({_id}) => {
   const localCart = localStorage.getItem('cartItems');
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
 
-  const [ setCartStatus] = useState(cartData ? 'active' : 'disabled');
+  const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
 
   const findCart = (_id) => {
     const localCart = localStorage.getItem('cartItems');
@@ -41,8 +41,8 @@ const YourOrmado = ({_id}) => {
       if (findCart(_id)) {
         navigate('/basket');
       } else {
-        const priceToAdd = salePrice ? salePrice : price;
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price: priceToAdd }));
+        // const priceToAdd = salePrice ? salePrice : price;
+        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price }));
         setCartStatus('active');
       }
     },
@@ -53,7 +53,7 @@ const YourOrmado = ({_id}) => {
   const local = localStorage.getItem("wishItems");
   const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
 
-  const [ setWishStatus] = useState(wishData ? "solid" : "regular");
+  const [ wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
   const findWish = (_id) => {
     const local = localStorage.getItem("wishItems");
     const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
@@ -65,8 +65,8 @@ const YourOrmado = ({_id}) => {
       dispatch(removeFromWish(_id));
       setWishStatus("regular");
     } else {
-      const priceToAdd = salePrice ? salePrice : price;
-      dispatch(addToWish({ _id, title,coverImage,salePrice, price:priceToAdd,  stock }));
+      // const priceToAdd = salePrice ? salePrice : price;
+      dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
       setWishStatus("solid")
     }
   }, [dispatch, setWishStatus])

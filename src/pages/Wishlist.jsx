@@ -3,7 +3,9 @@ import bgimg from "../assets/img/bgimg.png";
 import { addToCart } from "../features/cartSlice";
 import { removeFromWish } from "../features/wishSlice";
 import { Link } from "react-router-dom";
+
 const Wishlist = () => {
+
   const { wishlistsItems } = useSelector((state) => state.wish || {});
   const dispatch = useDispatch();
 
@@ -43,7 +45,6 @@ const Wishlist = () => {
                 </thead>
                 <tbody>
                   {wishlistsItems.map((item) => (
-                    <>
                       <tr key={item._id}>
                         <td className="product-title d-flex align-items-center">
                           <div className="product-img">
@@ -55,7 +56,10 @@ const Wishlist = () => {
                           </div>
                           {item.title}
                         </td>
-                        <td className="product-price">${item.price}</td>
+                        <td>
+                        <span className="product-salePrice">${item.price}</span>
+                        <span className="product-price">${item.salePrice}</span>
+                        </td>
                         <td>
                           <button className={`btn stock ${item.stock ? 'instock' :'outofstock'}`}>
                             {item.stock ? "Stock" : "Out of stock"}
@@ -79,7 +83,6 @@ const Wishlist = () => {
                           <i className="fa-solid fa-circle-xmark"></i>
                         </td>
                       </tr>
-                    </>
                   ))}
                 </tbody>
               </table>
@@ -104,7 +107,10 @@ const Wishlist = () => {
                 <div className="table-container ">
                   <div className="d-flex justify-content-between">
                     <p>Price</p>
-                    <p className="product-price">${item.price}</p>
+                    <p>
+                        <span className="product-salePrice">${item.price}</span>
+                        <span className="product-price">${item.salePrice}</span>
+                    </p>
                   </div>
                   <div className="d-flex justify-content-between">
                     <p>Stock Status</p>
