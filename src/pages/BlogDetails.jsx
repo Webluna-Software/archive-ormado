@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import productImg from '../assets/img/BlogComment.png'
-import Blogs from "./Blogs";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { Link, useParams } from "react-router-dom";
@@ -110,7 +109,7 @@ const BlogDetails = () => {
                             />
                             <path
                               fillRule="evenodd"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                               d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V11.6893L15.0303 13.9697C15.3232 14.2626 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2626 15.3232 13.9697 15.0303L11.4697 12.5303C11.329 12.3897 11.25 12.1989 11.25 12V8C11.25 7.58579 11.5858 7.25 12 7.25Z"
                               fill="#E3B142"
                             />
@@ -132,7 +131,7 @@ const BlogDetails = () => {
                             />
                             <path
                               fillRule="evenodd"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                               d="M8.25 12C8.25 9.92893 9.92893 8.25 12 8.25C14.0711 8.25 15.75 9.92893 15.75 12C15.75 14.0711 14.0711 15.75 12 15.75C9.92893 15.75 8.25 14.0711 8.25 12ZM9.75 12C9.75 10.7574 10.7574 9.75 12 9.75C13.2426 9.75 14.25 10.7574 14.25 12C14.25 13.2426 13.2426 14.25 12 14.25C10.7574 14.25 9.75 13.2426 9.75 12Z"
                               fill="#E3B142"
                             />
@@ -210,7 +209,11 @@ const BlogDetails = () => {
                                 __html: findFirstSection(fd),
                               }}
                             />
-                            <p className="p-body"> <span> Read more</span></p>
+                          <Link to={`/blogDetails/${fd._id}`} onClick={()=>{
+                            window.scrollTo({top:0})
+                          }}>
+                          <p className="p-body"> <span> Read more</span></p>
+                          </Link>
                             <div className="date-number">
                               <span>1K read</span>
                               <span>June 28, 2023</span>
@@ -218,7 +221,6 @@ const BlogDetails = () => {
                           </div>
                         </div>
                       ))}
-
                     </div>
                   </div>
                 </div>

@@ -1,9 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import  { useEffect, useState } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Password from './pages/Password';
-import Order from './pages/Order';
 import OrderDetails from './pages/OrderDetails';
 import Wishlist from './pages/Wishlist';
 import Products from './pages/Products';
@@ -18,7 +17,6 @@ import FranchiseForm from './pages/FranchiseForm';
 import OurStory from './pages/OurStory';
 import Vacancy from './pages/Vacancy';
 import VacancyDetail from './pages/VacancyDetail';
-import Account from './pages/Account';
 import Checkout from './pages/Checkout';
 import Cart from './pages/Cart';
 import CareerForm from './pages/CareerForm';
@@ -28,14 +26,33 @@ import ForgotPass from './pages/ForgotPass';
 import SearchBranch from './pages/SearchBranch';
 import Franchise from './pages/Franchise';
 import Faq from './components/home/Faq';
-import { Provider } from 'react-redux';
-import { store } from './features/store';
+import Gallery from './pages/Gallery';
+import {validateUserID } from './utils/user';
+import Order from './pages/account/Order';
+import Password from './pages/account/Password';
+import Account from './pages/account/Account';
 
 const App = () => {
+
+    const navigate = useNavigate();
+    //birinci null olsunki sehife acilan kimi routelar oturmesin 
+    const [validRoutes , setValidRoutes] = useState(null);
+
+    useEffect(()=>{
+        setValidRoutes( validateUserID() );
+
+        if(validateUserID() !== null && (window.location.pathname.includes('signup') || window.location.pathname.includes('login')) ) {
+            navigate('/account/details');
+        }
+        else if(validateUserID() == null && (window.location.pathname.includes('account'))){
+            navigate('/login')
+        }
+    },[useLocation()])
+
     return (
-       <Provider store={store}>
-         <BrowserRouter>
+        <>
             <Header />
+
             <Routes>
                 <Route path='/' element={<Home />}  ></Route>
                 <Route path='/password' element={<Password />}  ></Route>
@@ -48,7 +65,24 @@ const App = () => {
                 <Route path='/blogs' element={<Blogs />}  ></Route>
                 <Route path='/blogDetails/:id' element={<BlogDetails />}  ></Route>
                 <Route path='/reserve' element={<Reserve />}  ></Route>
-                <Route path='/login' element={<LogIn />}  ></Route>
+
+                {
+                    validRoutes !== null ? 
+                    
+                    <>
+                        <Route path='/login' element={<Account />}  ></Route>
+                        <Route path='/signup' element={<Account />}  ></Route>
+                        <Route path='/account/:page' element={<Account />}  ></Route>
+                    </>
+                    :
+                    // Login Olmayibsa
+                    <>
+                        <Route path='/login' element={<LogIn />}  ></Route>
+                        <Route path='/account' element={<LogIn />}  ></Route>
+                        <Route path='/signup' element={<SignUp />}  ></Route>
+                    </>
+                }
+
                 <Route path='/franchiseform' element={<FranchiseForm />}  ></Route>
                 <Route path='/contact' element={<Contact />}  ></Route>
                 <Route path='/about' element={<OurStory />}  ></Route>
@@ -57,20 +91,17 @@ const App = () => {
                 <Route path='/career' element={<CareerPage/>}></Route>
                 <Route path='/careerdetails' element={<VacancyDetail />}  ></Route>
                 <Route path='/about' element={<OurStory />}  ></Route>
-                <Route path='/account' element={<Account />}  ></Route>
                 <Route path='/checkout' element={<Checkout />}  ></Route>
                 <Route path='/basket' element={<Cart />}  ></Route>
                 <Route path='/faqs' element={<Faq />}  ></Route>
-                
+                <Route path='/gallery' element={<Gallery />}  ></Route>
                 <Route path='/forgotpass' element={<ForgotPass />}  ></Route>
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
-                <Route path='/signup' element={<SignUp />}  ></Route>
                 <Route path='/franchise' element={<Franchise />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             <Footer />
-        </BrowserRouter>
-       </Provider>
+        </>
     )
 }
 

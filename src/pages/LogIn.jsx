@@ -1,10 +1,25 @@
-import React from 'react'
+import { useState } from 'react'
 import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
+import { loginAction } from '../utils/login'
+
 
 const LogIn = () => {
-    const navigate = useNavigate()
+
+    const navigate = useNavigate();
+
+    const [rememberMe , setRememberMe] = useState(false);
+
+    const [email , setEmail] = useState();
+    const [password , setPassword] = useState();
+
+
+    const handleLoginSubmit=(e)=>{
+        e.preventDefault();
+        loginAction( email, password , "account/details" , rememberMe);                                                            
+    }
+    
     return (
         <>
             <div className="login">
@@ -18,30 +33,31 @@ const LogIn = () => {
                             <p>Meet the good taste today</p>
                         </div>
                         <div className="login-form">
-                            <form>
+                            <form onSubmit={handleLoginSubmit}>
                                 <div className="login-input-text">
                                     <label htmlFor="email"><p>Email</p></label>
                                 </div>
                                 <div className="login-input">
-                                    <input id='email' placeholder='Enter your e-mail' type="email" />
+                                    <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
                                 </div>
                                 <div className="login-input-text">
                                     <label htmlFor="password"><p>Password</p></label>
                                 </div>
                                 <div className="login-input">
-                                    <input id='password' placeholder='Enter your password' type="password" />
+                                    <input id='password' placeholder='Enter your password' type="password"  onChange={(e)=> setPassword(e.target.value)}/>
                                 </div>
                                 <div className="remember-me">
                                     <div className='inputDiv'>
-                                        <input type="checkbox" id='login-checkbox' name='login-checkbox' className='pt-2' required/>
-                                        <label for="login-checkbox"> <p className='ms-2'>Remember me</p> </label>
+                                        <input type="checkbox" id='login-checkbox' name='login-checkbox' className='pt-2'defaultValue={rememberMe} onClick={(e)=> setRememberMe(e.target.checked)}/>
+                                        <label htmlFor="login-checkbox"> <p className='ms-2'>Remember me</p> </label>
                                     </div>
                                     <Link to={'/forgotpass'} className='forgot-pass'>Forgot password?</Link>
                                 </div>
+                                
+                                <div className="login-btn">
+                                    <button type='submit'><p>Sing in</p></button>
+                                </div>
                             </form>
-                        </div>
-                        <div className="login-btn">
-                            <button><p>Sing in</p></button>
                         </div>
                         <div className="goSignUp">
                             <p>Don’t have an account? </p><button onClick={() => { navigate('/signup') }}>Sign up</button>

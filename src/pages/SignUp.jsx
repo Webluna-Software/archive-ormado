@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import  { useContext, useState } from 'react'
 import img from '../assets/img/SignUp.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
+import ApiLinkContext from '../context/ApiLinkContext'
+import axios from 'axios'
+import { loginApiLink } from '../utils/login'
+// import { saveUserData } from '../utils/user'
 
 const SignUp = () => {
+
+  const {apiLink , headers} = useContext(ApiLinkContext);
   const navigate = useNavigate()
   const [characterslenght, setCharacterlenght] = useState(false)
   const [cappitalletter, setCapitalletter] = useState(false)
   const [onesymbol, setOnesymbol] = useState(false)
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  
+  const [name , setName] = useState(); 
+  const [surname , setSurname] = useState(); 
+  const [email , setEmail] = useState(); 
+  const [phone , setPhone] = useState();
+  const [address , setAdress] = useState();
+  const [privacyCheck , setPrivacyCheck] = useState(false);
+  
   const handleConfirmPasswordChange = (value) => {
     setConfirmPassword(value);
   };
@@ -23,28 +37,51 @@ const SignUp = () => {
     setOnesymbol(/[!. @#\$%\^&\*]/.test(value));
     setPassword(value)
 
-    if (characters.test(value)) {
-      setCharacterlenght(true)
-    } else {
-      setCharacterlenght(false)
-    }
-    if (capital.test(value)) {
-      setCapitalletter(true)
-    } else {
-      setCapitalletter(false)
-    }
-    if (symbol.test(value)) {
-      setOnesymbol(true)
-    } else {
-      setOnesymbol(false)
-    }
-
-
+    // if (characters.test(value)) {
+    //   setCharacterlenght(true)
+    // } else {
+    //   setCharacterlenght(false)
+    // }
+    // if (capital.test(value)) {
+    //   setCapitalletter(true)
+    // } else {
+    //   setCapitalletter(false)
+    // }
+    // if (symbol.test(value)) {
+    //   setOnesymbol(true)
+    // } else {
+    //   setOnesymbol(false)
+    // }
   }
 
   const passwordsMatch = password === confirmPassword;
+  const isPasswordValid = characterslenght && cappitalletter && onesymbol;
 
-  const isPasswordValid = characterslenght && cappitalletter && onesymbol
+const handleSubmit =(e)=>{
+  e.preventDefault();
+
+  if(!privacyCheck){
+    alert("Check privacy policy !");
+    throw new Error("Privacy policy checkbox is empty");
+  }
+
+  axios.post(`${loginApiLink}/user` , {
+    'name': name,
+    'surname': surname,
+    'email': email,
+    'phoneNumber': phone,
+    'address' : address,
+    'password': password
+  })
+  .then(()=>{
+    alert("User has successfully created!")
+    window.location.replace('/login');
+  })
+  .catch((e)=>{
+    console.log(e);
+  })
+}
+
   return (
     <>
       <div className="signup">
@@ -60,22 +97,43 @@ const SignUp = () => {
             <div className="signup-form">
               <form>
                 <div className="signup-input-text">
-                  <label htmlFor="name"><p>Full name</p></label>
+                  <label htmlFor="name"><p>Name</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='name' placeholder='Enter your name' type='text' />
+                  <input id='name' placeholder='Enter your name' type='text'  onChange={(e)=> setName(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
+                  <label htmlFor="surname"><p>Surname</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='surname' placeholder='Enter your surname' type='text' onChange={(e)=> setSurname(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
+                  <label htmlFor="phone"><p>Phone</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="email"><p>Email</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='email' placeholder='Enter your e-mail' type="email" />
+                  <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
+                </div>
+                <div className="signup-input-text">
+                  <label htmlFor="address"><p>Adress</p></label>
+                </div>
+                <div className="signup-input">
+                  <input id='address' placeholder='Enter your adress' type="text" onChange={(e)=> setAdress(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="password"><p>Password</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='password' placeholder='Enter your password' type='password' onChange={(e) => handleCase(e.target.value)} />
+                  <input id='password' placeholder='Enter your password' type='password' onChange={(e) => {
+                    handleCase(e.target.value);
+                    setPassword(e.target.value);
+                  }} />
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="confirm-password"><p>Confirm password</p></label>
@@ -152,18 +210,20 @@ const SignUp = () => {
             </div>
             <div className="remember-me">
               <div className='remember-me-input'>
-                <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required />
-                <label for="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
+                <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required onChange={(e)=> setPrivacyCheck(e.target.checked)} />
+                <label htmlFor="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
               </div>
             </div>
 
             <div className="signup-btn">
-              <button className={`signin-btn-main ${isPasswordValid && passwordsMatch ? '' : 'disabled'}`} disabled={!isPasswordValid || !passwordsMatch}>
+              <button className={`signin-btn-main ${isPasswordValid && passwordsMatch ? '' : 'disabled'}`} disabled={!isPasswordValid || !passwordsMatch}
+                onClick={handleSubmit}
+              >
                 <p>Sign up</p>
               </button>
               <button className='signin-with-btn mt-2'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_1589_3637)">
+                  <g clipPath="url(#clip0_1589_3637)">
                     <path d="M20.4998 12.1777C20.4998 11.5219 20.4454 11.0432 20.3275 10.5469H12.6631V13.5072H17.1619C17.0712 14.2429 16.5815 15.3509 15.493 16.0954L15.4777 16.1945L17.9011 18.029L18.069 18.0454C19.6109 16.6538 20.4998 14.6063 20.4998 12.1777Z" fill="#4285F4" />
                     <path d="M12.6636 19.9776C14.8677 19.9776 16.718 19.2684 18.0695 18.0453L15.4935 16.0953C14.8042 16.5651 13.879 16.893 12.6636 16.893C10.5049 16.893 8.67273 15.5015 8.01961 13.5781L7.92387 13.5861L5.40405 15.4917L5.37109 15.5812C6.71348 18.1871 9.47086 19.9776 12.6636 19.9776Z" fill="#34A853" />
                     <path d="M8.01924 13.5763C7.84691 13.08 7.74717 12.5481 7.74717 11.9986C7.74717 11.449 7.84691 10.9172 8.01017 10.4209L8.00561 10.3152L5.4542 8.37891L5.37073 8.41771C4.81746 9.49907 4.5 10.7134 4.5 11.9986C4.5 13.2838 4.81746 14.4981 5.37073 15.5794L8.01924 13.5763Z" fill="#FBBC05" />

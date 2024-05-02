@@ -59,9 +59,6 @@ const NewSweets = () => {
             </div>
             </div>
         </SwiperSlide>
-
-
-    
       </Swiper>
     </div>
     </div>

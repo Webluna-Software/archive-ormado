@@ -1,14 +1,28 @@
 .blog-details {
     padding: 0 84px;
-
+    @media (max-width:1024px) {
+        padding: 0 64px;
+    }
+    @media (max-width:425px) {
+        padding: 0 24px;
+    }
+    @media (max-width:320px) {
+        padding: 0 14px;
+    }
     .img-transparent {
         position: relative;
-
         .image-container {
+            height: 100%;
+            width: 100%;
             position: relative;
+
             img {
+                object-fit: fill;
                 width: 100%;
                 border-radius: 12px;
+                @media (max-width:1024px) {
+                  height: 350px;
+                }
             }
         }
 
@@ -29,7 +43,6 @@
             top: 20%;
             left: 5%;
             z-index: 2;
-
             h3 {
                 max-width: 500px;
                 color: #FFF;
@@ -40,8 +53,9 @@
                 line-height: 48px;
 
                 @media (min-width:1600px) {
+                    max-width: 700px;
                     font-size: 40px;
-                    line-height: 52px;
+                    line-height: 62px;
                 }
 
                 @media (max-width:1024px) {
@@ -568,6 +582,10 @@
                                 @media (min-width:"1600px") {
                                     font-size: 16px;
                                     line-height: 28px;
+                                }
+                                @media (max-width:"1024px") {
+                                    font-size: 16px;
+                                    line-height: 22px;
                                 }
                             }
                         }

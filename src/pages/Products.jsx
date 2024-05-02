@@ -17,6 +17,7 @@ const Products = ({_id}) => {
   const [products, setProducts] = useState([])
   const [quantity,setQuantity]=useState(1);
 
+  
   useEffect(() => {
     axios.get(`${ApiLink}/product`)
       .then((res) => {

@@ -38,7 +38,7 @@ const Footer = () => {
                 </label>
                 <div className="d-flex my-2">
                   <input
-                    id="newsletter1"
+                    id="newsletter2"
                     type="text"
                     className="form-control"
                     placeholder="Sign up!"
