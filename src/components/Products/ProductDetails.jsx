@@ -56,6 +56,10 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
   };
 
   const handleAddToCart = () => {
+    if (!sessionStorage.getItem("userID")) {
+      alert("Please login first!");
+      return;
+    }
     if (quantity > 0) {
       // const priceToAdd = productDetails.salePrice ? productDetails.salePrice : productDetails.price;
       dispatch(addToCart({ ...productDetails, quantity}));

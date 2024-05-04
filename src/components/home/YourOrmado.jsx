@@ -41,6 +41,10 @@ const YourOrmado = ({_id}) => {
 
   const cartClick = useCallback(
     (_id, title, price, salePrice, coverImage) => {
+      if (!sessionStorage.getItem("userID")) {
+        alert("Please login first!");
+        return;
+      }
       if (findCart(_id)) {
         navigate('/basket');
       } else {
@@ -66,6 +70,10 @@ const YourOrmado = ({_id}) => {
   }
 
   const wishClick = useCallback((_id,coverImage,title,price,salePrice,stock) => {
+    if (!sessionStorage.getItem("userID")) {
+      alert("Please login first!");
+      return;
+    }
     if (findWish(_id)) {
       dispatch(removeFromWish(_id));
       setWishStatus("regular");
@@ -93,7 +101,21 @@ const YourOrmado = ({_id}) => {
                 />
               </Link>
               <div className="wishlist-modal">
-                <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  onClick={() => { wishClick(fd._id,fd.coverImage,fd.title,fd.price,fd.salePrice, fd.stock) }}>
+                <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
+                // onClick={() => { wishClick(fd._id,fd.coverImage,fd.title,fd.price,fd.salePrice, fd.stock) }}
+                onClick={() =>
+                  getCookie("rememberMe")
+                    ? wishClick(
+                        fd._id,
+                        fd.coverImage,
+                        fd.title,
+                        fd.price,
+                        fd.salePrice,
+                        fd.stock
+                      )
+                    : alert("Please login first!")
+                }
+                >
                   <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
                 </div>
                 <Link to={`/productsdetails/${fd._id}`}>
@@ -139,14 +161,25 @@ const YourOrmado = ({_id}) => {
                   <div
                     className="price-cart"
                     onClick={() =>
-                      cartClick(
-                        fd._id,
-                        fd.title,
-                        fd.price,
-                        fd.salePrice,
-                        fd.coverImage
-                      )
+                      getCookie("rememberMe")
+                        ? cartClick(
+                            fd._id,
+                            fd.title,
+                            fd.price,
+                            fd.salePrice,
+                            fd.coverImage
+                          )
+                        : alert("Please login first!")
                     }
+                    // onClick={() =>
+                    //   cartClick(
+                    //     fd._id,
+                    //     fd.title,
+                    //     fd.price,
+                    //     fd.salePrice,
+                    //     fd.coverImage
+                    //   )
+                    // }
                   >
                      <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                   </div>

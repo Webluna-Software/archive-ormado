@@ -47,6 +47,10 @@ const Products = ({_id}) => {
 
   const cartClick = useCallback(
     (_id, title, price, salePrice, coverImage) => {
+      if (!sessionStorage.getItem("userID")) {
+        alert("Please login first!");
+        return;
+      }
       if (findCart(_id)) {
         navigate('/basket');
       } else {
@@ -71,6 +75,11 @@ const Products = ({_id}) => {
   }
 
   const wishClick = useCallback(( _id, title, coverImage, price, salePrice,  stock ) => {
+    if (!sessionStorage.getItem("userID")) {
+      alert("Please login first!");
+      console.log(sessionStorage.getItem("userID"),"user");
+      return;    
+    }
     if (findWish(_id)) {
       dispatch(removeFromWish(_id));
       setWishStatus("regular");
@@ -81,8 +90,6 @@ const Products = ({_id}) => {
       console.log(wishStatus);
     }
   }, [dispatch, wishStatus])
-
- 
 
   // const [showCategories, setShowCategories] = useState(true);
   // const toggleCategories = () => {
@@ -126,7 +133,21 @@ const Products = ({_id}) => {
                     <div className="card w-100" >
                       <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt="..." /></Link>
                       <div className="wishlist-modal">
-                        <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  onClick={() => { wishClick(fd._id,fd.title,fd.coverImage,fd.price,fd.salePrice, fd.stock) }}>
+                        <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center" 
+                        //  onClick={() => { wishClick(fd._id,fd.title,fd.coverImage,fd.price,fd.salePrice, fd.stock) }}
+                        onClick={() =>
+                          getCookie("rememberMe")
+                            ? wishClick(
+                                fd._id,
+                                fd.title,
+                                fd.coverImage,
+                                fd.price,
+                                fd.salePrice,
+                                fd.stock
+                              )
+                            : alert("Please login first!")
+                        }
+                         >
                           <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
                         </div>
                         <Link to={`/productsdetails/${fd._id}`}>
@@ -152,7 +173,20 @@ const Products = ({_id}) => {
                             <span><del>${fd.price}</del></span>
                             <p>${fd.salePrice}</p>
                           </div>
-                          <div className="price-cart"  onClick={() => cartClick(fd._id, fd.title, fd.price, fd.salePrice, fd.coverImage)}>
+                          <div className="price-cart"
+                           onClick={() =>
+                            getCookie("rememberMe")
+                              ? cartClick(
+                                  fd._id,
+                                  fd.title,
+                                  fd.price,
+                                  fd.salePrice,
+                                  fd.coverImage
+                                )
+                              : alert("Please login first!")
+                          }
+                            // onClick={() => cartClick(fd._id, fd.title, fd.price, fd.salePrice, fd.coverImage)}
+                            >
                             <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                           </div>
                         </div>
