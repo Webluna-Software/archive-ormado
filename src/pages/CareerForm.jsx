@@ -235,7 +235,7 @@ const CareerForm = () => {
                             Zefir Mall, Baku
                           </option>
                           <option value="Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000">
-                            Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast,
+                            Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka oblast,
                             Ukraine, 65000
                           </option>
                         </select>
@@ -588,9 +588,9 @@ const CareerForm = () => {
                       </option>
                       <option value="Associate degree">Associate degree</option>
                       <option value="Bachelor's degree">
-                        Bachelor's degree
+                        Bachelor&apos;s degree
                       </option>
-                      <option value="Master's degree">Master's degree</option>
+                      <option value="Master's degree">Master&apos;s degree</option>
                       <option value="Doctoral degree">Doctoral degree</option>
                     </select>
                     {

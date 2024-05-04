@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCookie, setCookie } from "../utils/cookie";
 
-const initialWishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
+// const initialWishItems = JSON.parse(localStorage.getItem("wishItems")) || [];
+
+const checkCookies = () => {
+  const wishItems = getCookie('wishItems');
+  return wishItems ? JSON.parse(wishItems) : [];
+}
 const initialState = {
-    wishlistsItems: initialWishItems,
+    wishlistsItems: checkCookies(),
 };
 
 const wishSlice = createSlice({
@@ -18,14 +24,16 @@ const wishSlice = createSlice({
         } else {
           state.wishlistsItems.push(productToAdd);
         }
-        localStorage.setItem("wishItems", JSON.stringify(state.wishlistsItems));
+        // localStorage.setItem("wishItems", JSON.stringify(state.wishlistsItems));
+      setCookie("wishItems", JSON.stringify([...state.wishlistsItems]),30)
+
     },
     removeFromWish: (state, action) => {
       state.wishlistsItems = state.wishlistsItems.filter(
         (item) => item._id !== action.payload
       );
-      localStorage.setItem("wishItems", JSON.stringify(state.wishlistsItems));
-
+      // localStorage.setItem("wishItems", JSON.stringify(state.wishlistsItems));
+      setCookie("wishItems", JSON.stringify([...state.wishlistsItems]),30)
     },
    
   },

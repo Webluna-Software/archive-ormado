@@ -8,7 +8,10 @@ const Carousel1 = ({ images }) => {
       <div className="carousel">
         <Carousel  className="carouselContainer ">
         {images.slice(-5).map((image, index) => (
-          <img key={index} src={image} alt={`Image ${index}`} className="img-fluid" />
+          <div key={index} className="relative">
+          <img  src={image} alt={`Image ${index}`} className="img-fluid" />
+          <span className="position-absolute" ><i className="fa-solid fa-heart"></i></span>
+          </div>
         ))}
         </Carousel>
       </div>

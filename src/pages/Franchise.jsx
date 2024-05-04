@@ -18,7 +18,7 @@ const Franchise = () => {
           WHY <span className="ormado">ORMADO</span> FRANCHISE ?
         </p>
         <p>
-          If you're considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
+          If you&apos;re considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
         </p>
         <div className="ormado-button">
               <Link to="/franchiseform"><button className="ormado-button">INQUIRE NOW</button></Link>
@@ -39,7 +39,7 @@ const Franchise = () => {
 
             <div className="ormado-about">
               <p>
-                If you're considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
+                If you&apos;re considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
               </p>
             </div>
             <div className="ormado-button">
@@ -69,8 +69,6 @@ const Franchise = () => {
         </div>
 
       </section>
-
-
 
       <Testimonials senddata={testimonalsforfranchise} />
       <div className="franchisecompany">
@@ -130,7 +128,7 @@ const Franchise = () => {
            </a>
           </div>
           <div className="part2">
-            <p>If you still haven't found answers to the questions that interest you, then fill out the forum and we will contact you!</p>
+            <p>If you still haven&apos;t found answers to the questions that interest you, then fill out the forum and we will contact you!</p>
             <Link to="/franchiseform"onClick={()=>{window.scrollTo({top:0,
                     behavior:"smooth"
                     })}}><button><p>Send a request</p></button></Link>

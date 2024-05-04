@@ -83,12 +83,9 @@ const OurRecentBlog = () => {
                         </div>
                       </div>
                     </div>
-
-
                   ))}
 
                 </div>
-
               </div>
             </div>
           )}

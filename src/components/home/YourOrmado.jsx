@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "../../features/cartSlice";
 import { useDispatch } from "react-redux";
 import { addToWish, removeFromWish } from "../../features/wishSlice";
+import { getCookie } from "../../utils/cookie";
 
 // eslint-disable-next-line react/prop-types
 const YourOrmado = ({_id}) => {
@@ -25,13 +26,15 @@ const YourOrmado = ({_id}) => {
     setQuantity(quantity)
   },[quantity]);
 
-  const localCart = localStorage.getItem('cartItems');
+  // const localCart = localStorage.getItem('cartItems');
+  const localCart=getCookie("cartItems")
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
 
   const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
 
   const findCart = (_id) => {
-    const localCart = localStorage.getItem('cartItems');
+    // const localCart = localStorage.getItem('cartItems');
+    const localCart=getCookie("cartItems")
     const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
     return cartData ? true : false;
   };
@@ -50,12 +53,14 @@ const YourOrmado = ({_id}) => {
   );
 
 
-  const local = localStorage.getItem("wishItems");
+  // const local = localStorage.getItem("wishItems");
+  const local=getCookie("wishItems")
   const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
 
   const [ wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
   const findWish = (_id) => {
-    const local = localStorage.getItem("wishItems");
+    // const local = localStorage.getItem("wishItems");
+    const local=getCookie("wishItems")
     const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
     return wishData ? true : false;
   }

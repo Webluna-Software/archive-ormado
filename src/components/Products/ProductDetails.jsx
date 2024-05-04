@@ -40,7 +40,7 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
         console.log(res.data, "ProductDetailsData");
         setProductDetails(res.data.product);
       })
-  }, [path]);
+  }, [ApiLink, id, path]);
 
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
@@ -57,11 +57,10 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      const priceToAdd = productDetails.salePrice ? productDetails.salePrice : productDetails.price;
-      dispatch(addToCart({ ...productDetails, quantity, price:priceToAdd }));
+      // const priceToAdd = productDetails.salePrice ? productDetails.salePrice : productDetails.price;
+      dispatch(addToCart({ ...productDetails, quantity}));
     }
   };
-  
 
   return (
     <>
@@ -113,7 +112,7 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
                 <p className="lastprice">${productDetails.salePrice}</p>
                 {/* <div className='discount'><p>%64 Off</p></div> */}
               </div>
-{/*     
+            {/*     
               <div className="size-div">
                 <p>Size:</p>
                 <span className={selectedSize === '150ml' ? 'selected' : ''}

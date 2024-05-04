@@ -1,4 +1,3 @@
-import React from 'react'
 import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'

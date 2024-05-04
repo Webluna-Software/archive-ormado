@@ -23,9 +23,7 @@ const Faq = () => {
       .catch(() => {
         setLoading(false);
         setError(true);
-
       })
-
   }, [])
 
   return (
@@ -48,7 +46,7 @@ const Faq = () => {
           <div className="accordion " id="accordionExample">
             {faqApi.map((item, i) => {
               return (
-                <div className="accordion-item" id={`first${i}`} key={item.id}>
+                <div className="accordion-item" id={`first${i}`} key={item._id}>
                   <h2 className="accordion-header">
                     <button
                       id={i}

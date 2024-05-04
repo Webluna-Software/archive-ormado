@@ -50,57 +50,61 @@
 //   .slider-container{}
 // }
 
-.carousel{
-  img{
+.carousel {
+  img {
     width: 400px !important;
     height: 500px;
     object-fit: cover;
     margin-left: 100px;
-    @media (max-width:998px){
+    @media (max-width: 998px) {
       margin-left: 0;
       // height: auto;
     }
-
   }
-  .carouselContainer{
+  .carouselContainer {
     display: flex;
-    flex-direction: column-reverse; 
-    @media (max-width:998px){
+    flex-direction: column-reverse;
+    @media (max-width: 998px) {
       display: block;
     }
-    
-}
-
-.carousel-root {
-    button{
-        display: none;
+  }
+  .slide{
+    z-index: 1;
+    .position-absolute{
+      right: 70px;
+      z-index: 100;
+      font-size: 20px;
+      top: 10px;
     }
-    .control-dots{
-        display: none;
-        @media (max-width:998px){
-          display: block;
-        }
+  }
+  .carousel-root {
+    button {
+      display: none;
+    }
+    .control-dots {
+      display: none;
+      @media (max-width: 998px) {
+        display: block;
+      }
     }
     .thumbs {
       display: flex;
       flex-direction: column;
       position: absolute;
-      @media (max-width:998px){
+      @media (max-width: 998px) {
         position: sticky;
         flex-direction: row;
         justify-content: center;
       }
     }
     .thumb {
-        margin-top: 25px;
-        img {
+      margin-top: 25px;
+      img {
         width: 100% !important;
         height: 100px;
         object-fit: cover;
         margin: 0 !important;
       }
     }
-  
-}
-
+  }
 }

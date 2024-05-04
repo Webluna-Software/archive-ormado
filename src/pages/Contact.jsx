@@ -4,13 +4,11 @@ import Contactus from '../components/contact/Contactus';
 
 const Contact = () => {
 
-
   return (
     <>
       <Contactus/>
       <Contactlocation/>
       {/* <Contactcards/> */}
-
     </>
   )
 }

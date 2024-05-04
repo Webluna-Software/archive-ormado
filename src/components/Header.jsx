@@ -465,9 +465,9 @@ const Header = () => {
                           <path
                             d="M2 2L9 9L2 16"
                             stroke="#D1D1D1"
-                            stroke-width="2.8"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>

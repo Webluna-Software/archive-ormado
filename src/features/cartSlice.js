@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { deleteCookie, getCookie, setCookie } from "../utils/cookie";
 
-const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+// const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+// const initialCartItems = JSON.parse(getCookie('cartItems')) || [];
+
+const checkCookies = () => {
+  const cartItems = getCookie('cartItems');
+  return cartItems ? JSON.parse(cartItems) : [];
+}
 
 const initialState = {
-  products: initialCartItems,
+  products: checkCookies(),
 };
 
 const cartSlice = createSlice({
@@ -22,16 +29,19 @@ const cartSlice = createSlice({
         state.products.push(productToAdd);
       }
       // Use spread operator to create a new array and update localStorage
-      localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      // localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      setCookie("cartItems", JSON.stringify([...state.products]),30)
     },
     removeFromCart: (state, action) => {
       const productIdToRemove = action.payload;
       state.products = state.products.filter((product) => product._id!== productIdToRemove);
-      localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      // localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      setCookie("cartItems", JSON.stringify([...state.products]),30)
     },
     deleteAll: (state) => {
       state.products = [];
-      localStorage.removeItem("cartItems"); // Remove the entire cart from localStorage
+      // localStorage.removeItem("cartItems"); // Remove the entire cart from localStorage
+      deleteCookie("cartItems")
     },
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
@@ -39,7 +49,8 @@ const cartSlice = createSlice({
       if (productIndex !== -1) {
         state.products[productIndex].quantity = quantity;
       }
-      localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      // localStorage.setItem("cartItems", JSON.stringify([...state.products]));
+      setCookie("cartItems", JSON.stringify([...state.products]),30)
     },
   },
 });
