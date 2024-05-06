@@ -8,12 +8,15 @@ import './assets/sass/style.scss';
 import { ApiLinkProvider } from './context/ApiLinkContext';
 import App from './App'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ApiLinkProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApiLinkProvider>
   </React.StrictMode>,
 )

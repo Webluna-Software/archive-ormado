@@ -1,0 +1,25 @@
+.loading-frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh 0;
+    .loading-img-box {
+        width: 30%;
+        img{
+            width: 100%;
+        }
+        @keyframes rotateLoading {
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        animation-name: rotateLoading;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+  }
