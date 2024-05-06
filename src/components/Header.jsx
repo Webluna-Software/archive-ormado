@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import cart from '../../src/assets/img/cart.svg'
+// import { getCookie } from "../utils/cookie";
 
 const Header = () => {
   const {ApiLink}=useContext(ApiLinkContext)
@@ -83,7 +84,22 @@ const Header = () => {
     ));
   };
 
-  
+// const getWishlistItemCount =()=>{
+//   const wishItems = getCookie("wishItems");
+//   if (wishItems) {
+//     const parsedItems=JSON.parse(wishItems);
+//     return parsedItems.length;
+//   }
+// return 0;
+// }
+// const getCartItemCount =()=>{
+//   const cartItems = getCookie("cartItems");
+//   if (cartItems) {
+//     const parsedItems=JSON.parse(cartItems);
+//     return parsedItems.length;
+//   }
+// return 0;
+// }
   
   const [active, setActive] = useState()
   const navigate=useNavigate();
@@ -134,9 +150,11 @@ const Header = () => {
           <div className="d-flex align-items-center" style={{ gap: "20px" }}>
             <div className="cart">
               <img src={cart} alt="" className="img-fluid" onClick={()=>{navigate("/basket")}} />
+            {/* <span className="badge text-black">{getCartItemCount()}</span> */}
             </div>
             <div className="wishlist">
             <i className="fa-solid fa-heart"  onClick={()=>{navigate("/wishlist")}}></i>
+            {/* <span className="badge text-black">{getWishlistItemCount()}</span> */}
             </div>
             <div className="header_location">
               <div className="location_icon">

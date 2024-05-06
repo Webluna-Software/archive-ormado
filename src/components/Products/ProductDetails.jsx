@@ -91,7 +91,7 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
 
           <div className="row my-5 pt-5">
             <div className="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
-              <Carousel images={productDetails.images} />
+              <Carousel images={productDetails.images} products={productDetails} _id={productDetails._id} />
             </div>
             <div className="col-sm-12 col-md-12 col-lg-6 details-content">
               <div className='headline'>
