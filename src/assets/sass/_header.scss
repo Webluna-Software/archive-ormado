@@ -214,6 +214,11 @@ header {
   display: none;
   .mobile-icons {
     color: transparent;
+    .cart{
+      img{
+        padding: 7px 10px;
+      }
+    }
     .icon {
       display: none;
     }

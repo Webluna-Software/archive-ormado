@@ -5,7 +5,6 @@ import { removeFromWish } from "../features/wishSlice";
 import { Link } from "react-router-dom";
 
 const Wishlist = () => {
-
   const { wishlistsItems } = useSelector((state) => state.wish || {});
   const dispatch = useDispatch();
 
@@ -45,44 +44,50 @@ const Wishlist = () => {
                 </thead>
                 <tbody>
                   {wishlistsItems.map((item) => (
-                      <tr key={item._id}>
-                        <td className="product-title d-flex align-items-center">
-                          <div className="product-img">
-                            <img
-                              src={item.coverImage}
-                              alt=""
-                              className="img-fluid"
-                            />
-                          </div>
-                          {item.title}
-                        </td>
-                        <td>
+                    <tr key={item._id}>
+                      <td className="product-title d-flex align-items-center">
+                        <div className="product-img">
+                          <img
+                            src={item.coverImage}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </div>
+                        {item.title}
+                      </td>
+                      <td>
                         <span className="product-salePrice">${item.price}</span>
                         <span className="product-price">${item.salePrice}</span>
-                        </td>
-                        <td>
-                          <button className={`btn stock ${item.stock ? 'instock' :'outofstock'}`}>
-                            {item.stock ? "Stock" : "Out of stock"}
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className={`btn cart ${item.stock ? "addcart" : 'passivcart'}`}
-                            onClick={() => { item.stock ?
-                              handleAddToCart(item) : '';
-                            }}
-                          >
-                            Add to cart
-                          </button>
-                        </td>
-                        <td
+                      </td>
+                      <td>
+                        <button
+                          className={`btn stock ${
+                            item.stock ? "instock" : "outofstock"
+                          }`}
+                        >
+                          {item.stock ? "Stock" : "Out of stock"}
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className={`btn cart ${
+                            item.stock ? "addcart" : "passivcart"
+                          }`}
                           onClick={() => {
-                            handleRemoveFromWish(item._id);
+                            item.stock ? handleAddToCart(item) : "";
                           }}
                         >
-                          <i className="fa-solid fa-circle-xmark"></i>
-                        </td>
-                      </tr>
+                          Add to cart
+                        </button>
+                      </td>
+                      <td
+                        onClick={() => {
+                          handleRemoveFromWish(item._id);
+                        }}
+                      >
+                        <i className="fa-solid fa-circle-xmark"></i>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -108,19 +113,32 @@ const Wishlist = () => {
                   <div className="d-flex justify-content-between">
                     <p>Price</p>
                     <p>
-                        <span className="product-salePrice">${item.price}</span>
-                        <span className="product-price">${item.salePrice}</span>
+                      <span className="product-salePrice">${item.price}</span>
+                      <span className="product-price">${item.salePrice}</span>
                     </p>
                   </div>
                   <div className="d-flex justify-content-between">
                     <p>Stock Status</p>
-                    <p className="stock instock">
+                    <p
+                      className={`btn stock ${
+                        item.stock ? "instock" : "outofstock"
+                      }`}
+                    >
                       {item.stock ? "In Stock" : "Out of Stock"}
                     </p>
                   </div>
                 </div>
                 <div className="d-flex mt-2 align-items-center">
-                  <button className="btn cart me-2">Add to cart</button>
+                  <button
+                    className={`btn cart me-3 ${
+                      item.stock ? "addcart" : "passivcart"
+                    }`}
+                    onClick={() => {
+                      item.stock ? handleAddToCart(item) : "";
+                    }}
+                  >
+                    Add to cart
+                  </button>
                   <span
                     onClick={() => {
                       handleRemoveFromWish(item._id);

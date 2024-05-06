@@ -175,7 +175,9 @@ const Cart = () => {
                         <span className="me-2 color-text">
                           ${product.quantity * (product.salePrice ? product.salePrice : product.price)}
                         </span>
-                        <span className="delete-btn">
+                        <span className="delete-btn"  onClick={() => {
+                            handleRemoveFromCart(product._id);
+                          }}>
                           <i className="fa-solid fa-xmark"></i>
                         </span>
                       </p>
