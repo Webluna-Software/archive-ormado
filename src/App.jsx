@@ -71,7 +71,7 @@ const App = () => {
                 <Route path='/blogs' element={<Blogs />}  ></Route>
                 <Route path='/blogDetails/:id' element={<BlogDetails />}  ></Route>
                 <Route path='/reserve' element={<Reserve />}  ></Route>
-
+ 
                 {
                     validRoutes !== null ? 
                     
