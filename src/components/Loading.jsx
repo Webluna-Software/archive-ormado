@@ -1,4 +1,4 @@
-import React from 'react'
+
 import logo  from '../assets/img/ormadologo.png'
 
 const Loading = () => {

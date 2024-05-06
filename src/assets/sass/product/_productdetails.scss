@@ -323,6 +323,19 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .headline{
+    h3{
+      max-width: 400px;
+      white-space: wrap !important;
+    }
+    span{
+      height: fit-content;
+    }
+  }
+}
+
 @media (max-width: 991px) {
   .productdetails-page {
     .img-transparent {
@@ -344,10 +357,26 @@
       }
     }
   }
+  .headline{
+    h3{
+      max-width: fit-content;
+      white-space: nowrap !important;
+    }
+  }
 }
+
 @media (max-width: 768px) {
   .productdetails-page {
     padding: 0 12px;
+  }
+}
+
+@media (max-width:600px) {
+  .headline{
+    h3{
+      max-width: 400px;
+      white-space: wrap !important;
+    }
   }
 }
 

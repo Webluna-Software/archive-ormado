@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
@@ -49,7 +49,7 @@ const LogIn = () => {
                                 <div className="remember-me">
                                     <div className='inputDiv'>
                                         <input type="checkbox" id='login-checkbox' name='login-checkbox' className='pt-2'defaultValue={rememberMe} onClick={(e)=> setRememberMe(e.target.checked)}/>
-                                        <label for="login-checkbox"> <p className='ms-2'>Remember me</p> </label>
+                                        <label htmlFor="login-checkbox"> <p className='ms-2'>Remember me</p> </label>
                                     </div>
                                     <Link to={'/forgotpass'} className='forgot-pass'>Forgot password?</Link>
                                 </div>

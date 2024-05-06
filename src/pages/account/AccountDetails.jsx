@@ -1,13 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import bgimg from "../../assets/img/bgimg.png";
 import { useEffect, useState } from "react";
 import { validateUserID } from "../../utils/user";
-import { logOutUser, loginAction, loginApiLink } from "../../utils/login";
+import { loginApiLink } from "../../utils/login";
 import axios from "axios";
 import Loading from "../../components/Loading";
 
 const AccountDetails = () => {
-  const navigate = useNavigate();
   const [selectedGender, setSelectedGender] = useState(null);
 
   const handleGenderBackground = (gender) => {
@@ -17,7 +14,6 @@ const AccountDetails = () => {
   const [user, setUser] = useState();
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios.get(`${loginApiLink}/user/${validateUserID()}`).then((res) => {

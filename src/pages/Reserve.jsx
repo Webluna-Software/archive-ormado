@@ -1,6 +1,5 @@
 import  { useContext, useEffect, useState } from "react";
 import background from "../assets/img/reservation-banner.png";
-import card from "../assets/img/Rectangle.png";
 import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";

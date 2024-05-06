@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import img from '../assets/img/SignUp.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import { loginApiLink } from '../utils/login'
-import { saveUserData } from '../utils/user'
+// import { saveUserData } from '../utils/user'
 
 const SignUp = () => {
 
@@ -25,8 +25,6 @@ const SignUp = () => {
   const [address , setAdress] = useState();
   const [privacyCheck , setPrivacyCheck] = useState(false);
   
-
-
   const handleConfirmPasswordChange = (value) => {
     setConfirmPassword(value);
   };
@@ -54,18 +52,13 @@ const SignUp = () => {
     // } else {
     //   setOnesymbol(false)
     // }
-
-
   }
 
   const passwordsMatch = password === confirmPassword;
   const isPasswordValid = characterslenght && cappitalletter && onesymbol;
 
-
-
 const handleSubmit =(e)=>{
   e.preventDefault();
-  
 
   if(!privacyCheck){
     alert("Check privacy policy !");
@@ -80,18 +73,14 @@ const handleSubmit =(e)=>{
     'address' : address,
     'password': password
   })
-  .then((res)=>{
+  .then(()=>{
     alert("User has successfully created!")
     window.location.replace('/login');
-    
   })
   .catch((e)=>{
     console.log(e);
   })
-
-
 }
-
 
   return (
     <>
@@ -222,7 +211,7 @@ const handleSubmit =(e)=>{
             <div className="remember-me">
               <div className='remember-me-input'>
                 <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required onChange={(e)=> setPrivacyCheck(e.target.checked)} />
-                <label for="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
+                <label htmlFor="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
               </div>
             </div>
 
@@ -234,7 +223,7 @@ const handleSubmit =(e)=>{
               </button>
               <button className='signin-with-btn mt-2'>
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_1589_3637)">
+                  <g clipPath="url(#clip0_1589_3637)">
                     <path d="M20.4998 12.1777C20.4998 11.5219 20.4454 11.0432 20.3275 10.5469H12.6631V13.5072H17.1619C17.0712 14.2429 16.5815 15.3509 15.493 16.0954L15.4777 16.1945L17.9011 18.029L18.069 18.0454C19.6109 16.6538 20.4998 14.6063 20.4998 12.1777Z" fill="#4285F4" />
                     <path d="M12.6636 19.9776C14.8677 19.9776 16.718 19.2684 18.0695 18.0453L15.4935 16.0953C14.8042 16.5651 13.879 16.893 12.6636 16.893C10.5049 16.893 8.67273 15.5015 8.01961 13.5781L7.92387 13.5861L5.40405 15.4917L5.37109 15.5812C6.71348 18.1871 9.47086 19.9776 12.6636 19.9776Z" fill="#34A853" />
                     <path d="M8.01924 13.5763C7.84691 13.08 7.74717 12.5481 7.74717 11.9986C7.74717 11.449 7.84691 10.9172 8.01017 10.4209L8.00561 10.3152L5.4542 8.37891L5.37073 8.41771C4.81746 9.49907 4.5 10.7134 4.5 11.9986C4.5 13.2838 4.81746 14.4981 5.37073 15.5794L8.01924 13.5763Z" fill="#FBBC05" />

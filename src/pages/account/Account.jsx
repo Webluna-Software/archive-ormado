@@ -11,12 +11,9 @@ import Loading from "../../components/Loading";
 
 const Account = () => {
   const { page } = useParams();
-
   const navigate = useNavigate();
 
-
   const [user , setUser] = useState();
-  
   const [loading , setLoading] = useState(true);
   const [error , setError ] = useState(false);
 
@@ -26,7 +23,7 @@ const Account = () => {
         setUser(res.data.data)
         setLoading(false)
     })
-    .catch((err)=>{
+    .catch(()=>{
       setLoading(false);
       setError(true);
     })
@@ -64,15 +61,10 @@ const Account = () => {
         </div>
         {
             loading ? 
-            
             <Loading />
-
             :
-
             error ? <h3>Something went wrong ...</h3>
-
             :
-
             <div className="container-fluid">
             <div className="row justify-content-between">
                 <h3>
@@ -145,12 +137,9 @@ const Account = () => {
                     <p>Logout</p>
                 </div>
                 </div>
-
                 {pageRender(page)}
             </div>
             </div>      
-
-
         }   
       </section>
     );

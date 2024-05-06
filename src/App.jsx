@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/Header';
@@ -38,7 +38,6 @@ const App = () => {
     //birinci null olsunki sehife acilan kimi routelar oturmesin 
     const [validRoutes , setValidRoutes] = useState(null);
 
-
     useEffect(()=>{
         setValidRoutes( validateUserID() );
 
@@ -48,12 +47,7 @@ const App = () => {
         else if(validateUserID() == null && (window.location.pathname.includes('account'))){
             navigate('/login')
         }
-
     },[useLocation()])
-
-
-
-    
 
     return (
         <>
@@ -88,8 +82,6 @@ const App = () => {
                         <Route path='/signup' element={<SignUp />}  ></Route>
                     </>
                 }
-
-
 
                 <Route path='/franchiseform' element={<FranchiseForm />}  ></Route>
                 <Route path='/contact' element={<Contact />}  ></Route>

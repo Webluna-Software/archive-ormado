@@ -1,6 +1,23 @@
+import { useDispatch, useSelector } from "react-redux";
 import bgimg from "../assets/img/bgimg.png";
-import productitem from "../assets/img/orderitem.png";
+import { addToCart } from "../features/cartSlice";
+import { removeFromWish } from "../features/wishSlice";
+import { Link } from "react-router-dom";
+
 const Wishlist = () => {
+  const { wishlistsItems } = useSelector((state) => state.wish || {});
+  const dispatch = useDispatch();
+
+  const handleRemoveFromWish = (_id) => {
+    dispatch(removeFromWish(_id));
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart({ ...product, quantity: 1 }));
+    handleRemoveFromWish(product._id);
+  };
+  console.log(wishlistsItems);
+
   return (
     <section className="wishlist">
       <div className="section-fluid">
@@ -14,82 +31,124 @@ const Wishlist = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <table className="table border-0">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Stock Status</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="product-title d-flex align-items-center">
-                    <div className="product-img">
-                      <img src={productitem} alt="" className="img-fluid" />{" "}
-                    </div>
-                    Ormado Energy Drink 10ml
-                  </td>
-                  <td className="product-price">$45</td>
-                  <td>
-                    <button className="btn stock instock">In Stock</button>{" "}
-                  </td>
-                  <td>
-                    <button className="btn cart">Add to cart</button>{" "}
-                  </td>
-                  <td>
+            {wishlistsItems.length > 0 ? (
+              <table className="table border-0">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock Status</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wishlistsItems.map((item) => (
+                    <tr key={item._id}>
+                      <td className="product-title d-flex align-items-center">
+                        <div className="product-img">
+                          <img
+                            src={item.coverImage}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </div>
+                        {item.title}
+                      </td>
+                      <td>
+                        <span className="product-salePrice">${item.price}</span>
+                        <span className="product-price">${item.salePrice}</span>
+                      </td>
+                      <td>
+                        <button
+                          className={`btn stock ${
+                            item.stock ? "instock" : "outofstock"
+                          }`}
+                        >
+                          {item.stock ? "Stock" : "Out of stock"}
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className={`btn cart ${
+                            item.stock ? "addcart" : "passivcart"
+                          }`}
+                          onClick={() => {
+                            item.stock ? handleAddToCart(item) : "";
+                          }}
+                        >
+                          Add to cart
+                        </button>
+                      </td>
+                      <td
+                        onClick={() => {
+                          handleRemoveFromWish(item._id);
+                        }}
+                      >
+                        <i className="fa-solid fa-circle-xmark"></i>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="empty-cart-message text-center mt-5">
+                <p className="my-2">Your favorites are currently empty</p>
+                <Link to="/products">
+                  <button className="btn btn-brown">
+                    <span>Return to shop</span>
+                  </button>
+                </Link>
+              </div>
+            )}
+            {wishlistsItems.map((item) => (
+              <div className="container mobile-wishlist" key={item._id}>
+                <div className="d-flex flex-column align-items-center">
+                  <div className="product-img">
+                    <img src={item.coverImage} alt="" className="img-fluid" />{" "}
+                  </div>
+                  <div className="title">{item.title}</div>
+                </div>
+                <div className="table-container ">
+                  <div className="d-flex justify-content-between">
+                    <p>Price</p>
+                    <p>
+                      <span className="product-salePrice">${item.price}</span>
+                      <span className="product-price">${item.salePrice}</span>
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <p>Stock Status</p>
+                    <p
+                      className={`btn stock ${
+                        item.stock ? "instock" : "outofstock"
+                      }`}
+                    >
+                      {item.stock ? "In Stock" : "Out of Stock"}
+                    </p>
+                  </div>
+                </div>
+                <div className="d-flex mt-2 align-items-center">
+                  <button
+                    className={`btn cart me-3 ${
+                      item.stock ? "addcart" : "passivcart"
+                    }`}
+                    onClick={() => {
+                      item.stock ? handleAddToCart(item) : "";
+                    }}
+                  >
+                    Add to cart
+                  </button>
+                  <span
+                    onClick={() => {
+                      handleRemoveFromWish(item._id);
+                    }}
+                  >
                     <i className="fa-solid fa-circle-xmark"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="product-title d-flex align-items-center">
-                    <div className="product-img">
-                      <img src={productitem} alt="" className="img-fluid" />{" "}
-                    </div>
-                    Ormado Energy Drink 10ml
-                  </td>
-
-                  <td className="product-price">$45</td>
-                  <td>
-                    <button className="btn stock outofstock">
-                      Out off Stock
-                    </button>{" "}
-                  </td>
-                  <td>
-                    <button className="btn cart">Add to cart</button>{" "}
-                  </td>
-                  <td>
-                    <i className="fa-solid fa-circle-xmark"></i>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="container mobile-wishlist">
-              <div className="d-flex flex-column align-items-center">
-                <div className="product-img">
-                  <img src={productitem} alt="" className="img-fluid" />{" "}
-                </div>
-                <div className="title">Ormado Energy Drink 10ml</div>
-              </div>
-              <div className="table-container ">
-                <div className="d-flex justify-content-between">
-                  <p>Price</p>
-                  <p className="product-price">$200</p>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <p>Stock Status</p>
-                  <p className="stock instock">In Stock</p>
+                  </span>
                 </div>
               </div>
-              <div className="d-flex mt-2 align-items-center">
-                <button className="btn cart me-2">Add to cart</button>{" "}
-                <span>
-                  <i className="fa-solid fa-circle-xmark"></i>
-                </span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

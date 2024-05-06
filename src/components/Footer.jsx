@@ -418,7 +418,7 @@ const Footer = () => {
                       <p>Download on the</p>
                       <h3>App Store</h3>
                     </div>
-                  </div>0
+                  </div>
                   </Link>
                 </div>
               </div>

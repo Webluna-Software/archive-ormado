@@ -1,4 +1,3 @@
-import React from 'react'
 import iconlocation from "../assets/img/iconlocation.png"
 import careerdata from "../data/careerdata"
 import { Link } from 'react-router-dom'
@@ -29,15 +28,10 @@ const Vacancy = () => {
                       <h2 className='ms-2 mt-2'>Berlin(Germany)</h2>
                     </div>
                   </div>
-
                   <div className="click">
                    <i className="myicon fa-solid fa-chevron-right"></i>
                   </div>
-
-
-
                 </div>
-
               </div>
               </Link>
             )
@@ -46,16 +40,9 @@ const Vacancy = () => {
           {/* <div className="centerbtn  mt-3">
             <button className='lowbtn btn btn-white ' href="">Load more </button>
           </div> */}
-
         </div>
-
-
-
       </div>
-
     </>
-
-
   )
 }
 
