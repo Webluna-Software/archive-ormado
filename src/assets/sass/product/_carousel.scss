@@ -51,23 +51,6 @@
 // }
 
 .carousel {
-  img {
-    width: 400px !important;
-    height: 500px;
-    object-fit: cover;
-    margin-left: 100px;
-    @media (max-width: 998px) {
-      margin-left: 0;
-      // height: auto;
-    }
-  }
-  .carouselContainer {
-    display: flex;
-    flex-direction: column-reverse;
-    @media (max-width: 998px) {
-      display: block;
-    }
-  }
  .position-absolute{
       right: 50px;
       z-index: 100;

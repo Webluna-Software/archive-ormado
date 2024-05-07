@@ -6,6 +6,9 @@ import { getCookie } from "../../utils/cookie";
 import { useDispatch } from "react-redux";
 import { validateUserID } from "../../utils/user";
 
+import ImageGallery from "react-image-gallery";
+import 'react-image-gallery/styles/css/image-gallery.css';
+
 const Carousel1 = ({ images, _id, products }) => {
   const dispatch = useDispatch();
 
@@ -46,17 +49,15 @@ const Carousel1 = ({ images, _id, products }) => {
     },
     [dispatch, userID]
   );
+  const galleryImages = images.map(image => ({
+    original: image,
+    thumbnail: image
+  }));
 
   return (
     <>
       <div className="carousel position-relative">
-        <Carousel className="carouselContainer ">
-          {images.slice(-5).map((image, index) => (
-            <div key={index} >
-              <img src={image} alt={`Image ${index}`} className="img-fluid" />
-            </div>
-          ))}
-        </Carousel>
+      <ImageGallery items={galleryImages} thumbnailPosition={"left"} showNav={false} />
         <span
           className="position-absolute"
           onClick={() =>
