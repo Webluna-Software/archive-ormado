@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { addToWish, removeFromWish } from "../features/wishSlice";
 import { getCookie } from "../utils/cookie";
 import PreLoader from "../pages/PreLoader"
+import { validateUserID } from "../utils/user";
 // eslint-disable-next-line react/prop-types
 const Products = ({_id}) => {
   const [loading,setLoading] = useState(true)
@@ -33,6 +34,16 @@ const Products = ({_id}) => {
   useEffect(()=>{
     setQuantity(quantity)
   },[quantity])
+
+  
+const userID = validateUserID();
+
+if (userID) {
+  console.log("Kullanıcı kimliği doğrulandı:", userID);
+} else {
+  console.log("Kullanıcı kimliği doğrulanamadı.");
+}
+
   // const localCart = localStorage.getItem('cartItems');
   const localCart=getCookie("cartItems")
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
@@ -48,7 +59,7 @@ const Products = ({_id}) => {
 
   const cartClick = useCallback(
     (_id, title, price, salePrice, coverImage) => {
-      if (!sessionStorage.getItem("userID")) {
+      if (!userID) {
         alert("Please login first!");
         return;
       }
@@ -60,7 +71,7 @@ const Products = ({_id}) => {
         setCartStatus('active');
       }
     },
-    [navigate, dispatch, quantity, setCartStatus]
+    [userID, navigate, dispatch, quantity]
   );
 
   // const local = localStorage.getItem("wishItems");
@@ -76,7 +87,7 @@ const Products = ({_id}) => {
   }
 
   const wishClick = useCallback(( _id, title, coverImage, price, salePrice,  stock ) => {
-    if (!sessionStorage.getItem("userID")) {
+    if (!userID) {
       alert("Please login first!");
       console.log(sessionStorage.getItem("userID"),"user");
       return;    
@@ -88,9 +99,8 @@ const Products = ({_id}) => {
       // const priceToAdd = salePrice ? salePrice : price;
       dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
       setWishStatus("solid")
-      console.log(wishStatus);
     }
-  }, [dispatch, wishStatus])
+  }, [dispatch, userID])
 
   // const [showCategories, setShowCategories] = useState(true);
   // const toggleCategories = () => {

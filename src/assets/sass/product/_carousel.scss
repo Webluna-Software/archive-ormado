@@ -68,15 +68,12 @@
       display: block;
     }
   }
-  .slide{
-    z-index: 1;
-    .position-absolute{
-      right: 70px;
+ .position-absolute{
+      right: 50px;
       z-index: 100;
       font-size: 20px;
-      top: 10px;
+      top: 50px;
     }
-  }
   .carousel-root {
     button {
       display: none;

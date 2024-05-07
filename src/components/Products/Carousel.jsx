@@ -4,17 +4,20 @@ import { Carousel } from "react-responsive-carousel";
 import { addToWish, removeFromWish } from "../../features/wishSlice";
 import { getCookie } from "../../utils/cookie";
 import { useDispatch } from "react-redux";
+import { validateUserID } from "../../utils/user";
 
 const Carousel1 = ({ images, _id, products }) => {
   const dispatch = useDispatch();
+
+  const userID = validateUserID();
+
   // const local = localStorage.getItem("wishItems");
   const local = getCookie("wishItems");
   const wishData = local
     ? JSON.parse(local).find((item) => item._id === _id)
     : false;
   const [wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
-console.log(_id);
-console.log(products);
+
   const findWish = (_id) => {
     // const local = localStorage.getItem("wishItems");
     const local = getCookie("wishItems");
@@ -26,7 +29,7 @@ console.log(products);
 
   const wishClick = useCallback(
     (_id, title, coverImage, price, salePrice, stock) => {
-      if (!sessionStorage.getItem("userID")) {
+      if (!userID) {
         alert("Please login first!");
         return;
       }
@@ -41,38 +44,40 @@ console.log(products);
         setWishStatus("solid");
       }
     },
-    [dispatch]
+    [dispatch, userID]
   );
 
   return (
     <>
-      <div className="carousel">
+      <div className="carousel position-relative">
         <Carousel className="carouselContainer ">
           {images.slice(-5).map((image, index) => (
-            <div key={index} className="relative">
+            <div key={index} >
               <img src={image} alt={`Image ${index}`} className="img-fluid" />
-              {/* {products[index] && ( // Check if products[index] is defined */}
-                <span
-                  className="position-absolute"
-                  onClick={() =>
-                    getCookie("rememberMe")
-                      ? wishClick(
-                          products._id,
-                          products.title,
-                          products.coverImage,
-                          products.price,
-                          products.salePrice,
-                          products.stock
-                        )
-                      : alert("Please login first!")
-                  }
-                >
-                 <i className={`fa-${findWish(products._id) ? 'solid' : 'regular'} fa-heart`}></i>
-                </span>
-              {/* )} */}
             </div>
           ))}
         </Carousel>
+        <span
+          className="position-absolute"
+          onClick={() =>
+            getCookie("rememberMe")
+              ? wishClick(
+                  products._id,
+                  products.title,
+                  products.coverImage,
+                  products.price,
+                  products.salePrice,
+                  products.stock
+                )
+              : alert("Please login first!")
+          }
+        >
+          <i
+            className={`fa-${
+              findWish(products._id) ? "solid" : "regular"
+            } fa-heart`}
+          ></i>
+        </span>
       </div>
     </>
   );

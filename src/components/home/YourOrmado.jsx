@@ -6,6 +6,7 @@ import { addToCart } from "../../features/cartSlice";
 import { useDispatch } from "react-redux";
 import { addToWish, removeFromWish } from "../../features/wishSlice";
 import { getCookie } from "../../utils/cookie";
+import { validateUserID } from "../../utils/user";
 
 // eslint-disable-next-line react/prop-types
 const YourOrmado = ({_id}) => {
@@ -26,6 +27,8 @@ const YourOrmado = ({_id}) => {
     setQuantity(quantity)
   },[quantity]);
 
+const userID = validateUserID();
+
   // const localCart = localStorage.getItem('cartItems');
   const localCart=getCookie("cartItems")
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
@@ -41,7 +44,7 @@ const YourOrmado = ({_id}) => {
 
   const cartClick = useCallback(
     (_id, title, price, salePrice, coverImage) => {
-      if (!sessionStorage.getItem("userID")) {
+      if (!userID) {
         alert("Please login first!");
         return;
       }
@@ -53,7 +56,7 @@ const YourOrmado = ({_id}) => {
         setCartStatus('active');
       }
     },
-    [navigate, dispatch, quantity, setCartStatus]
+    [userID, navigate, dispatch, quantity]
   );
 
 
@@ -70,7 +73,7 @@ const YourOrmado = ({_id}) => {
   }
 
   const wishClick = useCallback((_id,coverImage,title,price,salePrice,stock) => {
-    if (!sessionStorage.getItem("userID")) {
+    if (!userID) {
       alert("Please login first!");
       return;
     }
@@ -82,7 +85,7 @@ const YourOrmado = ({_id}) => {
       dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
       setWishStatus("solid")
     }
-  }, [dispatch, setWishStatus])
+  }, [dispatch, userID])
 
   return (
     <div className="yourormado-div my-5">
