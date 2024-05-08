@@ -151,7 +151,7 @@ if (userID) {
                         <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center" 
                         //  onClick={() => { wishClick(fd._id,fd.title,fd.coverImage,fd.price,fd.salePrice, fd.stock) }}
                         onClick={() =>
-                          getCookie("rememberMe")
+                          userID
                             ? wishClick(
                                 fd._id,
                                 fd.title,
@@ -190,7 +190,7 @@ if (userID) {
                           </div>
                           <div className="price-cart"
                            onClick={() =>
-                            getCookie("rememberMe")
+                           userID
                               ? cartClick(
                                   fd._id,
                                   fd.title,

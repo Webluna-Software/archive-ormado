@@ -20,8 +20,9 @@ import { addToCart } from '../../features/cartSlice';
 import { validateUserID } from '../../utils/user';
 
 
+
 // eslint-disable-next-line react/prop-types
-const ProductDetails = ({price,salePrice,imageCover,title}) => {
+const ProductDetails = ({price,salePrice,coverImage,title}) => {
 
   // const shareUrl = "https://ormado.de/";
 
@@ -42,7 +43,7 @@ const ProductDetails = ({price,salePrice,imageCover,title}) => {
         console.log(res.data, "ProductDetailsData");
         setProductDetails(res.data.product);
       })
-  }, [ApiLink, id, path]);
+  }, [ApiLink, id]);
 
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
@@ -159,7 +160,21 @@ const userID = validateUserID();
                     <path d="M15.75 12C15.75 12.4142 15.4142 12.75 15 12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H15C15.4142 11.25 15.75 11.5858 15.75 12Z" fill="#6B4A3C" />
                   </svg>
                 </div>
-                <button onClick={() => { handleAddToCart({ imageCover, title, price,salePrice, id }); }}>Add to cart</button>
+                <button
+                //  onClick={() => { handleAddToCart({ coverImage, title, price,salePrice, _id }); }}
+                 onClick={() =>
+                  userID
+                    ? handleAddToCart(
+                        productDetails._id,
+                        title,
+                        price,
+                        salePrice,
+                        coverImage,
+                        quantity
+                      )
+                    : alert("Please login first!")
+                }
+                 >Add to cart</button>
               </div>
 
               <div className="share">

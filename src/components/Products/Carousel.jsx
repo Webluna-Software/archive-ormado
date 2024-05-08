@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useCallback, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
+// import { Carousel } from "react-responsive-carousel";
 import { addToWish, removeFromWish } from "../../features/wishSlice";
 import { getCookie } from "../../utils/cookie";
 import { useDispatch } from "react-redux";
@@ -61,7 +61,7 @@ const Carousel1 = ({ images, _id, products }) => {
         <span
           className="position-absolute"
           onClick={() =>
-            getCookie("rememberMe")
+            userID
               ? wishClick(
                   products._id,
                   products.title,

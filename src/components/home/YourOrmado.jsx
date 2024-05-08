@@ -107,7 +107,7 @@ const userID = validateUserID();
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
                 // onClick={() => { wishClick(fd._id,fd.coverImage,fd.title,fd.price,fd.salePrice, fd.stock) }}
                 onClick={() =>
-                  getCookie("rememberMe")
+                  userID
                     ? wishClick(
                         fd._id,
                         fd.coverImage,
@@ -164,7 +164,7 @@ const userID = validateUserID();
                   <div
                     className="price-cart"
                     onClick={() =>
-                      getCookie("rememberMe")
+                     userID
                         ? cartClick(
                             fd._id,
                             fd.title,
