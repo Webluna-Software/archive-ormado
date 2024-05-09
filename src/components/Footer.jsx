@@ -309,7 +309,7 @@ const Footer = () => {
                   </li>
                   <li className="nav-item mb-2">
                     <a href="/contact" className="nav-link p-0">
-                      Contact Form
+                      Join the family
                     </a>
                   </li>
                 </ul>

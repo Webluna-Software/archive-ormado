@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
 import Carousel from './Carousel';
-
+import Preloader from "../../pages/PreLoader"
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -74,7 +74,7 @@ const userID = validateUserID();
 
   return (
     <>
-      {productDetails.length === 0 ? <h1>Loading...</h1> :
+      {productDetails.length === 0 ? <Preloader/> :
         <section className='productdetails-page'>
           <div className="img-transparent">
             <div className="image-container">

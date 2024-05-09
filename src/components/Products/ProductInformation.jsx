@@ -28,7 +28,7 @@ const ProductInformation = () => {
                 <br /> <br />
                 Velit quam eos unde. Autem unde aut explicabo quia aut. Enim voluptates eligendi. Unde aspernatur sint voluptatibus tempore at veniam quae laboriosam. Assumenda cumque eveniet.
                 </p>
-                <button>Back to menu</button>
+                <button>Back to previous page</button>
             </div>
           </div>
       </section>

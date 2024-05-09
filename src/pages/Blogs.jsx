@@ -70,7 +70,7 @@ const Blogs = () => {
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
-                <div className="cardsBlogs row m-0">
+                <div className="cardsBlogs row m-0 d-flex justify-content-start">
                   {blog.slice(0,visible).map((item, i) => (
 
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
@@ -100,7 +100,7 @@ const Blogs = () => {
                 </div>
            
               </div>
-              <div className="col-4 col-sm-2 col-md-2 col-lg-2">
+              <div className="col-6 col-sm-6 col-md-2 col-lg-2">
                 <div className="loadMoreBtn mt-4">
                  <button onClick={visibleShow}>
                  Load More

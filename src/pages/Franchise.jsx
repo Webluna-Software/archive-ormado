@@ -55,7 +55,7 @@ const Franchise = () => {
           <h3 className="ms-1 my-5">
             <font color="#D59729">We provide everything you need for a successful business  </font>
           </h3>
-          <p className="ms-1 w-50">
+          <p className="ms-1">
           Based on mutual agreement, we share and provide mentorship on all the necessary information required for a successful and risk-free start to the business. This includes interior design, furnishings, beverage and dessert menus, and more.
           </p>
 
