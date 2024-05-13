@@ -121,10 +121,10 @@ const handleSubmit =(e)=>{
                   <input id='email' placeholder='Enter your e-mail' type="email" onChange={(e)=> setEmail(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
-                  <label htmlFor="address"><p>Adress</p></label>
+                  <label htmlFor="address"><p>Address</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='address' placeholder='Enter your adress' type="text" onChange={(e)=> setAdress(e.target.value)}/>
+                  <input id='address' placeholder='Enter your address' type="text" onChange={(e)=> setAdress(e.target.value)}/>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="password"><p>Password</p></label>
