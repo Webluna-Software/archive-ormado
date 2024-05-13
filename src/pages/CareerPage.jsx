@@ -10,6 +10,7 @@ import baristatwo from "../assets/img/Leyla.png";
 import baristathree from "../assets/img/Thomas.png";
 import baristafour from "../assets/img/Jenny.png";
 import { Link } from "react-router-dom";
+import Vacancy from "./Vacancy";
 const CareerPage = () => {
   const settings = {
     dots: false,
@@ -216,9 +217,7 @@ const CareerPage = () => {
           </div>
         </div>
         </div> */}
-          <div className="text-center my-5 alert alert-warning">
-            There are currently no vacancies
-          </div>
+        <Vacancy />
         </div>
         <center>
           <Link to="/careerform">

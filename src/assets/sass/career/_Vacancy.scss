@@ -106,8 +106,11 @@
          border: 1px solid #E3B142;
 
          .writingbox {
-            width: 30%;
+            width: 95%;
             height: auto;
+            h2{
+               line-height: 40px !important;
+            }
 
             @media(max-width:913px) {
                width: 50%;

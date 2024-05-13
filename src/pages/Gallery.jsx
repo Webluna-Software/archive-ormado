@@ -1,15 +1,21 @@
-import img from "../assets/img/weareperfect.png";
+import imgone from "../assets/img/gallery/1.png";
+import imgtwo from "../assets/img/gallery/2.png";
+import imgthree from "../assets/img/gallery/3.png";
+import imgfour from "../assets/img/gallery/4.png";
+import imgfive from "../assets/img/gallery/5.png";
+import imgsix from "../assets/img/gallery/6.png";
+import imgseven from "../assets/img/gallery/7.png";
 import Faq from "../components/home/Faq";
 import bgimg from "../assets/img/bgimg.png";
 const Gallery = () => {
   const data = [
-    { id: 0, img: img },
-    { id: 1, img: img },
-    { id: 2, img: img },
-    { id: 3, img: img },
-    { id: 4, img: img },
-    { id: 5, img: img },
-    { id: 6, img: img },
+    { id: 0, img: imgone },
+    { id: 1, img: imgtwo },
+    { id: 2, img: imgthree },
+    { id: 3, img: imgfour },
+    { id: 4, img: imgfive },
+    { id: 5, img: imgsix },
+    { id: 6, img: imgseven },
   ];
 
   return (
