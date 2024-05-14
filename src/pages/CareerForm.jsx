@@ -779,14 +779,15 @@ const CareerForm = () => {
                     </label>
                   </div>
                   <div className="careerForm-input">
-                    <input
+                    <textarea
                       id="choose"
-                      placeholder="Enter information"
+                      placeholder="Enter information" className="form-control"
                       type="text"
                       onChange={(e) => {
                         setChoose(e.target.value)
                         setChooseError(false)
                       }}
+                      maxLength={5000}
                     />
                     {
                       chooseError && (

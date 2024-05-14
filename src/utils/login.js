@@ -30,7 +30,7 @@ export const loginAction =(email , password , redirectPath , rememberMe)=>{
                     }
                     setCookie('rememberMe' , JSON.stringify(rememberMe))
                     sessionStorage.setItem("userID" , thisUser._id )
-                    window.location.replace(redirectPath);
+                    window.location.replace("/");
                     // alert("You have logged in successfully !");
                 }else{
                     alert("Either the email or password is incorrect!");

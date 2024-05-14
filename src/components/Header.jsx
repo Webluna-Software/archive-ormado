@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import cart from "../../src/assets/img/cart.svg";
+import { loginApiLink } from "../utils/login";
+import { validateUserID } from "../utils/user";
 // import { getCookie } from "../utils/cookie";
 
 const Header = () => {
@@ -56,6 +58,19 @@ const Header = () => {
       });
   }, [ApiLink, searchQuery]);
 
+  const [user,setUser]=useState([]);
+
+  useEffect(()=>{
+    axios.get(`${loginApiLink}/user/${validateUserID()}`)
+    .then((res)=>{
+        setUser(res.data.data)
+        console.log(res.data.data,"user");
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+  
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
     setIsSearchActive(true);
@@ -74,6 +89,7 @@ const Header = () => {
       return <li>No products found</li>;
     }
 
+   
     return searchResults.map((product) => (
       <>
         <Link to={`/productsdetails/${product._id}`}>
@@ -230,7 +246,7 @@ const Header = () => {
                 </svg>
               </div>
               <Link to="/login">
-                <span style={{ color: "#fff" }}>Log in</span>
+                <span style={{ color: "#fff" }}>{user && user.name && user.surname ? user.name +" "+ user.surname : "Log in"}</span>
               </Link>
             </div>
           </div>
