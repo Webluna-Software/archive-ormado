@@ -14,6 +14,19 @@ const LogIn = () => {
     const [email , setEmail] = useState();
     const [password , setPassword] = useState();
 
+    const [icon, setIcon] = useState("fa-eye");
+    const [type, setType] = useState("password");
+
+    const eye = () => {
+        if (icon === "fa-eye") {
+          setIcon("fa-eye-slash");
+          setType("text");
+        } else {
+          setIcon("fa-eye");
+          setType("password");
+        }
+      };
+
 
     const handleLoginSubmit=(e)=>{
         e.preventDefault();
@@ -43,8 +56,9 @@ const LogIn = () => {
                                 <div className="login-input-text">
                                     <label htmlFor="password"><p>Password</p></label>
                                 </div>
-                                <div className="login-input">
-                                    <input id='password' placeholder='Enter your password' type="password"  onChange={(e)=> setPassword(e.target.value)}/>
+                                <div className="login-input position-relative">
+                                    <input id='password' placeholder='Enter your password' type={type}  onChange={(e)=> setPassword(e.target.value)}/>
+                                    <span  onClick={eye}><i className={`fa-solid ${icon}`}></i></span>
                                 </div>
                                 <div className="remember-me">
                                     <div className='inputDiv'>

@@ -177,9 +177,10 @@ const Contactus = () => {
                             <option value="" disabled selected>
                               Country/Region:
                             </option>
-                            <option value="Baku">Baku</option>
-                            <option value="Dubai">Dubai</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
                             <option value="Ukraine">Ukraine</option>
+                            <option value="UAE">UAE</option>
                           </select>
                           {
                             countryError && (

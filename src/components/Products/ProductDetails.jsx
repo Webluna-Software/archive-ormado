@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import productImg from "../../assets/img/products-banner.png"
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
 import Carousel from './Carousel';
@@ -18,19 +18,20 @@ import {
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../features/cartSlice';
 import { validateUserID } from '../../utils/user';
+import { getCookie } from '../../utils/cookie';
 
 
 
 // eslint-disable-next-line react/prop-types
-const ProductDetails = ({price,salePrice,coverImage,title}) => {
+const ProductDetails = ({_id}) => {
 
   // const shareUrl = "https://ormado.de/";
 
-  const [selectedSize, setSelectedSize] = useState(null);
+  // const [selectedSize, setSelectedSize] = useState(null);
 
-  const handleSizeBackground = (size) => {
-    setSelectedSize(prevSize => prevSize === size ? null : size);
-  };
+  // const handleSizeBackground = (size) => {
+  //   setSelectedSize(prevSize => prevSize === size ? null : size);
+  // };
 
   const { ApiLink } = useContext(ApiLinkContext)
   const { id } = useParams()
@@ -61,16 +62,35 @@ const userID = validateUserID();
     }
   };
 
-  const handleAddToCart = () => {
-    if (!userID) {
-      alert("Please login first!");
-      return;
-    }
-    if (quantity > 0) {
-      // const priceToAdd = productDetails.salePrice ? productDetails.salePrice : productDetails.price;
-      dispatch(addToCart({ ...productDetails, quantity}));
-    }
+  const navigate=useNavigate()
+  const localCart=getCookie("cartItems")
+  const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
+
+  const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
+
+  const findCart = (_id) => {
+    // const localCart = localStorage.getItem('cartItems');
+    const localCart=getCookie("cartItems")
+    const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
+    return cartData ? true : false;
   };
+
+  const cartClick = useCallback(
+    (_id, title, price, salePrice, coverImage) => {
+      if (!userID) {
+        alert("Please login first!");
+        return;
+      }
+      if (findCart(_id)) {
+        navigate('/basket');
+      } else {
+        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price }));
+        setCartStatus('active');
+      }
+    },
+    [userID, navigate, dispatch, quantity]
+  );
+
 
   return (
     <>
@@ -163,26 +183,30 @@ const userID = validateUserID();
                 <button
                 //  onClick={() => { handleAddToCart({ coverImage, title, price,salePrice, _id }); }}
                  onClick={() =>
-                  userID
-                    ? handleAddToCart(
+                 ( userID
+                    ? cartClick(
                         productDetails._id,
-                        title,
-                        price,
-                        salePrice,
-                        coverImage,
-                        quantity
+                        productDetails.title,
+                        productDetails.price,
+                        productDetails.salePrice,
+                        productDetails.coverImage,
+                        quantity,
+                
                       )
-                    : alert("Please login first!")
+                    : alert("Please login first!"))
+
                 }
+                // onClick={()=>{userID ? handleAddToCart(productDetails) : alert("please login first")}}
                  >Add to cart</button>
               </div>
+           
 
               <div className="share">
                 <p className='pt-3'>Share:</p>
                 <FacebookShareButton
                     url={`https://ormado.de/${path}`}
                     quote={"Bizi Seçtiyiniz üçün təşəkkür edirik"}
-                    hashtag={"#ormado"}
+                    hashtag={"I found a great product. You should definitely try it 🤩!"}
                     className="FacebookShareButton"
                   >
                     <FacebookIcon size={30} round={true} className="sharefb" />
@@ -191,7 +215,7 @@ const userID = validateUserID();
                   <WhatsappShareButton
                      url={`https://ormado.de${path}`}
                     quote={"Bizi Seçtiyiniz üçün təşəkkür edirik"}
-                    hashtag={"#ormado"}
+                    hashtag={"I found a great product. You should definitely try it 🤩!"}
                   >
                     <WhatsappIcon size={30} round={true} />
                   </WhatsappShareButton>
@@ -199,7 +223,7 @@ const userID = validateUserID();
                   <LinkedinShareButton
                      url={`https://ormado.de${path}`}
                     quote={"Bizi Seçtiyiniz üçün təşəkkür edirik"}
-                    hashtag={"#ormado"}
+                    hashtag={"I found a great product. You should definitely try it 🤩!"}
                   >
                     <LinkedinIcon size={30} round={true} />
                   </LinkedinShareButton>
@@ -207,7 +231,7 @@ const userID = validateUserID();
                   <TwitterShareButton
                      url={`https://ormado.de${path}`}
                     quote={"Bizi Seçtiyiniz üçün təşəkkür edirik"}
-                    hashtag={"#ormado"}
+                    hashtag={"I found a great product. You should definitely try it 🤩!"}
                   >
                     <TwitterIcon size={30} round={true} />
                   </TwitterShareButton>

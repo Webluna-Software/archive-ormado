@@ -145,7 +145,6 @@
           text-transform: uppercase;
           @media (max-width:768px) {
             font-size: 18px;
-          
         }
         }
         span {
@@ -164,6 +163,13 @@
             line-height: 24px;
             color: #424044;
             padding-top: 16px;
+          }
+          .position-relative{
+            span{
+              position: absolute;
+              top: 7px;
+              right: 20px;
+            }
           }
           .gender-div{
             display: flex;

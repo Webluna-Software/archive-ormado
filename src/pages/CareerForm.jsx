@@ -307,7 +307,7 @@ const CareerForm = () => {
                       <div className="careerForm-input">
                         <input
                           id="email"
-                          placeholder="Redlands"
+                          placeholder="example@gmail.com"
                           type="email"
                           onChange={(e) => {
                             setEmail(e.target.value)
@@ -457,7 +457,7 @@ const CareerForm = () => {
                           style={{ width: "100%" }}
                         >
                           <div className="portfolio-form">
-                            <p>Update your portfolio</p>
+                            <p>Add your portfolio</p>
                             <svg
                               width="24"
                               height="24"
@@ -549,7 +549,7 @@ const CareerForm = () => {
                       }}
                     >
                       <option value="" disabled selected>
-                        Marital :
+                        Select :
                       </option>
                       <option value="married">Married</option>
                       <option value="unmarried">Unmarried</option>
@@ -610,7 +610,7 @@ const CareerForm = () => {
                   <div className="careerForm-input">
                     <input
                       id="experience"
-                      placeholder="JWrite the company names and the duration of employment at each"
+                      placeholder="Write the company names and the duration of employment at each"
                       type="text"
                       onChange={(e) => {
                         setApplying(e.target.value)
@@ -779,14 +779,15 @@ const CareerForm = () => {
                     </label>
                   </div>
                   <div className="careerForm-input">
-                    <input
+                    <textarea
                       id="choose"
-                      placeholder="Enter information"
+                      placeholder="Enter information" className="form-control"
                       type="text"
                       onChange={(e) => {
                         setChoose(e.target.value)
                         setChooseError(false)
                       }}
+                      maxLength={5000}
                     />
                     {
                       chooseError && (
@@ -841,11 +842,11 @@ const CareerForm = () => {
 
 
               
-                  <div className="careerForm-input-text">
+                  {/* <div className="careerForm-input-text">
                     <label htmlFor="information">
                       <p>How Know About Us</p>
                     </label>
-                  </div>
+                  </div> */}
                   <div className="careerForm-input">
                     <input
                       id="information"
