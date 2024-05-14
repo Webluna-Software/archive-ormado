@@ -17,6 +17,13 @@
         width: 100%;
         max-width: 100%;
         border-radius: 12px;
+       .img-fluid{
+        @media (max-width:700px) {
+            height: 150px !important;
+            object-fit: cover;
+            
+          }
+       }
         .image-overlay {
           position: absolute;
           bottom: 0;
@@ -29,6 +36,7 @@
           align-items: center;
           justify-content: center;
           border-radius: 12px;
+         
           h3{
               color:#FFF;
               font-family: Lato;

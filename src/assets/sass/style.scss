@@ -52,7 +52,14 @@ a {
 @import "./career/Vacancydetail";
 @import "./career/careerform";
 @import "./career/careerpage";
+@import "./loadingLogo";
 
+
+// Gallery Page
+@import "./gallery/gallery.scss" ;
+
+// PreLoader
+@import "./preloader/preloader" ;
 .ormado-con-main {
   width: 100%;
   display: flex;

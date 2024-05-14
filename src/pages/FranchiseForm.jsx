@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import frenchiseFormimg from "../assets/img/FranchiseForm.png";
 import { Link } from "react-router-dom";
 import ApiLinkContext from "../context/ApiLinkContext";
@@ -63,7 +63,7 @@ const FranchiseForm = () => {
             setShowModal(true);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           setShowErrorModal(true);
         });
     }
@@ -145,7 +145,7 @@ const FranchiseForm = () => {
                   type="tel"
                   onChange={(e) => {
                     setphone(e.target.value)
-                    setPhoneError(False)
+                    setPhoneError(false)
                   }}
                 />
               </div>
@@ -247,8 +247,7 @@ const FranchiseForm = () => {
                           setShowModal(false);
                         }}
                         className="btn-close"
-                        data-
-                        bs-dismiss="modal"
+                        data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>

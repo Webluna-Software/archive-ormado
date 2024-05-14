@@ -2,7 +2,7 @@
 import career from "../assets/img/karyerabanner.png";
 import careerteam from "../assets/img/careerteam.jpg";
 import Slider from "react-slick";
-import Team from "../assets/img/career-team.png";
+// import Team from "../assets/img/career-team.png";
 // import Faq from "../components/home/Faq";
 // import location from "../assets/img/icon.png";
 import baristaone from "../assets/img/Nihad.png";
@@ -10,6 +10,7 @@ import baristatwo from "../assets/img/Leyla.png";
 import baristathree from "../assets/img/Thomas.png";
 import baristafour from "../assets/img/Jenny.png";
 import { Link } from "react-router-dom";
+import Vacancy from "./Vacancy";
 const CareerPage = () => {
   const settings = {
     dots: false,
@@ -53,7 +54,7 @@ const CareerPage = () => {
         <h2>Join Our Team: Build Your Career at Ormado Kaffeehaus</h2>
         <p>
           At ORMADO KAFFEEHAUS, our team is the heart and soul of everything we
-          do. We're a passionate group of individuals dedicated to serving up
+          do. We&apos;re a passionate group of individuals dedicated to serving up
           delicious coffee, creating welcoming environments, and fostering
           connections within our community.{" "}
         </p>
@@ -73,7 +74,7 @@ const CareerPage = () => {
         <h2>OUR TEAM</h2>
         <p>
           We warmly welcome every new employee who joins our team into our
-          extended family. We're dedicated to providing them with the support
+          extended family. We&apos;re dedicated to providing them with the support
           and resources they need to thrive and grow professionally
         </p>
         <Slider {...settings}>
@@ -87,12 +88,12 @@ const CareerPage = () => {
                   Working at Ormado Kaffeehaus has been an absolute delight from
                   day one. The team camaraderie, coupled with the genuine
                   passion for crafting exceptional coffee experiences, makes
-                  every shift feel like a rewarding adventure. Ormado's
+                  every shift feel like a rewarding adventure. Ormado&apos;s
                   commitment to quality shines through in every cup we serve,
                   and the supportive environment fosters personal growth and
                   skill development. Plus, the warm atmosphere and appreciation
                   from both colleagues and customers create a sense of belonging
-                  that's truly special. Proud to be part of the Ormado family!
+                  that&apos;s truly special. Proud to be part of the Ormado family!
                 </p>
               </div>
             </div>
@@ -107,7 +108,7 @@ const CareerPage = () => {
                   Joining the team at Ormado Kaffeehaus has been a game-changer
                   for me. Not only do I get to indulge my love for coffee every
                   day, but I also get to do it in an environment that feels like
-                  home. The management's dedication to fostering a positive
+                  home. The management&apos;s dedication to fostering a positive
                   workplace culture is evident in every interaction, making each
                   shift a pleasure. With opportunities for advancement and a
                   commitment to excellence, Ormado truly stands out as a place
@@ -124,14 +125,14 @@ const CareerPage = () => {
                 <h5 className="card-title">Thomas Makris</h5>
                 <h6 className="card-subtitle">Barista</h6>
                 <p className="card-text">
-                  At Ormado Kaffeehaus, I've found more than just a job; I've
+                  At Ormado Kaffeehaus, I&apos;ve found more than just a job; I&apos;ve
                   found a second family. From the moment I stepped behind the
                   espresso machine, I knew I was part of something special. The
                   emphasis on teamwork and constant pursuit of perfection makes
-                  every day exciting and fulfilling. Whether it's perfecting
-                  latte art or creating unique drink recipes, there's always
-                  room to grow and innovate. Ormado's dedication to both its
-                  employees and customers creates an atmosphere that's as
+                  every day exciting and fulfilling. Whether it&apos;s perfecting
+                  latte art or creating unique drink recipes, there&apos;s always
+                  room to grow and innovate. Ormado&apos;s dedication to both its
+                  employees and customers creates an atmosphere that&apos;s as
                   inviting as its delicious coffee. Thrilled to be a part of
                   this passionate team!
                 </p>
@@ -150,8 +151,8 @@ const CareerPage = () => {
                   first aromatic espresso pull to the final latte art flourish,
                   every moment is infused with a sense of purpose and passion.
                   The supportive team atmosphere and commitment to excellence
-                  create an environment where I'm not just an employee, but a
-                  valued member of a tight-knit community. Ormado's dedication
+                  create an environment where I&apos;m not just an employee, but a
+                  valued member of a tight-knit community. Ormado&apos;s dedication
                   to quality and customer satisfaction sets the stage for
                   unforgettable coffee experiences, making each day a rewarding
                   adventure. Proud to be a part of such a vibrant coffee
@@ -216,13 +217,11 @@ const CareerPage = () => {
           </div>
         </div>
         </div> */}
-          <div className="text-center my-5 alert alert-warning">
-            There are currently no vacancies
-          </div>
+        <Vacancy />
         </div>
         <center>
-          <Link to="/vacancy">
-            <button className="view-all-btn">View all</button>
+          <Link to="/careerform">
+            <button className="view-all-btn">ADD CV</button>
           </Link>
         </center>
       </div>

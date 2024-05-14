@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import background from "../assets/img/reservation-banner.png";
-import card from "../assets/img/Rectangle.png";
 import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
@@ -81,7 +80,7 @@ const Reserve = () => {
             setShowModal(true);
           }
         })
-        .catch((err) => {
+        .catch(() => {
           setShowErrorModal(true)
         });
     }
@@ -109,12 +108,10 @@ const Reserve = () => {
           <div className="first-card-img">
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
-              src={card}
+              src={background}
               alt=""
             />
           </div>
-          <img className="background img-fluid" src={background} alt="" />
-          <div className="firtst-card-title text-white"></div>
         </div>
         <div className="reserve-form-header">
           <div className="reserve-header-text">
@@ -148,7 +145,7 @@ const Reserve = () => {
                         value="event"
                         onClick={(e) => setreserveType(e.target.value)}
                       />
-                      <label for="reserve-radio">
+                      <label htmlFor="reserve-radio">
                         {" "}
                         <p>For the event</p>{" "}
                       </label>
@@ -162,7 +159,7 @@ const Reserve = () => {
                         value="friends"
                         onClick={(e) => setreserveType(e.target.value)}
                       />
-                      <label for="reserve-radio2">
+                      <label htmlFor="reserve-radio2">
                         {" "}
                         <p>For a meeting with friends</p>{" "}
                       </label>
@@ -506,6 +503,7 @@ const Reserve = () => {
                               window.location.reload()
                               setShowModal(false)
                               }}
+                              // eslint-disable-next-line react/no-unknown-property
                               className="btn-close" data- bs-dismiss="modal" aria-label="Close">
                             </button>
                           </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import waffle from "../../assets/img/waffle.jpg"
 import sansebastian from "../../assets/img/sansebastian.jpg"
 import croissant from "../../assets/img/croissant.jpg"

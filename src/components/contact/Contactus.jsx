@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";
 
@@ -89,12 +89,12 @@ const Contactus = () => {
                     <h6 className="col-10">
                       Have questions, suggestions, or just want to chat about
                       coffee? Our team is here to listen. Reach out to us today
-                      using the form, and let's start a conversation.
+                      using the form, and let&apos;s start a conversation.
                     </h6>
                   </div>
                   <div className="second">
                     <h6 className="col-10">
-                      Your feedback matters, and we're eager to make your
+                      Your feedback matters, and we&apos;re eager to make your
                       experience with Ormado Kaffeehaus exceptional. Contact us
                       now!
                     </h6>
@@ -254,7 +254,7 @@ const Contactus = () => {
                       </div>
 
                       <div className="col-11 col-sm-12 col-md-12  ">
-                        <label for="floatingTextarea">Message</label>
+                        <label htmlFor="floatingTextarea">Message</label>
                         <div className="form-floating">
                           <textarea
                             className={`form-control textArea ${messageError ? "invalid" : ""}`}
@@ -266,7 +266,7 @@ const Contactus = () => {
                               setMessageError(false)
                             }}
                           ></textarea>
-                          <label for="floatingTextarea">Message</label>
+                          <label htmlFor="floatingTextarea">Message</label>
                           {
                             messageError && (
                               <span className="invalid_message">Message is required</span>
@@ -295,7 +295,7 @@ const Contactus = () => {
                               window.location.reload()
                               setShowModal(false)
                               }}
-                              className="btn-close" data- bs-dismiss="modal" aria-label="Close">
+                              className="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                           </div>
                           <div className="modal-body">
