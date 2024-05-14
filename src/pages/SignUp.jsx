@@ -1,15 +1,15 @@
-import  { useContext, useState } from 'react'
+import  { useState } from 'react'
 import img from '../assets/img/SignUp.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
-import ApiLinkContext from '../context/ApiLinkContext'
+// import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import { loginApiLink } from '../utils/login'
 // import { saveUserData } from '../utils/user'
 
 const SignUp = () => {
 
-  const {apiLink , headers} = useContext(ApiLinkContext);
+  // const {apiLink , headers} = useContext(ApiLinkContext);
   const navigate = useNavigate()
   const [characterslenght, setCharacterlenght] = useState(false)
   const [cappitalletter, setCapitalletter] = useState(false)
@@ -17,6 +17,32 @@ const SignUp = () => {
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [icon, setIcon] = useState("fa-eye");
+  const [type, setType] = useState("password");
+
+  const eye = () => {
+    if (icon === "fa-eye") {
+      setIcon("fa-eye-slash");
+      setType("text");
+    } else {
+      setIcon("fa-eye");
+      setType("password");
+    }
+  };
+  const [confirmIcon, setConfirmIcon] = useState("fa-eye");
+  const [confirmType, setConfirmType] = useState("password");
+
+  const confirmEye = () => {
+    if (confirmIcon === "fa-eye") {
+      setConfirmIcon("fa-eye-slash");
+      setConfirmType("text");
+    } else {
+      setConfirmIcon("fa-eye");
+      setConfirmType("password");
+    }
+  };
+
   
   const [name , setName] = useState(); 
   const [surname , setSurname] = useState(); 
@@ -112,7 +138,8 @@ const handleSubmit =(e)=>{
                   <label htmlFor="phone"><p>Phone</p></label>
                 </div>
                 <div className="signup-input">
-                  <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/>
+                  <input type="tel" name=""id='phone'  placeholder='Enter your phone' defaultValue={"+"} onChange={(e)=> setPhone(e.target.value)} />
+                  {/* <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/> */}
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="email"><p>Email</p></label>
@@ -129,17 +156,19 @@ const handleSubmit =(e)=>{
                 <div className="signup-input-text">
                   <label htmlFor="password"><p>Password</p></label>
                 </div>
-                <div className="signup-input">
-                  <input id='password' placeholder='Enter your password' type='password' onChange={(e) => {
+                <div className="signup-input position-relative">
+                  <input id='password' placeholder='Enter your password' type={type} onChange={(e) => {
                     handleCase(e.target.value);
                     setPassword(e.target.value);
                   }} />
+                  <span  onClick={eye}><i className={`fa-solid ${icon}`}></i></span>
                 </div>
                 <div className="signup-input-text">
                   <label htmlFor="confirm-password"><p>Confirm password</p></label>
                 </div>
-                <div className="signup-input">
-                  <input id='confirm-password' placeholder='Enter your password again' type="password" onChange={(e) => handleConfirmPasswordChange(e.target.value)} />
+                <div className="signup-input position-relative">
+                  <input id='confirm-password' placeholder='Enter your password again' type={confirmType} onChange={(e) => handleConfirmPasswordChange(e.target.value)} />
+                  <span  onClick={confirmEye}><i className={`fa-solid ${confirmIcon}`}></i></span>
                 </div>
                 <p className='mt-1 text-danger'> {passwordsMatch ? '' : 'Passwords are not the same'}</p>
               </form>

@@ -201,7 +201,6 @@
                         gap: 0px;
                     }
                     
-
                     p {
                         margin-bottom: 0;
                         color: var(--Grey-Tint-900, #424044);
@@ -328,6 +327,13 @@
                             padding: 5px 10px;
                         }
                     }
+                    
+                        span{
+                            position: absolute;
+                            top: 13px;
+                            right: 20px;
+                        }
+                    
                 }
                 .remember-me{
                     padding: 12px 0px 12px 0px;

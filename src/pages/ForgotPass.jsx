@@ -30,7 +30,7 @@ const ForgotPass = () => {
                             <button><p>Next</p></button>
                         </div>
                         <div className="goSignUp">
-                            <p>Don’t have an account? </p><button onClick={() => { navigate('/login') }}>Sign in</button>
+                            <p>Don’t have an account? </p><button onClick={() => { navigate('/signup') }}>Sign up</button>
                         </div>
                     </div>
                 </div>
