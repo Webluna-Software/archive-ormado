@@ -47,7 +47,10 @@ export const loginAction =(email , password , redirectPath , rememberMe)=>{
 
 
 export const logOutUser=(redirectPath)=>{
-    deleteCookie('user');
-    sessionStorage.removeItem('userID')
-    window.location.replace(redirectPath);
+    const logoutConfirm=confirm("Are you sure you want to perform?");
+    if (logoutConfirm) {
+        deleteCookie('user');
+        sessionStorage.removeItem('userID')
+        window.location.replace(redirectPath);
+    }
 }

@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Link, useNavigate } from "react-router-dom";
 import bgimg from "../assets/img/bgimg.png";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, updateQuantity } from "../features/cartSlice";
+import { useState } from "react";
+import { addToWish } from "../features/wishSlice";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -31,6 +34,25 @@ const Cart = () => {
       return total;
     }
   }, 0);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDeleteProduct = (productId) => {
+    setShowModal(false);
+    handleRemoveFromCart(productId);
+  };
+
+  const handleRefuse = () => {
+    setShowModal(false);
+  };
+
+  const handleDeleteAndWishlist = (product) => {
+    console.log(cartProducts);
+    console.log("Selected Product:", product);
+    dispatch(addToWish({ ...product }));
+    dispatch(removeFromCart(product._id));
+    setShowModal(false);
+  };
 
   return (
     <section className="cart">
@@ -73,7 +95,10 @@ const Cart = () => {
                     </td>
                     <td className="product-title">{product.title}</td>
                     <td className="product-price">
-                     <span className="product-firstprice"> ${product.price}</span>
+                      <span className="product-firstprice">
+                        {" "}
+                        ${product.price}
+                      </span>
                       ${product.salePrice}
                     </td>
                     <td>
@@ -81,14 +106,54 @@ const Cart = () => {
                         <button
                           className="quantity-btn "
                           onClick={() => {
-                            handleQuantityChange(
-                              product._id,
-                              product.quantity - 1
-                            );
+                            if (product.quantity === 1) {
+                              setShowModal(true);
+                            } else {
+                              handleQuantityChange(
+                                product._id,
+                                product.quantity - 1
+                              );
+                            }
                           }}
                         >
                           <i className="fa-solid fa-minus"></i>
                         </button>
+
+                        {showModal && (
+                          <div className="d-flex align-items-center justify-content-center">
+                            <div className="modal-container">
+                              <div className="modal-content">
+                                <p>
+                                  Are you sure you want to remove the product
+                                  from the cart?
+                                </p>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={() => {
+                                    handleDeleteAndWishlist(product);
+                                  }}
+                                >
+                                  Delete and add to wishlist
+                                </button>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={() => {
+                                    handleDeleteProduct(product._id);
+                                  }}
+                                >
+                                  Delete
+                                </button>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={handleRefuse}
+                                >
+                                  Refuse
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                         <span>{product.quantity}</span>
                         <button
                           className="quantity-btn "
@@ -106,7 +171,11 @@ const Cart = () => {
                     <td>
                       <div className="subtotal-sec d-flex align-items-center justify-content-center justify-content-xl-start">
                         <p className="product-price me-3">
-                          ${product.quantity * (product.salePrice ? product.salePrice : product.price)}
+                          $
+                          {product.quantity *
+                            (product.salePrice
+                              ? product.salePrice
+                              : product.price)}
                         </p>
                         <span
                           onClick={() => {
@@ -138,9 +207,10 @@ const Cart = () => {
                           <p className="mb-0 cart-title">{product.title}</p>
                         </div>
                         <p className="mt-4 text-end cart-price">
-                         <span className="product-firstprice">${product.price}</span>
+                          <span className="product-firstprice">
+                            ${product.price}
+                          </span>
                           ${product.salePrice}
-                         
                         </p>
                       </div>
                     </div>
@@ -157,6 +227,7 @@ const Cart = () => {
                         >
                           <i className="fa-solid fa-minus"></i>
                         </button>
+
                         <span>{product.quantity}</span>
                         <button
                           className="quantity-btn ms-2"
@@ -173,11 +244,18 @@ const Cart = () => {
                       <p className="text-end d-flex">
                         <span>Subtotal:</span>{" "}
                         <span className="me-2 color-text">
-                          ${product.quantity * (product.salePrice ? product.salePrice : product.price)}
+                          $
+                          {product.quantity *
+                            (product.salePrice
+                              ? product.salePrice
+                              : product.price)}
                         </span>
-                        <span className="delete-btn"  onClick={() => {
+                        <span
+                          className="delete-btn"
+                          onClick={() => {
                             handleRemoveFromCart(product._id);
-                          }}>
+                          }}
+                        >
                           <i className="fa-solid fa-xmark"></i>
                         </span>
                       </p>

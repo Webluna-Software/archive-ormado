@@ -43,7 +43,7 @@ const userID = validateUserID();
   };
 
   const cartClick = useCallback(
-    (_id, title, price, salePrice, coverImage) => {
+    (_id, title, price, salePrice, coverImage,stock) => {
       if (!userID) {
         alert("Please login first!");
         return;
@@ -52,13 +52,12 @@ const userID = validateUserID();
         navigate('/basket');
       } else {
         // const priceToAdd = salePrice ? salePrice : price;
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price }));
+        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price,stock }));
         setCartStatus('active');
       }
     },
     [userID, navigate, dispatch, quantity]
   );
-
 
   // const local = localStorage.getItem("wishItems");
   const local=getCookie("wishItems")
@@ -170,7 +169,8 @@ const userID = validateUserID();
                             fd.title,
                             fd.price,
                             fd.salePrice,
-                            fd.coverImage
+                            fd.coverImage,
+                            fd.stock
                           )
                         : alert("Please login first!")
                     }

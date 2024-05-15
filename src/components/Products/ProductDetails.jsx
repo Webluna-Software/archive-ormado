@@ -76,7 +76,7 @@ const userID = validateUserID();
   };
 
   const cartClick = useCallback(
-    (_id, title, price, salePrice, coverImage) => {
+    (_id, title, price, salePrice, coverImage,stock) => {
       if (!userID) {
         alert("Please login first!");
         return;
@@ -84,7 +84,7 @@ const userID = validateUserID();
       if (findCart(_id)) {
         navigate('/basket');
       } else {
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price }));
+        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price ,stock}));
         setCartStatus('active');
       }
     },
@@ -190,6 +190,7 @@ const userID = validateUserID();
                         productDetails.price,
                         productDetails.salePrice,
                         productDetails.coverImage,
+                        productDetails.stock,
                         quantity,
                 
                       )
