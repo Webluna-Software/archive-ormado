@@ -19,7 +19,7 @@ const YourOrmado = ({_id}) => {
   useEffect(() => {
     axios.get(`${ApiLink}/product`).then((res) => {
       setProducts(res.data.products);
-      console.log(res.data.products, "Products Data");
+      // console.log(res.data.products, "Products Data");
     });
   }, [ApiLink]);
 
@@ -53,7 +53,7 @@ const userID = validateUserID();
       } else {
         // const priceToAdd = salePrice ? salePrice : price;
         dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price,stock }));
-        setCartStatus('active');
+        setCartStatus(_id,'active');
       }
     },
     [userID, navigate, dispatch, quantity]
@@ -82,7 +82,7 @@ const userID = validateUserID();
     } else {
       // const priceToAdd = salePrice ? salePrice : price;
       dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
-      setWishStatus("solid")
+      setWishStatus(_id,"solid")
     }
   }, [dispatch, userID])
 
@@ -104,7 +104,6 @@ const userID = validateUserID();
               </Link>
               <div className="wishlist-modal">
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
-                // onClick={() => { wishClick(fd._id,fd.coverImage,fd.title,fd.price,fd.salePrice, fd.stock) }}
                 onClick={() =>
                   userID
                     ? wishClick(
@@ -174,15 +173,6 @@ const userID = validateUserID();
                           )
                         : alert("Please login first!")
                     }
-                    // onClick={() =>
-                    //   cartClick(
-                    //     fd._id,
-                    //     fd.title,
-                    //     fd.price,
-                    //     fd.salePrice,
-                    //     fd.coverImage
-                    //   )
-                    // }
                   >
                      <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                   </div>

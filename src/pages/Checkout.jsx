@@ -1,7 +1,36 @@
+import { useSelector } from "react-redux";
 import bgimg from "../assets/img/bgimg.png";
-import product1 from '../assets/img/product1.png';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { loginApiLink } from "../utils/login";
+import { validateUserID } from "../utils/user";
+// import product1 from '../assets/img/product1.png';
 
 const Checkout = () => {
+
+  const cartProducts = useSelector((state) => state.cart.products);
+
+  const totalPrice = cartProducts.reduce((total, product) => {
+    const price = product.salePrice ? product.salePrice : product.price;
+    const quantity = parseInt(product.quantity);
+
+    if (!isNaN(price) && !isNaN(quantity)) {
+      return total + price * quantity;
+    } else {
+      return total;
+    }
+  }, 0);
+  const [user, setUser] = useState();
+
+
+  useEffect(() => {
+    axios.get(`${loginApiLink}/user/${validateUserID()}`).then((res) => {
+      setUser(res.data.data);
+    });
+  }, []);
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <section className="checkout">
       <div className="section-fluid">
@@ -20,7 +49,7 @@ const Checkout = () => {
               <p>Full name*</p>
               <input
                 type="text"
-                placeholder="Jon Doe"
+                defaultValue={user ? `${user.name} ${user.surname}` : ""}
                 required
                 className="form-control"
               />
@@ -37,7 +66,7 @@ const Checkout = () => {
                   <p>Phone*</p>
                   <input
                     type="text"
-                    placeholder="+1(555)251-52-21"
+                    value={user ? user.phoneNumber : ""}
                     required
                     className="form-control"
                   />
@@ -93,29 +122,22 @@ const Checkout = () => {
         <div className="col-12 col-lg-5">
           <div className="order-summary">
             <h6>Order Summery</h6>
-            <div className="checkout-item d-flex justify-content-between align-items-center">
+           {cartProducts.map((item)=>(
+            <div className="checkout-item d-flex justify-content-between align-items-center mb-4" key={item._id}>
               <div className="checkout-img">
-                <img src={product1} className="img-fluid" alt="" />
+                <img src={item.coverImage} className="img-fluid" alt="" />
               </div>
               <p className="checkout-title">
-              Ormado Energy Drink 10ml <span>x5</span>
+              {item.title} <span>x{item.quantity}</span>
               </p>
-              <p className="checkout-price">$14.99</p>
+              <p className="checkout-price">${item.salePrice}</p>
             </div>
-            <div className="checkout-item d-flex justify-content-between align-items-center">
-              <div className="checkout-img">
-                <img src={product1} className="img-fluid" alt="" />
-              </div>
-              <p className="checkout-title">
-              Ormado Energy Drink 10ml <span>x5</span>
-              </p>
-              <p className="checkout-price">$14.99</p>
-            </div>
-            
+           )) }
+          
             <div className="pays my-3">
               <div className="price-sec d-flex justify-content-between">
                 <p>Subtotal:</p>
-                <p className="coffs">84.00$</p>
+                <p className="coffs">${totalPrice}</p>
               </div>
               <div className="price-sec d-flex justify-content-between">
                 <p>Shipping:</p>
@@ -123,7 +145,7 @@ const Checkout = () => {
               </div>
               <div className="price-sec d-flex justify-content-between">
                 <p>Total:</p>
-                <p className="color-text">$84.00</p>
+                <p className="color-text">${totalPrice}</p>
               </div>
             </div>
             <h6>Payment method</h6>

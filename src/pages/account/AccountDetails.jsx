@@ -5,11 +5,6 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 
 const AccountDetails = () => {
-  const [selectedGender, setSelectedGender] = useState(null);
-
-  const handleGenderBackground = (gender) => {
-    setSelectedGender((prevGender) => (prevGender === gender ? null : gender));
-  };
 
   const [user, setUser] = useState();
 
@@ -27,22 +22,43 @@ const AccountDetails = () => {
   const [phoneNumber, setPhoneNumber] = useState();
   const [email, setEmail] = useState();
   const [address, setAddress] = useState();
+  const [gender, setGender] = useState();
+  const [password, setPassword]=useState()
+  
+  const [selectedGender, setSelectedGender] = useState( null);
+
+  useEffect(() => {
+    const storedGender = localStorage.getItem('selectedGender');
+    if (storedGender) {
+      setSelectedGender(storedGender);
+    }
+  }, []);
+
+  const handleGenderBackground = (gender) => {
+    setGender(gender.toLowerCase()); // Gender state'ini güncelle
+    setSelectedGender((prevGender) => (prevGender === gender ? null : gender));
+    localStorage.setItem('selectedGender', gender);
+    
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("cick");
     const sendData = {
-      name: name,
-      surname: surname,
-      phoneNumber: phoneNumber,
-      email: email,
-      address: address,
+      name: name !== undefined ? name : user.name || '',
+      surname: surname !== undefined ? surname : user.surname || '',
+      phoneNumber: phoneNumber !== undefined ? phoneNumber : user.phoneNumber || '',
+      email: email !== undefined ? email : user.email || '',
+      address: address !== undefined ? address : user.address || '',
+      gender: gender !== undefined ? gender : user.gender || '',
+      password:password!==undefined ? password: user.password || ""
     };
-
+    console.log(sendData);
     axios
       .put(`${loginApiLink}/user/${user._id}`, sendData)
       .then((res) => {
         console.log(res);
+        alert("Update successful");
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +75,7 @@ const AccountDetails = () => {
           <p>Name</p>
           <input
             type="text"
-            name=""
+            name="name"
             id=""
             className="form-control"
             placeholder="Joan"
@@ -69,7 +85,7 @@ const AccountDetails = () => {
           <p>Surname</p>
           <input
             type="text"
-            name=""
+            name="surname"
             id=""
             className="form-control"
             placeholder="Halvorson"
@@ -79,7 +95,7 @@ const AccountDetails = () => {
           <p>Phone</p>
           <input
             type="text"
-            name=""
+            name="phone"
             id=""
             className="form-control"
             placeholder="+1(555)251-52-21"
@@ -89,7 +105,7 @@ const AccountDetails = () => {
           <p>Email</p>
           <input
             type="email"
-            name=""
+            name="email"
             id=""
             className="form-control"
             placeholder="Bradly.Stark@gmail.com"
@@ -99,7 +115,7 @@ const AccountDetails = () => {
           <p>Your address</p>
           <input
             type="text"
-            name=""
+            name="address"
             id=""
             className="form-control"
             placeholder="Sit hic quibusdam quis delectus et sunt culpa"
@@ -120,12 +136,12 @@ const AccountDetails = () => {
             >
               Male
             </span>
-            <span
+            {/* <span
               className={selectedGender === "Rather not say" ? "selected" : ""}
               onClick={() => handleGenderBackground("Rather not say")}
             >
               Rather not say
-            </span>
+            </span> */}
           </div>
           <button className="btn">Update</button>
         </form>

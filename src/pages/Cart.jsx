@@ -24,7 +24,7 @@ const Cart = () => {
       dispatch(updateQuantity({ id: productId, quantity }));
     }
   };
-  const totalPrice = cartProducts.reduce((total, product) => {
+    const totalPrice = cartProducts.reduce((total, product) => {
     const price = product.salePrice ? product.salePrice : product.price;
     const quantity = parseInt(product.quantity);
 
@@ -47,8 +47,6 @@ const Cart = () => {
   };
 
   const handleDeleteAndWishlist = (product) => {
-    console.log(cartProducts);
-    console.log("Selected Product:", product);
     dispatch(addToWish({ ...product }));
     dispatch(removeFromCart(product._id));
     setShowModal(false);

@@ -41,7 +41,7 @@ const ProductDetails = ({_id}) => {
   useEffect(() => {
     axios.get(`${ApiLink}/product/${id}`)
       .then((res) => {
-        console.log(res.data, "ProductDetailsData");
+        // console.log(res.data, "ProductDetailsData");
         setProductDetails(res.data.product);
       })
   }, [ApiLink, id]);

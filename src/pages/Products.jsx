@@ -57,8 +57,7 @@ if (userID) {
     return cartData ? true : false;
   };
 
-  const cartClick = useCallback(
-    (_id, title, price, salePrice, coverImage,stock) => {
+  const cartClick = useCallback((_id, title, price, salePrice, coverImage,stock) => {
       if (!userID) {
         alert("Please login first!");
         return;
@@ -68,7 +67,7 @@ if (userID) {
       } else {
         // const priceToAdd = salePrice ? salePrice : price;
         dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price,stock }));
-        setCartStatus('active');
+        setCartStatus(_id,'active');
       }
     },
     [userID, navigate, dispatch, quantity]
@@ -98,7 +97,7 @@ if (userID) {
     } else {
       // const priceToAdd = salePrice ? salePrice : price;
       dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
-      setWishStatus("solid")
+      setWishStatus(_id,"solid")
     }
   }, [dispatch, userID])
 

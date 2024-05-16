@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Password = () => {
+
+  const navigate=useNavigate();
+
   const [icon, setIcon] = useState("fa-eye");
   const [type, setType] = useState("password");
 
@@ -59,7 +63,7 @@ const Password = () => {
             <input type={confirmType} name="" id="password2" className='form-control' placeholder='Re-type new password'/>
             <span  onClick={confirmEye}><i className={`fa-solid ${confirmIcon}`}></i></span>
             </div>
-            <p className='forgot-btn'>Forgot password?</p>
+            <p className='forgot-btn' onClick={()=>{navigate("/forgotpass")}}>Forgot password?</p>
             <button className='btn'>Update</button>
         </form>
     </div>
