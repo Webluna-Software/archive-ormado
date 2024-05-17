@@ -3,6 +3,7 @@ import { validateUserID } from "../../utils/user";
 import { loginApiLink } from "../../utils/login";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import bcrypt from 'bcryptjs-react';
 
 const AccountDetails = () => {
 
@@ -31,6 +32,7 @@ const AccountDetails = () => {
     const storedGender = localStorage.getItem('selectedGender');
     if (storedGender) {
       setSelectedGender(storedGender);
+       setGender(storedGender.toLowerCase()); 
     }
   }, []);
 
@@ -41,9 +43,15 @@ const AccountDetails = () => {
     
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("cick");
+    let updatedPassword = user.password;
+  if (password !== undefined && password!=='' && password !== user.password) {
+    // Sadece şifre değiştirildiyse hash'le
+    const salt = await bcrypt.genSalt(10);
+    updatedPassword = await bcrypt.hash(password, salt);
+  }
     const sendData = {
       name: name !== undefined ? name : user.name || '',
       surname: surname !== undefined ? surname : user.surname || '',
@@ -51,7 +59,7 @@ const AccountDetails = () => {
       email: email !== undefined ? email : user.email || '',
       address: address !== undefined ? address : user.address || '',
       gender: gender !== undefined ? gender : user.gender || '',
-      password:password!==undefined ? password: user.password || ""
+      password: updatedPassword
     };
     console.log(sendData);
     axios
