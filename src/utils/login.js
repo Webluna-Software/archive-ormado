@@ -20,7 +20,7 @@ export const loginAction =(email , password , redirectPath , rememberMe)=>{
         const thisUser = data.find((u)=> u.email == email);
         
         if(!thisUser){
-            alert("Email or Password is wrong !");
+            alert("Either the email or password is incorrect!");
         }else{
             bcrypt.compare( password , thisUser.password)
             .then((res)=>{
@@ -30,10 +30,10 @@ export const loginAction =(email , password , redirectPath , rememberMe)=>{
                     }
                     setCookie('rememberMe' , JSON.stringify(rememberMe))
                     sessionStorage.setItem("userID" , thisUser._id )
-                    alert("You have logged in successfully !");
-                    window.location.replace(redirectPath);
+                    window.location.replace("/");
+                    // alert("You have logged in successfully !");
                 }else{
-                    alert("Email or Password is wrong !");
+                    alert("Either the email or password is incorrect!");
                 }
             })
         }

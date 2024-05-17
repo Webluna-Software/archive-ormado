@@ -51,7 +51,7 @@ const Clients = () => {
       <div className="row">
         <div className="col-12">
           <div className="clients-text">
-            <h3>Our Clients</h3>
+            <h3>Our Partners</h3>
             <span>Our high-quality coffee beans attract priceless collaborations.</span>
           </div>
           <div className="client-slider_container">

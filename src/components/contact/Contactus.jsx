@@ -72,6 +72,11 @@ const Contactus = () => {
       });
    }
   };
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setnumber(value);
+    setNumberError(false);
+  };
 
   return (
     <div className="Contactus">
@@ -172,14 +177,21 @@ const Contactus = () => {
                               setcountry(e.target.value)
                               setCountryError(false)
                             }}
+                            defaultValue=""
                             className={`mySelected ${countryError ? "invalid" : ""}`}
                           >
-                            <option value="" disabled selected>
-                              Country/Region:
-                            </option>
-                            <option value="Baku">Baku</option>
-                            <option value="Dubai">Dubai</option>
+                        <option
+                          style={{ color: "#a19fa1" }}
+                          value=""
+                          disabled
+                          hidden
+                        >
+                          Select :
+                        </option>
+                            <option value="Germany">Germany</option>
+                            <option value="Azerbaijan">Azerbaijan</option>
                             <option value="Ukraine">Ukraine</option>
+                            <option value="UAE">UAE</option>
                           </select>
                           {
                             countryError && (
@@ -199,11 +211,13 @@ const Contactus = () => {
                             className={`myinput ${
                               numberError ? "invalid" : ""
                             }`}
-                            type="text"
-                            onChange={(e) => {
-                              setnumber(e.target.value);
-                              setNumberError(false);
-                            }}
+                            type="tel"
+                            value={number}
+                            onChange={handlePhoneChange}
+                            // onChange={(e) => {
+                            //   setnumber(e.target.value);
+                            //   setNumberError(false);
+                            // }}
                           />
                           {numberError && (
                             <span className="invalid_message">

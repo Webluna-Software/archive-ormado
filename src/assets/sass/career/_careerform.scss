@@ -592,6 +592,9 @@
                         }
 
                         .careerForm-input {
+                            textarea{
+                                resize: none;
+                            }
                             .portfolio-label{
                                 width: 100%;
                             }

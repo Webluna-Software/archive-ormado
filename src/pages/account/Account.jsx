@@ -77,7 +77,7 @@ const Account = () => {
                     }`}
                     onClick={() => {
                     navigate("/account/details");
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0, 600);
                     }}
                 >
                     <span>
@@ -91,7 +91,7 @@ const Account = () => {
                     }`}
                     onClick={() => {
                     navigate("/account/order");
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0,600);
                     }}
                 >
                     <span>
@@ -105,7 +105,7 @@ const Account = () => {
                     }`}
                     onClick={() => {
                     navigate("/account/address");
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0, 600);
                     }}
                 >
                     <span>
@@ -119,7 +119,7 @@ const Account = () => {
                     }`}
                     onClick={() => {
                     navigate("/account/password");
-                    window.scrollTo(0, 0);
+                    window.scrollTo(0, 600);
                     }}
                 >
                     <span>

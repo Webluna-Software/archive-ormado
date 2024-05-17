@@ -357,6 +357,7 @@ const Reserve = () => {
                       <select
                         name="branch"
                         id="branch"
+                        defaultValue=""
                         className={`round ${branchError ? "invalid" : ""}`}
                         onChange={(e) => {
                           setbranch(e.target.value)
@@ -367,9 +368,9 @@ const Reserve = () => {
                           style={{ fontWeight: "bold" }}
                           value=""
                           disabled
-                          selected
+                          hidden
                         >
-                          Branch :
+                          Select :
                         </option>
                         <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                           Einbecker Str. 18, 10317 Berlin, Germany

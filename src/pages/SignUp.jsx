@@ -105,6 +105,12 @@ const SignUp = () => {
       });
   };
 
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setPhone(value);
+    // setPhoneError(false);
+  };
+
   return (
     <>
       <div className="signup">
@@ -158,8 +164,10 @@ const SignUp = () => {
                     name=""
                     id="phone"
                     placeholder="Enter your phone"
-                    defaultValue={"+"}
-                    onChange={(e) => setPhone(e.target.value)}
+                    // defaultValue={"+"}
+                    // onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    onChange={handlePhoneChange}
                   />
                   {/* <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/> */}
                 </div>
@@ -227,6 +235,7 @@ const SignUp = () => {
                   </span>
                 </div>
                 <p className="mt-1 text-danger">
+                  {" "}
                   {passwordsMatch ? "" : "Passwords are not the same"}
                 </p>
               </form>
@@ -373,6 +382,13 @@ const SignUp = () => {
                 <div className="main-text ms-2">At list 8 characters</div>
               </div> */}
             </div>
+            {/* <div className="remember-me">
+              <div className='remember-me-input'>
+                <input type="checkbox" id='signup-checkbox' name='signup-checkbox' className='pt-2' required onChange={(e)=> setPrivacyCheck(e.target.checked)} />
+                <label htmlFor="signup-checkbox"> <p className='ms-2 mb-2'>Remember me. By creating an account means you agree to the <Link className='remember-link'>Terms and Conditions</Link>, and our <Link className='remember-link'>Privacy Policy</Link></p> </label>
+              </div>
+            </div> */}
+
             <div className="remember-me">
               <div className="remember-me-input">
                 <input

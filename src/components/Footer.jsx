@@ -110,6 +110,11 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="nav-item mb-2">
+                  <a href="/career" className="nav-link p-0">
+                    Career
+                  </a>
+                </li>
+                <li className="nav-item mb-2">
                   <a href="/reserve" className="nav-link p-0">
                     Reservation
                   </a>
@@ -119,17 +124,18 @@ const Footer = () => {
                     Search a branch
                   </a>
                 </li>
-                <li className="nav-item mb-2">
-                  <a href="/contact" className="nav-link p-0">
-                    Contact Form
-                  </a>
-                </li>
+               
               </ul>
             </div>
 
             <div className="footer-contact">
               <h5>Contact Details</h5>
               <ul className="nav flex-column">
+                <li className="nav-item mb-2">
+                  <a href="/contact" className="nav-link p-0">
+                    Contact Form
+                  </a>
+                </li>
                 <li className="nav-item mb-2">
                   <a href="mailto:info@ormado.de" className="nav-link p-0">
                     {data.email}
@@ -145,6 +151,7 @@ const Footer = () => {
                     {data.address}
                   </a>
                 </li>
+              
               </ul>
             </div>
 
@@ -298,6 +305,11 @@ const Footer = () => {
                     </a>
                   </li>
                   <li className="nav-item mb-2">
+                    <a href="/career" className="nav-link p-0">
+                      Career
+                    </a>
+                  </li>
+                  <li className="nav-item mb-2">
                     <a href="/reserve" className="nav-link p-0">
                       Reserve
                     </a>
@@ -308,7 +320,7 @@ const Footer = () => {
                     </a>
                   </li>
                   <li className="nav-item mb-2">
-                    <a href="/contact" className="nav-link p-0">
+                    <a href="/careerform" className="nav-link p-0">
                       Join the family
                     </a>
                   </li>
@@ -318,6 +330,11 @@ const Footer = () => {
               <div className="footer-contact">
                 <h5>Contact Details</h5>
                 <ul className="nav flex-column">
+                <li className="nav-item mb-2">
+                  <a href="/contact" className="nav-link p-0">
+                    Contact Form
+                  </a>
+                </li>
                   <li className="nav-item mb-2">
                     <a href="mailto:info@ormado.de" className="nav-link p-0">
                       {data.email}
