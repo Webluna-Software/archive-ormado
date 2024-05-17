@@ -30,42 +30,39 @@ const CareerForm = () => {
   const [availability, setAvailability] = useState();
   const [choose, setChoose] = useState();
   const [feedback, setFeedBack] = useState();
-  const [chronic,setChronic] = useState()
-  const [information,setInformation] = useState()
-  const [lastWork,setLastWork] = useState()
-  const [aboutUs,setAboutUs] = useState()
-  
-  
+  const [chronic, setChronic] = useState();
+  const [information, setInformation] = useState();
+  const [lastWork, setLastWork] = useState();
+  const [aboutUs, setAboutUs] = useState();
+
   // VALIDATION
-  
-  
-  const [branchError,setBranchError] = useState(false)
-  const [positionError,setPositionError] = useState(false)
-  const [fullNameError,setFullNameError] = useState(false)
-  const [emailError,setEmailError] = useState(false)
-  const [phoneError,setPhoneError] = useState(false)
-  const [ageError,setAgeError] = useState(false)
-  const [nationalityError,setNationalityError] = useState(false)
-  const [genderError,setGenderError] = useState(false)
-  const [portfolioError,setPortfolioError] = useState(false)
-  const [workplaceError,setWorkplaceError] = useState(false)
-  const [maritalError,setMaritalError] = useState(false)
-  const [educationError,setEducationError] = useState(false)
-  const [applyingError,setApplyingError] = useState(false)
-  const [languagesError,setLanguagesError] = useState(false)
-  const [responsibilityError,setResponsibilityError] = useState(false)
-  const [aboutError,setAboutError] = useState(false)
-  const [workedError,setWorkedError] = useState(false)
-  const [longWorkError,setLongWorkError] = useState(false)
-  const [salaryError,setSalaryError] = useState(false)
-  const [availabilityError,setAvailabilityError] = useState(false)
-  const [chooseError,setChooseError] = useState(false)
-  const [feedbackError,setFeedBackError] = useState(false)
-  const [chronicError,setChronicError] = useState(false)
-  const [aboutUsError,setAboutUsError] = useState(false)
-  const [informationError,setInformationError] = useState(false)
-  const [lastError,setLastWorkError] = useState(false)
-  
+
+  const [branchError, setBranchError] = useState(false);
+  const [positionError, setPositionError] = useState(false);
+  const [fullNameError, setFullNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [ageError, setAgeError] = useState(false);
+  const [nationalityError, setNationalityError] = useState(false);
+  const [genderError, setGenderError] = useState(false);
+  const [portfolioError, setPortfolioError] = useState(false);
+  const [workplaceError, setWorkplaceError] = useState(false);
+  const [maritalError, setMaritalError] = useState(false);
+  const [educationError, setEducationError] = useState(false);
+  const [applyingError, setApplyingError] = useState(false);
+  const [languagesError, setLanguagesError] = useState(false);
+  const [responsibilityError, setResponsibilityError] = useState(false);
+  const [aboutError, setAboutError] = useState(false);
+  const [workedError, setWorkedError] = useState(false);
+  const [longWorkError, setLongWorkError] = useState(false);
+  const [salaryError, setSalaryError] = useState(false);
+  const [availabilityError, setAvailabilityError] = useState(false);
+  const [chooseError, setChooseError] = useState(false);
+  const [feedbackError, setFeedBackError] = useState(false);
+  const [chronicError, setChronicError] = useState(false);
+  const [aboutUsError, setAboutUsError] = useState(false);
+  const [informationError, setInformationError] = useState(false);
+  const [lastError, setLastWorkError] = useState(false);
 
   useEffect(() => {
     axios
@@ -78,52 +75,50 @@ const CareerForm = () => {
       });
   }, []);
 
-
-  const formPost =(e)=>{
-    e.preventDefault()
-    let isValid = true
+  const formPost = (e) => {
+    e.preventDefault();
+    let isValid = true;
 
     const fieldCheck = [
-      {value:branch,error:setBranchError},
-      {value:position,error:setPositionError},
-      {value:fullName,error:setFullNameError},
-      {value:email,error:setEmailError},
-      {value:phone,error:setPhoneError},
-      {value:age,error:setAgeError},
-      {value:nationality,error:setNationalityError},
-      {value:gender,error:setGenderError},
-      {value:portfolio,error:setPortfolioError},
-      {value:workplace,error:setWorkplaceError},
-      {value:marital,error:setMaritalError},
-      {value:education,error:setEducationError},
-      {value:applying,error:setApplyingError},
-      {value:languages,error:setLanguagesError},
-      {value:responsibility,error:setResponsibilityError},
-      {value:about,error:setAboutError},
-      {value:worked,error:setWorkedError},
-      {value:longWork,error:setLongWorkError},
-      {value:salary,error:setSalaryError},
-      {value:availability,error:setAvailabilityError},
-      {value:choose,error:setChooseError},
-      {value:chronic,error:setChronicError},
-      {value:aboutUs,error:setAboutUsError},
-      {value:information,error:setInformationError},
-      {value:lastWork,error:setLastWorkError},
-      {value:feedback,error:setFeedBackError},
-    ]
+      { value: branch, error: setBranchError },
+      { value: position, error: setPositionError },
+      { value: fullName, error: setFullNameError },
+      { value: email, error: setEmailError },
+      { value: phone, error: setPhoneError },
+      { value: age, error: setAgeError },
+      { value: nationality, error: setNationalityError },
+      { value: gender, error: setGenderError },
+      { value: portfolio, error: setPortfolioError },
+      { value: workplace, error: setWorkplaceError },
+      { value: marital, error: setMaritalError },
+      { value: education, error: setEducationError },
+      { value: applying, error: setApplyingError },
+      { value: languages, error: setLanguagesError },
+      { value: responsibility, error: setResponsibilityError },
+      { value: about, error: setAboutError },
+      { value: worked, error: setWorkedError },
+      { value: longWork, error: setLongWorkError },
+      { value: salary, error: setSalaryError },
+      { value: availability, error: setAvailabilityError },
+      { value: choose, error: setChooseError },
+      { value: chronic, error: setChronicError },
+      { value: aboutUs, error: setAboutUsError },
+      { value: information, error: setInformationError },
+      { value: lastWork, error: setLastWorkError },
+      { value: feedback, error: setFeedBackError },
+    ];
 
-    fieldCheck.map((item)=>{
+    fieldCheck.map((item) => {
       if (!item.value || item.value.trim() === "") {
-        item.error(true)
-          isValid = false
-        } else {
-        isValid = true
+        item.error(true);
+        isValid = false;
+      } else {
+        isValid = true;
       }
-    })
-
+    });
 
     const formData = new FormData();
-    
+
     formData.append("branch", branch);
     formData.append("position", position);
     formData.append("fullname", fullName);
@@ -131,7 +126,7 @@ const CareerForm = () => {
     formData.append("email", email);
     formData.append("age", age);
     formData.append("nationality", nationality);
-    formData.append("gender", gender); 
+    formData.append("gender", gender);
     if (portfolio) {
       formData.append("file", portfolio);
     }
@@ -152,19 +147,27 @@ const CareerForm = () => {
     formData.append("lastWork", lastWork);
     formData.append("howKnowAboutUs", aboutUs);
     formData.append("additionalInfo", information);
-    console.log(formData.get("lastWork"))
+    console.log(formData.get("lastWork"));
 
     if (isValid) {
-      axios.post(`https://ormadoapi.webluna.org/api/client/career`, formData)
-    .then((res)=>{
-      console.log(res,"POSTED")
-      alert("Thank you !")
-    })
-    .catch((err)=>{
-      console.log("APIDE PROBLEM",err)
-    })
+      axios
+        .post(`https://ormadoapi.webluna.org/api/client/career`, formData)
+        .then((res) => {
+          console.log(res, "POSTED");
+          alert("Thank you !");
+        })
+        .catch((err) => {
+          console.log("APIDE PROBLEM", err);
+        });
     }
-  }
+  };
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setPhone(value);
+    setPhoneError(false);
+  };
+
 
   return (
     <>
@@ -206,8 +209,8 @@ const CareerForm = () => {
                           name="branch"
                           id="branch"
                           onChange={(e) => {
-                            setBranch(e.target.value)
-                            setBranchError(false)
+                            setBranch(e.target.value);
+                            setBranchError(false);
                           }}
                         >
                           <option value="" disabled selected>
@@ -235,15 +238,15 @@ const CareerForm = () => {
                             Zefir Mall, Baku
                           </option>
                           <option value="Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000">
-                            Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka oblast,
-                            Ukraine, 65000
+                            Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka
+                            oblast, Ukraine, 65000
                           </option>
                         </select>
-                        {
-                          branchError && (
-                            <span className="invalid_message">Branch is required</span>
-                          )
-                        }
+                        {branchError && (
+                          <span className="invalid_message">
+                            Branch is required
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -258,15 +261,15 @@ const CareerForm = () => {
                           placeholder="Select"
                           type="text"
                           onChange={(e) => {
-                            setPosition(e.target.value)
-                            setPositionError(false)
+                            setPosition(e.target.value);
+                            setPositionError(false);
                           }}
                         />
-                        {
-                          positionError && (
-                            <span className="invalid_message">Position is required</span>
-                          )
-                        }
+                        {positionError && (
+                          <span className="invalid_message">
+                            Position is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -285,15 +288,15 @@ const CareerForm = () => {
                           placeholder="Write yor full name"
                           type="text"
                           onChange={(e) => {
-                            setFullName(e.target.value)
-                            setFullNameError(false)
+                            setFullName(e.target.value);
+                            setFullNameError(false);
                           }}
                         />
-                        {
-                          fullNameError && (
-                            <span className="invalid_message">Full name is required</span>
-                          )
-                        }
+                        {fullNameError && (
+                          <span className="invalid_message">
+                            Full name is required
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -310,20 +313,21 @@ const CareerForm = () => {
                           placeholder="Redlands"
                           type="email"
                           onChange={(e) => {
-                            setEmail(e.target.value)
-                            setEmailError(false)
+                            setEmail(e.target.value);
+                            setEmailError(false);
                           }}
                         />
-                        {
-                          emailError && (
-                            <span className="invalid_message">Email is required</span>
-                          )
-                        }
+                        {emailError && (
+                          <span className="invalid_message">
+                            Email is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
                   <div className="careerForm-input-part1">
                     <div className="careerForm-part1">
+                      
                       <div className="careerForm-input-text">
                         <label htmlFor="phone">
                           <p>
@@ -334,18 +338,16 @@ const CareerForm = () => {
                       <div className="careerForm-input">
                         <input
                           id="phone"
+                          type="tel"
+                          value={phone}
+                          onChange={handlePhoneChange}
                           placeholder="+994"
-                          type="text"
-                          onChange={(e) => {
-                            setPhone(e.target.value)
-                            setPhoneError(false)
-                          }}
                         />
-                        {
-                          phoneError && (
-                            <span className="invalid_message">Phone is required</span>
-                          )
-                        }
+                        {phoneError && (
+                          <span className="invalid_message">
+                            Phone is required
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -362,15 +364,15 @@ const CareerForm = () => {
                           placeholder="Write your age"
                           type="number"
                           onChange={(e) => {
-                            setAge(e.target.value)
-                            setAgeError(false)
+                            setAge(e.target.value);
+                            setAgeError(false);
                           }}
                         />
-                        {
-                          ageError && (
-                            <span className="invalid_message">Age is required</span>
-                          )
-                        }
+                        {ageError && (
+                          <span className="invalid_message">
+                            Age is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -389,15 +391,15 @@ const CareerForm = () => {
                           placeholder="Write your nationality"
                           type="text"
                           onChange={(e) => {
-                            setNationality(e.target.value)
-                            setNationalityError(false)
+                            setNationality(e.target.value);
+                            setNationalityError(false);
                           }}
                         />
-                        {
-                          nationalityError && (
-                            <span className="invalid_message">Nationality is required</span>
-                          )
-                        }
+                        {nationalityError && (
+                          <span className="invalid_message">
+                            Nationality is required
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="careerForm-part1">
@@ -411,21 +413,21 @@ const CareerForm = () => {
                           name="gender"
                           id="gender"
                           onChange={(e) => {
-                            setGender(e.target.value)
-                            setGenderError(false)
+                            setGender(e.target.value);
+                            setGenderError(false);
                           }}
                         >
                           <option value="" disabled selected>
-                            Gender : 
+                            Gender :
                           </option>
                           <option value="man">Man</option>
                           <option value="woman">Woman</option>
                         </select>
-                        {
-                          genderError && (
-                            <span className="invalid_message">Gender is required</span>
-                          )
-                        }
+                        {genderError && (
+                          <span className="invalid_message">
+                            Gender is required
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -447,8 +449,8 @@ const CareerForm = () => {
                           style={{ display: "none" }}
                           onChange={(e) => {
                             const uploadImage = e.target.files[0];
-                            setPortfolio(uploadImage)
-                            setPortfolioError(false)
+                            setPortfolio(uploadImage);
+                            setPortfolioError(false);
                           }}
                         />
                         <label
@@ -481,36 +483,35 @@ const CareerForm = () => {
                             </svg>
                           </div>
                         </label>
-                        {
-                          portfolioError && (
-                            <span className="invalid_message">Portfolio is required</span>
-                          )
-                        }
+                        {portfolioError && (
+                          <span className="invalid_message">
+                            Portfolio is required
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div className="careerForm-part1">
-                    <div className="careerForm-input-text">
-                    <label htmlFor="information">
-                      <p>Last Work</p>
-                    </label>
-                  </div>
-                  <div className="careerForm-input">
-                    <input
-                      id="information"
-                      placeholder="Last Work"
-                      type="text"
-                      onChange={(e)=>{
-                        setLastWork(e.target.value)
-                        setLastWorkError(false)
-
-                      }}
-                    />
-                     {
-                      lastError && (
-                        <span className="invalid_message">Last work is required</span>
-                      )
-                     }
-                  </div>
+                      <div className="careerForm-input-text">
+                        <label htmlFor="information">
+                          <p>Last Work</p>
+                        </label>
+                      </div>
+                      <div className="careerForm-input">
+                        <input
+                          id="information"
+                          placeholder="Last Work"
+                          type="text"
+                          onChange={(e) => {
+                            setLastWork(e.target.value);
+                            setLastWorkError(false);
+                          }}
+                        />
+                        {lastError && (
+                          <span className="invalid_message">
+                            Last work is required
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="careerForm-input-text">
@@ -524,15 +525,15 @@ const CareerForm = () => {
                       placeholder="Enter reasons"
                       type="text"
                       onChange={(e) => {
-                        setWorkplace(e.target.value)
-                        setWorkplaceError(false)
+                        setWorkplace(e.target.value);
+                        setWorkplaceError(false);
                       }}
                     />
-                                        {
-                      workplaceError && (
-                        <span className="invalid_message">Workplace is required</span>
-                      )
-                    }
+                    {workplaceError && (
+                      <span className="invalid_message">
+                        Workplace is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="status">
@@ -543,39 +544,44 @@ const CareerForm = () => {
                     <select
                       name="status"
                       id="status"
+                      defaultValue=""
                       onChange={(e) => {
-                        setMarital(e.target.value)
-                        setMaritalError(false)
+                        setMarital(e.target.value);
+                        setMaritalError(false);
                       }}
                     >
-                      <option value="" disabled selected>
-                        Marital :
+                      <option value="" disabled hidden>
+                        Select:
                       </option>
                       <option value="married">Married</option>
                       <option value="unmarried">Unmarried</option>
                     </select>
-                    {
-                      maritalError && (
-                        <span className="invalid_message">Marital is required</span>
-                      )
-                    }
+                    {maritalError && (
+                      <span className="invalid_message">
+                        Marital status is required
+                      </span>
+                    )}
                   </div>
+                  
+
                   <div className="careerForm-input-text">
                     <label htmlFor="level">
                       <p>Please select your highest level of education</p>
                     </label>
                   </div>
+
                   <div className="careerForm-input">
                     <select
                       name="level"
                       id="level"
+                      defaultValue=""
                       onChange={(e) => {
-                        setEducation(e.target.value)
-                        setEducationError(false)
+                        setEducation(e.target.value);
+                        setEducationError(false);
                       }}
                     >
-                      <option value="" disabled selected>
-                        Education :
+                      <option value="" disabled hidden>
+                        Select :
                       </option>
                       <option value="Less than high school">
                         Less than high school
@@ -590,15 +596,18 @@ const CareerForm = () => {
                       <option value="Bachelor's degree">
                         Bachelor&apos;s degree
                       </option>
-                      <option value="Master's degree">Master&apos;s degree</option>
+                      <option value="Master's degree">
+                        Master&apos;s degree
+                      </option>
                       <option value="Doctoral degree">Doctoral degree</option>
                     </select>
-                    {
-                      educationError && (
-                        <span className="invalid_message">Education is required</span>
-                      )
-                    }
+                    {educationError && (
+                      <span className="invalid_message">
+                        Education is required
+                      </span>
+                    )}
                   </div>
+
                   <div className="careerForm-input-text">
                     <label htmlFor="experience">
                       <p>
@@ -613,15 +622,15 @@ const CareerForm = () => {
                       placeholder="JWrite the company names and the duration of employment at each"
                       type="text"
                       onChange={(e) => {
-                        setApplying(e.target.value)
-                        setApplyingError(false)
+                        setApplying(e.target.value);
+                        setApplyingError(false);
                       }}
                     />
-                    {
-                      applyingError && (
-                        <span className="invalid_message">Applying is required</span>
-                      )
-                    }
+                    {applyingError && (
+                      <span className="invalid_message">
+                        Applying is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="languages">
@@ -634,15 +643,15 @@ const CareerForm = () => {
                       placeholder="Enter languages"
                       type="text"
                       onChange={(e) => {
-                        setLanguages(e.target.value)
-                        setLanguagesError(false)
+                        setLanguages(e.target.value);
+                        setLanguagesError(false);
                       }}
                     />
-                    {
-                      languagesError && (
-                        <span className="invalid_message">Languages is required</span>
-                      )
-                    }
+                    {languagesError && (
+                      <span className="invalid_message">
+                        Languages is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="responsibility">
@@ -655,15 +664,15 @@ const CareerForm = () => {
                       placeholder="Enter criminal responsibility"
                       type="text"
                       onChange={(e) => {
-                        setResponsibility(e.target.value)
-                        setResponsibilityError(false)
+                        setResponsibility(e.target.value);
+                        setResponsibilityError(false);
                       }}
                     />
-                    {
-                      responsibilityError && (
-                        <span className="invalid_message">Responsibility is required</span>
-                      )
-                    }
+                    {responsibilityError && (
+                      <span className="invalid_message">
+                        Responsibility is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="about">
@@ -676,15 +685,15 @@ const CareerForm = () => {
                       placeholder="Write your answer"
                       type="text"
                       onChange={(e) => {
-                        setAbout(e.target.value)
-                        setAboutError(false)
+                        setAbout(e.target.value);
+                        setAboutError(false);
                       }}
                     />
-                    {
-                      aboutError && (
-                        <span className="invalid_message">About us is required</span>
-                      )
-                    }
+                    {aboutError && (
+                      <span className="invalid_message">
+                        About us is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="branches">
@@ -697,15 +706,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setWorked(e.target.value)
-                        setWorkedError(false)
+                        setWorked(e.target.value);
+                        setWorkedError(false);
                       }}
                     />
-                    {
-                      workedError && (
-                        <span className="invalid_message">Branches is required</span>
-                      )
-                    }
+                    {workedError && (
+                      <span className="invalid_message">
+                        Branches is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="like">
@@ -718,15 +727,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setLongWork(e.target.value)
-                        setLongWorkError(false)
+                        setLongWork(e.target.value);
+                        setLongWorkError(false);
                       }}
                     />
-                    {
-                      longWorkError && (
-                        <span className="invalid_message">How long would you like to work with us ? - is required</span>
-                      )
-                    }
+                    {longWorkError && (
+                      <span className="invalid_message">
+                        How long would you like to work with us ? - is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="salary">
@@ -739,15 +748,15 @@ const CareerForm = () => {
                       placeholder="Write the amount"
                       type="text"
                       onChange={(e) => {
-                        setSalary(e.target.value)
-                        setSalaryError(false)
+                        setSalary(e.target.value);
+                        setSalaryError(false);
                       }}
                     />
-                    {
-                      salaryError && (
-                        <span className="invalid_message">Salary is required</span>
-                      )
-                    }
+                    {salaryError && (
+                      <span className="invalid_message">
+                        Salary is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="time">
@@ -760,15 +769,15 @@ const CareerForm = () => {
                       placeholder="Full time / part time"
                       type="text"
                       onChange={(e) => {
-                        setAvailability(e.target.value)
-                        setAvailabilityError(false)
+                        setAvailability(e.target.value);
+                        setAvailabilityError(false);
                       }}
                     />
-                    {
-                      availabilityError && (
-                        <span className="invalid_message">Availability is required</span>
-                      )
-                    }
+                    {availabilityError && (
+                      <span className="invalid_message">
+                        Availability is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="choose">
@@ -784,15 +793,15 @@ const CareerForm = () => {
                       placeholder="Enter information"
                       type="text"
                       onChange={(e) => {
-                        setChoose(e.target.value)
-                        setChooseError(false)
+                        setChoose(e.target.value);
+                        setChooseError(false);
                       }}
                     />
-                    {
-                      chooseError && (
-                        <span className="invalid_message">Choose is required</span>
-                      )
-                    }
+                    {chooseError && (
+                      <span className="invalid_message">
+                        Choose is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="feedback">
@@ -805,15 +814,15 @@ const CareerForm = () => {
                       placeholder="Share your thoughts"
                       type="text"
                       onChange={(e) => {
-                        setFeedBack(e.target.value)
-                        setFeedBackError(false)
+                        setFeedBack(e.target.value);
+                        setFeedBackError(false);
                       }}
                     />
-                    {
-                      feedbackError && (
-                        <span className="invalid_message">Feedback is required</span>
-                      )
-                    }
+                    {feedbackError && (
+                      <span className="invalid_message">
+                        Feedback is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="share">
@@ -828,20 +837,18 @@ const CareerForm = () => {
                       placeholder="Share with us"
                       type="text"
                       onChange={(e) => {
-                        setChronic(e.target.value)
-                        setChronicError(false)
+                        setChronic(e.target.value);
+                        setChronicError(false);
                       }}
                     />
-                    {
-                      chronicError && (
-                        <span className="invalid_message">Chronis is required</span>
-                      )
-                    }
+                    {chronicError && (
+                      <span className="invalid_message">
+                        Chronis is required
+                      </span>
+                    )}
                   </div>
 
-
-              
-                  <div className="careerForm-input-text">
+                  {/* <div className="careerForm-input-text">
                     <label htmlFor="information">
                       <p>How Know About Us</p>
                     </label>
@@ -861,7 +868,7 @@ const CareerForm = () => {
                         <span className="invalid_message">About us is required</span>
                       )
                     }
-                  </div>
+                  </div> */}
 
                   <div className="careerForm-input-text">
                     <label htmlFor="information">
@@ -873,24 +880,23 @@ const CareerForm = () => {
                       id="information"
                       placeholder="Write what you think we should know"
                       type="text"
-                      onChange={(e)=>{
-                        setInformation(e.target.value)
-                        setInformationError(false)
+                      onChange={(e) => {
+                        setInformation(e.target.value);
+                        setInformationError(false);
                       }}
                     />
-                    {
-                      informationError && (
-                        <span className="invalid_message">Information is required</span>
-                      )
-                    }
+                    {informationError && (
+                      <span className="invalid_message">
+                        Information is required
+                      </span>
+                    )}
                   </div>
                   <div className="careerForm-btn">
-                  <button className="mt-4" type="submit">
-                    <p>Submit</p>
-                  </button>
-                </div>
+                    <button className="mt-4" type="submit">
+                      <p>Submit</p>
+                    </button>
+                  </div>
                 </form>
-             
               </div>
             </div>
           </div>

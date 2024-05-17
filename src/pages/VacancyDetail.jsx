@@ -36,10 +36,6 @@ const VacancyDetail = () => {
 
             </div>
           </div>
-
-
-
-
           <a  className="btn btn-warning" href="mailto:info@ormado.de">
             Apply
           </a>
