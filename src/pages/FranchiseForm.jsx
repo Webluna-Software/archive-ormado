@@ -68,6 +68,11 @@ const FranchiseForm = () => {
         });
     }
   };
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setphone(value);
+    setPhoneError(false);
+  };
 
   return (
     <>
@@ -143,10 +148,12 @@ const FranchiseForm = () => {
                   id="phone"
                   placeholder="+994"
                   type="tel"
-                  onChange={(e) => {
-                    setphone(e.target.value)
-                    setPhoneError(false)
-                  }}
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  // onChange={(e) => {
+                  //   setphone(e.target.value)
+                  //   setPhoneError(false)
+                  // }}
                 />
               </div>
               {phoneError && (

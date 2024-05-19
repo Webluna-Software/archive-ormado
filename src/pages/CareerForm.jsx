@@ -166,6 +166,12 @@ const CareerForm = () => {
     }
   }
 
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+    setPhone(value);
+    setPhoneError(false);
+  };
+
   return (
     <>
       <div className="careerForm">
@@ -205,13 +211,14 @@ const CareerForm = () => {
                         <select
                           name="branch"
                           id="branch"
+                          defaultValue=""
                           onChange={(e) => {
                             setBranch(e.target.value)
                             setBranchError(false)
                           }}
                         >
-                          <option value="" disabled selected>
-                            Branch :
+                          <option value="" disabled hidden>
+                            Select :
                           </option>
                           <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                             Einbecker Str. 18, 10317 Berlin, Germany
@@ -300,7 +307,7 @@ const CareerForm = () => {
                       <div className="careerForm-input-text">
                         <label htmlFor="email">
                           <p>
-                            Email address<span>*</span>{" "}
+                            Email address<span>*</span>
                           </p>
                         </label>
                       </div>
@@ -327,19 +334,17 @@ const CareerForm = () => {
                       <div className="careerForm-input-text">
                         <label htmlFor="phone">
                           <p>
-                            Phone<span>*</span>{" "}
+                            Phone<span>*</span>
                           </p>
                         </label>
                       </div>
                       <div className="careerForm-input">
                         <input
                           id="phone"
+                          type="tel"
+                          value={phone}
+                          onChange={handlePhoneChange}
                           placeholder="+994"
-                          type="text"
-                          onChange={(e) => {
-                            setPhone(e.target.value)
-                            setPhoneError(false)
-                          }}
                         />
                         {
                           phoneError && (
@@ -352,7 +357,7 @@ const CareerForm = () => {
                       <div className="careerForm-input-text">
                         <label htmlFor="age">
                           <p>
-                            Age<span>*</span>{" "}
+                            Age<span>*</span>
                           </p>
                         </label>
                       </div>
@@ -379,7 +384,7 @@ const CareerForm = () => {
                       <div className="careerForm-input-text">
                         <label htmlFor="nationality">
                           <p>
-                            Nationality<span>*</span>{" "}
+                            Nationality<span>*</span>
                           </p>
                         </label>
                       </div>
@@ -410,13 +415,14 @@ const CareerForm = () => {
                         <select
                           name="gender"
                           id="gender"
+                          defaultValue=""
                           onChange={(e) => {
                             setGender(e.target.value)
                             setGenderError(false)
                           }}
                         >
-                          <option value="" disabled selected>
-                            Gender : 
+                          <option value="" disabled hidden>
+                           Select :
                           </option>
                           <option value="man">Man</option>
                           <option value="woman">Woman</option>
@@ -434,7 +440,7 @@ const CareerForm = () => {
                       <div className="careerForm-input-text">
                         <label htmlFor="portfolio1">
                           <p>
-                            Portfolio<span>*</span>{" "}
+                            Portfolio<span>*</span>
                           </p>
                         </label>
                       </div>
@@ -543,12 +549,13 @@ const CareerForm = () => {
                     <select
                       name="status"
                       id="status"
+                      defaultValue=""
                       onChange={(e) => {
                         setMarital(e.target.value)
                         setMaritalError(false)
                       }}
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled hidden>
                         Select :
                       </option>
                       <option value="married">Married</option>
@@ -569,13 +576,14 @@ const CareerForm = () => {
                     <select
                       name="level"
                       id="level"
+                      defaultValue=""
                       onChange={(e) => {
                         setEducation(e.target.value)
                         setEducationError(false)
                       }}
                     >
-                      <option value="" disabled selected>
-                        Education :
+                      <option value="" disabled hidden>
+                        Select :
                       </option>
                       <option value="Less than high school">
                         Less than high school
@@ -773,7 +781,7 @@ const CareerForm = () => {
                   <div className="careerForm-input-text">
                     <label htmlFor="choose">
                       <p>
-                        Why should we choose you?{" "}
+                        Why should we choose you?
                         <span className="num">(0/5000)</span>
                       </p>
                     </label>
@@ -847,7 +855,7 @@ const CareerForm = () => {
                       <p>How Know About Us</p>
                     </label>
                   </div> */}
-                  <div className="careerForm-input">
+                  {/* <div className="careerForm-input">
                     <input
                       id="information"
                       placeholder="How Know About Us"
@@ -862,7 +870,7 @@ const CareerForm = () => {
                         <span className="invalid_message">About us is required</span>
                       )
                     }
-                  </div>
+                  </div> */}
 
                   <div className="careerForm-input-text">
                     <label htmlFor="information">
