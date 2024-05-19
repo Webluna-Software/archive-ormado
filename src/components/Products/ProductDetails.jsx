@@ -122,7 +122,7 @@ const userID = validateUserID();
             <div className="col-sm-12 col-md-12 col-lg-6 details-content">
               <div className='headline'>
                 <h3>{productDetails.title}</h3>
-                <span >{productDetails.stock === true ? "In Stock" : "Not In Stock"}</span>
+                <span className={`text-white ${productDetails.stock === true ? "bg-success" : "bg-danger"}`}>{productDetails.stock === true ? "In Stock" : "Not In Stock"}</span>
               </div>
 
               <div className="review">

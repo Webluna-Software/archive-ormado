@@ -49,7 +49,7 @@ const Gallery = () => {
             })}
           </div>
         </div>
-        <Faq />
+        {/* <Faq /> */}
       </section>
     </>
   );
