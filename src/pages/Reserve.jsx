@@ -101,6 +101,14 @@ const Reserve = () => {
       e.preventDefault();
     }
   };
+
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    const onlyNums = value.replace(/[^\d]/g, ''); 
+    setphone(onlyNums);
+    setPhoneError(false);
+  }
   return (
     <>
       <div className="reserve">
@@ -235,10 +243,8 @@ const Reserve = () => {
                         className={`${phoneError ? "invalid" : ""}`}
                         placeholder="+994 55 604 52 08"
                         type="tel"
-                        onChange={(e) =>{
-                          setphone(e.target.value)
-                          setPhoneError(false)
-                        }}
+                        value={phone}
+                        onChange={handlePhoneChange}
                       />
                       {
                         phoneError && (
@@ -277,6 +283,13 @@ const Reserve = () => {
                           </span>
                         )
                       }
+                      {/* {
+                        numbOfGuest < 5 && (
+                          <div className="alert alert-warning mt-2" role="alert">
+                            <strong> Attention!</strong>The minimum number for a reservation is 5 people.
+                          </div>
+                        )
+                      } */}
                     </div>
                   </div>
                 </div>
@@ -344,6 +357,7 @@ const Reserve = () => {
                       <select
                         name="branch"
                         id="branch"
+                        defaultValue=""
                         className={`round ${branchError ? "invalid" : ""}`}
                         onChange={(e) => {
                           setbranch(e.target.value)
@@ -354,9 +368,9 @@ const Reserve = () => {
                           style={{ fontWeight: "bold" }}
                           value=""
                           disabled
-                          selected
+                          hidden
                         >
-                          Branch :
+                          Select :
                         </option>
                         <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                           Einbecker Str. 18, 10317 Berlin, Germany

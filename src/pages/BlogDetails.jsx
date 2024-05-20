@@ -7,7 +7,6 @@ import PreLoader from "./PreLoader";
 const BlogDetails = () => {
 
   const { ApiLink } = useContext(ApiLinkContext);
-
   const [blog, setBlog] = useState([]);
   const [blogDetails, setBlogDetails] = useState([]);
   const [blogSec, setBlogSec] = useState([]);
@@ -93,13 +92,13 @@ const BlogDetails = () => {
                         {blogDetails.author}
                       </p>
                       <div className="read">
-                        <p >
+                        <p>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
+                            viewBox="0 0 24 24"        
+                               fill="none"
                           >
                             <path
                               opacity="0.5"

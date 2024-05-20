@@ -78,16 +78,16 @@ useEffect(() => {
                           <div className="swiperOpacity">
                             <div className="swiperMobileContainer" style={{ display: "block" }}>   
                               <div className="ormadoTitle">
-                              <h2>ORMADO <span>KAFFEEHAUS</span> </h2>
+                                <h2>ORMADO <span>KAFFEEHAUS</span> </h2>
                               </div>
                               <div className="ormadoDesc">
                                 <p>
-                                Ormado Kaffeehaus is a global brand originating from Germany. Our journey began in Berlin in 2017, and since then, we have expanded our business model to cities like Baku, Odessa, and Dubai. Through rigorous testing and refinement, we have identified successful strategies, products, and services tailored to each location. Ormado Kaffeehaus provides franchise opportunities for partners, with branches in Azerbaijan, Germany, Ukraine, and the UAE operating under the franchise model.
+                                  Ormado Kaffeehaus is a global brand originating from Germany. Our journey began in Berlin in 2017, and since then, we have expanded our business model to cities like Baku, Odessa, and Dubai. Through rigorous testing and refinement, we have identified successful strategies, products, and services tailored to each location. Ormado Kaffeehaus provides franchise opportunities for partners, with branches in Azerbaijan, Germany, Ukraine, and the UAE operating under the franchise model.
                                 </p>
                               </div>                   
                               <div className="ormadoBtn">
                                 <button>
-                                  <Link href="/about">Learn more</Link>
+                                  <Link to="/about">Learn more</Link>
                                 </button>
                               </div>
                             </div>
