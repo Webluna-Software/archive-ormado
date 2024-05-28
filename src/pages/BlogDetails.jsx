@@ -4,50 +4,39 @@ import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { Link, useParams } from "react-router-dom";
 import PreLoader from "./PreLoader";
+import { Helmet } from "react-helmet";
+import slugify from "slugify";
 const BlogDetails = () => {
-
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { id } = useParams();
+const {blogTitle} = useParams()
+  const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
-  const [blogDetails, setBlogDetails] = useState([]);
   const [blogSec, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
   const path = window.location.pathname;
-  const { id } = useParams();
 
   useEffect(() => {
     //Blog
-    axios.get(`${ApiLink}/blog`)
+    axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         setBlog(res.data.blog);
         setLoading(false);
-        console.log(res.data.blog, 'Blog Data');
       })
       .catch((error) => {
         console.log(error, 'Blog data error')
         setLoading(false);
       })
-    //BlogDetails
-    axios.get(`${ApiLink}/blog/${id}`)
-      .then((res) => {
-        setBlogDetails(res.data.blog);
-        setLoading(false);
-
-      })
-      .catch((error) => {
-        console.log(error, "BlogDetails error");
-        setLoading(false);
-      });
     //BlogSection
-    axios.get(`${ApiLink}/blogSection`)
+    axios.get(`${ApiLink2}/blogSection`)
       .then((res) => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
-        console.log(res.data.blogSection, 'BlogSection');
       })
       .catch((error) => {
         console.log(error, "BlogSec error");
         setLoading(false);
       })
+
   }, [path]);
   const filterSection = (blogSec, blogSecId) => {
     const check = blogSec.find((id) => id == blogSecId);
@@ -70,12 +59,32 @@ const BlogDetails = () => {
       return false;
     }
   };
+   let blogDetails = blog.find((i)=>slugify(i.title).toLowerCase() == blogTitle)
+   
+   useEffect(()=>{
+     const updateCount = blogDetails &&  blogDetails.readCount + 1
+     axios.put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,{
+       'readCount':updateCount
+      })
+      .then((res)=>{
+        console.log(res.data);
+      })
+      .catch((err)=>{
+        console.log(err,"put error");
+      })
+   },[blogDetails])
+  
+
   return (
     <>
       <section className="BlogDetails">
         {loading ? (
           <PreLoader/>
         ) : (
+         <>
+         <Helmet>
+          <title>{blogDetails.title}</title>
+         </Helmet>
           <div className="container-fluid">
             <div className="row ">
               <div className="blog-details ">
@@ -252,6 +261,7 @@ const BlogDetails = () => {
                 </div>
             </div>
           </div>
+         </>
         )}
       </section>
     </>
