@@ -14,7 +14,7 @@ const {blogTitle} = useParams()
   const [blogSec, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
   const path = window.location.pathname;
-
+   
   useEffect(() => {
     //Blog
     axios.get(`${ApiLink2}/blog`)
