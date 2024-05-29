@@ -459,7 +459,7 @@ const SignUp = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                <p>Sing in with Google</p>
+                <p>Sing up with Google</p>
               </button>
               <button className="signin-with-btn mt-2">
                 <svg
@@ -474,7 +474,7 @@ const SignUp = () => {
                     fill="black"
                   />
                 </svg>
-                <p>Sing in with Apple</p>
+                <p>Sing up with Apple</p>
               </button>
             </div>
             <div className="signin-with"></div>

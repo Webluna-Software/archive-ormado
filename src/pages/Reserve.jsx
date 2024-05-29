@@ -128,6 +128,9 @@ const Reserve = () => {
     setphone(onlyNums);
     setPhoneError(false);
   }
+
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <>
       <div className="reserve">
@@ -327,6 +330,7 @@ const Reserve = () => {
                           setdate(e.target.value)
                           setDateError(false)
                         }}
+                        min={today}
                       />
                       {
                         dateError && (
@@ -427,7 +431,7 @@ const Reserve = () => {
                     <div className="reserve-input">
                       <input
                         id="remarks"
-                        placeholder="Redlands"
+                        placeholder="Please let us know what we need to know about your reservation"
                         type="text"
                         className={`${remarkError ? "invalid" : ""}`}
                         onChange={(e) => {
