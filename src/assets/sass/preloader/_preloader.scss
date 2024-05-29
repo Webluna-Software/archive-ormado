@@ -1,78 +1,25 @@
-@keyframes rotateAnimation {
-    0% {
-      transform: rotate(0); 
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+// @keyframes rotateAnimation {
+//     0% {
+//       transform: rotate(0); 
+//     }
+//     100% {
+//       transform: rotate(360deg);
+//     }
+//   }
   
-  .rotate-animation {
-    width: 80px;
-    animation: rotateAnimation 3s ease-in-out infinite;
-    padding: 50px 0;
-  }
+//   .rotate-animation {
+//     width: 80px;
+//     animation: rotateAnimation 3s ease-in-out infinite;
+//     padding: 50px 0;
+//   }
   
 
-// body {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-//   background-color: #F7F2E8;
-// }
-// .preloader {
-//   width: 100px;
-//   height: 100px;
-//   border: 15px solid #D59729;
-//   border-top: 15px solid #4A3024;
-//   border-radius: 50%;
-//   animation: spin 2s linear infinite;
-// }
 
-// @keyframes spin {
-//   0% { transform: rotate(0deg); }
-//   100% { transform: rotate(360deg); }
-// }
+.anime{
+  width: 100%;
+  height: auto;
+}
 
-
-
-
-// .divdiv{
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-//   background-color: #F7F2E8;
-//   margin: 0;
-// }
-// .preloader {
-//   position: relative;
-//   width: 100px;
-//   height: 100px;
-// }
-
-// .cup {
-//   position: absolute;
-//   bottom: 0;
-//   width: 60px;
-//   height: 60px;
-//   background-color: #FFE7B2;
-//   border-radius: 0 0 30px 30px;
-//   overflow: hidden;
-// }
-
-// .coffee {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   background-color: #D59729;
-//   border-radius: 50%;
-//   animation: spin 2s linear infinite;
-//   box-shadow: 0 0 0 10px #4A3024;
-// }
-
-// @keyframes spin {
-//   0% { transform: translateY(-50%) rotate(0deg); }
-//   100% { transform: translateY(-50%) rotate(360deg); }
-// }
+#animationContainer{
+  width: 200px;
+}
