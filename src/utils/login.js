@@ -3,13 +3,10 @@ import bcrypt from 'bcryptjs-react'
 import { deleteCookie, setCookie } from "./cookie"
 import { saveUserData } from "./user"
 
-
 export const {loginApiLink , loginHeaders} = {
     loginApiLink : "https://ormadoapi.webluna.org/api/admin",
     loginHeaders: ""
 }
-
-
 
 export const loginAction =(email , password , redirectPath , rememberMe)=>{
 
@@ -47,7 +44,7 @@ export const loginAction =(email , password , redirectPath , rememberMe)=>{
 
 
 export const logOutUser=(redirectPath)=>{
-    const logoutConfirm=confirm("Are you sure you want to perform?");
+    const logoutConfirm=confirm("Are you sure you want to log out?");
     if (logoutConfirm) {
         deleteCookie('user');
         sessionStorage.removeItem('userID')

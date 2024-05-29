@@ -90,25 +90,39 @@ const Reserve = () => {
     return value == reserveType;
   };
 
+  // const handleKeyDown = (e) => {
+  //   if (
+  //     !(
+  //       !(e.key >= "0" && e.key <= "9") ||
+  //       e.key === "Backspace" ||
+  //       e.key === "Delete"
+  //     )
+  //   ) {
+  //     e.preventDefault();
+  //   }
+  // };
+
+  
   const handleKeyDown = (e) => {
-    if (
-      !(
-        !(e.key >= "0" && e.key <= "9") ||
-        e.key === "Backspace" ||
-        e.key === "Delete"
-      )
-    ) {
-      e.preventDefault();
+    // Prevents user from entering a number below 5
+    if (e.key === 'Enter' || e.key === 'Tab') {
+      if (numbOfGuest < 5) {
+        alert('The minimum number for a reservation is 5 people.');
+        e.preventDefault();
+      }
     }
   };
 
-
-  const handlePhoneChange = (e) => {
+  const handleChange = (e) => {
     const value = e.target.value;
-    const onlyNums = value.replace(/[^\d]/g, ''); 
-    setphone(onlyNums);
-    setPhoneError(false);
-  }
+    if (value < 5 && value !== '') {
+      setGuestError(true);
+      alert("Attention!\nThe minimum number for a reservation is 5 people.");
+    } else {
+      setnumbOfGuest(value);
+      setGuestError(false);
+    }
+  };
   return (
     <>
       <div className="reserve">
@@ -168,7 +182,6 @@ const Reserve = () => {
                         onClick={(e) => setreserveType(e.target.value)}
                       />
                       <label htmlFor="reserve-radio2">
-                        {" "}
                         <p>For a meeting with friends</p>{" "}
                       </label>
                     </div>
@@ -243,8 +256,10 @@ const Reserve = () => {
                         className={`${phoneError ? "invalid" : ""}`}
                         placeholder="+994 55 604 52 08"
                         type="tel"
-                        value={phone}
-                        onChange={handlePhoneChange}
+                        onChange={(e) =>{
+                          setphone(e.target.value)
+                          setPhoneError(false)
+                        }}
                       />
                       {
                         phoneError && (
@@ -270,10 +285,7 @@ const Reserve = () => {
                         type="number"
                         className={`${guestError ? "invalid" : ""}`}
                         min={5}
-                        onChange={(e) => {
-                          setnumbOfGuest(e.target.value)
-                          setGuestError(false)
-                        }}
+                        onChange={handleChange}
                         onKeyDown={handleKeyDown}
                       />
                       {
@@ -283,13 +295,6 @@ const Reserve = () => {
                           </span>
                         )
                       }
-                      {/* {
-                        numbOfGuest < 5 && (
-                          <div className="alert alert-warning mt-2" role="alert">
-                            <strong> Attention!</strong>The minimum number for a reservation is 5 people.
-                          </div>
-                        )
-                      } */}
                     </div>
                   </div>
                 </div>
@@ -357,7 +362,6 @@ const Reserve = () => {
                       <select
                         name="branch"
                         id="branch"
-                        defaultValue=""
                         className={`round ${branchError ? "invalid" : ""}`}
                         onChange={(e) => {
                           setbranch(e.target.value)
@@ -368,9 +372,9 @@ const Reserve = () => {
                           style={{ fontWeight: "bold" }}
                           value=""
                           disabled
-                          hidden
+                          selected
                         >
-                          Select :
+                          Branch :
                         </option>
                         <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                           Einbecker Str. 18, 10317 Berlin, Germany
@@ -389,7 +393,7 @@ const Reserve = () => {
                           Zefir Mall, Baku
                         </option>
                         <option value="Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000">
-                          Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine,
+                          Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka oblast, Ukraine,
                           65000
                         </option>
                       </select>
@@ -511,14 +515,13 @@ const Reserve = () => {
                       <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                            <div className="modal-header">
-                            <h5 className="modal-title">Thank you !</h5>
+                            <h5 className="modal-title">Thank you!</h5>
                             <button type="button" 
                               onClick={() => {
                               window.location.reload()
                               setShowModal(false)
                               }}
-                              // eslint-disable-next-line react/no-unknown-property
-                              className="btn-close" data- bs-dismiss="modal" aria-label="Close">
+                              className="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                           </div>
                           <div className="modal-body">

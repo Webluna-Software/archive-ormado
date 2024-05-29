@@ -172,6 +172,29 @@ const CareerForm = () => {
     setPhoneError(false);
   };
 
+  const handleKeyDown = (e) => {
+    const value = e.target.value;
+    const maxLength = 5000;
+  
+    if (value.length >= maxLength && e.key !== 'Backspace' && e.key !== 'Delete') {
+      alert("Attention\nYou reached 5,000 character limit.");
+      e.preventDefault(); // Yeni karakter eklemeyi engellemek için
+      return;
+    }
+  };
+  
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const maxLength = 5000;
+  
+    if (value.length > maxLength) {
+      alert("Attention\nYou reached 5,000 character limit.");
+      return;
+    }
+  
+    setChoose(value);
+    setChooseError(false);
+  };
   return (
     <>
       <div className="careerForm">
@@ -791,10 +814,8 @@ const CareerForm = () => {
                       id="choose"
                       placeholder="Enter information" className="form-control"
                       type="text"
-                      onChange={(e) => {
-                        setChoose(e.target.value)
-                        setChooseError(false)
-                      }}
+                      onChange={handleChange}
+                      onKeyDown={handleKeyDown}
                       maxLength={5000}
                     />
                     {

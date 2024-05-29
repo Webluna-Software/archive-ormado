@@ -147,7 +147,6 @@ const BlogDetails = () => {
                       blogDetails.blogSection.find((i) => i == fd._id)
                     if (findSection) {
                       return (
-                        <>
                           <div className="blog-details-text" key={i}>
                             <div className="blog-details-text-part1 my-5">
                               {fd.text == "undefined" ? (
@@ -175,7 +174,7 @@ const BlogDetails = () => {
                           height={replaceVideoLink ? '400px' : ''}
                           src={`${replaceVideoLink}`}
                           title="YouTube video player"
-                          frameborder="0"
+                          frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowfullscreen
                         ></iframe>
@@ -183,12 +182,11 @@ const BlogDetails = () => {
                       )}
                      </div>
                           </div>
-                        </>
                       )
                     }
                   })}
                   <div className="blog-details-card my-5">
-                    <p className="latest-news">Latest news</p>
+                    <p className="latest-news"> Explore More</p>
                     <div className="blog-details-lastes">
                       {blog.slice(-2).map((fd, i) => (
                         <div className="blogcard col-12 col-md-3 col-sm-6" key={i}>
