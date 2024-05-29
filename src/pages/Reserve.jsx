@@ -90,19 +90,38 @@ const Reserve = () => {
     return value == reserveType;
   };
 
+  // const handleKeyDown = (e) => {
+  //   if (
+  //     !(
+  //       !(e.key >= "0" && e.key <= "9") ||
+  //       e.key === "Backspace" ||
+  //       e.key === "Delete"
+  //     )
+  //   ) {
+  //     e.preventDefault();
+  //   }
+  // };
+
   const handleKeyDown = (e) => {
-    if (
-      !(
-        !(e.key >= "0" && e.key <= "9") ||
-        e.key === "Backspace" ||
-        e.key === "Delete"
-      )
-    ) {
-      e.preventDefault();
+    // Prevents user from entering a number below 5
+    if (e.key === 'Enter' || e.key === 'Tab') {
+      if (numbOfGuest < 5) {
+        alert('The minimum number for a reservation is 5 people.');
+        e.preventDefault();
+      }
     }
   };
 
-
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (value < 5 && value !== '') {
+      setGuestError(true);
+      alert("Attention!\nThe minimum number for a reservation is 5 people.");
+    } else {
+      setnumbOfGuest(value);
+      setGuestError(false);
+    }
+  };
   const handlePhoneChange = (e) => {
     const value = e.target.value;
     const onlyNums = value.replace(/[^\d]/g, ''); 
@@ -270,10 +289,7 @@ const Reserve = () => {
                         type="number"
                         className={`${guestError ? "invalid" : ""}`}
                         min={5}
-                        onChange={(e) => {
-                          setnumbOfGuest(e.target.value)
-                          setGuestError(false)
-                        }}
+                        onChange={handleChange}
                         onKeyDown={handleKeyDown}
                       />
                       {
