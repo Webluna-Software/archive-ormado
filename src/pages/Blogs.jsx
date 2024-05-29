@@ -4,9 +4,10 @@ import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import PreLoader from './PreLoader';
+import slugify from 'slugify';
 
 const Blogs = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
 
   const [blog, setBlog] = useState([]);
   const [blogSection, setBlogSec] = useState([]);
@@ -15,7 +16,7 @@ const Blogs = () => {
   const [visible,setVisible] = useState(3)
   useEffect(() => {
     //Blog
-    axios.get(`${ApiLink}/blog`)
+    axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         setBlog(res.data.blog);
         setLoading(false);
@@ -25,7 +26,7 @@ const Blogs = () => {
         console.error("Error fetching blog data:", error);
       });
     //Blog Section
-    axios.get(`${ApiLink}/blogSection`)
+    axios.get(`${ApiLink2}/blogSection`)
       .then((res) => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
@@ -57,6 +58,7 @@ const Blogs = () => {
  const visibleShow = () =>{
   setVisible(fd=>fd += 6)
  }
+ 
 
   return (
     <>
@@ -70,10 +72,10 @@ const Blogs = () => {
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
-                <div className="cardsBlogs row m-0 d-flex justify-content-start">
+                <div className="cardsBlogs row m-0 d-flex justify-content-center">
                   {blog.slice(0,visible).map((item, i) => (
-
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
+                      <Link to={`/blogDetails/${slugify(item.title).toLowerCase()}`} style={{color:"#000"}}>
                       <figure><img src={item.coverImage} alt="rectangle127" /></figure>
                       <div className="card-header">
                         <p className='p-title'>{item.title}</p>
@@ -84,13 +86,14 @@ const Blogs = () => {
                           }}
                         />
                         <p className='p-body-read'>
-                          <Link to={`/blogDetails/${item._id}`}> <span> Read more</span></Link>
+                           <span> Read more</span>
                         </p>
                         <div className='date-number'>
                           <span>{item.readCount} read</span>
                           <span>{item.date}</span>
                         </div>
                       </div>
+                    </Link>
                     </div>
 
 
@@ -101,7 +104,7 @@ const Blogs = () => {
            
               </div>
               <div className="col-6 col-sm-6 col-md-2 col-lg-2">
-                <div className="loadMoreBtn mt-4">
+                <div className={`loadMoreBtn mt-4 ${blog.length > 3 ? "" : "d-none"}`} >
                  <button onClick={visibleShow}>
                  Load More
                  </button>
