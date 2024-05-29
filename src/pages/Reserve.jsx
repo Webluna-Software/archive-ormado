@@ -389,7 +389,7 @@ const Reserve = () => {
                           Zefir Mall, Baku
                         </option>
                         <option value="Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000">
-                          Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine,
+                          Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka oblast, Ukraine,
                           65000
                         </option>
                       </select>
