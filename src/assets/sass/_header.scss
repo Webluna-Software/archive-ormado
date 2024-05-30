@@ -75,9 +75,9 @@ header {
       align-items: center;
       border-radius: 100px;
     }
-    .cart{
+    .cart {
       position: relative;
-      img{
+      img {
         width: 26px;
       }
       .badge {
@@ -213,10 +213,19 @@ header {
 .mobile-header {
   display: none;
   .mobile-icons {
-    color: transparent;
-    .cart{
-      img{
+    // color: transparent;
+    .cart {
+      img {
         padding: 7px 10px;
+      }
+    }
+    .wishlist {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        font-size: 20px;
+        color: #4a3024;
       }
     }
     .icon {
@@ -224,6 +233,25 @@ header {
     }
     button {
       background-color: transparent;
+    }
+  }
+  .header_location {
+    display: flex;
+    padding: 12px 16px !important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #979797;
+    width: 49%;
+    span {
+      font-family: "Lato", sans-serif;
+      color: #4a3024;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      transform: translateY(-2px);
     }
   }
 }
@@ -364,9 +392,9 @@ header {
               cursor: pointer;
             }
           }
-          div {
-            padding: 0 !important;
-          }
+          // div {
+          //   padding: 0 !important;
+          // }
         }
 
         .d-flex {
