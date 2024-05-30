@@ -192,12 +192,12 @@ if (userID) {
                           <div className="price-cart"
                       onClick={() => {
                         if (userID) {
-                          wishClick(
+                          cartClick(
                             fd._id,
                             fd.title,
-                            fd.coverImage,
                             fd.price,
                             fd.salePrice,
+                            fd.coverImage,
                             fd.stock
                           );
                         } else {
