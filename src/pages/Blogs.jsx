@@ -64,10 +64,10 @@ const Blogs = () => {
 
  const visibleShow = () =>{
   setVisible(fd=>fd += 6)
- }
- 
+ } 
+   
  const handleSelectChange=(e)=>{
-  console.log(e.target.value,"SELECTED ID");
+  console.log(e.target.value,"SELECTED IgD");
  }
 
   return (
