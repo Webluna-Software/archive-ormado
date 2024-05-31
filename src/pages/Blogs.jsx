@@ -67,7 +67,7 @@ const Blogs = () => {
  } 
    
  const handleSelectChange=(e)=>{
-  console.log(e.target.value,"SELECTED IgD");
+  console.log(e.target.value,"SELECTED id");
  }
 
   return (
@@ -127,10 +127,10 @@ const Blogs = () => {
            
 
                 </div>
-           
+            
               </div>
               <div className="col-6 col-sm-6 col-md-2 col-lg-2">
-                <div className={`loadMoreBtn mt-4 ${blog.length > 3 ? "" : "d-none"}`} >
+                <div className={`loadMoreBtn mt-4 ${blog.length > visible ? "" : "d-none"}`} >
                  <button onClick={visibleShow}>
                  Load More
                  </button>
