@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import slugify from "slugify";
 const BlogDetails = () => {
   const { id } = useParams();
-const {blogTitle} = useParams()
+  const {blogTitle} = useParams()
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
   const [blogSec, setBlogSec] = useState([]);
