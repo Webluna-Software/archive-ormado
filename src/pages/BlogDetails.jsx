@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import productImg from '../assets/img/BlogComment.png'
+import productImg from "../assets/img/BlogComment.png";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { Link, useParams } from "react-router-dom";
@@ -14,20 +14,22 @@ const BlogDetails = () => {
   const [blogSec, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
   const path = window.location.pathname;
-   
+
   useEffect(() => {
     //Blog
-    axios.get(`${ApiLink2}/blog`)
+    axios
+      .get(`${ApiLink2}/blog`)
       .then((res) => {
         setBlog(res.data.blog);
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error, 'Blog data error')
+        console.log(error, "Blog data error");
         setLoading(false);
-      })
+      });
     //BlogSection
-    axios.get(`${ApiLink2}/blogSection`)
+    axios
+      .get(`${ApiLink2}/blogSection`)
       .then((res) => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
@@ -35,8 +37,7 @@ const BlogDetails = () => {
       .catch((error) => {
         console.log(error, "BlogSec error");
         setLoading(false);
-      })
-
+      });
   }, [path]);
   const filterSection = (blogSec, blogSecId) => {
     const check = blogSec.find((id) => id == blogSecId);
@@ -59,27 +60,29 @@ const BlogDetails = () => {
       return false;
     }
   };
-   let blogDetails = blog.find((i)=>slugify(i.title).toLowerCase() == blogTitle)
-   
-   useEffect(()=>{
-     const updateCount = blogDetails &&  blogDetails.readCount + 1
-     axios.put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,{
-       'readCount':updateCount
+  let blogDetails = blog.find(
+    (i) => slugify(i.title).toLowerCase() == blogTitle
+  );
+
+  useEffect(() => {
+    const updateCount = blogDetails && blogDetails.readCount + 1;
+    axios
+      .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, {
+        readCount: updateCount,
       })
-      .then((res)=>{
+      .then((res) => {
         console.log(res.data);
       })
-      .catch((err)=>{
-        console.log(err,"put error");
-      })
-   },[blogDetails])
-  
+      .catch((err) => {
+        console.log(err, "put error");
+      });
+  }, [blogDetails]);
 
   return (
     <>
       <section className="BlogDetails">
         {loading ? (
-          <PreLoader/>
+          <PreLoader />
         ) : (
          <>
          <Helmet>
@@ -233,37 +236,39 @@ const BlogDetails = () => {
               {/* <Blogs /> */}
               <div className="cardsBlogs row m-0 mt-5">
                   {blog.slice(-4).map((item, i) => (
-                        <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
-                      <figure><img src={item.coverImage} alt="rectangle127" /></figure>
+                    <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
+                      <figure>
+                        <img src={item.coverImage} alt="rectangle127" />
+                      </figure>
                       <div className="card-header">
-                        <p className='p-title'>{item.title}</p>
+                        <p className="p-title">{item.title}</p>
                         <p
-                          className='p-body-text'
+                          className="p-body-text"
                           dangerouslySetInnerHTML={{
                             __html: findFirstSection(item),
                           }}
                         />
-                        <p className='p-body-read'>
-                          <Link to={`/blogDetails/${item._id}`}> <span> Read more</span></Link>
+                        <p className="p-body-read">
+                          <Link to={`/blogDetails/${item._id}`}>
+                            {" "}
+                            <span> Read more</span>
+                          </Link>
                         </p>
-                        <div className='date-number'>
+                        <div className="date-number">
                           <span>{item.readCount} read</span>
                           <span>{item.date}</span>
                         </div>
                       </div>
                     </div>
-
-
                   ))}
-
                 </div>
+              </div>
             </div>
-          </div>
-         </>
+          </>
         )}
       </section>
     </>
-  ); 
+  );
 };
 
 export default BlogDetails;

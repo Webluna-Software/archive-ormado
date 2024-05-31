@@ -8,11 +8,11 @@ import slugify from 'slugify';
 
 const Blogs = () => {
   const { ApiLink2 } = useContext(ApiLinkContext);
+  const [loading, setLoading] = useState(true);
 
   const [blog, setBlog] = useState([]);
   const [blogSection, setBlogSec] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const [blogCategory,setBlogCategory] = useState([])
   const [visible,setVisible] = useState(3)
   useEffect(() => {
     //Blog
@@ -31,6 +31,13 @@ const Blogs = () => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
       })
+    //Blog Section
+    axios.get(`${ApiLink2}/blogCategory`)
+      .then((res) => {
+        setBlogCategory(res.data.data);
+        console.log(res.data.data);
+      })
+
   }, []);
 
   const filterSection = (blogSection, blogSecId) => {
@@ -63,16 +70,32 @@ const Blogs = () => {
   return (
     <>
       <section className='blogsPage'>
+        <hr  style={{color:"orange",fontWeight:"bold"}}/>
         <div className="container">
           {loading ? (
             <PreLoader/>
           ) : (
+         <>
             <div className="row m-0 justify-content-center">
-              <div className="blogs">
+              <div className="col-2 categoryTitle"><button>ALL CATEGORIES</button></div>
+              {
+                blogCategory.map((i)=>(
+                  <div className="col-2 categoryTitle"><button>{i.title}</button></div>
+                ))
+              }
+              <select name="" id="" onChange={handleSelectChange}>
+                <option value="all" selected>ALL CATEGORIES:</option>
+              {
+                blogCategory.map((i)=>(
+                  <option value={i._id}>{i.title}</option>
+                ))
+              } 
+              </select>
+              <div className="blogs mt-5">
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
-                <div className="cardsBlogs row m-0 d-flex justify-content-start">
+                <div className="cardsBlogs row m-0 d-flex justify-content-center">
                   {blog.slice(0,visible).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
                       <Link to={`/blogDetails/${slugify(item.title).toLowerCase()}`} style={{color:"#000"}}>
@@ -111,6 +134,7 @@ const Blogs = () => {
                 </div>
               </div>
             </div>
+         </>
           )}
         </div>
       </section>

@@ -1,15 +1,25 @@
-@keyframes rotateAnimation {
-    0% {
-      transform: rotate(0);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+// @keyframes rotateAnimation {
+//     0% {
+//       transform: rotate(0); 
+//     }
+//     100% {
+//       transform: rotate(360deg);
+//     }
+//   }
   
-  .rotate-animation {
-    width: 80px;
-    animation: rotateAnimation 3s ease-in-out infinite;
-    padding: 50px 0;
-  }
+//   .rotate-animation {
+//     width: 80px;
+//     animation: rotateAnimation 3s ease-in-out infinite;
+//     padding: 50px 0;
+//   }
   
+
+
+.anime{
+  width: 100%;
+  height: auto;
+}
+
+#animationContainer{
+  width: 200px;
+}

@@ -1,6 +1,35 @@
 .blogsPage {
     .container {
         .row {
+            .categoryTitle{
+                button{
+                    color: grey;
+                    font-weight: 500;
+                    font-family: 'Montserrat',sans-serif;
+                    background-color: transparent;
+                    border: none;
+                    &:hover{
+                         border-bottom: 2px solid rgb(255, 182, 46) ;
+                    }
+                    @media (max-width:998px){
+                        display: none;
+                    }
+
+                }
+            }
+            select{
+                display: none;
+                @media (max-width:998px){
+                    display: block;
+                    padding: 10px;
+                    color: grey;
+                    font-weight: 500;
+                    font-family: 'Montserrat',sans-serif;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
             .blogs {
                 display: flex;
                 justify-content: flex-start;
