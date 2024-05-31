@@ -869,6 +869,14 @@
                             color: red;
                             font-family: 'Lato',sans-serif;
                         }
+                        .careerForm-input.position-relative{
+                            .position-absolute{
+                                bottom: 5px;
+                                right: 5px;
+                                color: #424044;
+                                font-size: 12px;
+                            }
+                        }
                     }
 
                     .careerForm-input-part1 {

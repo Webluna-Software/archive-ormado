@@ -104,18 +104,21 @@ const userID = validateUserID();
               </Link>
               <div className="wishlist-modal">
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
-                onClick={() =>
-                  userID
-                    ? wishClick(
-                        fd._id,
-                        fd.coverImage,
-                        fd.title,
-                        fd.price,
-                        fd.salePrice,
-                        fd.stock
-                      )
-                    : alert("Please login first!")
-                }
+                onClick={() => {
+                  if (userID) {
+                    wishClick(
+                      fd._id,
+                      fd.title,
+                      fd.coverImage,
+                      fd.price,
+                      fd.salePrice,
+                      fd.stock
+                    );
+                  } else {
+                    alert("Please login first!");
+                    navigate('/login');
+                  }
+                }}
                 >
                   <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
                 </div>
@@ -161,18 +164,21 @@ const userID = validateUserID();
                   </div>
                   <div
                     className="price-cart"
-                    onClick={() =>
-                     userID
-                        ? cartClick(
-                            fd._id,
-                            fd.title,
-                            fd.price,
-                            fd.salePrice,
-                            fd.coverImage,
-                            fd.stock
-                          )
-                        : alert("Please login first!")
-                    }
+                    onClick={() => {
+                      if (userID) {
+                        cartClick(
+                          fd._id,
+                          fd.title,
+                          fd.price,
+                          fd.salePrice,
+                          fd.coverImage,
+                          fd.stock
+                        );
+                      } else {
+                        alert("Please login first!");
+                        navigate('/login');
+                      }
+                    }}
                   >
                      <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                   </div>
