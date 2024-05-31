@@ -13,7 +13,7 @@ const Blogs = () => {
   const [blog, setBlog] = useState([]);
   const [blogSection, setBlogSec] = useState([]);
   const [blogCategory,setBlogCategory] = useState([])
-  const [visible,setVisible] = useState(3)
+  const [visible,setVisible] = useState(4)
   useEffect(() => {
     //Blog
     axios.get(`${ApiLink2}/blog`)
@@ -98,7 +98,6 @@ const Blogs = () => {
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
-                <div className="cardsAll ">
                 <div className="cardsBlogs row m-0 ">
                   {blog.slice(0,visible).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
@@ -127,7 +126,6 @@ const Blogs = () => {
                   ))}
            
 
-                </div>
                 </div>
            
               </div>
