@@ -234,6 +234,7 @@ const BlogDetails = () => {
                 </div>
               </div>
               {/* <Blogs /> */}
+              <div className="cardsAll">
               <div className="cardsBlogs row m-0 mt-5">
                   {blog.slice(-4).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
@@ -262,6 +263,7 @@ const BlogDetails = () => {
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
             </div>
           </>

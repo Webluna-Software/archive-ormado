@@ -98,7 +98,8 @@ const Blogs = () => {
                 <div className="title">
                   <h3>Blog</h3>
                 </div>
-                <div className="cardsBlogs row m-0 d-flex justify-content-center">
+                <div className="cardsAll ">
+                <div className="cardsBlogs row m-0 ">
                   {blog.slice(0,visible).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
                       <Link to={`/blogDetails/${slugify(item.title).toLowerCase()}`} style={{color:"#000"}}>
@@ -126,6 +127,7 @@ const Blogs = () => {
                   ))}
            
 
+                </div>
                 </div>
            
               </div>
