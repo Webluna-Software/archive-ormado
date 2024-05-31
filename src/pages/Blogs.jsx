@@ -66,6 +66,9 @@ const Blogs = () => {
   setVisible(fd=>fd += 6)
  }
  
+ const handleSelectChange=(e)=>{
+  console.log(e.target.value,"SELECTED ID");
+ }
 
   return (
     <>
