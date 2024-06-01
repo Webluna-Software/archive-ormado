@@ -9,13 +9,17 @@
                     background-color: transparent;
                     border: none;
                     &:hover{
-                         border-bottom: 2px solid rgb(255, 182, 46) ;
+                         border-bottom: 1px solid #DC9729 ;
                     }
                     @media (max-width:998px){
                         display: none;
                     }
 
                 }
+                .activebtn{
+                    border-bottom: 1px solid #DC9729;
+                }
+
             }
             select{
                 display: none;

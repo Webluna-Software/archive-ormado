@@ -312,7 +312,7 @@ const Header = () => {
           </ul>
           <ul>
             <Link
-              to="/blogs"
+              to="/blogs/all"
               className={` navA ${active == 7 ? "active" : ""}`}
               onClick={() => setActive(7)}
             >

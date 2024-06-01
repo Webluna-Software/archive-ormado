@@ -2,11 +2,14 @@ import { useContext, useState, useEffect } from 'react'
 
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import PreLoader from './PreLoader';
 import slugify from 'slugify';
 
 const Blogs = () => {
+
+  const {id} = useParams()
+
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [loading, setLoading] = useState(true);
 
@@ -14,11 +17,18 @@ const Blogs = () => {
   const [blogSection, setBlogSec] = useState([]);
   const [blogCategory,setBlogCategory] = useState([])
   const [visible,setVisible] = useState(4)
+  const path = window.location.pathname
   useEffect(() => {
     //Blog
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
-        setBlog(res.data.blog);
+        const blogData = res.data.blog
+        if (id === 'all') {
+          setBlog(blogData);
+        } else {
+          const filtered = blogData.filter((item)=>item.blogCategory[0] == id)
+          setBlog(filtered)
+        }
         setLoading(false);
       })
       .catch((error) => {
@@ -38,7 +48,7 @@ const Blogs = () => {
         console.log(res.data.data);
       })
 
-  }, []);
+  }, [path]);
 
   const filterSection = (blogSection, blogSecId) => {
     const check = blogSection.find((id) => id == blogSecId);
@@ -67,7 +77,15 @@ const Blogs = () => {
  } 
    
  const handleSelectChange=(e)=>{
-  console.log(e.target.value,"SELECTED id");
+  const selectedId = e.target.value
+  if (selectedId === "all") {
+    setBlog(blog);
+    window.history.pushState(null, null, "/blogs/all");
+  } else {
+    window.history.pushState(null, null, `/blogs/${selectedId}`);
+  }
+  const event = new Event("popstate");
+  window.dispatchEvent(event);
  }
 
   return (
@@ -80,17 +98,27 @@ const Blogs = () => {
           ) : (
          <>
             <div className="row m-0 justify-content-center">
-              <div className="col-2 categoryTitle"><button>ALL CATEGORIES</button></div>
+              <div className="col-2 categoryTitle">
+                <NavLink to={`/blogs/all`}>
+                <button className={`${id == 'all' ? "activebtn" : ""}`}>ALL CATEGORIES</button>
+                </NavLink>
+              </div>
               {
                 blogCategory.map((i)=>(
-                  <div className="col-2 categoryTitle"><button>{i.title}</button></div>
+                  <div className="col-2 categoryTitle">
+                    <NavLink to={`/blogs/${i._id}`}>
+
+                    <button className={`${id == i._id ? "activebtn" : ""}`}>{i.title}</button>
+                    </NavLink>
+                    
+                    </div>
                 ))
               }
-              <select name="" id="" onChange={handleSelectChange}>
+              <select name="" id="" onChange={handleSelectChange} value={id}>
                 <option value="all" selected>ALL CATEGORIES:</option>
               {
                 blogCategory.map((i)=>(
-                  <option value={i._id}>{i.title}</option>
+                  <option value={i._id} selected={id === i._id}>{i.title}</option>
                 ))
               } 
               </select>

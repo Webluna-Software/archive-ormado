@@ -64,19 +64,20 @@ const BlogDetails = () => {
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
 
-  useEffect(() => {
-    const updateCount = blogDetails && blogDetails.readCount + 1;
-    axios
-      .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, {
-        readCount: updateCount,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err, "put error");
-      });
-  }, [blogDetails]);
+  // useEffect(() => {
+  //   const updateCount = blogDetails && blogDetails.readCount + 1;
+  //   const formData = new FormData() ;
+  //   formData.append('readCount',updateCount)
+  //   console.log(typeof updateCount);
+  //   axios
+  //     .put(`${ApiLink2}/blog/${"6628ff6bb6a39e152f3707a4"}`,formData)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "put error");
+  //     });
+  // }, [blogDetails]);
 
   return (
     <>
@@ -154,7 +155,7 @@ const BlogDetails = () => {
                 </div>
                 <div className="blog-details-section2 md-my-5 ">
                   {blogSec.map((fd, i) => {
-                    const replaceVideoLink = fd.videoLink.replace("watch?v=", "embed/");
+                    // const replaceVideoLink = fd.videoLink.replace("watch?v=", "embed/");
                     const findSection = blogDetails.blogSection &&
                       blogDetails.blogSection.find((i) => i == fd._id)
                     if (findSection) {
@@ -181,7 +182,7 @@ const BlogDetails = () => {
                         ""
                       ):(
                         <div>
-                        <iframe
+                        {/* <iframe
                           width="100%"
                           height={replaceVideoLink ? '400px' : ''}
                           src={`${replaceVideoLink}`}
@@ -189,7 +190,7 @@ const BlogDetails = () => {
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowfullscreen
-                        ></iframe>
+                        ></iframe> */}
                       </div>
                       )}
                      </div>
