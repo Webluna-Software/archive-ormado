@@ -475,7 +475,7 @@
                         display: grid;
                     }
                     @media screen and (min-width: 1120px) {
-                        grid-template-columns: repeat(4, 1fr);
+                        grid-template-columns: repeat(4, 1fr)!important;
                         place-items: center;
                         display: grid;
                     }
