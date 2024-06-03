@@ -1,7 +1,7 @@
 const careerdata = [
   {
-    title: "We’re seeking a results-driven Corporate Sales Representative with outstanding interpersonal skills to actively seek out and engage prospective customers.",
-    time:"13.05.2024",
+    title: "Corporate Sales Representative",
+    time:"31.08.2024",
     place:"Berlin"
 
   }

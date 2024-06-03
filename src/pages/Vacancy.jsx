@@ -1,8 +1,6 @@
 import iconlocation from "../assets/img/iconlocation.png"
 import careerdata from "../data/careerdata"
 import { Link } from 'react-router-dom'
-
-console.log(careerdata);
 const Vacancy = () => {
   return (
     <>
@@ -16,7 +14,7 @@ const Vacancy = () => {
 
           {careerdata.length===0?<div className='text-center my-5 alert alert-warning'>There are currently no vacancies</div>:careerdata.map((item) => {
             return (
-              <Link key={item.id} to="/careerdetails" >
+              <Link key={item.id} onClick={()=>window.scrollTo({top:0})} to="/careerdetails" >
               <div className="sendingbox mt-5">
                 <div className="firstbox col-10">
                   <div className="writingbox">

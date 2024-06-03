@@ -4,8 +4,10 @@ const VacancyDetail = () => {
       <div className="VacancyDetail mt-5">
         <div className="container">
           <div className="title">
-            <h1>We’re seeking a results-driven Corporate Sales Representative with outstanding interpersonal skills to actively seek out and engage prospective customers.
-</h1>
+            <h1>Corporate Sales Representative </h1>
+            <h6 style={{fontWeight:"500"}} className="mt-3">
+            <font color="orange">Corporate Sales Representative</font> with outstanding interpersonal skills to actively seek out and engage prospective customers.
+            </h6>
           </div>
 
           <div className="firstbox ">
