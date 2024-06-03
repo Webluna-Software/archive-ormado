@@ -29,9 +29,9 @@ const Gallery = () => {
         </div>
         <h3 className="text-center mt-5">
           {" "}
-          <font color="4A3024">Ormado </font>
+          <font color="4A3024">Memories</font>
           <span>
-            <font color="#D59729">Roasting House</font>
+            <font color="#D59729"> of Team Ormado</font>
           </span>{" "}
         </h3>
         <p className="text-center text-secondary">{data.length} Photos</p>
