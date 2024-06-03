@@ -88,6 +88,7 @@ const Blogs = () => {
   window.dispatchEvent(event);
  }
 
+ console.log(blog,"blog Data");
   return (
     <>
       <section className='blogsPage'>

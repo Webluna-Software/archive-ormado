@@ -67,12 +67,12 @@ const BlogDetails = () => {
   useEffect(() => {
    if (blogDetails) {
     const updateCount = blogDetails && blogDetails.readCount + 1;
+    const formData = new FormData()
+    formData.append('readCount',updateCount)
+    formData.append('title',blogDetails.title)
+    formData.append('description',blogDetails.description)
     axios
-       .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,{
-         readCount:updateCount,
-         title:blogDetails.title,
-         description:blogDetails.description
-       })
+       .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,formData)
        .then((res) => {
          console.log(res.data);
        })
@@ -81,7 +81,7 @@ const BlogDetails = () => {
        });
    }
   }, [blogDetails]);
- 
+ console.log(blogDetails && blogDetails.readCount,"read count");
 
   return (
     <>
