@@ -81,8 +81,6 @@ const BlogDetails = () => {
        });
    }
   }, [blogDetails]);
- console.log(blogDetails && blogDetails.readCount,"read count");
-
   return (
     <>
       <section className="BlogDetails">
