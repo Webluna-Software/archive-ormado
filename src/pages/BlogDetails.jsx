@@ -64,7 +64,18 @@ const BlogDetails = () => {
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
 
-  useEffect(() => {
+
+  function formatNumber(number) {
+    if (number >= 1000 && number < 1000000) {
+      return (number / 1000).toFixed(1) + 'k';
+    } else if (number >= 1000000) {
+      return (number / 1000000).toFixed(1) + 'M';
+    } else {
+      return number.toString();
+    }
+  }
+  
+   useEffect(() => {
    if (blogDetails) {
     const updateCount = blogDetails && blogDetails.readCount + 1;
     const formData = new FormData()
@@ -81,6 +92,16 @@ const BlogDetails = () => {
        });
    }
   }, [blogDetails]);
+
+function formatReadCount(count) {
+  if (count < 1000) {
+    return count.toString(); 
+  } else {
+    return (count / 1000).toFixed(1) + 'k'; 
+  }
+}
+
+const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount);
   return (
     <>
       <section className="BlogDetails">
@@ -149,7 +170,7 @@ const BlogDetails = () => {
                               fill="#E3B142"
                             />
                           </svg>
-                          {blogDetails.readCount}
+                          {formattedReadCount}
                         </p>
                       </div>
                     </div>
