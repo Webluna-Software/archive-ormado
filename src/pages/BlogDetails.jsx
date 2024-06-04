@@ -63,17 +63,6 @@ const BlogDetails = () => {
   let blogDetails = blog.find(
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
-
-
-  function formatNumber(number) {
-    if (number >= 1000 && number < 1000000) {
-      return (number / 1000).toFixed(1) + 'k';
-    } else if (number >= 1000000) {
-      return (number / 1000000).toFixed(1) + 'M';
-    } else {
-      return number.toString();
-    }
-  }
   
    useEffect(() => {
    if (blogDetails) {
@@ -226,7 +215,7 @@ const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount)
                     <div className="blog-details-lastes">
                       {blog.slice(-2).map((fd, i) => (
                         <div className="blogcard col-12 col-md-3 col-sm-6" key={i}>
-                          <Link style={{color:"#000"}} to={`/blogDetails/${slugify(fd.title)}`} onClick={()=>{
+                          <Link style={{color:"#000"}} to={`/blogDetails/${slugify(fd.title).toLowerCase()}`} onClick={()=>{
                             window.scrollTo({top:0})
                           }}>
                             <figure>
@@ -258,7 +247,7 @@ const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount)
               <div className="cardsBlogs row m-0 mt-5">
                   {blog.slice(-4).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
-                      <Link style={{color:"#000"}} to={`/blogDetails/${slugify(item.title)}`} onClick={()=>{
+                      <Link style={{color:"#000"}} to={`/blogDetails/${slugify(item.title).toLowerCase()}`} onClick={()=>{
                             window.scrollTo({top:0})
                           }}>
                       <figure>
