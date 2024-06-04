@@ -18,10 +18,11 @@ const OurStory = () => {
   const [loading1, setLoading1] = useState(true);
 
   // NEW API
-  const [mission, setMission] = useState([]);
-  const [vision, setVision] = useState([]);
-  const [great, setGreat] = useState([]);
-  const [count,setCount] = useState([])
+  const [mission, setMission] = useState([])  ;
+  const [vision, setVision] = useState([])    ;
+  const [great, setGreat] = useState([])      ;
+  const [count,setCount] = useState([])       ;
+  const [roasting,setRoasting] = useState([]) ;
 
   useEffect(() => {
     // About
@@ -35,21 +36,22 @@ const OurStory = () => {
       axios.get(`${ApiLink2}/mission`),
       axios.get(`${ApiLink2}/vision`),
       axios.get(`${ApiLink2}/greatThink`),
-      axios.get(`${ApiLink2}/count`)
-    ]).then(([missonRes, visionRes, greatRes,countRes]) => {
+      axios.get(`${ApiLink2}/count`),
+      axios.get(`${ApiLink2}/roastingHouse`)
+    ]).then(([missonRes, visionRes, greatRes,countRes,roastingRes]) => {
       setLoading1(false);
       setMission(missonRes.data.data[0]);
       setVision(visionRes.data.data[0]);
       setGreat(greatRes.data.data[0]);
       setCount(countRes.data.data[0])
-      console.log(countRes.data.data, "count res");
+      setRoasting(roastingRes.data.data[0])
     });
   }, []);
 
   const iframeVideo = mission.videoUrl
     ? mission.videoUrl.replace("watch?v=", "embed/")
     : "";
-
+console.log(great,"iframe");
   return (
     <>
       {loading || loading1 ? (
@@ -74,25 +76,13 @@ const OurStory = () => {
           </div>
           <div className="roasting">
             <h3 className="ms-1">
-              Roasting <font color="#D59729">House</font>
+              {roasting.title}
             </h3>
-            <p className="ms-1">
-              Blending coffee is both a science and an art, requiring expertise,
-              creativity, and a keen understanding of flavor profiles. At our
-              roasting house, we take pride in our mastery of the blending
-              process, meticulously fine-tuning each blend to achieve the
-              perfect balance of acidity, body, and aroma.
-            </p>
+            <p className="ms-2" dangerouslySetInnerHTML={{__html:roasting.text}}/>
             <div className="container-fluid">
               <div className="row g-3">
-                <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
-                  <img src={roasting1} alt="" className="img-fluid" />
-                </div>
-                <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
-                  <img src={roasting2} alt="" className="img-fluid" />
-                </div>
-                <div className="col-12 col-sm-6 col-md-4 col-lg-4 ">
-                  <img src={roasting3} alt="" className="img-fluid" />
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                  <img src={roasting.images} alt="" className="img-fluid" />
                 </div>
               </div>
             </div>
@@ -142,7 +132,7 @@ const OurStory = () => {
                     <h3>{great.title}</h3>
                     <p
                       className="pb-5"
-                      dangerouslySetInnerHTML={{ __html: vision.text }}
+                      dangerouslySetInnerHTML={{ __html: great.text }}
                     />
                   </div>
                   <div className="row">

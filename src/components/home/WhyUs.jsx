@@ -1,50 +1,61 @@
+import { useState } from "react";
 import whyus from "../../assets/img/why.png";
 import ytlogo from "../../assets/img/ytlogo.png";
+import { useContext } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import ApiLinkContext from "../../context/ApiLinkContext";
 
 const WhyUs = () => {
-  const openYoutubeVideo = () => {
-    const videoUrl = "https://www.youtube.com/watch?v=GWIAwS09PpM";
-    const embedUrl = videoUrl.replace("watch?v=", "embed/");
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [whyus, setWhyUs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${ApiLink2}/whyUs`)
+      .then((res) => {
+        setWhyUs(res.data.data[0]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
 
-    const iframe = document.createElement("iframe");
-    iframe.setAttribute("src", embedUrl);
-    iframe.setAttribute("width", "560");
-    iframe.setAttribute("height", "315");
-    iframe.setAttribute("frameborder", "0");
-    iframe.setAttribute("allowfullscreen", true);
-
-    const youtubeIcon = document.querySelector(".youtube-icon");
-    youtubeIcon.innerHTML = "";
-    youtubeIcon.appendChild(iframe);
-  };
+  const url = whyus.url && whyus.url.replace("watch?v=", "embed/");
   return (
-    <section className="whyus">
-      <div className="row">
-        <div className="col-12 col-md-5">
-          <div className="whyus-text">
-            <h2>
-              WHY US <h1 className="ms-3">?</h1>
-            </h2>
-            <span>
-            We know what makes coffee beans taste better, so we utilize all our knowledge to craft the best coffee for our customers, ensuring they will enjoy every sip.
-            </span>
-          </div>
-        </div>
-        <div className="col-12 col-md-7">
-          <div className="position-relative">
-            <div className="whyus-img">
-              <img src={whyus} alt="" className="img-fluid" />
+    <>
+      {loading ? (
+        <p>loading</p>
+      ) : (
+        <section className="whyus">
+          <div className="row">
+            <div className="col-12 col-md-5">
+              <div className="whyus-text">
+                <h2>
+                  WHY US <h1 className="ms-3">?</h1>
+                </h2>
+                <span dangerouslySetInnerHTML={{ __html: whyus.text }} />
+              </div>
             </div>
-            <div
-              className="youtube-icon position-absolute"
-              onClick={openYoutubeVideo}
-            >
-              <img src={ytlogo} alt="" />
+            <div className="col-12 col-md-7">
+              <div className="position-relative">
+                <iframe
+                  width="100%"
+                  height={url ? "400px" : ""}
+                  src={`${url}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 };
 
