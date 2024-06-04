@@ -82,6 +82,7 @@ const BlogDetails = () => {
    }
   }, [blogDetails]);
 
+
 function formatReadCount(count) {
   if (count < 1000) {
     return count.toString(); 
