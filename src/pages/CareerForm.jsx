@@ -227,7 +227,7 @@ const CareerForm = () => {
                     <div className="careerForm-part1">
                       <div className="careerForm-input-text">
                         <label htmlFor="branch">
-                          <p>Branch</p>
+                          <p>Branch<span>*</span></p>
                         </label>
                       </div>
                       <div className="careerForm-input">
@@ -241,7 +241,7 @@ const CareerForm = () => {
                           }}
                         >
                           <option value="" disabled hidden>
-                            Select :
+                            Select 
                           </option>
                           <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                             Einbecker Str. 18, 10317 Berlin, Germany
@@ -279,7 +279,7 @@ const CareerForm = () => {
                     <div className="careerForm-part1">
                       <div className="careerForm-input-text">
                         <label htmlFor="city">
-                          <p>Position</p>
+                          <p>Position<span>*</span></p>
                         </label>
                       </div>
                       <div className="careerForm-input">
@@ -431,7 +431,7 @@ const CareerForm = () => {
                     <div className="careerForm-part1">
                       <div className="careerForm-input-text">
                         <label htmlFor="gender">
-                          <p>Gender</p>
+                          <p>Gender<span>*</span></p>
                         </label>
                       </div>
                       <div className="careerForm-input">
@@ -445,7 +445,7 @@ const CareerForm = () => {
                           }}
                         >
                           <option value="" disabled hidden>
-                            Select :
+                            Select 
                           </option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
@@ -520,7 +520,7 @@ const CareerForm = () => {
                     <div className="careerForm-part1">
                       <div className="careerForm-input-text">
                         <label htmlFor="information">
-                          <p>Last Job</p>
+                          <p>Last Job<span>*</span></p>
                         </label>
                       </div>
                       <div className="careerForm-input">
@@ -543,7 +543,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="reason">
-                      <p>The reason why you left your former workplace?</p>
+                      <p>The reason why you left your former workplace?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -565,7 +565,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="status">
-                      <p>Marital status</p>
+                      <p>Marital status<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -579,7 +579,7 @@ const CareerForm = () => {
                       }}
                     >
                       <option value="" disabled hidden>
-                        Select :
+                        Select 
                       </option>
                       <option value="married">Married</option>
                       <option value="unmarried">Unmarried</option>
@@ -592,7 +592,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="level">
-                      <p>Please select your highest level of education</p>
+                      <p>Please select your highest level of education<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -606,7 +606,7 @@ const CareerForm = () => {
                       }}
                     >
                       <option value="" disabled hidden>
-                        Select :
+                        Select 
                       </option>
                       <option value="Less than high school">
                         Less than high school
@@ -636,7 +636,7 @@ const CareerForm = () => {
                     <label htmlFor="experience">
                       <p>
                         Do you have any experience in the job you are applying
-                        for?
+                        for?<span>*</span>
                       </p>
                     </label>
                   </div>
@@ -659,7 +659,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="languages">
-                      <p>What languages do you speak?</p>
+                      <p>What languages do you speak?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -681,7 +681,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="responsibility">
-                      <p>Is there any criminal responsibility</p>
+                      <p>Is there any criminal responsibility<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -702,7 +702,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="about">
-                      <p>How did you find out about us?</p>
+                      <p>How did you find out about us?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -723,7 +723,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="branches">
-                      <p>Have you worked in any of our branches?</p>
+                      <p>Have you worked in any of our branches?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -744,7 +744,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="like">
-                      <p>How long would you like to work with us?</p>
+                      <p>How long would you like to work with us?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -765,7 +765,7 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="salary">
-                      <p>Expected minimum salary</p>
+                      <p>Expected minimum salary<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
@@ -786,13 +786,13 @@ const CareerForm = () => {
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="time">
-                      <p>How would you describe your availability?</p>
+                      <p>How would you describe your availability?<span>*</span></p>
                     </label>
                   </div>
                   <div className="careerForm-input">
                     <input
                       id="time"
-                      placeholder="Full time / part time"
+                      placeholder="Full-time/Part-time"
                       type="text"
                       onChange={(e) => {
                         setAvailability(e.target.value);
@@ -808,7 +808,7 @@ const CareerForm = () => {
                   <div className="careerForm-input-text">
                     <label htmlFor="choose">
                       <p>
-                        Why should we choose you?
+                        Why should we choose you?<span>*</span>
                         <span className="num">(0/5000)</span>
                       </p>
                     </label>
@@ -829,7 +829,7 @@ const CareerForm = () => {
                     </div>
                     {chooseError && (
                       <span className="invalid_message">
-                        Choose is required
+                        Answer is required
                       </span>
                     )}
                   </div>
@@ -848,11 +848,11 @@ const CareerForm = () => {
                         setFeedBackError(false);
                       }}
                     />
-                    {feedbackError && (
+                    {/* {feedbackError && (
                       <span className="invalid_message">
                         Feedback is required
                       </span>
-                    )}
+                    )} */}
                   </div>
                   <div className="careerForm-input-text">
                     <label htmlFor="share">
@@ -871,11 +871,11 @@ const CareerForm = () => {
                         setChronicError(false);
                       }}
                     />
-                    {chronicError && (
+                    {/* {chronicError && (
                       <span className="invalid_message">
                         Chronis is required
                       </span>
-                    )}
+                    )} */}
                   </div>
 
                   {/* <div className="careerForm-input-text">
@@ -915,11 +915,11 @@ const CareerForm = () => {
                         setInformationError(false);
                       }}
                     />
-                    {informationError && (
+                    {/* {informationError && (
                       <span className="invalid_message">
                         Information is required
                       </span>
-                    )}
+                    )} */}
                   </div>
                   <div className="careerForm-btn">
                     <button className="mt-4" type="submit">
