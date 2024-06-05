@@ -176,7 +176,7 @@ const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount)
                       return (
                           <div className="blog-details-text" key={i}>
                             <div className="blog-details-text-part1 my-5">
-                              {fd.text == "undefined" ? (
+                              {fd.title == "undefined" ? (
                                 ""
                               ) : (
                                 <p>{fd.title}</p>
@@ -184,7 +184,9 @@ const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount)
                               {fd.text == "undefined" ? (
                                 ""
                               ) : (
-                                <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               <div>
+                                 <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               </div>
                               )}
                             </div>
                             <div className="blog-details-text-part2 ">
