@@ -82,6 +82,7 @@ const BlogDetails = () => {
    }
   }, [blogDetails]);
 
+
 function formatReadCount(count) {
   if (count < 1000) {
     return count.toString(); 
@@ -170,14 +171,22 @@ const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount)
                     const replaceVideoLink =fd.videoLink && fd.videoLink.replace("watch?v=", "embed/");
                     const findSection = blogDetails.blogSection &&
                       blogDetails.blogSection.find((i) => i == fd._id)
+                      console.log(findSection,"budur");
                     if (findSection) {
                       return (
                           <div className="blog-details-text" key={i}>
                             <div className="blog-details-text-part1 my-5">
+                              {fd.title == "undefined" ? (
+                                ""
+                              ) : (
+                                <p>{fd.title}</p>
+                              )}
                               {fd.text == "undefined" ? (
                                 ""
                               ) : (
-                                <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               <div>
+                                 <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               </div>
                               )}
                             </div>
                             <div className="blog-details-text-part2 ">
