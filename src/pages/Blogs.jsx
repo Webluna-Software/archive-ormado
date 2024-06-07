@@ -87,6 +87,14 @@ const Blogs = () => {
   const event = new Event("popstate");
   window.dispatchEvent(event);
  }
+ 
+ function formatReadCount(count) {
+  if (count < 1000) {
+    return count.toString(); 
+  } else {
+    return (count / 1000).toFixed(1) + 'k'; 
+  }
+}
 
   return (
     <>
@@ -143,7 +151,7 @@ const Blogs = () => {
                            <span> Read more</span>
                         </p>
                         <div className='date-number'>
-                          <span>{item.readCount} read</span>
+                          <span>{formatReadCount(item.readCount)} read</span>
                           <span>{item.date}</span>
                         </div>
                       </div>

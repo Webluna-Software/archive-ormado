@@ -63,16 +63,16 @@ const BlogDetails = () => {
   let blogDetails = blog.find(
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
-
-  useEffect(() => {
+  
+   useEffect(() => {
    if (blogDetails) {
     const updateCount = blogDetails && blogDetails.readCount + 1;
+    const formData = new FormData()
+    formData.append('readCount',updateCount)
+    formData.append('title',blogDetails.title)
+    formData.append('description',blogDetails.description)
     axios
-       .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,{
-         readCount:updateCount,
-         title:blogDetails.title,
-         description:blogDetails.description
-       })
+       .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`,formData)
        .then((res) => {
          console.log(res.data);
        })
@@ -81,8 +81,17 @@ const BlogDetails = () => {
        });
    }
   }, [blogDetails]);
- 
 
+
+function formatReadCount(count) {
+  if (count < 1000) {
+    return count.toString(); 
+  } else {
+    return (count / 1000).toFixed(1) + 'k'; 
+  }
+}
+
+const formattedReadCount = formatReadCount(blogDetails && blogDetails.readCount);
   return (
     <>
       <section className="BlogDetails">
@@ -151,7 +160,7 @@ const BlogDetails = () => {
                               fill="#E3B142"
                             />
                           </svg>
-                          {blogDetails.readCount}
+                          {formattedReadCount}
                         </p>
                       </div>
                     </div>
@@ -162,14 +171,22 @@ const BlogDetails = () => {
                     const replaceVideoLink =fd.videoLink && fd.videoLink.replace("watch?v=", "embed/");
                     const findSection = blogDetails.blogSection &&
                       blogDetails.blogSection.find((i) => i == fd._id)
+                      console.log(findSection,"budur");
                     if (findSection) {
                       return (
                           <div className="blog-details-text" key={i}>
                             <div className="blog-details-text-part1 my-5">
+                              {fd.title == "undefined" ? (
+                                ""
+                              ) : (
+                                <p>{fd.title}</p>
+                              )}
                               {fd.text == "undefined" ? (
                                 ""
                               ) : (
-                                <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               <div>
+                                 <p dangerouslySetInnerHTML={{ __html: fd.text }} />
+                               </div>
                               )}
                             </div>
                             <div className="blog-details-text-part2 ">
@@ -207,7 +224,7 @@ const BlogDetails = () => {
                     <div className="blog-details-lastes">
                       {blog.slice(-2).map((fd, i) => (
                         <div className="blogcard col-12 col-md-3 col-sm-6" key={i}>
-                          <Link style={{color:"#000"}} to={`/blogDetails/${slugify(fd.title)}`} onClick={()=>{
+                          <Link style={{color:"#000"}} to={`/blogDetails/${slugify(fd.title).toLowerCase()}`} onClick={()=>{
                             window.scrollTo({top:0})
                           }}>
                             <figure>
@@ -239,7 +256,7 @@ const BlogDetails = () => {
               <div className="cardsBlogs row m-0 mt-5">
                   {blog.slice(-4).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
-                      <Link style={{color:"#000"}} to={`/blogDetails/${slugify(item.title)}`} onClick={()=>{
+                      <Link style={{color:"#000"}} to={`/blogDetails/${slugify(item.title).toLowerCase()}`} onClick={()=>{
                             window.scrollTo({top:0})
                           }}>
                       <figure>

@@ -105,8 +105,8 @@ const Reserve = () => {
   const handleKeyDown = (e) => {
     // Prevents user from entering a number below 5
     if (e.key === 'Enter' || e.key === 'Tab') {
-      if (numbOfGuest < 5) {
-        alert('The minimum number for a reservation is 5 people.');
+      if (numbOfGuest < 6) {
+        alert('The minimum number for a reservation is 6 people.');
         e.preventDefault();
       }
     }
@@ -114,9 +114,9 @@ const Reserve = () => {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    if (value < 5 && value !== '') {
+    if (value < 6 && value !== '') {
       setGuestError(true);
-      alert("Attention!\nThe minimum number for a reservation is 5 people.");
+      alert("Attention!\nThe minimum number for a reservation is 6 people.");
     } else {
       setnumbOfGuest(value);
       setGuestError(false);
@@ -129,7 +129,14 @@ const Reserve = () => {
     setPhoneError(false);
   }
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date();
+  const twoWeeksLater = new Date();
+  twoWeeksLater.setDate(today.getDate() + 14);
+  
+  const todayFormatted = today.toISOString().split("T")[0];
+  const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
+
+
 
   return (
     <>
@@ -244,7 +251,7 @@ const Reserve = () => {
                       />
                       {emailError && (
                         <span className="invalid_message">
-                          Email address is required
+                           Please enter a valid email address to proceed.
                         </span>
                       )}
                     </div>
@@ -255,7 +262,7 @@ const Reserve = () => {
                     <div className="reserve-input-text">
                       <label htmlFor="phone">
                         <p>
-                          Phone<span>*</span>
+                          Phone Number<span>*</span>
                         </p>
                       </label>
                     </div>
@@ -271,7 +278,7 @@ const Reserve = () => {
                       {
                         phoneError && (
                           <span className="invalid_message">
-                            Phone is required
+                            Telephone number is required.
                           </span>
                         )
                       }
@@ -298,7 +305,7 @@ const Reserve = () => {
                       {
                         guestError && (
                           <span className="invalid_message">
-                            Number of guest is required
+                            The number of guests must be mentioned. 
                           </span>
                         )
                       }
@@ -330,7 +337,8 @@ const Reserve = () => {
                           setdate(e.target.value)
                           setDateError(false)
                         }}
-                        min={today}
+                        min={todayFormatted}
+                        max={twoWeeksLaterFormatted}
                       />
                       {
                         dateError && (
@@ -370,7 +378,7 @@ const Reserve = () => {
                   <div className="reserve-part1">
                     <div className="reserve-input-text">
                       <label htmlFor="branch">
-                        <p>Branch</p>
+                        <p>Branch<span>*</span></p>
                       </label>
                     </div>
                     <div className="reserve-input">
@@ -390,7 +398,7 @@ const Reserve = () => {
                           disabled
                           hidden
                         >
-                          Select :
+                          Select 
                         </option>
                         <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                           Einbecker Str. 18, 10317 Berlin, Germany
@@ -431,7 +439,7 @@ const Reserve = () => {
                     <div className="reserve-input">
                       <input
                         id="remarks"
-                        placeholder="Please let us know what we need to know about your reservation"
+                        placeholder="If you have any special requests, please note them."
                         type="text"
                         className={`${remarkError ? "invalid" : ""}`}
                         onChange={(e) => {
@@ -531,7 +539,7 @@ const Reserve = () => {
                       <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                            <div className="modal-header">
-                            <h5 className="modal-title">Thank you !</h5>
+                            <h5 className="modal-title">Thank you!</h5>
                             <button type="button" 
                               onClick={() => {
                               window.location.reload()

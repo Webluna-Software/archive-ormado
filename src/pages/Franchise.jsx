@@ -9,7 +9,13 @@ import cardimg2 from '../assets/img/2.jpg'
 import cardimg3 from '../assets/img/3.jpg'
 import { testimonalsforfranchise } from '../data/data'
 import Franchisepdf from '../assets/img/Franchise.pdf'
+import { useContext, useEffect, useState } from 'react'
+import ApiLinkContext from '../context/ApiLinkContext'
+import axios from 'axios'
 const Franchise = () => {
+  const {ApiLink2} = useContext(ApiLinkContext)
+  const [franchiseFaq,setFranchiseFaq] = useState([])
+ 
   return (
     <div >
       <section className="franchise-mobile d-none" >
