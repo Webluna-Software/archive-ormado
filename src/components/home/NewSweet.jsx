@@ -4,22 +4,38 @@ import 'swiper/css/pagination';
 import { EffectFade,Pagination } from 'swiper/modules';
 import 'swiper/css/effect-fade';
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useEffect } from 'react';
-import newsweetimg from '../../assets/img/NewSweet.png';
+// import newsweetimg from '../../assets/img/NewSweet.png';
+import ApiLinkContext from '../../context/ApiLinkContext';
 
 const NewSweets = () => {
+  const { ApiLink2 } = useContext(ApiLinkContext);
   const [sliderData,setSliderData] = useState([])
-  useEffect(()=>{
-    axios.get("https://ormado.webluna.space/api/client/slider")
-    .then((res)=>{
-      console.log(res.data.data, "SLIDER")
-      setSliderData(res.data.data)
-    }) 
-  },[])
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${ApiLink2}/newSweets`)
+      .then((res) => {
+        setSliderData(res.data.data[0]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
+ 
+  // useEffect(()=>{
+  //   axios.get("https://ormado.webluna.space/api/client/slider")
+  //   .then((res)=>{
+  //     console.log(res.data.data, "SLIDER")
+  //     setSliderData(res.data.data)
+  //   }) 
+  // },[])
   return (
-    <>
-    <div className='new-sweet my-5'>
+  <> {  loading ? <p>Loading</p> :
+    ( <div className='new-sweet my-5'>
         <div>
       <Swiper
         spaceBetween={30}
@@ -50,19 +66,19 @@ const NewSweets = () => {
         <SwiperSlide>
         <div className="swiper-main">
              <div className="img">
-                <img src={newsweetimg} alt="" /> 
+                <img src={sliderData.image} alt="" className='img-fluid' /> 
               </div>
               <div className="swiper-background"></div>
               <div className="swiper-text container">
                 <h1 className='mb-3'>NEW <span>SWEETS</span></h1>
-                <p>You can be sure that you will meet new desserts every time you visit our coffee shop. Don't miss the chance to get acquainted with our delicious desserts that are updated every day.</p>
+                <p dangerouslySetInnerHTML={{ __html: sliderData.desc }}></p>
             </div>
             </div>
         </SwiperSlide>
       </Swiper>
     </div>
-    </div>
-    </>
+    </div>)
+    }</>
   )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import whyus from "../../assets/img/why.png";
-import ytlogo from "../../assets/img/ytlogo.png";
+// import whyus from "../../assets/img/why.png";
+// import ytlogo from "../../assets/img/ytlogo.png";
 import { useContext } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -46,9 +46,10 @@ const WhyUs = () => {
                   height={url ? "400px" : ""}
                   src={`${url}`}
                   title="YouTube video player"
-                  frameBorder="0"
+                  // frameBorder="0"
+                  frameBorder={0}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </div>
             </div>
