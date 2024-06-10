@@ -7,7 +7,7 @@ import Faq from '../components/home/Faq'
 import cardimg1 from '../assets/img/1.jpg'
 import cardimg2 from '../assets/img/2.jpg'
 import cardimg3 from '../assets/img/3.jpg'
-import { testimonalsforfranchise } from '../data/data'
+// import { testimonalsforfranchise } from '../data/data'
 import Franchisepdf from '../assets/img/Franchise.pdf'
 import { useContext, useEffect, useState } from 'react'
 import ApiLinkContext from '../context/ApiLinkContext'
@@ -76,7 +76,7 @@ const Franchise = () => {
 
       </section>
 
-      <Testimonials senddata={testimonalsforfranchise} />
+      <Testimonials/>
       <div className="franchisecompany">
         <div className="franchisecompany-part1-text mb-2">
           <p>Based on mutual agreement, we share and provide mentorship on all the necessary information required for a successful and risk-free start to the business. This includes interior design, furnishings, beverage and dessert menus, and more.</p>

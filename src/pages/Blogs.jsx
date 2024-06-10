@@ -105,7 +105,7 @@ const Blogs = () => {
             <PreLoader/>
           ) : (
          <>
-            <div className="row m-0 justify-content-center">
+            <div className="row m-0 justify-content-start">
               <div className="col-2 categoryTitle">
                 <NavLink to={`/blogs/all`}>
                 <button className={`${id == 'all' ? "activebtn" : ""}`}>ALL CATEGORIES</button>
@@ -113,7 +113,7 @@ const Blogs = () => {
               </div>
               {
                 blogCategory.map((i)=>(
-                  <div className="col-2 categoryTitle">
+                  <div className="col-2 categoryTitle" key={i._id}>
                     <NavLink to={`/blogs/${i._id}`}>
 
                     <button className={`${id == i._id ? "activebtn" : ""}`}>{i.title}</button>
@@ -126,7 +126,7 @@ const Blogs = () => {
                 <option value="all" selected>ALL CATEGORIES:</option>
               {
                 blogCategory.map((i)=>(
-                  <option value={i._id} selected={id === i._id}>{i.title}</option>
+                  <option value={i._id} selected={id === i._id} key={i._id}>{i.title}</option>
                 ))
               } 
               </select>

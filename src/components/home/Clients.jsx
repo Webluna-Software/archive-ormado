@@ -1,7 +1,25 @@
 import Slider from "react-slick";
-import removebg from '../../assets/img/removebg.png';
+// import removebg from "../../assets/img/removebg.png";
+import { useContext, useEffect, useState } from "react";
+import ApiLinkContext from "../../context/ApiLinkContext";
+import axios from "axios";
 
 const Clients = () => {
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${ApiLink2}/ourClients`)
+      .then((res) => {
+        setPartners(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
   const settings = {
     infinite: false,
     speed: 500,
@@ -47,22 +65,39 @@ const Clients = () => {
     ],
   };
   return (
-    <section className="clients mt-5">
-      <div className="row">
-        <div className="col-12">
-          <div className="clients-text">
-            <h3>Our Partners</h3>
-            <span>Our high-quality coffee beans attract priceless collaborations.</span>
-          </div>
-          <div className="client-slider_container">
-            <div className="row">
-              <Slider {...settings}>
-                <div className="col-12 col-md-2">
+    <>
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <section className="clients mt-5">
+          <div className="row">
+            <div className="col-12">
+              <div className="clients-text">
+                <h3>Our Partners</h3>
+                <span>
+                  Our high-quality coffee beans attract priceless
+                  collaborations.
+                </span>
+              </div>
+              <div className="client-slider_container">
+                <div className="row">
+                  <Slider {...settings}>
+                    {partners.map((partner) => (
+                      <div className="col-12 col-md-2" key={partner._id}>
+                        <div className="clients-img">
+                          <img
+                            src={partner.image}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    {/* <div className="col-12 col-md-2">
                   <div className="clients-img">
                     <img src='https://i0.wp.com/www.modest.coffee/wp-content/uploads/2018/02/la-marzocco-logo.png?fit=285%2C166&ssl=1' alt="" className="img-fluid" />
                   </div>
-                </div>
-                <div className="col-12 col-md-2">
+                </div> <div className="col-12 col-md-2">
                   <div className="clients-img">
                     <img src='https://b2b.mallofberlin.de/wp-content/themes/dshg/images/logo-min.png' alt="" className="img-fluid" />
                   </div>
@@ -81,13 +116,15 @@ const Clients = () => {
                   <div className="clients-img">
                     <img src='https://cdn.metro-online.com/-/media/Project/MCW/shared/Bucket-Header/METRO.svg?rev=-1&w=129&hash=DB804DB52AB628282509929F5704CC77' alt="" className="img-fluid" />
                   </div>
+                </div> */}
+                  </Slider>
                 </div>
-              </Slider>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 };
 
