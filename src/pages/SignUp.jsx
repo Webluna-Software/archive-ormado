@@ -406,8 +406,11 @@ const SignUp = () => {
               <div className="mt-3">
                 <p className="ms-2 mb-2">
                   By creating an account means you agree to the
-                  <Link className="remember-link">Terms and Conditions</Link>,
+                  <Link className="remember-link"> Terms and Conditions</Link>,
                   and our <Link className="remember-link">Privacy Policy</Link>
+                  {/* <br />
+                  Creating an account signifies your agreement to the <Link className="remember-link">terms and conditions</Link>.
+                  It also signifies your acceptance of our <Link className="remember-link">privacy policy</Link>. */}
                 </p>
               </div>
             </div>

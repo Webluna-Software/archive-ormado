@@ -69,7 +69,7 @@ const FranchiseForm = () => {
     }
   };
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     setphone(value);
     setPhoneError(false);
   };
@@ -127,14 +127,16 @@ const FranchiseForm = () => {
                   id="email"
                   placeholder="example@gmail.com"
                   type="text"
-                  onChange={(e) =>{
-                    setemail(e.target.value)
-                    setEmailError(false)
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                    setEmailError(false);
                   }}
                 />
               </div>
               {emailError && (
-                <span className="invalid_message">Email address is required</span>
+                <span className="invalid_message">
+                  Email address is required
+                </span>
               )}
               <div className="franchiseform-input-text">
                 <label htmlFor="phone">
@@ -173,16 +175,16 @@ const FranchiseForm = () => {
                       id="country"
                       placeholder="Faroe Islands"
                       type="text"
-                      onChange={(e) =>{
-                        setcountry(e.target.value)
-                        setCountryError(false)
+                      onChange={(e) => {
+                        setcountry(e.target.value);
+                        setCountryError(false);
                       }}
                     />
-                    {
-                      countryError && (
-                        <span className="invalid_message">Country is required</span>
-                      )
-                    }
+                    {countryError && (
+                      <span className="invalid_message">
+                        Country is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="franchiseform-city">
@@ -198,16 +200,14 @@ const FranchiseForm = () => {
                       id="city"
                       placeholder="Redlands"
                       type="text"
-                      onChange={(e) =>{
-                        setcity(e.target.value)
-                        setCityError(false)
+                      onChange={(e) => {
+                        setcity(e.target.value);
+                        setCityError(false);
                       }}
                     />
-                    {
-                      cityError && (
-                        <span className="invalid_message">City is required</span>
-                      )
-                    }
+                    {cityError && (
+                      <span className="invalid_message">City is required</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -215,7 +215,7 @@ const FranchiseForm = () => {
                 <p>
                   Your personal data will be used to process your enquiry,
                   support your experience throughout this website, and for other
-                  purposes described in our{" "}
+                  purposes described in our
                   <Link className="franchiseform-link">Privacy policy.</Link>
                 </p>
                 <p>
