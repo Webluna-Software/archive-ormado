@@ -1,8 +1,26 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Slider from 'react-slick'
+import ApiLinkContext from '../../context/ApiLinkContext';
+import axios from 'axios';
 
-const Testimonials = ({senddata}) => {
+const Testimonials = () => {
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${ApiLink2}/testimonal`)
+      .then((res) => {
+        setTestimonials(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -33,7 +51,7 @@ const Testimonials = ({senddata}) => {
       },
     ]
   }
-  const [expandedArray, setExpandedArray] = useState(new Array(senddata.length).fill(false));
+  const [expandedArray, setExpandedArray] = useState(new Array(testimonials.length).fill(false));
 
   const toggleExpand = (index) => {
     event.preventDefault();
@@ -41,13 +59,14 @@ const Testimonials = ({senddata}) => {
     newExpandedArray[index] = !newExpandedArray[index];
     setExpandedArray(newExpandedArray);
   }
+  
   return (
     <>
-      <div className="testimonials-div">
+      {loading ? <p>Loading</p> : <div className="testimonials-div">
         <h3>Testimonial</h3>
         <Slider {...settings}>
-          {senddata.map((fd, index) => (
-            <div className="testimonials-inner" key={fd.id}>
+          {testimonials.map((fd, index) => (
+            <div className="testimonials-inner" key={fd._id}>
               <div className="card" key={index}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
                   <g clipPath="url(#clip0_891_5)">
@@ -60,19 +79,17 @@ const Testimonials = ({senddata}) => {
                   </defs>
                 </svg>
                 <div className="card-body">
-                  <h5 className="card-title">{fd.name}</h5>
-                  <p className="card-text">
-                    {expandedArray[index] ? fd.text : `${fd.text.slice(0, 100)}...`}
-                    <a href="#" onClick={() => toggleExpand(index)}>
-                      {expandedArray[index] ? 'See Less' : 'See More'}
-                    </a>
-                  </p>
+                  <h5 className="card-title">{fd.title}</h5>
+                  <p className="card-text"  dangerouslySetInnerHTML={{ __html: expandedArray[index] ? fd.text:  `${fd.text.slice(0, 100)}...`}}/>
+                  <a href="#" onClick={() => toggleExpand(index)}>
+                    {expandedArray[index] ? 'See Less' : 'See More'}
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </Slider>
-      </div>
+      </div>}
     </>
   )
 }

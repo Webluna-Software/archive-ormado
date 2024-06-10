@@ -1,55 +1,65 @@
-import waffle from "../../assets/img/waffle.jpg"
-import sansebastian from "../../assets/img/sansebastian.jpg"
-import croissant from "../../assets/img/croissant.jpg"
-import cheesecake from "../../assets/img/cheesecake.jpg"
+// import waffle from "../../assets/img/waffle.jpg"
+// import sansebastian from "../../assets/img/sansebastian.jpg"
+// import croissant from "../../assets/img/croissant.jpg"
+// import cheesecake from "../../assets/img/cheesecake.jpg"
+import { useContext, useEffect, useState } from "react";
+import ApiLinkContext from "../../context/ApiLinkContext";
+import axios from "axios";
 
 const Cakes = () => {
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [cake, setCake] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get(`${ApiLink2}/cakes`)
+      .then((res) => {
+        setCake(res.data.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
-    <div>
-      <section className="CakesSection">
+    <>
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <section className="CakesSection">
+          <div className="width-90">
+            <h2 className="headText">
+              Our Exclusive <span> Cakes </span>
+            </h2>
 
-        <div className="width-90">
-            
-          <h2 className="headText">
-            Our Exclusive <span> Cakes </span>
-          </h2>
-
-          <div className="card-parts">
-
-            <div className="row">
-                <div className="col-6 col-lg-4 col-xl-3">
-                    <div className="card mt-4 " >
-                        <img src={waffle} className="card-img-top" alt="..." />
-                            <div className="card-body">
-                            <h5 className="card-title cardHeadText">Waffle</h5>
-{/*                             
-                            <div className="card-bottom-part">
-                            <p className="card-price">
-                                $20.00
-                            </p>
-                            <a href="#" className="cardBtn btn btn-primary">
-                                Taste now 
-                            </a>
-                            </div> */}
-                        </div>                        
+            <div className="card-parts">
+              <div className="row">
+                {cake.map((cake) => (
+                  <div className="col-6 col-lg-4 col-xl-3" key={cake._id}>
+                    <div className="card mt-4 ">
+                      <img
+                        src={cake.image}
+                        className="card-img-top"
+                        alt="..."
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title cardHeadText">
+                          {cake.title}
+                        </h5>
+                      </div>
                     </div>
-                </div>
+                  </div>
+                ))}
 
-
+                {/* 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
                         <img src={sansebastian}  className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">San Sebastian </h5>
-{/*                             
-                            <div className="card-bottom-part">
-                            <p className="card-price">
-                                $20.00
-                            </p>
-                            <a href="#" className="cardBtn btn btn-primary">
-                                Taste now 
-                            </a>
-                            </div> */}
+
                         </div>                        
                     </div>
                 </div>
@@ -59,15 +69,6 @@ const Cakes = () => {
                         <img src={croissant} className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Croissant</h5>
-{/*                             
-                            <div className="card-bottom-part">
-                            <p className="card-price">
-                                $20.00
-                            </p>
-                            <a href="#" className="cardBtn btn btn-primary">
-                                Taste now 
-                            </a>
-                            </div> */}
                         </div>                        
                     </div>
                 </div>
@@ -77,26 +78,15 @@ const Cakes = () => {
                         <img src={cheesecake} className="card-img-top" alt="..." />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Honey Cake</h5>
-{/*                             
-                            <div className="card-bottom-part">
-                            <p className="card-price">
-                                $20.00
-                            </p>
-                            <a href="#" className="cardBtn btn btn-primary">
-                                Taste now 
-                            </a>
-                            </div> */}
                         </div>                        
                     </div>
-                </div>
-                
+                </div> */}
+              </div>
             </div>
-
           </div>
-
-        </div>
-      </section>
-    </div>
+        </section>
+      )}
+    </>
   );
 };
 
