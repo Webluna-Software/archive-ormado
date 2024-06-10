@@ -14,6 +14,7 @@ const Clients = () => {
       .then((res) => {
         setPartners(res.data.data);
         setLoading(false);
+        console.log(res.data.data,"clients");
       })
       .catch((err) => {
         console.log(err);
@@ -89,6 +90,15 @@ const Clients = () => {
                             src={partner.image}
                             alt=""
                             className="img-fluid"
+                            style={{cursor:"pointer"}}
+                            onClick={() => {
+                              const targetLink =
+                                !partner.url.startsWith("http://") &&
+                                !partner.url.startsWith("https://")
+                                  ? `https://${partner.url}`
+                                  : partner.url;
+                              window.open(targetLink, "_blank");
+                            }}
                           />
                         </div>
                       </div>
