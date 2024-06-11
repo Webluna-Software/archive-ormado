@@ -270,7 +270,7 @@ const Reserve = () => {
                       <input
                         id="phone"
                         className={`${phoneError ? "invalid" : ""}`}
-                        placeholder="+994 55 604 52 08"
+                        placeholder="+"
                         type="tel"
                         value={phone}
                         onChange={handlePhoneChange}
