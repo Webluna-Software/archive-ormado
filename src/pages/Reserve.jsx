@@ -1,8 +1,10 @@
-import  { useContext, useEffect, useState } from "react";
+ import  { useContext, useEffect, useState } from "react";
 import background from "../assets/img/reservation-banner.png";
 import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
+
+import Modal from '../components/modal/modal';
 
 const Reserve = () => {
   const { ApiLink } = useContext(ApiLinkContext);
@@ -27,9 +29,10 @@ const Reserve = () => {
   const [remarkError,setRemarkError] = useState(false)
 
   
+  //MODAL
   const [showModal, setShowModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
-
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [reloadOnClose, setReloadOnClose] = useState(true);
 
   useEffect(() => {
     axios.get(`${ApiLink}/reserve`).then((res) => {
@@ -78,11 +81,28 @@ const Reserve = () => {
         .then((res) => {
           if (res.data.status == "success") {
             setShowModal(true);
+            setModalContent({
+              title: "Thank you!",
+              body: "Your form has been submitted successfully!",
+            });
+            setReloadOnClose(true);
           }
         })
         .catch(() => {
-          setShowErrorModal(true)
+          setModalContent({
+            title: "Something went wrong!",
+            body: "Something went wrong. Please try again.",
+          });
+          setShowModal(true);
+          setReloadOnClose(true);
         });
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (reloadOnClose) {
+      window.location.reload();
     }
   };
 
@@ -93,7 +113,7 @@ const Reserve = () => {
   // const handleKeyDown = (e) => {
   //   if (
   //     !(
-  //       !(e.key >= "0" && e.key <= "9") ||
+        // !(e.key >= "0" && e.key <= "9") ||
   //       e.key === "Backspace" ||
   //       e.key === "Delete"
   //     )
@@ -107,6 +127,12 @@ const Reserve = () => {
     if (e.key === 'Enter' || e.key === 'Tab') {
       if (numbOfGuest < 6) {
         alert('The minimum number for a reservation is 6 people.');
+        // setModalContent({
+        //   title: "Attention!",
+        //   body: "The minimum number for a reservation is 6 people."
+        // });
+        // setShowModal(true);
+        // setReloadOnClose(false);
         e.preventDefault();
       }
     }
@@ -116,12 +142,20 @@ const Reserve = () => {
     const value = e.target.value;
     if (value < 6 && value !== '') {
       setGuestError(true);
-      alert("Attention!\nThe minimum number for a reservation is 6 people.");
+      // alert("Attention!\nThe minimum number for a reservation is 6 people.");
+      setModalContent({
+        title: "Attention!",
+        body: "The minimum number for a reservation is 6 people."
+      });
+      setShowModal(true);
+      setReloadOnClose(false);
     } else {
       setnumbOfGuest(value);
       setGuestError(false);
     }
   };
+
+      
   const handlePhoneChange = (e) => {
     const value = e.target.value;
     const onlyNums = value.replace(/[^\d]/g, ''); 
@@ -534,7 +568,7 @@ const Reserve = () => {
                 )} */}
               </form>
               
-                  <div className="btn-form-modal">
+                  {/* <div className="btn-form-modal">
                     <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
                       <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
@@ -555,11 +589,17 @@ const Reserve = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
             </div>
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
     </>
   );
 };

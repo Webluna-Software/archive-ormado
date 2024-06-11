@@ -8,6 +8,8 @@ import { addToWish, removeFromWish } from "../../features/wishSlice";
 import { getCookie } from "../../utils/cookie";
 import { validateUserID } from "../../utils/user";
 
+import Modal from '../modal/modal';
+
 // eslint-disable-next-line react/prop-types
 const YourOrmado = ({_id}) => {
   const { ApiLink } = useContext(ApiLinkContext);
@@ -15,6 +17,18 @@ const YourOrmado = ({_id}) => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const [quantity,setQuantity]=useState(1);
+
+  //MODAL
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [reloadOnClose, setReloadOnClose] = useState(true);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (reloadOnClose) {
+      window.location.reload();
+    }
+  };
 
   useEffect(() => {
     axios.get(`${ApiLink}/product`).then((res) => {
@@ -45,7 +59,13 @@ const userID = validateUserID();
   const cartClick = useCallback(
     (_id, title, price, salePrice, coverImage,stock) => {
       if (!userID) {
-        alert("Please login first!");
+        // alert("Please login first!");
+        setShowModal(true);
+        setModalContent({
+          title: "Attention!",
+          body: "Please login first",
+        });
+        setReloadOnClose(false);
         return;
       }
       if (findCart(_id)) {
@@ -73,7 +93,13 @@ const userID = validateUserID();
 
   const wishClick = useCallback((_id,coverImage,title,price,salePrice,stock) => {
     if (!userID) {
-      alert("Please login first!");
+      // alert("Please login first!");
+      setShowModal(true);
+      setModalContent({
+        title: "Attention!",
+        body: "Please login first",
+      });
+      setReloadOnClose(false);
       return;
     }
     if (findWish(_id)) {
@@ -87,7 +113,7 @@ const userID = validateUserID();
   }, [dispatch, userID])
 
   return (
-    <div className="yourormado-div my-5">
+    <>    <div className="yourormado-div my-5">
       <h3>
         Your <span>Ormado</span>
       </h3>
@@ -105,7 +131,7 @@ const userID = validateUserID();
               <div className="wishlist-modal">
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
                 onClick={() => {
-                  if (userID) {
+                  // if (userID) {
                     wishClick(
                       fd._id,
                       fd.title,
@@ -114,10 +140,11 @@ const userID = validateUserID();
                       fd.salePrice,
                       fd.stock
                     );
-                  } else {
-                    alert("Please login first!");
-                    navigate('/login');
-                  }
+                  // } 
+                  // else {
+                  //   alert("Please login first!");
+                  //   navigate('/login');
+                  // }
                 }}
                 >
                   <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
@@ -165,7 +192,7 @@ const userID = validateUserID();
                   <div
                     className="price-cart"
                     onClick={() => {
-                      if (userID) {
+                      // if (userID) {
                         cartClick(
                           fd._id,
                           fd.title,
@@ -174,10 +201,11 @@ const userID = validateUserID();
                           fd.coverImage,
                           fd.stock
                         );
-                      } else {
-                        alert("Please login first!");
-                        navigate('/login');
-                      }
+                      // } 
+                      // else {
+                      //   alert("Please login first!");
+                      //   navigate('/login');
+                      // }
                     }}
                   >
                      <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
@@ -188,7 +216,11 @@ const userID = validateUserID();
           </div>
         ))}
       </div>
+      
     </div>
+    <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
+    </>
+
   );
 };
 
