@@ -1,3 +1,4 @@
+
 import { useCallback, useContext, useEffect, useState } from "react";
 import productImg from "../assets/img/products-banner.png";
 import ApiLinkContext from "../context/ApiLinkContext";
@@ -18,7 +19,8 @@ const Products = ({ _id }) => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
-
+       
+  //MODAL
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
 
@@ -67,7 +69,7 @@ if (userID) {
     if (!userID) {
       setModalContent({ title: "Please Login", body: "Please login first!" });
       setShowModal(true);
-      window.location.reload();
+      // window.location.reload();
       return false;
     }
     return true;

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
 
+import Modal from "../components/modal/modal";
+
 const FranchiseForm = () => {
   const { ApiLink } = useContext(ApiLinkContext);
   useEffect(() => {
@@ -11,12 +13,17 @@ const FranchiseForm = () => {
       console.log(res.data, "FranchiseForm");
     });
   });
+
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setphone] = useState();
   const [city, setcity] = useState();
   const [country, setcountry] = useState();
   // const [submissionStatus, setSubmissionStatus] = useState(null);
+
+  //MODAL
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
 
   // VALIDATION
   const [nameError, setNameError] = useState(false);
@@ -25,8 +32,8 @@ const FranchiseForm = () => {
   const [cityError, setCityError] = useState(false);
   const [countryError, setCountryError] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const [showErrorModal, setShowErrorModal] = useState(false);
 
   const fromPost = (e) => {
     e.preventDefault();
@@ -60,13 +67,25 @@ const FranchiseForm = () => {
         })
         .then((res) => {
           if (res.data.status == "success") {
+            setModalContent({
+              title: "Thank you!",
+              body: "Your form has been submitted successfully!",
+            });
             setShowModal(true);
           }
         })
         .catch(() => {
-          setShowErrorModal(true);
+          setModalContent({
+            title: "Something went wrong!",
+            body: "Something went wrong. Please try again.",
+          });
+          setShowModal(true);
         });
     }
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    window.location.reload();
   };
   const handlePhoneChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -236,7 +255,7 @@ const FranchiseForm = () => {
               </div>
             </form>
 
-            <div className="btn-form-modal">
+            {/* <div className="btn-form-modal">
               <div
                 className={`modal fade ${showModal ? "show" : ""}`}
                 tabIndex={-1}
@@ -246,7 +265,7 @@ const FranchiseForm = () => {
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title">Thank you !</h5>
+                      <h5 className="modal-title">Thank you!</h5>
                       <button
                         type="button"
                         onClick={() => {
@@ -264,7 +283,7 @@ const FranchiseForm = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <div className="btn-form-modal">
                     <div className={`modal fade ${showErrorModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showErrorModal ? 'block' : 'none' }}>
                       <div className="modal-dialog modal-dialog-centered">
@@ -289,6 +308,13 @@ const FranchiseForm = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
     </>
   );
 };

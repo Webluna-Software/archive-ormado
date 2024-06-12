@@ -5,6 +5,9 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import bcrypt from 'bcryptjs-react';
 
+import Modal from '../../components/modal/modal';
+
+
 const AccountDetails = () => {
 
   const [user, setUser] = useState();
@@ -27,6 +30,13 @@ const AccountDetails = () => {
   const [password, setPassword]=useState()
   
   const [selectedGender, setSelectedGender] = useState( null);
+
+
+    //MODAL
+    const [showModal, setShowModal] = useState(false);
+    const [modalContent, setModalContent] = useState({ title: "", body: "" });
+    const [reloadOnClose, setReloadOnClose] = useState(true);
+
 
   useEffect(() => {
     const storedGender = localStorage.getItem('selectedGender');
@@ -66,15 +76,26 @@ const AccountDetails = () => {
       .put(`${loginApiLink}/user/${user._id}`, sendData)
       .then((res) => {
         console.log(res);
-        alert("Update successful");
+        // alert("Update successful");
+        setShowModal(true);
+        setModalContent({
+          title: "Thank you!",
+          body: "Update successful",
+        });
+        setReloadOnClose(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (reloadOnClose) {
+      window.location.reload();
+    }
+  };
   return (
-    <div className="col-12 col-md-7">
+    <>    <div className="col-12 col-md-7">
       <p>Edit Account Information</p>
       {loading ? (
         <Loading />
@@ -155,6 +176,14 @@ const AccountDetails = () => {
         </form>
       )}
     </div>
+    <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
+    </>
+
   );
 };
 
