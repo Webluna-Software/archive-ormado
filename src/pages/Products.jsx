@@ -116,6 +116,9 @@ if (userID) {
                   <div className="img-text-context">
                     <h4>New Product</h4>
                     <h2>Ormado Espresso Barista Edition</h2>
+                      <button className="shopBtn">
+                    Shop now
+                      </button>
                   </div>
                 </div>
               </div>

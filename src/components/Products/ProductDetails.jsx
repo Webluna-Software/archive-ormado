@@ -130,11 +130,6 @@ const userID = validateUserID();
               <div className="img-text-context">
                 <h4>New Product</h4>
                 <h2>Ormado Espresso Barista Edition</h2>
-                <Link to="/products">
-                  <button>
-                    Shop now
-                  </button>
-                </Link>
               </div>
             </div>
           </div>
