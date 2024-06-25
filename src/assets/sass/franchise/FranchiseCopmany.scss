@@ -1,9 +1,10 @@
 .franchise-mobile {
   height: 40vh;
-  background-image: url("https://ormado.de/assets/franchisebanner-FAxOoFz5.jpg");
+  // background-image: url("https://ormado.de/assets/franchisebanner-FAxOoFz5.jpg");
   background-size: cover;
   padding: 10vh 0;
   position: relative;
+  background-repeat: no-repeat !important;
   .bg-clr {
     height: 40vh;
     position: absolute;
