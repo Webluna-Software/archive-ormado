@@ -165,7 +165,8 @@ const BlogDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="blog-details-section2 md-my-5 ">
+                  <div className="blog-details-section2 md-my-5">
+                  <div className="main-details ">
                     {blogSec.map((fd, i) => {
                       const replaceVideoLink =
                         fd.videoLink &&
@@ -224,7 +225,8 @@ const BlogDetails = () => {
                         );
                       }
                     })}
-                    <div className="blog-details-card my-5">
+                  </div>
+                  <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
                         {blog.slice(-2).map((fd, i) => (
@@ -266,7 +268,7 @@ const BlogDetails = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
+                  </div>
                   </div>
                 </div>
                 {/* <Blogs /> */}
