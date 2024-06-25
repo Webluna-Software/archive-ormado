@@ -5,7 +5,6 @@ import imgfour from "../assets/img/gallery/4.png";
 import imgfive from "../assets/img/gallery/5.png";
 import imgsix from "../assets/img/gallery/6.png";
 import imgseven from "../assets/img/gallery/7.png";
-import Faq from "../components/home/Faq";
 import bgimg from "../assets/img/bgimg.png";
 const Gallery = () => {
   const data = [
