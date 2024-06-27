@@ -7,7 +7,8 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import Modal from '../components/modal/modal';
 
 const Reserve = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink,ApiLink2 } = useContext(ApiLinkContext);
+  const [reserv,setReserv] = useState([])
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setphone] = useState();
@@ -35,9 +36,15 @@ const Reserve = () => {
   const [reloadOnClose, setReloadOnClose] = useState(true);
 
   useEffect(() => {
-    axios.get(`${ApiLink}/reserve`).then((res) => {
-      console.log(res.data, "ReserveForm");
-    });
+    axios.get(`${ApiLink2}/reservBanner`)
+    .then((res)=>{
+      const reservData = res.data.reservBanner[0] ;
+      setReserv(reservData)
+      console.log(res.data.reservBanner,"res banner")
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }, []);
 
   const ReservePost = (e) => {
@@ -179,25 +186,20 @@ const Reserve = () => {
           <div className="first-card-img">
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
-              src={background}
+              src={reserv.image}
               alt=""
             />
           </div>
         </div>
         <div className="reserve-form-header">
           <div className="reserve-header-text">
-            <h1>Reservation</h1>
-            <p>
-              Planning ahead with a reservation allows our team at Ormado
-              Kaffeehaus to tailor your experience, ensuring everything is set
-              for your event, from seating arrangements to personalized service,
-              making your visit memorable.
-            </p>
+            <h1>{reserv.title}</h1>
+            <p  dangerouslySetInnerHTML={{__html:reserv.text}}/>
           </div>
         </div>
         <div className="reserve-form">
           <div className="reserve-part1">
-            <img className="reserve-img" src={img} alt="error" />
+            <img className="reserve-img" src={reserv.leftImage} alt="error" />
           </div>
           <div className="reserve-part2">
             <div className="reserve-part2-main">
