@@ -5,9 +5,9 @@ import icon from "../../assets/img/icon.png"
 const Contactlocation = () => {
 
   const [datamap, setdatamap] = useState([]);
-  const [active,setactive] =useState(2);
+  const [active,setactive] =useState(0);
   useEffect(() => {
-    filtermap(3)
+    filtermap(0)
   }, [])
 
   const filtermap = (searchmap) => {
