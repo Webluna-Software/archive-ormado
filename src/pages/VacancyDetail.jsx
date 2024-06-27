@@ -4,17 +4,24 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
 import slugify from "slugify";
 import PreLoader from "./PreLoader";
+import Faq from "../components/home/Faq";
 
 const VacancyDetail = () => {
   const {vacancyId} = useParams()
   const { ApiLink2 } = useContext(ApiLinkContext)
   const [findData,setFindData] = useState([])
+  const [faq,setFaq] = useState([])
   const [loading,setLoading] = useState(true)
   useEffect(()=>{
-    axios.get(`${ApiLink2}/vacancies`)
-    .then((res)=>{
-     const vacancyData = res.data.data
+    Promise.all([
+      axios.get(`${ApiLink2}/vacancies`),
+      axios.get(`${ApiLink2}/faqVacancy`)
+    ])
+    .then(([vacanRes,faqRes])=>{
+     const vacancyData = vacanRes.data.data
      const findVacancy = vacancyData.find((i)=>slugify(i.position).toLowerCase() == vacancyId)
+     const faqData = faqRes.data.data ;
+     setFaq(faqData)
      setFindData(findVacancy)
      setLoading(false)
     })
@@ -28,7 +35,8 @@ const VacancyDetail = () => {
       {
         loading ? (<PreLoader/>)
         :(
-          <div className="VacancyDetail mt-5">
+         <>
+      <div className="VacancyDetail mt-5">
         <div className="container">
           <div className="title">
             <h1>{findData.position}</h1>
@@ -50,6 +58,29 @@ const VacancyDetail = () => {
           </a>
         </div>
       </div>
+      <div className="Faqs">
+          <div className="container1">
+            <div className="Center">
+              <div className="title">
+                <div className="line"></div>
+                <div className="upper">
+                  <h5>FAQ</h5>
+                </div>
+              </div>
+
+              <div className="question">
+                <h1>
+                  Questions ? <span>Look here</span>
+                </h1>
+              </div>
+
+              <div className="accordion " id="accordionExample">
+                <Faq faqs={faq}/>
+              </div>
+            </div>
+          </div>
+        </div>
+         </>
         )
       }
     </>

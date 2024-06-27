@@ -24,7 +24,7 @@ const Home = () => {
       <NewSweets />
       <Cakes />
       <Franchise />
-      <Faq/>  
+      {/* <Faq/>   */}
       
       {/* <OurRecentBlog/> */}
       <PaymentsWithMpay/>
