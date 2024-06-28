@@ -1,15 +1,16 @@
- import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import background from "../assets/img/reservation-banner.png";
 import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 
-import Modal from '../components/modal/modal';
+import Modal from "../components/modal/modal";
 import LazyLoad from "react-lazy-load";
+import { Helmet } from "react-helmet";
 
 const Reserve = () => {
-  const { ApiLink,ApiLink2 } = useContext(ApiLinkContext);
-  const [reserv,setReserv] = useState([])
+  const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
+  const [reserv, setReserv] = useState([]);
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setphone] = useState();
@@ -23,29 +24,29 @@ const Reserve = () => {
   // Validation
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
-  const [phoneError,setPhoneError] = useState(false)
-  const [guestError,setGuestError] = useState(false)
-  const [dateError,setDateError] = useState(false)
-  const [timeError,setTimeError] = useState(false)
-  const [branchError,setBranchError] = useState(false)
-  const [remarkError,setRemarkError] = useState(false)
+  const [phoneError, setPhoneError] = useState(false);
+  const [guestError, setGuestError] = useState(false);
+  const [dateError, setDateError] = useState(false);
+  const [timeError, setTimeError] = useState(false);
+  const [branchError, setBranchError] = useState(false);
+  const [remarkError, setRemarkError] = useState(false);
 
-  
   //MODAL
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
   const [reloadOnClose, setReloadOnClose] = useState(true);
 
   useEffect(() => {
-    axios.get(`${ApiLink2}/reservBanner`)
-    .then((res)=>{
-      const reservData = res.data.reservBanner[0] ;
-      setReserv(reservData)
-      console.log(res.data.reservBanner,"res banner")
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    axios
+      .get(`${ApiLink2}/reservBanner`)
+      .then((res) => {
+        const reservData = res.data.reservBanner[0];
+        setReserv(reservData);
+        console.log(res.data.reservBanner, "res banner");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const ReservePost = (e) => {
@@ -60,8 +61,8 @@ const Reserve = () => {
       { value: numbOfGuest, setter: setGuestError },
       { value: date, setter: setDateError },
       { value: time, setter: setTimeError },
-      { value: branch, setter: setBranchError},
-      { value: remark, setter: setRemarkError},
+      { value: branch, setter: setBranchError },
+      { value: remark, setter: setRemarkError },
     ];
 
     fieldCheck.forEach((item) => {
@@ -121,7 +122,7 @@ const Reserve = () => {
   // const handleKeyDown = (e) => {
   //   if (
   //     !(
-        // !(e.key >= "0" && e.key <= "9") ||
+  // !(e.key >= "0" && e.key <= "9") ||
   //       e.key === "Backspace" ||
   //       e.key === "Delete"
   //     )
@@ -132,9 +133,9 @@ const Reserve = () => {
 
   const handleKeyDown = (e) => {
     // Prevents user from entering a number below 5
-    if (e.key === 'Enter' || e.key === 'Tab') {
+    if (e.key === "Enter" || e.key === "Tab") {
       if (numbOfGuest < 6) {
-        alert('The minimum number for a reservation is 6 people.');
+        alert("The minimum number for a reservation is 6 people.");
         // setModalContent({
         //   title: "Attention!",
         //   body: "The minimum number for a reservation is 6 people."
@@ -148,12 +149,12 @@ const Reserve = () => {
 
   const handleChange = (e) => {
     const value = e.target.value;
-    if (value < 6 && value !== '') {
+    if (value < 6 && value !== "") {
       setGuestError(true);
       // alert("Attention!\nThe minimum number for a reservation is 6 people.");
       setModalContent({
         title: "Attention!",
-        body: "The minimum number for a reservation is 6 people."
+        body: "The minimum number for a reservation is 6 people.",
       });
       setShowModal(true);
       setReloadOnClose(false);
@@ -163,25 +164,25 @@ const Reserve = () => {
     }
   };
 
-      
   const handlePhoneChange = (e) => {
     const value = e.target.value;
-    const onlyNums = value.replace(/[^\d]/g, ''); 
+    const onlyNums = value.replace(/[^\d]/g, "");
     setphone(onlyNums);
     setPhoneError(false);
-  }
+  };
 
   const today = new Date();
   const twoWeeksLater = new Date();
   twoWeeksLater.setDate(today.getDate() + 14);
-  
+
   const todayFormatted = today.toISOString().split("T")[0];
   const twoWeeksLaterFormatted = twoWeeksLater.toISOString().split("T")[0];
 
-
-
   return (
     <>
+      <Helmet>
+        <title>Reserve</title>
+      </Helmet>
       <div className="reserve">
         <div className="Reverse-title col-12 col-md-12 col-sm-12">
           <div className="first-card-img">
@@ -195,13 +196,13 @@ const Reserve = () => {
         <div className="reserve-form-header">
           <div className="reserve-header-text">
             <h1>{reserv.title}</h1>
-            <p  dangerouslySetInnerHTML={{__html:reserv.text}}/>
+            <p dangerouslySetInnerHTML={{ __html: reserv.text }} />
           </div>
         </div>
         <div className="reserve-form">
           <div className="reserve-part1">
             <LazyLoad>
-            <img className="reserve-img" src={reserv.leftImage} alt="error" />
+              <img className="reserve-img" src={reserv.leftImage} alt="error" />
             </LazyLoad>
           </div>
           <div className="reserve-part2">
@@ -290,7 +291,7 @@ const Reserve = () => {
                       />
                       {emailError && (
                         <span className="invalid_message">
-                           Please enter a valid email address to proceed.
+                          Please enter a valid email address to proceed.
                         </span>
                       )}
                     </div>
@@ -314,13 +315,11 @@ const Reserve = () => {
                         value={phone}
                         onChange={handlePhoneChange}
                       />
-                      {
-                        phoneError && (
-                          <span className="invalid_message">
-                            Telephone number is required.
-                          </span>
-                        )
-                      }
+                      {phoneError && (
+                        <span className="invalid_message">
+                          Telephone number is required.
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="reserve-part2">
@@ -341,13 +340,11 @@ const Reserve = () => {
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}
                       />
-                      {
-                        guestError && (
-                          <span className="invalid_message">
-                            The number of guests must be mentioned. 
-                          </span>
-                        )
-                      }
+                      {guestError && (
+                        <span className="invalid_message">
+                          The number of guests must be mentioned.
+                        </span>
+                      )}
                       {/* {
                         numbOfGuest < 5 && (
                           <div className="alert alert-warning mt-2" role="alert">
@@ -373,17 +370,17 @@ const Reserve = () => {
                         value={date}
                         className={`${dateError ? "invalid" : ""}`}
                         onChange={(e) => {
-                          setdate(e.target.value)
-                          setDateError(false)
+                          setdate(e.target.value);
+                          setDateError(false);
                         }}
                         min={todayFormatted}
                         max={twoWeeksLaterFormatted}
                       />
-                      {
-                        dateError && (
-                          <span className="invalid_message">Date is required</span>
-                        )
-                      }
+                      {dateError && (
+                        <span className="invalid_message">
+                          Date is required
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="reserve-part2">
@@ -400,16 +397,16 @@ const Reserve = () => {
                         className={`${timeError ? "invalid" : ""}`}
                         placeholder="00:00"
                         type="time"
-                        onChange={(e) =>{
-                          settime(e.target.value)
-                          setTimeError(false)
+                        onChange={(e) => {
+                          settime(e.target.value);
+                          setTimeError(false);
                         }}
                       />
-                      {
-                        timeError && (
-                          <span className="invalid_message">Time is required</span>
-                        )
-                      }
+                      {timeError && (
+                        <span className="invalid_message">
+                          Time is required
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -417,7 +414,9 @@ const Reserve = () => {
                   <div className="reserve-part1">
                     <div className="reserve-input-text">
                       <label htmlFor="branch">
-                        <p>Branch<span>*</span></p>
+                        <p>
+                          Branch<span>*</span>
+                        </p>
                       </label>
                     </div>
                     <div className="reserve-input">
@@ -427,8 +426,8 @@ const Reserve = () => {
                         defaultValue=""
                         className={`round ${branchError ? "invalid" : ""}`}
                         onChange={(e) => {
-                          setbranch(e.target.value)
-                          setBranchError(false)
+                          setbranch(e.target.value);
+                          setBranchError(false);
                         }}
                       >
                         <option
@@ -437,7 +436,7 @@ const Reserve = () => {
                           disabled
                           hidden
                         >
-                          Select 
+                          Select
                         </option>
                         <option value="Einbecker Str. 18, 10317 Berlin, Germany">
                           Einbecker Str. 18, 10317 Berlin, Germany
@@ -456,17 +455,15 @@ const Reserve = () => {
                           Zefir Mall, Baku
                         </option>
                         <option value="Spyrydonivs'ka St, 2, Odessa, Odes'ka oblast, Ukraine, 65000">
-                          Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka oblast, Ukraine,
-                          65000
+                          Spyrydonivs&apos;ka St, 2, Odessa, Odes&apos;ka
+                          oblast, Ukraine, 65000
                         </option>
                       </select>
-                      {
-                        branchError && (
-                          <span className="invalid_message">
-                            Branch is required
-                          </span>
-                        )
-                      }
+                      {branchError && (
+                        <span className="invalid_message">
+                          Branch is required
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="reserve-part2">
@@ -482,23 +479,28 @@ const Reserve = () => {
                         type="text"
                         className={`${remarkError ? "invalid" : ""}`}
                         onChange={(e) => {
-                          setremark(e.target.value)
-                          setRemarkError(false)
+                          setremark(e.target.value);
+                          setRemarkError(false);
                         }}
                       />
-                      {
-                        remarkError && (
-                          <span className="invalid_message">
-                            Additional remarks is required
-                          </span>
-                        )
-                      }
+                      {remarkError && (
+                        <span className="invalid_message">
+                          Additional remarks is required
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 <div className="reserve-btn mt-4">
-                <button type='submit' data-bs-toggle="modal" data-bs-target="#exampleModal">       <p>Reserve</p></button>
+                  <button
+                    type="submit"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    {" "}
+                    <p>Reserve</p>
+                  </button>
                   {/* <button
                     type="submit"
                     data-bs-toggle="modal"
@@ -507,7 +509,6 @@ const Reserve = () => {
                     <p>Reserve</p>
                   </button> */}
                 </div>
-                          
 
                 {/* {submissionStatus === "success" && (
                   <div
@@ -572,8 +573,8 @@ const Reserve = () => {
                   </div>
                 )} */}
               </form>
-              
-                  {/* <div className="btn-form-modal">
+
+              {/* <div className="btn-form-modal">
                     <div className={`modal fade ${showModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
                       <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">

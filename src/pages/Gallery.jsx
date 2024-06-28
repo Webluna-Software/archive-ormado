@@ -6,6 +6,7 @@ import imgfive from "../assets/img/gallery/5.png";
 import imgsix from "../assets/img/gallery/6.png";
 import imgseven from "../assets/img/gallery/7.png";
 import bgimg from "../assets/img/bgimg.png";
+import { Helmet } from "react-helmet" ;
 const Gallery = () => {
   const data = [
     { id: 0, img: imgone },
@@ -19,6 +20,9 @@ const Gallery = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Gallery</title>
+    </Helmet>
       <section className="gallery">
         <div className="image-container">
           <img src={bgimg} alt="" className="img-fluid" />

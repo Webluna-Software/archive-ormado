@@ -12,6 +12,7 @@ import PreLoader from "../pages/PreLoader";
 import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
+import { Helmet } from "react-helmet";
 
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
@@ -104,6 +105,10 @@ if (userID) {
       {loading ? (
         <PreLoader />
       ) : (
+       <>
+       <Helmet>
+        <title>Products</title>
+       </Helmet>
         <section className="container-fluid">
           <div className="products-page row pb-5 my-5 d-flex justify-content-center">
             <div className="col-md-9">
@@ -189,6 +194,7 @@ if (userID) {
             </div>
           </div>
         </section>
+       </>
       )}
 
       <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />

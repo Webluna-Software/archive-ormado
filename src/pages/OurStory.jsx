@@ -1,17 +1,12 @@
 import React from "react";
-import weare from "../assets/img/weareperfect.png";
-import overlay from "../assets/img/overlay.png";
 import { useContext } from "react";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import roasting1 from "../assets/img/roasting1.png";
-import roasting2 from "../assets/img/roasting2.png";
-import roasting3 from "../assets/img/roasting3.png";
-import { Link } from "react-router-dom";
 import PreLoader from "./PreLoader";
 import LazyLoad from "react-lazy-load";
+import { Helmet } from "react-helmet";
 const OurStory = () => {
   const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
   const [about, setAbout] = useState([]);
@@ -58,6 +53,10 @@ console.log(great,"iframe");
       {loading || loading1 ? (
         <PreLoader />
       ) : (
+        <>
+        <Helmet>
+          <title>Our story</title>
+        </Helmet>
         <section className="ourstory">
           <div className="container-fluid ">
             <div className="row">
@@ -163,6 +162,7 @@ console.log(great,"iframe");
             </div>
           </div>
         </section>
+        </>
       )}
     </>
   );

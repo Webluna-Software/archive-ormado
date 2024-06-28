@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import LazyLoad from "react-lazy-load";
+import { Helmet } from "react-helmet";
 const CareerPage = () => {
    const {ApiLink2} = useContext(ApiLinkContext)
    const [banner,setBanner] = useState([])
@@ -66,6 +67,10 @@ const CareerPage = () => {
   };
 
   return (
+<>
+  <Helmet>
+    <title>Career</title>
+  </Helmet>
     <section className="career-page">
       <div className="career-page-headline">
         <div className="image-container">
@@ -175,6 +180,7 @@ const CareerPage = () => {
       </div>
       <Faq /> */}
     </section>
+</>
   );
 };
 

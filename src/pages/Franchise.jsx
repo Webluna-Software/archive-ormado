@@ -10,6 +10,7 @@ import PreLoader from "./PreLoader"
 import Faq from '../components/home/Faq'
 import Slider from 'react-slick'
 import LazyLoad from 'react-lazy-load'
+import { Helmet } from 'react-helmet'
 const Franchise = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
   const [franchiseFaq,setFranchiseFaq] = useState([])
@@ -88,6 +89,10 @@ const Franchise = () => {
    {
     loading ? (<PreLoader/>)
     :
+   <>
+   <Helmet>
+    <title>Franchise</title>
+   </Helmet>
     <div >
     <section className="franchise-mobile d-none" style={{background:`url(${why.image})`}}>
     <div className="bg-clr">
@@ -238,6 +243,7 @@ const Franchise = () => {
   
 
   </div>
+   </>
    }
    
    </>
