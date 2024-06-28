@@ -57,7 +57,7 @@ const Contactlocation = () => {
                 return (
                   <div className="rightmap  col-12 col-xs-12 col-sm-12  col-md-7  col-xl-7"  key={item.id}>
                     <div className="map">
-                      <iframe className='myiframe' src={item.map} allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                      <iframe className='myiframe' src={item.map} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                   </div>
                 )
