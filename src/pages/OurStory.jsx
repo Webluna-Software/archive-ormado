@@ -11,6 +11,7 @@ import roasting2 from "../assets/img/roasting2.png";
 import roasting3 from "../assets/img/roasting3.png";
 import { Link } from "react-router-dom";
 import PreLoader from "./PreLoader";
+import LazyLoad from "react-lazy-load";
 const OurStory = () => {
   const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
   const [about, setAbout] = useState([]);
@@ -82,7 +83,9 @@ console.log(great,"iframe");
             <div className="container-fluid">
               <div className="row g-3">
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
+                  <LazyLoad>
                   <img src={roasting.images} alt="" className="img-fluid" />
+                  </LazyLoad>
                 </div>
               </div>
             </div>

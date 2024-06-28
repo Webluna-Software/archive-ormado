@@ -6,8 +6,8 @@ import { Link, useParams } from "react-router-dom";
 import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
+import LazyLoad from "react-lazy-load";
 const BlogDetails = () => {
-  const { id } = useParams();
   const { blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
@@ -197,10 +197,12 @@ const BlogDetails = () => {
                                 {fd.image.length == 0 ? (
                                   ""
                                 ) : (
-                                  <img
+                                  <LazyLoad>
+                                    <img
                                     src={fd.image}
                                     className="img-fluid w-100"
                                   />
+                                  </LazyLoad>
                                 )}
                               </div>
                             </div>

@@ -11,6 +11,7 @@ import { getCookie } from "../utils/cookie";
 import PreLoader from "../pages/PreLoader";
 import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
+import LazyLoad from "react-lazy-load";
 
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
@@ -128,7 +129,9 @@ if (userID) {
                   {products.map((fd, i) => (
                     <div className="col-12 col-sm-6 col-md-4" key={i}>
                       <div className="card w-100">
+                        <LazyLoad>
                         <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt="..." /></Link>
+                        </LazyLoad>
                         <div className="wishlist-modal">
                           <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"
                             onClick={() => wishClick(

@@ -5,6 +5,7 @@ import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 
 import Modal from '../components/modal/modal';
+import LazyLoad from "react-lazy-load";
 
 const Reserve = () => {
   const { ApiLink,ApiLink2 } = useContext(ApiLinkContext);
@@ -199,7 +200,9 @@ const Reserve = () => {
         </div>
         <div className="reserve-form">
           <div className="reserve-part1">
+            <LazyLoad>
             <img className="reserve-img" src={reserv.leftImage} alt="error" />
+            </LazyLoad>
           </div>
           <div className="reserve-part2">
             <div className="reserve-part2-main">

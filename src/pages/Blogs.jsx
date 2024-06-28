@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, NavLink, useParams } from 'react-router-dom';
 import PreLoader from './PreLoader';
 import slugify from 'slugify';
+import LazyLoad from 'react-lazy-load';
 
 const Blogs = () => {
 
@@ -137,6 +138,7 @@ const Blogs = () => {
                 <div className="cardsBlogs row m-0 ">
                   {blog.slice(0,visible).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
+                      <LazyLoad>
                       <Link to={`/blogDetails/${slugify(item.title).toLowerCase()}`} style={{color:"#000"}}>
                       <figure><img src={item.coverImage} alt="rectangle127" /></figure>
                       <div className="card-header">
@@ -156,6 +158,7 @@ const Blogs = () => {
                         </div>
                       </div>
                     </Link>
+                      </LazyLoad>
                     </div>
 
 
