@@ -21,7 +21,7 @@ const ContactLocation = () => {
           setActive(mapData[0].id); 
           setActiveIndex(0); 
         } else {
-          console.error("Dizi bekleniyordu ama şu alındı:", mapData);
+          console.error("err:", mapData);
         }
       })
       .catch((err) => {
@@ -39,8 +39,8 @@ const ContactLocation = () => {
   return (
     <>
       <div className="titlebox">
-        <h1>Adres seçin</h1>
-        <p>Bayrak mağazalarımızda ve bayilik dükkanlarımızda Ormado Kaffeehaus deneyiminin keyfini çıkarın.</p>
+      <h1>Select address</h1>
+      <p>Enjoy the unique Ormado Kaffeehaus experience in our flagship stores and franchising shops.</p>
       </div>
       <div className="ormadolocation">
         <div className="mysize-width boxcontainer">
