@@ -5,9 +5,11 @@ import card from "../assets/img/searchbanner.png";
 import { useContext, useEffect, useState } from "react";
 import {ApiLinkContext} from "../context/ApiLinkContext"
 import axios from "axios";
+
 const SearchBranch = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
   const [searchB,setSearchB] = useState([])
+  
   useEffect(()=>{
     axios(`${ApiLink2}/bannerSB`)
     .then((res)=>{
