@@ -15,7 +15,8 @@
         metaDescription.setAttribute("content", mainDescription);
         metaKeywords.setAttribute("content", mainKeyWords);
       })
+      
       .catch((error) => {
         console.error("API XƏTA BAŞ VERDİ", error);
       });
-  })();
+  })();  
