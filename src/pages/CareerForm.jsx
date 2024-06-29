@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 const CareerForm = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink,ApiLink2 } = useContext(ApiLinkContext);
 
   const [branch, setBranch] = useState();
   const [position, setPosition] = useState();
@@ -65,10 +65,14 @@ const CareerForm = () => {
   const [lastError, setLastWorkError] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`${ApiLink}/career`)
-      .then((res) => {
-        console.log(res.data);
+    Promise.all([
+      axios.get(`${ApiLink}/career`),
+      axios.get(`${ApiLink2}/bannerVacancy`)
+       
+    ])
+      .then(([careerRes,bannerRes]) => {
+        console.log(bannerRes,"cv data");
+        console.log(bannerRes);
       })
       .catch((err) => {
         console.log(err);

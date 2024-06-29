@@ -9,9 +9,11 @@ const ContactLocation = () => {
   const [datamap, setDatamap] = useState(null);
   const [active, setActive] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null); 
+
   useEffect(() => {
     Promise.all([
       axios(`${ApiLink2}/map`),
+      axios(`${ApiLink2}/faqContact`)
     ])
       .then(([mapRes]) => {
         const mapData = mapRes.data.data;

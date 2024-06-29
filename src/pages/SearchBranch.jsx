@@ -5,6 +5,7 @@ import card from "../assets/img/searchbanner.png";
 import { useContext, useEffect, useState } from "react";
 import {ApiLinkContext} from "../context/ApiLinkContext"
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const SearchBranch = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
@@ -21,6 +22,10 @@ const SearchBranch = () => {
     })
   },[])
   return (
+   <>
+    <Helmet>
+     <title>Search a branch</title> 
+    </Helmet>
     <div className="reserve">
       <div className="Reverse-title col-12 col-md-12 col-sm-12">
         <div className="first-card-img">
@@ -38,6 +43,7 @@ const SearchBranch = () => {
       <Contactlocation />
       {/* <Contactcards /> */}
     </div>
+   </>
   );
 };
 

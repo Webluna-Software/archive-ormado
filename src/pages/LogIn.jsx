@@ -3,10 +3,18 @@ import loginimg from '../assets/img/Login.png'
 import logo from '../assets/img/Logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginAction } from '../utils/login'
+import { useContext } from 'react'
+import {ApiLinkContext} from "../context/ApiLinkContext"
+import { useEffect } from 'react'
+import axios from 'axios'
+import Preloader from "../pages/PreLoader";
+import { Helmet } from 'react-helmet'
 
 
 const LogIn = () => {
-
+    const {ApiLink2} = useContext(ApiLinkContext)
+    const [data,setData] = useState([])
+    const [loading,setLoading] = useState(true)
     const navigate = useNavigate();
 
     const [rememberMe , setRememberMe] = useState(false);
@@ -32,10 +40,27 @@ const LogIn = () => {
         e.preventDefault();
         loginAction( email, password , "account/details" , rememberMe);                                                            
     }
-    
+    useEffect(()=>{
+        axios.get(`${ApiLink2}/loginBanner`)
+        .then((res)=>{
+            setData(res.data.loginBanner[0])
+            setLoading(false)
+        })
+        .catch(()=>{
+            setLoading(false)
+        })
+    },[])
     return (
         <>
-            <div className="login">
+           {
+            loading ? (<Preloader />)
+            :
+            (
+               <>
+               <Helmet>
+                <title>Login</title>
+               </Helmet>
+                <div className="login">
                 <div className="login-card">
                     <div className="login-logo">
                        <Link to={'/home'}> <img src={logo} alt=""/></Link>
@@ -80,13 +105,16 @@ const LogIn = () => {
                 </div>
                 <div className="login-img">
                     <div className="image-container">
-                        <img src={loginimg} alt="" className='img-fluid' />
+                        <img src={data.image} alt="" className='img-fluid' />
                         <div className="image-overlay">
-                          <h1>WELCOME TO ORMADO KAFFEEHAUS</h1>
+                          <h1>{data.title}</h1>
                         </div>
                     </div>
                 </div>
             </div>
+               </>
+            )
+           }
         </>
     )
 }
