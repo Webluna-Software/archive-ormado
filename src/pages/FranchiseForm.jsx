@@ -7,10 +7,11 @@ import axios from "axios";
 import Modal from "../components/modal/modal";
 
 const FranchiseForm = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [img,setImg] = useState([])
   useEffect(() => {
-    axios.get(`${ApiLink}/franchiseForm`).then((res) => {
-      console.log(res.data, "FranchiseForm");
+    axios.get(`${ApiLink2}/franchiseForm`).then((res) => {
+      setImg(res.data.data[0])
     });
   });
 
@@ -58,7 +59,7 @@ const FranchiseForm = () => {
 
     if (isValid) {
       axios
-        .post(`${ApiLink}/franchiseForm`, {
+        .post(`${ApiLink2}/franchiseForm`, {
           fullName: fullName,
           email: email,
           phone: phone,
@@ -99,7 +100,7 @@ const FranchiseForm = () => {
         <div className="franchiseform-part1">
           <img
             className="franchiseform-img"
-            src={frenchiseFormimg}
+            src={img.image}
             alt="error"
           />
         </div>

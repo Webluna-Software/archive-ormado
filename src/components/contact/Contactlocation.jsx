@@ -9,11 +9,12 @@ const ContactLocation = () => {
   const [datamap, setDatamap] = useState(null);
   const [active, setActive] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null); 
-
   useEffect(() => {
-    axios(`${ApiLink2}/map`)
-      .then((res) => {
-        const mapData = res.data.data;
+    Promise.all([
+      axios(`${ApiLink2}/map`),
+    ])
+      .then(([mapRes]) => {
+        const mapData = mapRes.data.data;
         if (Array.isArray(mapData)) {
           setMap(mapData);
           setDatamap(mapData[0]); 

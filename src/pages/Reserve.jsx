@@ -3,7 +3,7 @@ import background from "../assets/img/reservation-banner.png";
 import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
-
+import Faq from "../components/home/Faq"
 import Modal from "../components/modal/modal";
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 const Reserve = () => {
   const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
   const [reserv, setReserv] = useState([]);
+  const [faqData,setFaqData] = useState([])
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setphone] = useState();
@@ -37,12 +38,15 @@ const Reserve = () => {
   const [reloadOnClose, setReloadOnClose] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/reservBanner`)
-      .then((res) => {
-        const reservData = res.data.reservBanner[0];
+    Promise.all([
+      axios .get(`${ApiLink2}/reservBanner`),
+      axios .get(`${ApiLink2}/faqReservation`)
+    ])
+      .then(([bannerRes,faqRes]) => {
+        const faqResData = faqRes.data.faqReservation ;
+        setFaqData(faqResData) ;
+        const reservData = bannerRes.data.reservBanner[0];
         setReserv(reservData);
-        console.log(res.data.reservBanner, "res banner");
       })
       .catch((err) => {
         console.log(err);
@@ -606,6 +610,7 @@ const Reserve = () => {
         title={modalContent.title}
         body={modalContent.body}
       />
+      <Faq faqs={faqData}/>
     </>
   );
 };

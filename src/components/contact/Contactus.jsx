@@ -3,8 +3,12 @@ import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";
 
 import Modal from "../modal/modal";
+import { useEffect } from "react";
 
 const Contactus = () => {
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [leftSec,setLeftSec] = useState([]);
+  const [faqContact,setFaqContact] = useState([]) ;
   const [fullName, setFullName] = useState();
   const [email, setemail] = useState();
   const [number, setnumber] = useState();
@@ -26,7 +30,16 @@ const Contactus = () => {
   const [interestError, setInterestError] = useState(false);
   const [messageError, setMessageError] = useState(false);
 
-  const { ApiLink } = useContext(ApiLinkContext);
+  useEffect(()=>{
+    Promise.all([
+      axios.get(`${ApiLink2}/leftSection`),
+    ])
+    .then(([leftRes])=>{
+      const leftData = leftRes.data.leftSection[0] ;
+      setLeftSec(leftData)
+    })
+  },[])
+
 
   const ContactPost = (e) => {
     e.preventDefault();
@@ -52,7 +65,7 @@ const Contactus = () => {
 
     if (isValid) {
       axios
-        .post(`${ApiLink}/contactForm`, {
+        .post(`${ApiLink2}/contactForm`, {
           fullName: fullName,
           email: email,
           number: number,
@@ -101,20 +114,15 @@ const Contactus = () => {
                 <div className="conbox">
                   <div className="middle">
                     <h1>
-                      Get in Touch <font color="#e3b142">with us!</font>{" "}
+                     {leftSec.title}
                     </h1>
                   </div>
 
                   <div className="loremone">
                     <div className="first">
-                      <h6 className="col-10">
-                        Have questions, suggestions, or just want to chat about
-                        coffee? Our team is here to listen. Reach out to us
-                        today using the form, and let&apos;s start a
-                        conversation.
-                      </h6>
+                      <h6 className="col-10" dangerouslySetInnerHTML={{__html:leftSec.text}}/>
                     </div>
-                    <div className="second">
+                    {/* <div className="second">
                       <h6 className="col-10">
                         Your feedback matters, and we&apos;re eager to make your
                         experience with Ormado Kaffeehaus exceptional. Contact
@@ -124,7 +132,7 @@ const Contactus = () => {
                     <br /> <br />
                     <div className="text text-white">
                       <p>Connecting Through Coffee, One Message at a Time</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
