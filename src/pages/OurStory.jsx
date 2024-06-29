@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext } from "react";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
@@ -14,6 +13,7 @@ const OurStory = () => {
   const [loading1, setLoading1] = useState(true);
 
   // NEW API
+  const [ourstory, setOurstory] = useState([])  ;
   const [mission, setMission] = useState([])  ;
   const [vision, setVision] = useState([])    ;
   const [great, setGreat] = useState([])      ;
@@ -29,13 +29,15 @@ const OurStory = () => {
 
     // API ALL
     Promise.all([
+      axios.get(`${ApiLink2}/ourStory`),
       axios.get(`${ApiLink2}/mission`),
       axios.get(`${ApiLink2}/vision`),
       axios.get(`${ApiLink2}/greatThink`),
       axios.get(`${ApiLink2}/count`),
       axios.get(`${ApiLink2}/roastingHouse`)
-    ]).then(([missonRes, visionRes, greatRes,countRes,roastingRes]) => {
+    ]).then(([ourstory,missonRes, visionRes, greatRes,countRes,roastingRes]) => {
       setLoading1(false);
+      setOurstory(ourstory.data.data[0]);
       setMission(missonRes.data.data[0]);
       setVision(visionRes.data.data[0]);
       setGreat(greatRes.data.data[0]);
@@ -47,7 +49,7 @@ const OurStory = () => {
   const iframeVideo = mission.videoUrl
     ? mission.videoUrl.replace("watch?v=", "embed/")
     : "";
-console.log(great,"iframe");
+
   return (
     <>
       {loading || loading1 ? (
@@ -62,14 +64,14 @@ console.log(great,"iframe");
             <div className="row">
               <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
                 <div className="desc">
-                  <h3>{about.headerText}</h3>
-                  <p dangerouslySetInnerHTML={{ __html: about.text }} />
+                  <h3>{ourstory.title}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: ourstory.text }} />
                 </div>
               </div>
               <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
                 <div className="ourstoryImg">
                   {/* style={{width:"659px",height:"332px"}} */}
-                  <img src={about.image} alt="" className="img-fluid rounded" />
+                  <img src={ourstory.image} alt="" className="img-fluid rounded" />
                 </div>
               </div>
             </div>
@@ -81,11 +83,13 @@ console.log(great,"iframe");
             <p className="ms-2" dangerouslySetInnerHTML={{__html:roasting.text}}/>
             <div className="container-fluid">
               <div className="row g-3">
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
+              {roasting.images.map((image, index) => (
+                <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-4">
                   <LazyLoad>
-                  <img src={roasting.images} alt="" className="img-fluid" />
+                    <img src={image} alt={`Roasting image ${index + 1}`} className="img-fluid" />
                   </LazyLoad>
                 </div>
+              ))}
               </div>
             </div>
           </div>
@@ -122,9 +126,9 @@ console.log(great,"iframe");
                       height="600px"
                       src="https://www.youtube.com/embed/GWIAwS09PpM?si=y8oA1wSGDkE_3Rb2"
                       title="YouTube video player"
-                      frameborder="0"
+                      frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
+                      referrerPolicy="strict-origin-when-cross-origin"
                       allowfullscreen
                     ></iframe>
                   </div>

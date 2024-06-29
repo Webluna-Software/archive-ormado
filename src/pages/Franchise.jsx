@@ -1,8 +1,6 @@
 // import React, { useRef } from 'react'
 import img from '../assets/img/&.png'
 import { Link } from 'react-router-dom'
-import Testimonials from '../components/home/Testimonials'
-import Franchisepdf from '../assets/img/Franchise.pdf'
 import { useContext, useEffect, useState } from 'react'
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
@@ -247,4 +245,4 @@ const Franchise = () => {
   )
 }
 
-export default Franchise
+export default Franchise;
