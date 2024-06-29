@@ -134,68 +134,89 @@
         @media(max-width:420px) {
             margin-top: 0 !important;
         }
-
-        .blog-details-text {
-            max-width: 72%;
+ 
+        .main-details{
             width: 100%;
-            padding-left: 2em;
-
-            @media(max-width:991px) {
-                max-width: 100% !important;
-                padding-left: 12px !important;
-                ;
-            }
-
-            @media(max-width:1300px) {
-                padding-left: 10px !important;
-            }
-
-            @media(max-width:612px) {
-                padding-left: 8px !important;
-            }
-
-            @media(max-width:425px) {
-                padding-left: 0 !important;
-            }
-
-            .blog-details-text-part1 {
-                margin-bottom: 0 !important;
-
-                p {
-                    width: 100%;
-                    color: #3F332E;
-                    font-family: Lato;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 24px;
-                    align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            .blog-details-text {
+                max-width: 96%;
+                width: 100%;
+                padding-left: 2em;
+    
+                @media(max-width:991px) {
+                    max-width: 100% !important;
+                    padding-left: 12px !important;
+                    ;
                 }
-            }
-
-            .blog-details-text-part2 {
-                img {
-                    width: 100%;
-                    max-height: 500px;
-                    height: 100%;
-                    object-fit: cover;
+    
+                @media(max-width:1300px) {
+                    padding-left: 10px !important;
                 }
-            }
-
-            .blog-details-text-part3 {
-                h5 {
-                    color: #D59729;
-                    font-family: Lato;
-                    font-size: 32px;
-                    font-style: normal;
-                    font-weight: 700;
-                    line-height: 48px;
-
+    
+                @media(max-width:612px) {
+                    padding-left: 8px !important;
                 }
-
-                ul {
-                    li {
+    
+                @media(max-width:425px) {
+                    padding-left: 0 !important;
+                }
+    
+                .blog-details-text-part1 {
+                    margin-bottom: 0 !important;
+    
+                    p {
+                        width: 100%;
                         color: #3F332E;
+                        font-family: Lato;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px;
+                        align-self: stretch;
+                    }
+                }
+    
+                .blog-details-text-part2 {
+                    img {
+                        width: 100%;
+                        max-height: 500px;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+    
+                .blog-details-text-part3 {
+                    h5 {
+                        color: #D59729;
+                        font-family: Lato;
+                        font-size: 32px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 48px;
+    
+                    }
+    
+                    ul {
+                        li {
+                            color: #3F332E;
+                            font-family: Lato;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px;
+                        }
+                    }
+                }
+    
+                .blog-details-text-part4 {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-direction: row;
+                    gap: 16px;
+    
+                    p {
+                        color: #979797;
                         font-family: Lato;
                         font-size: 16px;
                         font-style: normal;
@@ -204,23 +225,8 @@
                     }
                 }
             }
-
-            .blog-details-text-part4 {
-                display: flex;
-                justify-content: flex-start;
-                flex-direction: row;
-                gap: 16px;
-
-                p {
-                    color: #979797;
-                    font-family: Lato;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 24px;
-                }
-            }
         }
+
 
         .blog-details-card {
             max-width: 25%;

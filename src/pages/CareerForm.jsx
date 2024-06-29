@@ -367,7 +367,7 @@ const CareerForm = () => {
                           type="tel"
                           value={phone}
                           onChange={handlePhoneChange}
-                          placeholder="+994"
+                          placeholder="+"
                         />
                         {phoneError && (
                           <span className="invalid_message">

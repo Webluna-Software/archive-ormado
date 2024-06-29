@@ -6,8 +6,8 @@ import { Link, useParams } from "react-router-dom";
 import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
+import LazyLoad from "react-lazy-load";
 const BlogDetails = () => {
-  const { id } = useParams();
   const { blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
@@ -165,7 +165,8 @@ const BlogDetails = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="blog-details-section2 md-my-5 ">
+                  <div className="blog-details-section2 md-my-5">
+                  <div className="main-details ">
                     {blogSec.map((fd, i) => {
                       const replaceVideoLink =
                         fd.videoLink &&
@@ -196,10 +197,12 @@ const BlogDetails = () => {
                                 {fd.image.length == 0 ? (
                                   ""
                                 ) : (
-                                  <img
+                                  <LazyLoad>
+                                    <img
                                     src={fd.image}
                                     className="img-fluid w-100"
                                   />
+                                  </LazyLoad>
                                 )}
                               </div>
                             </div>
@@ -224,7 +227,8 @@ const BlogDetails = () => {
                         );
                       }
                     })}
-                    <div className="blog-details-card my-5">
+                  </div>
+                  <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
                         {blog.slice(-2).map((fd, i) => (
@@ -266,7 +270,7 @@ const BlogDetails = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
+                  </div>
                   </div>
                 </div>
                 {/* <Blogs /> */}

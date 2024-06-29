@@ -70,8 +70,8 @@ const NewSweets = () => {
               </div>
               <div className="swiper-background"></div>
               <div className="swiper-text container">
-                <h1 className='mb-3'>NEW <span>SWEETS</span></h1>
-                <p dangerouslySetInnerHTML={{ __html: sliderData.desc }}></p>
+                <h1 className='mb-3'>{sliderData.title}</h1>
+                <p className='w-100' dangerouslySetInnerHTML={{ __html: sliderData.desc }}/>
             </div>
             </div>
         </SwiperSlide>

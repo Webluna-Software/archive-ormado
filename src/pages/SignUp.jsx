@@ -7,6 +7,8 @@ import axios from "axios";
 import { loginApiLink } from "../utils/login";
 // import { saveUserData } from '../utils/user'
 
+import Modal from '../components/modal/modal';
+
 const SignUp = () => {
   // const {apiLink , headers} = useContext(ApiLinkContext);
   const navigate = useNavigate();
@@ -19,6 +21,11 @@ const SignUp = () => {
 
   const [icon, setIcon] = useState("fa-eye");
   const [type, setType] = useState("password");
+  
+  //MODAL
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [reloadOnClose, setReloadOnClose] = useState(true);
 
   const eye = () => {
     if (icon === "fa-eye") {
@@ -83,7 +90,13 @@ const SignUp = () => {
     e.preventDefault();
 
     if (!privacyCheck) {
-      alert("Check privacy policy !");
+      // alert("Check privacy policy!");
+      setShowModal(true);
+      setModalContent({
+        title: "Attention!",
+        body: "Check privacy policy!",
+      });
+      setReloadOnClose(false);
       throw new Error("Privacy policy checkbox is empty");
     }
 
@@ -97,12 +110,26 @@ const SignUp = () => {
         password: password,
       })
       .then(() => {
-        alert("User has successfully created!");
+        setShowModal(true);
+        setModalContent({
+          title: "Thank you!",
+          body: "User has successfully created!",
+        });
+        
+        
+        // alert("User has successfully created!");
         window.location.replace("/login");
       })
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (reloadOnClose) {
+      window.location.reload();
+    }
   };
 
   const handlePhoneChange = (e) => {
@@ -406,8 +433,11 @@ const SignUp = () => {
               <div className="mt-3">
                 <p className="ms-2 mb-2">
                   By creating an account means you agree to the
-                  <Link className="remember-link">Terms and Conditions</Link>,
+                  <Link className="remember-link"> Terms and Conditions</Link>,
                   and our <Link className="remember-link">Privacy Policy</Link>
+                  {/* <br />
+                  Creating an account signifies your agreement to the <Link className="remember-link">terms and conditions</Link>.
+                  It also signifies your acceptance of our <Link className="remember-link">privacy policy</Link>. */}
                 </p>
               </div>
             </div>
@@ -499,6 +529,12 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
     </>
   );
 };

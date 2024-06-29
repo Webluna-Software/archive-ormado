@@ -20,7 +20,7 @@ import { addToCart } from '../../features/cartSlice';
 import { validateUserID } from '../../utils/user';
 import { getCookie } from '../../utils/cookie';
 
-
+import Modal from '../modal/modal';
 
 // eslint-disable-next-line react/prop-types
 const ProductDetails = ({_id}) => {
@@ -37,6 +37,20 @@ const ProductDetails = ({_id}) => {
   const { id } = useParams()
   const [productDetails, setProductDetails] = useState([]);
   const path = window.location.pathname;
+
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', body: '' });
+
+  const handleUserCheck = () => {
+    if (!userID) {
+      setModalContent({ title: "Please Login", body: "Please login first!" });
+      setShowModal(true);
+      // window.location.reload();
+      return false;
+    }
+    return true;
+  };
 
   useEffect(() => {
     axios.get(`${ApiLink}/product/${id}`)
@@ -65,31 +79,41 @@ const userID = validateUserID();
   const navigate=useNavigate()
   const localCart=getCookie("cartItems")
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-
   const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
 
   const findCart = (_id) => {
     // const localCart = localStorage.getItem('cartItems');
-    const localCart=getCookie("cartItems")
+    // const localCart=getCookie("cartItems")
     const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
     return cartData ? true : false;
   };
 
-  const cartClick = useCallback(
-    (_id, title, price, salePrice, coverImage,stock) => {
-      if (!userID) {
-        alert("Please login first!");
-        return;
-      }
+  const cartClick = useCallback((_id, title, price, salePrice, coverImage, stock) => {
+    if (handleUserCheck()) {
       if (findCart(_id)) {
         navigate('/basket');
       } else {
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price ,stock}));
+        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price, stock }));
         setCartStatus('active');
       }
-    },
-    [userID, navigate, dispatch, quantity]
-  );
+    }
+  }, [userID, navigate, dispatch, quantity]);
+
+  // const cartClick = useCallback(
+  //   (_id, title, price, salePrice, coverImage,stock) => {
+  //     if (!userID) {
+  //       alert("Please login first!");
+  //       return;
+  //     }
+  //     if (findCart(_id)) {
+  //       navigate('/basket');
+  //     } else {
+  //       dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price ,stock}));
+  //       setCartStatus('active');
+  //     }
+  //   },
+  //   [userID, navigate, dispatch, quantity]
+  // );
 
 
   return (
@@ -106,11 +130,6 @@ const userID = validateUserID();
               <div className="img-text-context">
                 <h4>New Product</h4>
                 <h2>Ormado Espresso Barista Edition</h2>
-                <Link to="/products">
-                  <button>
-                    Shop now
-                  </button>
-                </Link>
               </div>
             </div>
           </div>
@@ -182,9 +201,7 @@ const userID = validateUserID();
                 </div>
                 <button
                 //  onClick={() => { handleAddToCart({ coverImage, title, price,salePrice, _id }); }}
-                 onClick={() =>
-                 ( userID
-                    ? cartClick(
+                onClick={() => cartClick(
                         productDetails._id,
                         productDetails.title,
                         productDetails.price,
@@ -193,10 +210,7 @@ const userID = validateUserID();
                         productDetails.stock,
                         quantity,
                 
-                      )
-                    : alert("Please login first!"))
-
-                }
+                      )}
                 // onClick={()=>{userID ? handleAddToCart(productDetails) : alert("please login first")}}
                  >Add to cart</button>
               </div>
@@ -241,6 +255,8 @@ const userID = validateUserID();
           </div>
         </section>
       }
+
+<Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
     </>
   )
 }

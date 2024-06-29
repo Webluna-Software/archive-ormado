@@ -8,6 +8,7 @@ import { validateUserID } from "../../utils/user";
 
 import ImageGallery from "react-image-gallery";
 import 'react-image-gallery/styles/css/image-gallery.css';
+import LazyLoad from "react-lazy-load";
 
 const Carousel1 = ({ images, _id, products }) => {
   const dispatch = useDispatch();
@@ -57,7 +58,9 @@ const Carousel1 = ({ images, _id, products }) => {
   return (
     <>
       <div className="carousel position-relative">
+        <LazyLoad>
       <ImageGallery items={galleryImages} thumbnailPosition={"left"} showNav={false} />
+        </LazyLoad>
         <span
           className="position-absolute"
           onClick={() =>

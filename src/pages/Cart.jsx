@@ -24,7 +24,7 @@ const Cart = () => {
       dispatch(updateQuantity({ id: productId, quantity }));
     }
   };
-    const totalPrice = cartProducts.reduce((total, product) => {
+  const totalPrice = cartProducts.reduce((total, product) => {
     const price = product.salePrice ? product.salePrice : product.price;
     const quantity = parseInt(product.quantity);
 
@@ -264,7 +264,7 @@ const Cart = () => {
             ))}
             <Link
               to="/products"
-              className="d-flex justify-content-center text-decoration-none mb-4 mb-lg-0"
+              className="d-flex justify-content-center text-decoration-none  mb-4 mb-lg-0"
             >
               <button className="btn btn-brown">Return to shop</button>
             </Link>

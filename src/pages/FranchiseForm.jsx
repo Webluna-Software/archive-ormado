@@ -4,19 +4,27 @@ import { Link } from "react-router-dom";
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
 
+import Modal from "../components/modal/modal";
+
 const FranchiseForm = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [img,setImg] = useState([])
   useEffect(() => {
-    axios.get(`${ApiLink}/franchiseForm`).then((res) => {
-      console.log(res.data, "FranchiseForm");
+    axios.get(`${ApiLink2}/franchiseForm`).then((res) => {
+      setImg(res.data.data[0])
     });
   });
+
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setphone] = useState();
   const [city, setcity] = useState();
   const [country, setcountry] = useState();
   // const [submissionStatus, setSubmissionStatus] = useState(null);
+
+  //MODAL
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
 
   // VALIDATION
   const [nameError, setNameError] = useState(false);
@@ -25,8 +33,8 @@ const FranchiseForm = () => {
   const [cityError, setCityError] = useState(false);
   const [countryError, setCountryError] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const [showErrorModal, setShowErrorModal] = useState(false);
 
   const fromPost = (e) => {
     e.preventDefault();
@@ -51,7 +59,7 @@ const FranchiseForm = () => {
 
     if (isValid) {
       axios
-        .post(`${ApiLink}/franchiseForm`, {
+        .post(`${ApiLink2}/franchiseForm`, {
           fullName: fullName,
           email: email,
           phone: phone,
@@ -60,16 +68,28 @@ const FranchiseForm = () => {
         })
         .then((res) => {
           if (res.data.status == "success") {
+            setModalContent({
+              title: "Thank you!",
+              body: "Your form has been submitted successfully!",
+            });
             setShowModal(true);
           }
         })
         .catch(() => {
-          setShowErrorModal(true);
+          setModalContent({
+            title: "Something went wrong!",
+            body: "Something went wrong. Please try again.",
+          });
+          setShowModal(true);
         });
     }
   };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    window.location.reload();
+  };
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     setphone(value);
     setPhoneError(false);
   };
@@ -80,7 +100,7 @@ const FranchiseForm = () => {
         <div className="franchiseform-part1">
           <img
             className="franchiseform-img"
-            src={frenchiseFormimg}
+            src={img.image}
             alt="error"
           />
         </div>
@@ -127,14 +147,16 @@ const FranchiseForm = () => {
                   id="email"
                   placeholder="example@gmail.com"
                   type="text"
-                  onChange={(e) =>{
-                    setemail(e.target.value)
-                    setEmailError(false)
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                    setEmailError(false);
                   }}
                 />
               </div>
               {emailError && (
-                <span className="invalid_message">Email address is required</span>
+                <span className="invalid_message">
+                  Email address is required
+                </span>
               )}
               <div className="franchiseform-input-text">
                 <label htmlFor="phone">
@@ -173,16 +195,16 @@ const FranchiseForm = () => {
                       id="country"
                       placeholder="Faroe Islands"
                       type="text"
-                      onChange={(e) =>{
-                        setcountry(e.target.value)
-                        setCountryError(false)
+                      onChange={(e) => {
+                        setcountry(e.target.value);
+                        setCountryError(false);
                       }}
                     />
-                    {
-                      countryError && (
-                        <span className="invalid_message">Country is required</span>
-                      )
-                    }
+                    {countryError && (
+                      <span className="invalid_message">
+                        Country is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="franchiseform-city">
@@ -198,16 +220,14 @@ const FranchiseForm = () => {
                       id="city"
                       placeholder="Redlands"
                       type="text"
-                      onChange={(e) =>{
-                        setcity(e.target.value)
-                        setCityError(false)
+                      onChange={(e) => {
+                        setcity(e.target.value);
+                        setCityError(false);
                       }}
                     />
-                    {
-                      cityError && (
-                        <span className="invalid_message">City is required</span>
-                      )
-                    }
+                    {cityError && (
+                      <span className="invalid_message">City is required</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -215,7 +235,7 @@ const FranchiseForm = () => {
                 <p>
                   Your personal data will be used to process your enquiry,
                   support your experience throughout this website, and for other
-                  purposes described in our{" "}
+                  purposes described in our
                   <Link className="franchiseform-link">Privacy policy.</Link>
                 </p>
                 <p>
@@ -236,7 +256,7 @@ const FranchiseForm = () => {
               </div>
             </form>
 
-            <div className="btn-form-modal">
+            {/* <div className="btn-form-modal">
               <div
                 className={`modal fade ${showModal ? "show" : ""}`}
                 tabIndex={-1}
@@ -246,7 +266,7 @@ const FranchiseForm = () => {
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title">Thank you !</h5>
+                      <h5 className="modal-title">Thank you!</h5>
                       <button
                         type="button"
                         onClick={() => {
@@ -264,7 +284,7 @@ const FranchiseForm = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <div className="btn-form-modal">
                     <div className={`modal fade ${showErrorModal ? 'show' : ''}`} tabIndex={-1} role="dialog" style={{ display: showErrorModal ? 'block' : 'none' }}>
                       <div className="modal-dialog modal-dialog-centered">
@@ -289,6 +309,13 @@ const FranchiseForm = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        show={showModal}
+        onClose={handleCloseModal}
+        title={modalContent.title}
+        body={modalContent.body}
+      />
     </>
   );
 };

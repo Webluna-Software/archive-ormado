@@ -1,34 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
-// import { FaqContext } from "../context/FaqContext";
 
-const Faq = () => {
-  // const [faq] = useContext(FaqContext);
 
-  const { ApiLink2 } = useContext(ApiLinkContext);
-
-  const [faqApi, setFaqApi] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    axios
-      .get(`${ApiLink2}/faq`)
-      .then((res) => {
-        setFaqApi(res.data.data);
-        setLoading(false);
-      })
-
-      .catch((err) => {
-        setLoading(false);
-        console.log(err);
-      });
-  }, []);
+const Faq = ({faqs}) => {
 
   return (
     <>
-      {loading ? (
-        <>Loading</>
-      ) : (
+     
         <div className="Faqs">
           <div className="container1">
             <div className="Center">
@@ -46,7 +25,7 @@ const Faq = () => {
               </div>
 
               <div className="accordion " id="accordionExample">
-                {faqApi.map((item, i) => {
+                {faqs.map((item, i) => {
                   return (
                     <div
                       className="accordion-item"
@@ -87,7 +66,7 @@ const Faq = () => {
             </div>
           </div>
         </div>
-      )}
+     
     </>
   );
 };

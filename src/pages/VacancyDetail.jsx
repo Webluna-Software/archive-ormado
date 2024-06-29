@@ -1,12 +1,47 @@
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ApiLinkContext from "../context/ApiLinkContext";
+import axios from "axios";
+import slugify from "slugify";
+import PreLoader from "./PreLoader";
+import Faq from "../components/home/Faq";
+
 const VacancyDetail = () => {
+  const {vacancyId} = useParams()
+  const { ApiLink2 } = useContext(ApiLinkContext)
+  const [findData,setFindData] = useState([])
+  const [faq,setFaq] = useState([])
+  const [loading,setLoading] = useState(true)
+  useEffect(()=>{
+    Promise.all([
+      axios.get(`${ApiLink2}/vacancies`),
+      axios.get(`${ApiLink2}/faqVacancy`)
+    ])
+    .then(([vacanRes,faqRes])=>{
+     const vacancyData = vacanRes.data.data
+     const findVacancy = vacancyData.find((i)=>slugify(i.position).toLowerCase() == vacancyId)
+     const faqData = faqRes.data.data ;
+     setFaq(faqData)
+     setFindData(findVacancy)
+     setLoading(false)
+    })
+    .catch((err)=>{
+      setLoading(false)
+      console.log(err)
+    })
+  },[])
   return (
     <>
+      {
+        loading ? (<PreLoader/>)
+        :(
+         <>
       <div className="VacancyDetail mt-5">
         <div className="container">
           <div className="title">
-            <h1>Corporate Sales Representative </h1>
+            <h1>{findData.position}</h1>
             <h6 style={{fontWeight:"500"}} className="mt-3">
-            <font color="orange">Corporate Sales Representative</font> with outstanding interpersonal skills to actively seek out and engage prospective customers.
+            <font color="orange">{findData.position}</font> with outstanding interpersonal skills to actively seek out and engage prospective customers.
             </h6>
           </div>
 
@@ -14,27 +49,7 @@ const VacancyDetail = () => {
             <div className="upperside ">
               <h5>Responsibilities</h5>
               <div className="one"></div>
-              <div>
-                <p><span style={{ fontWeight: 400 }}>Present, promote, and sell products using compelling arguments to prospective customers.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Establish, develop, and maintain positive business relationships.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Reach out to customer leads through cold calling.</span></p>
-                <p>&nbsp;</p>
-                <p><span style={{ fontWeight: 400 }}>Requirements and Skills:</span></p>
-                <p>&nbsp;</p>
-                <p><span style={{ fontWeight: 400 }}>1 year of work experience as a Corporate Sales Representative.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Excellent selling, negotiation, and communication skills.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Strong prioritization, time management, and organizational abilities.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Valid driver's license.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Proficiency in German language.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Intermediate level of English.</span></p>
-                <p>&nbsp;</p>
-                <p><span style={{ fontWeight: 400 }}>What We Offer:</span></p>
-                <p>&nbsp;</p>
-                <p><span style={{ fontWeight: 400 }}>Company car.</span></p>
-                <p><span style={{ fontWeight: 400 }}>Competitive salary.</span></p>
-                <p>&nbsp;</p>
-                <p><span style={{ fontWeight: 400 }}>To apply, please send your CV to info@ormado.de with the title "Corporate Sales Representative".</span></p>
-              </div>
+              <div dangerouslySetInnerHTML={{__html:findData.text}}/>
 
             </div>
           </div>
@@ -43,6 +58,20 @@ const VacancyDetail = () => {
           </a>
         </div>
       </div>
+      <div className="Faqs">
+          <div className="container1">
+            <div className="Center">
+              
+
+              <div className="accordion " id="accordionExample">
+                <Faq faqs={faq}/>
+              </div>
+            </div>
+          </div>
+        </div>
+         </>
+        )
+      }
     </>
   );
 };
