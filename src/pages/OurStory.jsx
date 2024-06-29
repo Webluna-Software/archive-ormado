@@ -1,15 +1,15 @@
-import React from "react";
-import weare from "../assets/img/weareperfect.png";
-import overlay from "../assets/img/overlay.png";
+// import React from "react";
+// import weare from "../assets/img/weareperfect.png";
+// import overlay from "../assets/img/overlay.png";
 import { useContext } from "react";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import roasting1 from "../assets/img/roasting1.png";
-import roasting2 from "../assets/img/roasting2.png";
-import roasting3 from "../assets/img/roasting3.png";
-import { Link } from "react-router-dom";
+// import roasting1 from "../assets/img/roasting1.png";
+// import roasting2 from "../assets/img/roasting2.png";
+// import roasting3 from "../assets/img/roasting3.png";
+// import { Link } from "react-router-dom";
 import PreLoader from "./PreLoader";
 const OurStory = () => {
   const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
@@ -120,9 +120,9 @@ console.log(great,"iframe");
                       height="600px"
                       src="https://www.youtube.com/embed/GWIAwS09PpM?si=y8oA1wSGDkE_3Rb2"
                       title="YouTube video player"
-                      frameborder="0"
+                      frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
+                      referrerPolicy="strict-origin-when-cross-origin"
                       allowfullscreen
                     ></iframe>
                   </div>

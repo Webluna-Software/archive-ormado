@@ -15,7 +15,6 @@ const Faq = () => {
       .get(`${ApiLink2}/faq`)
       .then((res) => {
         setFaqApi(res.data.data);
-        console.log(res.data.data,"faq");
         setLoading(false);
       })
 
