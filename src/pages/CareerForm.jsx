@@ -5,6 +5,7 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+
 const CareerForm = () => {
   const { ApiLink } = useContext(ApiLinkContext);
 
@@ -107,15 +108,24 @@ const CareerForm = () => {
       { value: lastWork, error: setLastWorkError },
       { value: feedback, error: setFeedBackError },
     ];
-
     fieldCheck.map((item) => {
-      if (!item.value || item.value.trim() === "") {
+      const value = item.value != null ? String(item.value).trim() : "";
+      if (value === "") {
         item.error(true);
         isValid = false;
       } else {
         isValid = true;
       }
     });
+  
+    // fieldCheck.map((item) => {
+    //   if (!item.value || item.value.trim() === "") {
+    //     item.error(true);
+    //     isValid = false;
+    //   } else {
+    //     isValid = true;
+    //   }
+    // });
 
     const formData = new FormData();
 

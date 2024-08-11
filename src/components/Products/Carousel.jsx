@@ -9,9 +9,16 @@ import { validateUserID } from "../../utils/user";
 import ImageGallery from "react-image-gallery";
 import 'react-image-gallery/styles/css/image-gallery.css';
 
-const Carousel1 = ({ images, _id, products }) => {
-  const dispatch = useDispatch();
+import Modal from "../modal/modal";
 
+
+  const Carousel1 = ({ images, _id, products }) => {
+
+    //MODAL
+    const [showModal, setShowModal] = useState(false);
+    const [modalContent, setModalContent] = useState({ title: '', body: '' });
+
+  const dispatch = useDispatch();
   const userID = validateUserID();
 
   // const local = localStorage.getItem("wishItems");
@@ -30,25 +37,62 @@ const Carousel1 = ({ images, _id, products }) => {
     return wishData ? true : false;
   };
 
+  // const wishClick = useCallback(
+  //   (_id, title, coverImage, price, salePrice, stock) => {
+  //     if (!userID) {
+  //       alert("Please login first!");
+  //       return;
+  //     }
+  //     if (findWish(_id)) {
+  //       dispatch(removeFromWish(_id));
+  //       setWishStatus("regular");
+  //     } else {
+  //       // const priceToAdd = salePrice ? salePrice : price;
+  //       dispatch(
+  //         addToWish({ _id, title, coverImage, salePrice, price, stock })
+  //       );
+  //       setWishStatus("solid");
+  //     }
+  //   },
+  //   [dispatch, userID]
+  // );
+
   const wishClick = useCallback(
     (_id, title, coverImage, price, salePrice, stock) => {
       if (!userID) {
-        alert("Please login first!");
+        setModalContent({
+          title: "Login Required",
+          body: "Please login first!",
+        });
+        setShowModal(true);
         return;
       }
       if (findWish(_id)) {
         dispatch(removeFromWish(_id));
         setWishStatus("regular");
+        setModalContent({
+          title: "Removed from WishList",
+          body: "This product has been removed from your WishList.",
+        });
       } else {
-        // const priceToAdd = salePrice ? salePrice : price;
         dispatch(
           addToWish({ _id, title, coverImage, salePrice, price, stock })
         );
         setWishStatus("solid");
+        setModalContent({
+          title: "Added to WishList",
+          body: "This product has been added to your WishList.",
+        });
       }
+      setShowModal(true);
     },
     [dispatch, userID]
   );
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   const galleryImages = images.map(image => ({
     original: image,
     thumbnail: image
@@ -60,19 +104,34 @@ const Carousel1 = ({ images, _id, products }) => {
       <ImageGallery items={galleryImages} thumbnailPosition={"left"} showNav={false} />
         <span
           className="position-absolute"
+          // onClick={() =>
+          //   userID
+          //     ? wishClick(
+          //         products._id,
+          //         products.title,
+          //         products.coverImage,
+          //         products.price,
+          //         products.salePrice,
+          //         products.stock
+          //       )
+          //     : alert("Please login first!")
+          // }
           onClick={() =>
-            userID
-              ? wishClick(
-                  products._id,
-                  products.title,
-                  products.coverImage,
-                  products.price,
-                  products.salePrice,
-                  products.stock
-                )
-              : alert("Please login first!")
+            wishClick(
+              products._id,
+              products.title,
+              products.coverImage,
+              products.price,
+              products.salePrice,
+              products.stock
+            )
           }
         >
+          {/* <i
+            className={`fa-${
+              findWish(products._id) ? "solid" : "regular"
+            } fa-heart`}
+          ></i> */}
           <i
             className={`fa-${
               findWish(products._id) ? "solid" : "regular"
@@ -80,6 +139,7 @@ const Carousel1 = ({ images, _id, products }) => {
           ></i>
         </span>
       </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
     </>
   );
 };

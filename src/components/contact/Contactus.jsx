@@ -234,7 +234,7 @@ const Contactus = () => {
                                 numberError ? "invalid" : ""
                               }`}
                               type="tel"
-                              value={number}
+                              value={ number}
                               onChange={handlePhoneChange}
                               // onChange={(e) => {
                               //   setnumber(e.target.value);
