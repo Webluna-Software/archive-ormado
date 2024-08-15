@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const Contactus = () => {
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [leftSec,setLeftSec] = useState([]);
-  const [faqContact,setFaqContact] = useState([]) ;
+  // const [faqContact,setFaqContact] = useState([]) ;
   const [fullName, setFullName] = useState();
   const [email, setemail] = useState();
   const [number, setnumber] = useState();
@@ -65,7 +65,7 @@ const Contactus = () => {
 
     if (isValid) {
       axios
-        .post(`${ApiLink2}/contactForm`, {
+        .post(`${ApiLink2}/admin/contactForm`, {
           fullName: fullName,
           email: email,
           number: number,

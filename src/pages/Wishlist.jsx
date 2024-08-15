@@ -47,13 +47,15 @@ const Wishlist = () => {
                     <tr key={item._id}>
                       <td className="product-title d-flex align-items-center">
                         <div className="product-img">
+                          {console.log(item)
+                          }
                           <img
-                            src={item.coverImage}
+                            src={item.title}
                             alt=""
                             className="img-fluid"
                           />
                         </div>
-                        {item.title}
+                        {item.coverImage}
                       </td>
                       <td>
                         <span className="product-salePrice">${item.price}</span>

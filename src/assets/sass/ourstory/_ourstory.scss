@@ -73,6 +73,15 @@
       font-weight: 400;
       line-height: 24px;
     }
+    .container-fluid{
+      .col-12{
+        img{
+          width: 300px;
+          height: 300px;
+          object-fit: cover;
+        }
+      }
+    }
   }
   .missionVision {
     padding: 120px 0;

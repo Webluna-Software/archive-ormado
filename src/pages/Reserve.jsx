@@ -1,6 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import background from "../assets/img/reservation-banner.png";
-import img from "../assets/img/reservation-form.jpg";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import Faq from "../components/home/Faq"
@@ -122,18 +120,6 @@ const Reserve = () => {
   const reserveTypeRadio = (value) => {
     return value == reserveType;
   };
-
-  // const handleKeyDown = (e) => {
-  //   if (
-  //     !(
-  // !(e.key >= "0" && e.key <= "9") ||
-  //       e.key === "Backspace" ||
-  //       e.key === "Delete"
-  //     )
-  //   ) {
-  //     e.preventDefault();
-  //   }
-  // };
 
   const handleKeyDown = (e) => {
     // Prevents user from entering a number below 5

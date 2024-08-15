@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import logo from "../assets/img/Logo.png";
 import qrimg from "../assets/img/qr-img.png";
 import { Link } from "react-router-dom";
@@ -25,6 +26,7 @@ const Footer = () => {
       });
   }, []);
 
+
   return (
     <>
       <div className="desktop-footer">
@@ -36,17 +38,18 @@ const Footer = () => {
                 <label htmlFor="newsletter1" className="mt-3">
                   Join the family!
                 </label>
-                <div className="d-flex my-2">
+                <form className="d-flex my-2">
                   <input
                     id="newsletter2"
                     type="text"
                     className="form-control"
                     placeholder="Sign up!"
+                    name="email"
                   />
-                  <button type="button" className="btn btn-primary ms-3">
+                  <button type="submit" className="btn btn-primary ms-3">
                     Send
                   </button>
-                </div>
+                </form>
               </div>
               <p>
                 Sign up for email subscription to be aware of discounts and
