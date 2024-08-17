@@ -1,33 +1,37 @@
 // import React, { useRef } from 'react'
 import img from '../assets/img/&.png'
 import { Link } from 'react-router-dom'
-import Testimonials from '../components/home/Testimonials'
-import Franchisepdf from '../assets/img/Franchise.pdf'
 import { useContext, useEffect, useState } from 'react'
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import PreLoader from "./PreLoader"
 import Faq from '../components/home/Faq'
+import Slider from 'react-slick'
+import LazyLoad from 'react-lazy-load'
+import { Helmet } from 'react-helmet'
 const Franchise = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
   const [franchiseFaq,setFranchiseFaq] = useState([])
   const [why,setWhy] = useState([])
   const [provide,setProvide] = useState([])
   const [company,setCompany] = useState([])
+  const [franchiseTestimonal,setFranchiseTestimonal] = useState([])
   const [loading,setLoading] = useState(true)
   useEffect(()=>{
     Promise.all([
       axios.get(`${ApiLink2}/faqFranchise`),
       axios.get(`${ApiLink2}/whyOrmado`),
       axios.get(`${ApiLink2}/provide`),
-      axios.get(`${ApiLink2}/franchiseCompany`)
+      axios.get(`${ApiLink2}/franchiseCompany`),
+      axios.get(`${ApiLink2}/testimonalFranchise`)
     ]) 
-    .then(([faqRes,whyRes,provideRes,franchCompany])=>{
+    .then(([faqRes,whyRes,provideRes,franchCompany,testimonalRes])=>{
       const faq = faqRes.data.data ;
       const why = whyRes.data.data[0] ;
       const provide = provideRes.data.data ;
       const company = franchCompany.data.franchiseCompany[0] ;
-      console.log(company,"Company");
+      const testimonal = testimonalRes.data.data ;
+      setFranchiseTestimonal(testimonal)
       setCompany(company)
       setProvide(provide[0])
       setWhy(why)
@@ -40,20 +44,60 @@ const Franchise = () => {
     })
   },[])
  
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    sldesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ]
+  }
+  const [expandedArray, setExpandedArray] = useState(new Array(franchiseTestimonal.length).fill(false));
+
+  const toggleExpand = (index) => {
+    event.preventDefault();
+    const newExpandedArray = [...expandedArray];
+    newExpandedArray[index] = !newExpandedArray[index];
+    setExpandedArray(newExpandedArray);
+  }
   return (
    <>
    {
     loading ? (<PreLoader/>)
     :
+   <>
+   <Helmet>
+    <title>Franchise</title>
+   </Helmet>
     <div >
     <section className="franchise-mobile d-none" style={{background:`url(${why.image})`}}>
     <div className="bg-clr">
     <p>
-        WHY <span className="ormado">ORMADO</span> FRANCHISE ?
+        {why.title}
       </p>
-      <p>
-        If you&apos;re considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
-      </p>
+      <p dangerouslySetInnerHTML={{__html:why.desc}}/>
       <div className="ormado-button">
             <Link to="/franchiseform"><button className="ormado-button">INQUIRE NOW</button></Link>
           </div>
@@ -67,14 +111,13 @@ const Franchise = () => {
 
           <div className="text">
             <p>
-              WHY <span className="ormado">ORMADO</span> FRANCHISE ?
+              {why.title}
             </p>
           </div>
 
           <div className="ormado-about">
-            <p>
-              If you&apos;re considering starting your own business in the coffee industry, Ormado Kaffeehause can be the best choice, offering comprehensive knowledge from A to Z.
-            </p>
+            <p dangerouslySetInnerHTML={{__html:why.desc}}/>
+              
           </div>
           <div className="ormado-button">
             <Link to="/franchiseform"><button>INQUIRE NOW</button></Link>
@@ -91,17 +134,46 @@ const Franchise = () => {
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
 
         <div className="franchise-cards mb-5">
+          <LazyLoad>
           <div className="row">
             <img className='img' src={provide.image[0]} alt="" />
             <img src={provide.image[1]} alt="" />
             <img src={provide.image[2] ? provide.image[2] : ""} alt="" />
           </div>
+          </LazyLoad>
         </div>
       </div>
 
     </section>
-
-    <Testimonials/>
+    <div className="testimonials-div">
+        <h3>Testimonial</h3>
+        <Slider {...settings}>
+          {franchiseTestimonal.map((fd, index) => (
+            <div className="testimonials-inner" key={fd._id}>
+              <div className="card" key={index}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <g clipPath="url(#clip0_891_5)">
+                    <path d="M14.0633 25.3334C16.8322 25.3334 19.539 26.1545 21.8413 27.6928C24.1435 29.2311 25.938 31.4176 26.9976 33.9758C28.0572 36.534 28.3345 39.3489 27.7943 42.0646C27.2541 44.7804 25.9207 47.2749 23.9628 49.2329C22.0048 51.1908 19.5103 52.5242 16.7945 53.0644C14.0788 53.6046 11.2639 53.3273 8.7057 52.2677C6.14754 51.2081 3.96103 49.4136 2.42269 47.1114C0.884353 44.8091 0.0632676 42.1023 0.0632676 39.3334L-0.000732422 37.3334C-0.000732422 29.9073 2.94926 22.7854 8.20028 17.5344C13.4513 12.2834 20.5732 9.33337 27.9993 9.33337V17.3334C25.3717 17.3263 22.7688 17.8402 20.341 18.8454C17.9133 19.8505 15.7089 21.327 13.8553 23.1894C13.1348 23.9084 12.4703 24.6813 11.8673 25.5014C12.5833 25.3894 13.3153 25.3294 14.0593 25.3294L14.0633 25.3334ZM50.0633 25.3334C52.8322 25.3334 55.539 26.1545 57.8413 27.6928C60.1435 29.2311 61.938 31.4176 62.9976 33.9758C64.0572 36.534 64.3345 39.3489 63.7943 42.0646C63.2541 44.7804 61.9207 47.2749 59.9628 49.2329C58.0048 51.1908 55.5103 52.5242 52.7945 53.0644C50.0788 53.6046 47.2639 53.3273 44.7057 52.2677C42.1475 51.2081 39.961 49.4136 38.4227 47.1114C36.8844 44.8091 36.0633 42.1023 36.0633 39.3334L35.9993 37.3334C35.9993 29.9073 38.9493 22.7854 44.2003 17.5344C49.4513 12.2834 56.5732 9.33337 63.9993 9.33337V17.3334C61.3717 17.3263 58.7688 17.8402 56.341 18.8454C53.9133 19.8505 51.7089 21.327 49.8553 23.1894C49.1349 23.9084 48.4703 24.6813 47.8673 25.5014C48.5833 25.3894 49.3153 25.3294 50.0633 25.3294V25.3334Z" fill="#E3B142" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_891_5">
+                      <rect width="64" height="64" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div className="card-body">
+                  <h5 className="card-title">{fd.title}</h5>
+                  <p className="card-text"  dangerouslySetInnerHTML={{ __html: expandedArray[index] ? fd.text:  `${fd.text.slice(0, 100)}...`}}/>
+                  <a href="#" onClick={() => toggleExpand(index)}>
+                    {expandedArray[index] ? 'See Less' : 'See More'}
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    {/* <Testimonials/> */}
     <div className="franchisecompany">
       <div className="franchisecompany-part1-text mb-2">
       <p dangerouslySetInnerHTML={{__html:company.text}}/>
@@ -144,7 +216,7 @@ const Franchise = () => {
       <div className="franchisecompany-btns">
         <div className="part1">
           <p>You can download the presentation for more details.</p>
-         <a href={""} download="Franchise"> 
+         <a href={company.file} download="Franchise"> 
          <button className='button'>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.5" fillRule="evenodd" clipRule="evenodd" d="M3 14.25C3.41421 14.25 3.75 14.5858 3.75 15C3.75 16.4354 3.75159 17.4365 3.85315 18.1919C3.9518 18.9257 4.13225 19.3142 4.40901 19.591C4.68577 19.8678 5.07435 20.0482 5.80812 20.1469C6.56347 20.2484 7.56459 20.25 9 20.25H15C16.4354 20.25 17.4365 20.2484 18.1919 20.1469C18.9257 20.0482 19.3142 19.8678 19.591 19.591C19.8678 19.3142 20.0482 18.9257 20.1469 18.1919C20.2484 17.4365 20.25 16.4354 20.25 15C20.25 14.5858 20.5858 14.25 21 14.25C21.4142 14.25 21.75 14.5858 21.75 15V15.0549C21.75 16.4225 21.75 17.5248 21.6335 18.3918C21.5125 19.2919 21.2536 20.0497 20.6517 20.6516C20.0497 21.2536 19.2919 21.5125 18.3918 21.6335C17.5248 21.75 16.4225 21.75 15.0549 21.75H8.94513C7.57754 21.75 6.47522 21.75 5.60825 21.6335C4.70814 21.5125 3.95027 21.2536 3.34835 20.6517C2.74643 20.0497 2.48754 19.2919 2.36652 18.3918C2.24996 17.5248 2.24998 16.4225 2.25 15.0549C2.25 15.0366 2.25 15.0183 2.25 15C2.25 14.5858 2.58579 14.25 3 14.25Z" fill="#ffffff" />
@@ -166,10 +238,11 @@ const Franchise = () => {
   
 
   </div>
+   </>
    }
    
    </>
   )
 }
 
-export default Franchise
+export default Franchise;

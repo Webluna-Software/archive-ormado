@@ -1,7 +1,7 @@
 import React from 'react'
 import HeadlineImg from '../../assets/img/product-information.png'
 import ProductInfoImg from '../../assets/img/product-information-img.png'
-import Faq from '../../components/home/Faq';
+// import Faq from '../../components/home/Faq';
 const ProductInformation = () => {
     return (
       <>
@@ -32,7 +32,7 @@ const ProductInformation = () => {
             </div>
           </div>
       </section>
-      <Faq/>
+      {/* <Faq/> */}
       </>
     );
   };

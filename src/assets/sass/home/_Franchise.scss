@@ -35,8 +35,6 @@
       // clip-path: polygon(0 0, 88% 0, 100% 100%, 0 97%);
       clip-path: polygon(0 0, 80% 0%, 100% 100%, 0% 100%);
 
-   
-
       .text {
         width: 70%;
         display: flex;
@@ -102,7 +100,6 @@
             font-size: 12px !important;
           }
 
-
         }
 
         span {
@@ -115,7 +112,7 @@
         width: 70%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        // align-items: center;
         justify-content: center;
         font-family: Lato;
         font-size: 16px;

@@ -8,15 +8,17 @@ const Modal = ({ show, onClose, title, body }) => {
 
   const handleOutsideClick = (e) => {
     if (e.target.className.includes("modal")) {
-      handleClose();
+      onClose(); 
     }
   };
 
   return (
     <div className="btn-form-modal">
       <div
-        className="modal fade show"
-        style={{ display: "block" }}
+        // className="modal fade show"
+        className={`modal fade ${show ? "show" : ""}`}
+        // style={{ display: "block" }}
+        style={{ display: show ? "block" : "none" }}
         tabIndex={-1}
         role="dialog"
         onClick={handleOutsideClick}
@@ -29,7 +31,7 @@ const Modal = ({ show, onClose, title, body }) => {
                 type="button"
                 className="btn-close"
                 onClick={onClose}
-                data-bs-dismiss="modal"
+                // data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
@@ -45,7 +47,7 @@ const Modal = ({ show, onClose, title, body }) => {
 
 Modal.propTypes = { 
   show: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired, 
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
 };

@@ -11,7 +11,7 @@ const Wishlist = () => {
   const handleRemoveFromWish = (_id) => {
     dispatch(removeFromWish(_id));
   };
-
+  
   const handleAddToCart = (product) => {
     dispatch(addToCart({ ...product, quantity: 1 }));
     handleRemoveFromWish(product._id);

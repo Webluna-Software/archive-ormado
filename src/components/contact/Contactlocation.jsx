@@ -11,17 +11,19 @@ const ContactLocation = () => {
   const [activeIndex, setActiveIndex] = useState(null); 
 
   useEffect(() => {
-    axios(`${ApiLink2}/map`)
-      .then((res) => {
-        // console.log(res.data, "SearchMap");
-        const mapData = res.data.data;
+    Promise.all([
+      axios(`${ApiLink2}/map`),
+      axios(`${ApiLink2}/faqContact`)
+    ])
+      .then(([mapRes]) => {
+        const mapData = mapRes.data.data;
         if (Array.isArray(mapData)) {
           setMap(mapData);
           setDatamap(mapData[0]); 
           setActive(mapData[0].id); 
           setActiveIndex(0); 
         } else {
-          console.error("err:", mapData);
+          console.error(mapData);
         }
       })
       .catch((err) => {
@@ -39,8 +41,8 @@ const ContactLocation = () => {
   return (
     <>
       <div className="titlebox">
-      <h1>Select address</h1>
-      <p>Enjoy the unique Ormado Kaffeehaus experience in our flagship stores and franchising shops.</p>
+        <h1>Select address</h1>
+        <p>Enjoy the unique Ormado Kaffeehaus experience in our flagship stores and franchising shops.</p>
       </div>
       <div className="ormadolocation">
         <div className="mysize-width boxcontainer">

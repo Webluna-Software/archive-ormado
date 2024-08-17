@@ -94,6 +94,15 @@ const AccountDetails = () => {
       window.location.reload();
     }
   };
+
+  // const handlePhoneChange = (e) => {
+  //   let value = e.target.value.replace(/\D/g, ""); 
+  //   if (value && !value.startsWith("+")) {
+  //     value = "+" + value; 
+  //   }
+  //   setPhoneNumber(value); 
+  // };
+  
   return (
     <>    <div className="col-12 col-md-7">
       <p>Edit Account Information</p>
@@ -123,13 +132,24 @@ const AccountDetails = () => {
           />
           <p>Phone</p>
           <input
-            type="text"
+            type="tel"
             name="phone"
             id=""
             className="form-control"
             placeholder="+1(555)251-52-21"
+            // value={user.phoneNumber}
             defaultValue={user.phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            // onChange={handlePhoneChange}
+            // onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => {
+              let value = e.target.value.replace(/\D/g, "");
+              if (value && !value.startsWith("+")) {
+                value = "+" + value;
+              }
+              user.phoneNumber = value; 
+            }}
+      
+            
           />
           <p>Email</p>
           <input

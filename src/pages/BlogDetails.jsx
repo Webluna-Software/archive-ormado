@@ -6,8 +6,8 @@ import { Link, useParams } from "react-router-dom";
 import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
+import LazyLoad from "react-lazy-load";
 const BlogDetails = () => {
-  const { id } = useParams();
   const { blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
@@ -93,6 +93,10 @@ const BlogDetails = () => {
   const formattedReadCount = formatReadCount(
     blogDetails && blogDetails.readCount
   );
+
+    // Eyni ID li bloglar ucun filter -A 
+    const filteredBlogs = blog.filter((item) => item._id !== blogDetails._id);
+
   return (
     <>
       <section className="BlogDetails">
@@ -197,10 +201,12 @@ const BlogDetails = () => {
                                 {fd.image.length == 0 ? (
                                   ""
                                 ) : (
-                                  <img
+                                  <LazyLoad>
+                                    <img
                                     src={fd.image}
                                     className="img-fluid w-100"
                                   />
+                                  </LazyLoad>
                                 )}
                               </div>
                             </div>
@@ -229,7 +235,7 @@ const BlogDetails = () => {
                   <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
-                        {blog.slice(-2).map((fd, i) => (
+                        { filteredBlogs.slice(-2).map((fd, i) => (
                           <div
                             className="blogcard col-12 col-md-3 col-sm-6"
                             key={i}
@@ -273,7 +279,7 @@ const BlogDetails = () => {
                 </div>
                 {/* <Blogs /> */}
                 <div className="cardsBlogs row m-0 mt-5">
-                  {blog.slice(-4).map((item, i) => (
+                  { filteredBlogs.slice(-4).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
                       <Link
                         style={{ color: "#000" }}

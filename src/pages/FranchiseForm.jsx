@@ -7,16 +7,17 @@ import axios from "axios";
 import Modal from "../components/modal/modal";
 
 const FranchiseForm = () => {
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [img,setImg] = useState([])
   useEffect(() => {
-    axios.get(`${ApiLink}/franchiseForm`).then((res) => {
-      console.log(res.data, "FranchiseForm");
+    axios.get(`${ApiLink2}/franchiseForm`).then((res) => {
+      setImg(res.data.data[0])
     });
   });
 
   const [fullName, setfullName] = useState();
   const [email, setemail] = useState();
-  const [phone, setphone] = useState();
+  const [phone, setPhone] = useState();
   const [city, setcity] = useState();
   const [country, setcountry] = useState();
   // const [submissionStatus, setSubmissionStatus] = useState(null);
@@ -58,7 +59,7 @@ const FranchiseForm = () => {
 
     if (isValid) {
       axios
-        .post(`${ApiLink}/franchiseForm`, {
+        .post(`${ApiLink2}/franchiseForm`, {
           fullName: fullName,
           email: email,
           phone: phone,
@@ -87,11 +88,23 @@ const FranchiseForm = () => {
     setShowModal(false);
     window.location.reload();
   };
+
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, "");
-    setphone(value);
+    let value = e.target.value.replace(/\D/g, ""); 
+    if (value && !value.startsWith("+")) {
+      value = "+" + value; 
+    }
+    setPhone(value); 
     setPhoneError(false);
   };
+  
+  // const handlePhoneChange = (e) => {
+  //   const value = e.target.value.replace(/\D/g, "");
+  //   setphone(value);
+  //   setPhoneError(false);
+  // };
+
+  
 
   return (
     <>
@@ -99,7 +112,7 @@ const FranchiseForm = () => {
         <div className="franchiseform-part1">
           <img
             className="franchiseform-img"
-            src={frenchiseFormimg}
+            src={img.image}
             alt="error"
           />
         </div>
@@ -167,10 +180,10 @@ const FranchiseForm = () => {
               <div className="franchiseform-input">
                 <input
                   id="phone"
-                  placeholder="+994"
                   type="tel"
                   value={phone}
                   onChange={handlePhoneChange}
+                  placeholder="Enter your number"
                   // onChange={(e) => {
                   //   setphone(e.target.value)
                   //   setPhoneError(false)

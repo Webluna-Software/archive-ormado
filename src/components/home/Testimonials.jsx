@@ -62,7 +62,8 @@ const Testimonials = () => {
   
   return (
     <>
-      {loading ? <p>Loading</p> : <div className="testimonials-div">
+      {loading ? <p>Loading</p> :
+       <div className="testimonials-div">
         <h3>Testimonial</h3>
         <Slider {...settings}>
           {testimonials.map((fd, index) => (

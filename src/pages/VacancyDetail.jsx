@@ -61,18 +61,7 @@ const VacancyDetail = () => {
       <div className="Faqs">
           <div className="container1">
             <div className="Center">
-              <div className="title">
-                <div className="line"></div>
-                <div className="upper">
-                  <h5>FAQ</h5>
-                </div>
-              </div>
-
-              <div className="question">
-                <h1>
-                  Questions ? <span>Look here</span>
-                </h1>
-              </div>
+              
 
               <div className="accordion " id="accordionExample">
                 <Faq faqs={faq}/>

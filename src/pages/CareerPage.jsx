@@ -1,14 +1,5 @@
 // import HeadlineImg from '../assets/img/product-information.png';
-import career from "../assets/img/karyerabanner.png";
-import careerteam from "../assets/img/careerteam.jpg";
 import Slider from "react-slick";
-// import Team from "../assets/img/career-team.png";
-// import Faq from "../components/home/Faq";
-// import location from "../assets/img/icon.png";
-import baristaone from "../assets/img/Nihad.png";
-import baristatwo from "../assets/img/Leyla.png";
-import baristathree from "../assets/img/Thomas.png";
-import baristafour from "../assets/img/Jenny.png";
 import { Link } from "react-router-dom";
 import Vacancy from "./Vacancy";
 import { useContext } from "react";
@@ -16,6 +7,8 @@ import ApiLinkContext from "../context/ApiLinkContext";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import LazyLoad from "react-lazy-load";
+import { Helmet } from "react-helmet";
 const CareerPage = () => {
    const {ApiLink2} = useContext(ApiLinkContext)
    const [banner,setBanner] = useState([])
@@ -74,6 +67,10 @@ const CareerPage = () => {
   };
 
   return (
+<>
+  <Helmet>
+    <title>Career</title>
+  </Helmet>
     <section className="career-page">
       <div className="career-page-headline">
         <div className="image-container">
@@ -86,7 +83,9 @@ const CareerPage = () => {
         <p  dangerouslySetInnerHTML={{__html:join.text}}/>
         <div className="career-page-iframe">
           <div className="career-page_teamimg">
+            <LazyLoad>
             <img src={join.image} className="img-fluid" alt="" />
+            </LazyLoad>
           </div>
           <div className="image-overlay"></div>
         </div>
@@ -104,7 +103,9 @@ const CareerPage = () => {
           ourTeam.map((i)=>(
             <div className="testimonials-inner">
             <div className="card">
+              <LazyLoad>
               <img src={i.image} className="card-img-top" alt="..."></img>
+              </LazyLoad>
               <div className="card-body">
                 <h5 className="card-title">{i.title}</h5>
                 <h6 className="card-subtitle">{i.position}</h6>
@@ -179,6 +180,7 @@ const CareerPage = () => {
       </div>
       <Faq /> */}
     </section>
+</>
   );
 };
 

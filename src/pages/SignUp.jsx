@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import img from "../assets/img/SignUp.png";
 import logo from "../assets/img/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,9 +8,13 @@ import { loginApiLink } from "../utils/login";
 // import { saveUserData } from '../utils/user'
 
 import Modal from '../components/modal/modal';
+import ApiLinkContext from "../context/ApiLinkContext";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
-  // const {apiLink , headers} = useContext(ApiLinkContext);
+  const {ApiLink2} = useContext(ApiLinkContext)
+  const [data,setData] = useState([])
+  const [loading,setLoading] = useState(true)
   const navigate = useNavigate();
   const [characterslenght, setCharacterlenght] = useState(false);
   const [cappitalletter, setCapitalletter] = useState(false);
@@ -132,14 +136,35 @@ const SignUp = () => {
     }
   };
 
-  const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
-    setPhone(value);
+  // const handlePhoneChange = (e) => {
+  //   const value = e.target.value.replace(/\D/g, '');
+  //   setPhone(value);
     // setPhoneError(false);
+  // };
+  const handlePhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ""); 
+    if (value && !value.startsWith("+")) {
+      value = "+" + value; 
+    }
+    setPhone(value); 
+    setPhoneError(false);
   };
 
+  useEffect(()=>{
+    axios.get(`${ApiLink2}/registerBanner`)
+    .then((res)=>{
+        setData(res.data.registerBanner[0])
+        setLoading(false)
+    })
+    .catch(()=>{
+        setLoading(false)
+    })
+},[])
   return (
     <>
+      <Helmet>
+                <title>Register</title>
+               </Helmet>
       <div className="signup">
         <div className="signup-card">
           <div className="signup-logo">
@@ -190,11 +215,12 @@ const SignUp = () => {
                     type="tel"
                     name=""
                     id="phone"
+                    value={phone}
+                    onChange={handlePhoneChange}
                     placeholder="Enter your phone"
                     // defaultValue={"+"}
                     // onChange={(e) => setPhone(e.target.value)}
-                    value={phone}
-                    onChange={handlePhoneChange}
+
                   />
                   {/* <input id='phone' placeholder='Enter your phone' type='text' onChange={(e)=> setPhone(e.target.value)}/> */}
                 </div>
@@ -522,9 +548,9 @@ const SignUp = () => {
         </div>
         <div className="signup-img">
           <div className="image-container">
-            <img src={img} alt="" className="img-fluid" />
+            <img src={data.image} alt="" className="img-fluid" />
             <div className="image-overlay">
-              <h1>WELCOME TO ORMADO KAFFEEHAUS</h1>
+              <h1>{data.title}</h1>
             </div>
           </div>
         </div>
