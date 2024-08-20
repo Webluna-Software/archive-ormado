@@ -10,6 +10,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const cartProducts = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
+  const [modalProductId, setModalProductId] = useState(null);
 
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
@@ -35,21 +36,20 @@ const Cart = () => {
     }
   }, 0);
 
-  const [showModal, setShowModal] = useState(false);
 
   const handleDeleteProduct = (productId) => {
-    setShowModal(false);
+    setModalProductId(null);
     handleRemoveFromCart(productId);
   };
 
   const handleRefuse = () => {
-    setShowModal(false);
+    setModalProductId(null);
   };
 
   const handleDeleteAndWishlist = (product) => {
     dispatch(addToWish({ ...product }));
     dispatch(removeFromCart(product._id));
-    setShowModal(false);
+    setModalProductId(null);
   };
 
   return (
@@ -105,7 +105,7 @@ const Cart = () => {
                           className="quantity-btn "
                           onClick={() => {
                             if (product.quantity === 1) {
-                              setShowModal(true);
+                              setModalProductId(product._id);
                             } else {
                               handleQuantityChange(
                                 product._id,
@@ -117,7 +117,7 @@ const Cart = () => {
                           <i className="fa-solid fa-minus"></i>
                         </button>
 
-                        {showModal && (
+                        {modalProductId === product._id &&  (
                           <div className="d-flex align-items-center justify-content-center">
                             <div className="modal-container">
                               <div className="modal-content">

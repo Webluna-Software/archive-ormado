@@ -1,5 +1,4 @@
 import { useContext, useState, useEffect } from "react";
-
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link, NavLink, useParams } from "react-router-dom";
@@ -19,19 +18,24 @@ const Blogs = () => {
   const [blogCategory, setBlogCategory] = useState([]);
   const [visible, setVisible] = useState(4);
   const path = window.location.pathname;
+
   useEffect(() => {
-    //Blog
+    // Fetch Blog data
     axios
       .get(`${ApiLink2}/blog`)
       .then((res) => {
-        const blogData = res.data.blog;
+        let blogData = res.data.blog;
         if (id === "all") {
+          // Sort blogs by date before setting state
+          blogData = blogData.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(blogData);
         } else {
           const filtered = blogData.filter(
             (item) => item.blogCategory[0] == id
           );
-          setBlog(filtered);
+          // Sort filtered blogs by date
+          const sortedFiltered = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+          setBlog(sortedFiltered);
         }
         setLoading(false);
       })
@@ -39,25 +43,22 @@ const Blogs = () => {
         setLoading(false);
         console.error("Error fetching blog data:", error);
       });
-    //Blog Section
+
+    // Fetch Blog Section data
     axios.get(`${ApiLink2}/blogSection`).then((res) => {
       setBlogSec(res.data.blogSection);
       setLoading(false);
     });
-    //Blog Section
+
+    // Fetch Blog Category data
     axios.get(`${ApiLink2}/blogCategory`).then((res) => {
       setBlogCategory(res.data.data);
       console.log(res.data.data);
     });
-  }, [path]);
+  }, [path, id]);
 
   const filterSection = (blogSection, blogSecId) => {
-    const check = blogSection.find((id) => id == blogSecId);
-    if (check) {
-      return true;
-    } else {
-      return false;
-    }
+    return blogSection.find((id) => id == blogSecId) ? true : false;
   };
 
   const findFirstSection = (fd) => {
@@ -66,15 +67,11 @@ const Blogs = () => {
     );
 
     const firstText = sections.find((i) => i.row == 1);
-    if (firstText) {
-      return firstText.text;
-    } else {
-      return false;
-    }
+    return firstText ? firstText.text : false;
   };
 
   const visibleShow = () => {
-    setVisible((fd) => (fd += 6));
+    setVisible((prev) => prev + 6);
   };
 
   const handleSelectChange = (e) => {
@@ -90,11 +87,7 @@ const Blogs = () => {
   };
 
   function formatReadCount(count) {
-    if (count < 1000) {
-      return count.toString();
-    } else {
-      return (count / 1000).toFixed(1) + "k";
-    }
+    return count < 1000 ? count.toString() : (count / 1000).toFixed(1) + "k";
   }
 
   return (
@@ -112,7 +105,7 @@ const Blogs = () => {
               <div className="row m-0 justify-content-start">
                 <div className="col-2 categoryTitle">
                   <NavLink to={`/blogs/all`}>
-                    <button className={`${id == "all" ? "activebtn" : ""}`}>
+                    <button className={`${id === "all" ? "activebtn" : ""}`}>
                       ALL CATEGORIES
                     </button>
                   </NavLink>
@@ -120,18 +113,16 @@ const Blogs = () => {
                 {blogCategory.map((i) => (
                   <div className="col-2 categoryTitle" key={i._id}>
                     <NavLink to={`/blogs/${i._id}`}>
-                      <button className={`${id == i._id ? "activebtn" : ""}`}>
+                      <button className={`${id === i._id ? "activebtn" : ""}`}>
                         {i.title}
                       </button>
                     </NavLink>
                   </div>
                 ))}
                 <select name="" id="" onChange={handleSelectChange} value={id}>
-                  <option value="all" selected>
-                    ALL CATEGORIES:
-                  </option>
+                  <option value="all">ALL CATEGORIES:</option>
                   {blogCategory.map((i) => (
-                    <option value={i._id} selected={id === i._id} key={i._id}>
+                    <option value={i._id} key={i._id}>
                       {i.title}
                     </option>
                   ))}
@@ -148,9 +139,7 @@ const Blogs = () => {
                       >
                         <LazyLoad>
                           <Link
-                            to={`/blogDetails/${slugify(
-                              item.title
-                            ).toLowerCase()}`}
+                            to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
                             style={{ color: "#000" }}
                           >
                             <figure>

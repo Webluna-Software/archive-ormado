@@ -90,6 +90,7 @@ const CareerForm = () => {
 
   const formPost = (e) => {
     e.preventDefault();
+    console.log("1")
     let isValid = true;
 
     const fieldCheck = [
