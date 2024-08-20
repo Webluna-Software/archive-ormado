@@ -94,8 +94,8 @@ const BlogDetails = () => {
     blogDetails && blogDetails.readCount
   );
 
-    // Eyni ID li bloglar ucun filter -A 
-    const filteredBlogs = blog.filter((item) => item._id !== blogDetails._id);
+  // Eyni ID li bloglar ucun filter -A
+  const filteredBlogs = blog.filter((item) => item._id !== blogDetails._id);
 
   return (
     <>
@@ -106,6 +106,7 @@ const BlogDetails = () => {
           <>
             <Helmet>
               <title>{blogDetails.title}</title>
+              <meta property="og:title" content={`${blogDetails.title}`} />
             </Helmet>
             <div className="container-fluid">
               <div className="row ">
@@ -170,72 +171,76 @@ const BlogDetails = () => {
                     </div>
                   </div>
                   <div className="blog-details-section2 md-my-5">
-                  <div className="main-details ">
-                    {blogSec.map((fd, i) => {
-                      const replaceVideoLink =
-                        fd.videoLink &&
-                        fd.videoLink.replace("watch?v=", "embed/");
-                      const findSection =
-                        blogDetails.blogSection &&
-                        blogDetails.blogSection.find((i) => i == fd._id);
-                      // console.log(findSection,"budur");
-                      if (findSection) {
-                        return (
-                          <div className="blog-details-text"  key={i}>
-                            <div className="blog-details-text-part1 my-5">
-                              {fd.title == "undefined" ? "" : <p>{fd.title}</p>}
-                              {fd.text == "undefined" ? (
-                                ""
-                              ) : (
-                                <div>
-                                  <p
-                                    dangerouslySetInnerHTML={{
-                                      __html: fd.text,
-                                    }}
-                                  />
-                                </div>
-                              )}
-                            </div>
-                            <div className="blog-details-text-part2 ">
-                              <div className="blog-details-part2-text">
-                                {fd.image.length == 0 ? (
+                    <div className="main-details ">
+                      {blogSec.map((fd, i) => {
+                        const replaceVideoLink =
+                          fd.videoLink &&
+                          fd.videoLink.replace("watch?v=", "embed/");
+                        const findSection =
+                          blogDetails.blogSection &&
+                          blogDetails.blogSection.find((i) => i == fd._id);
+                        // console.log(findSection,"budur");
+                        if (findSection) {
+                          return (
+                            <div className="blog-details-text" key={i}>
+                              <div className="blog-details-text-part1 my-5">
+                                {fd.title == "undefined" ? (
                                   ""
                                 ) : (
-                                  <LazyLoad>
-                                    <img
-                                    src={fd.image}
-                                    className="img-fluid w-100"
-                                  />
-                                  </LazyLoad>
+                                  <p>{fd.title}</p>
+                                )}
+                                {fd.text == "undefined" ? (
+                                  ""
+                                ) : (
+                                  <div>
+                                    <p
+                                      dangerouslySetInnerHTML={{
+                                        __html: fd.text,
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                              <div className="blog-details-text-part2 ">
+                                <div className="blog-details-part2-text">
+                                  {fd.image.length == 0 ? (
+                                    ""
+                                  ) : (
+                                    <LazyLoad>
+                                      <img
+                                        src={fd.image}
+                                        className="img-fluid w-100"
+                                      />
+                                    </LazyLoad>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="blog-details-text-part3">
+                                {fd.videoLink === "undefined" ? (
+                                  ""
+                                ) : (
+                                  <div>
+                                    <iframe
+                                      width="100%"
+                                      height={replaceVideoLink ? "400px" : ""}
+                                      src={`${replaceVideoLink}`}
+                                      title="YouTube video player"
+                                      frameBorder="0"
+                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                      allowFullScreen
+                                    ></iframe>
+                                  </div>
                                 )}
                               </div>
                             </div>
-                            <div className="blog-details-text-part3">
-                              {fd.videoLink === "undefined" ? (
-                                ""
-                              ) : (
-                                <div>
-                                  <iframe
-                                    width="100%"
-                                    height={replaceVideoLink ? "400px" : ""}
-                                    src={`${replaceVideoLink}`}
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                  ></iframe>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
-                  <div className="blog-details-card my-5">
+                          );
+                        }
+                      })}
+                    </div>
+                    <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
-                        { filteredBlogs.slice(-2).map((fd, i) => (
+                        {filteredBlogs.slice(-2).map((fd, i) => (
                           <div
                             className="blogcard col-12 col-md-3 col-sm-6"
                             key={i}
@@ -274,12 +279,12 @@ const BlogDetails = () => {
                           </div>
                         ))}
                       </div>
-                  </div>
+                    </div>
                   </div>
                 </div>
                 {/* <Blogs /> */}
                 <div className="cardsBlogs row m-0 mt-5">
-                  { filteredBlogs.slice(-4).map((item, i) => (
+                  {filteredBlogs.slice(-4).map((item, i) => (
                     <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
                       <Link
                         style={{ color: "#000" }}
