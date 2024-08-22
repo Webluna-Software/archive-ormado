@@ -73,7 +73,7 @@ const CareerForm = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`${ApiLink}/career`),
+      axios.get(`${ApiLink2}/career`),
       axios.get(`${ApiLink2}/bannerVacancy`),
     ])
       .then(([careerRes, bannerRes]) => {
@@ -188,7 +188,7 @@ const CareerForm = () => {
 
     if (isValid) {
       axios
-        .post(`https://ormadoapi.webluna.org/api/client/career`, formData)
+        .post(`${ApiLink2}/career`, formData)
         .then((res) => {
           if (res.data.status === "success") {
             console.log(res, "POSTED");
