@@ -6,17 +6,18 @@ import { useContext, useState } from "react";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { useEffect } from "react";
 import axios from "axios";
+import SocialMedia from "./socialmedia/SocialMedia";
 const Footer = () => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
 
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${ApiLink}/contactSetting`)
+      .get(`${ApiLink2}/contactSetting`)
       .then((res) => {
         const contact = res.data.data.contactSettings[0];
         setData(contact);
@@ -55,7 +56,7 @@ const Footer = () => {
                 Sign up for email subscription to be aware of discounts and
                 updates! You get email only offers when you join
               </p>
-              <div className="socialmedia-icons">
+              {/* <div className="socialmedia-icons">
                 <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
                   <i className="fa-brands fa-square-instagram" />
                 </a>
@@ -86,7 +87,8 @@ const Footer = () => {
                 >
                   <i className="fa-brands fa-pinterest"></i>
                 </a>
-              </div>
+              </div> */}
+              <SocialMedia/>
             </div>
 
             <div className="footer-services">
@@ -249,7 +251,7 @@ const Footer = () => {
           <div className="footer-top">
             <div className="logo-div d-flex align-items-center justify-content-between">
               <img src={logo} alt="" />
-              <div className="socialmedia-icons">
+              {/* <div className="socialmedia-icons">
                 <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
                   <i className="fa-brands fa-square-instagram" />
                 </a>
@@ -280,7 +282,7 @@ const Footer = () => {
                 >
                   <i className="fa-brands fa-pinterest"></i>
                 </a>
-              </div>
+              </div> */}
             </div>
 
             <div className="services-contact d-flex align-items-center justify-content-between">

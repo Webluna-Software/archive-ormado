@@ -13,6 +13,7 @@ import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
+import  Timer  from "../components/countdowntimer/Timer";
 
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
@@ -100,6 +101,10 @@ if (userID) {
     }
   }, [userID, navigate, dispatch, quantity]);
 
+
+// TIMER
+  const endDate = "2024-08-22T23:59:59";
+
   return (
     <>
       {loading ? (
@@ -182,6 +187,7 @@ if (userID) {
                                 fd.stock
                               )}>
                               {/* <i className={`${findCart(fd._id) ? 'fa-solid' : 'fa-regular'} fa-bag-shopping`}></i> */}
+                              {/* <Timer endDate={endDate} /> */}
                               <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                             </div>
                           </div>
