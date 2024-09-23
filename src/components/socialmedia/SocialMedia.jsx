@@ -12,8 +12,7 @@ const SocialMedia = () => {
         axios
             .get(`${ApiLink2}/social`)
             .then((res) => {
-                const social = res.social;
-                console.log("Sosial media məlumatları:", social); 
+                const social = res.data.data;
                 setSocialLinks(social);
             })
             .catch((err) => {
@@ -21,15 +20,14 @@ const SocialMedia = () => {
             });
     }, [ApiLink2]);
 
-
   return (
     <>
-            <ul>
+            <ul className='d-flex' style={{paddingLeft:"0"}}>
             {socialLinks.map((link, i) => (
-                 <li key={link.id}>
-                 <a href={link.url} target="_blank" rel="noopener noreferrer">
-                     <i className={link.icon}></i>
-                     {link.name} 
+                 <li key={link.id} style={{listStyle:"none"}}>
+                 <a href={link.link} target="_blank" rel="noopener noreferrer">
+                     <img src="https://1000logos.net/wp-content/uploads/2017/02/insta-logo.png" alt="" className="img-fluid me-2" style={{width:"20px"}} />
+                     {/* {link.name}  */}
                  </a>
              </li>
                 ))}

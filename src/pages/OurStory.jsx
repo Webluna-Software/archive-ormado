@@ -34,7 +34,7 @@ const OurStory = () => {
       axios.get(`${ApiLink2}/vision`),
       axios.get(`${ApiLink2}/greatThink`),
       axios.get(`${ApiLink2}/count`),
-      axios.get(`${ApiLink2}/roastingHouse`)
+      // axios.get(`${ApiLink2}/roastingHouse`)
     ]).then(([ourstory,missonRes, visionRes, greatRes,countRes,roastingRes]) => {
       setLoading1(false);
       setOurstory(ourstory.data.data[0]);

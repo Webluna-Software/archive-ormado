@@ -7,7 +7,7 @@ export const ApiLinkProvider = (props) => {
     const ApiLink = "https://ormadoapi.webluna.org/api/client";
     
     // Esas link asagidaki olacaq
-    const ApiLink2 = "https://demo-api-ormado.webluna.org/api";
+    const ApiLink2 = "https://ormadoapi.webluna.org/api";
 
     return (
 

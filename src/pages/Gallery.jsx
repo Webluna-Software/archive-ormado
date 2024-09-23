@@ -23,9 +23,11 @@ const Gallery = () => {
   useEffect(()=>{
     Promise.all([
       axios.get(`${ApiLink2}/galeryBanner`),
-      axios.get(`${ApiLink2}/galeryPhoto`)
+      axios.get(`${ApiLink2}/galeryPhoto`),
+      axios.get(`${ApiLink2}/faqGalery`)
     ])
-    .then(([bannerRes,galleryRes])=>{
+    .then(([bannerRes,galleryRes,galleryFaq])=>{
+      console.log(galleryFaq);
       const galleryData = galleryRes.data.galeryPhoto ;
       const bannerData = bannerRes.data.galeryBanner[0] ;
       setBanner(bannerData) ;
