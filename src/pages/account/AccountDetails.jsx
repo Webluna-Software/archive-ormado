@@ -72,8 +72,7 @@ const AccountDetails = () => {
       password: updatedPassword
     };
     console.log(sendData);
-    axios
-      .put(`${loginApiLink}/user/${user._id}`, sendData)
+    axios.put(`${loginApiLink}/user/${user._id}`, sendData)
       .then((res) => {
         console.log(res);
         // alert("Update successful");

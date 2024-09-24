@@ -17,8 +17,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     //Blog
-    axios
-      .get(`${ApiLink2}/blog`)
+    axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         setBlog(res.data.blog);
         setLoading(false);
@@ -28,8 +27,7 @@ const BlogDetails = () => {
         setLoading(false);
       });
     //BlogSection
-    axios
-      .get(`${ApiLink2}/blogSection`)
+    axios.get(`${ApiLink2}/blogSection`)
       .then((res) => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
@@ -71,8 +69,7 @@ const BlogDetails = () => {
       formData.append("readCount", updateCount);
       formData.append("title", blogDetails.title);
       formData.append("description", blogDetails.description);
-      axios
-        .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, formData)
+      axios.put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, formData)
         .then((res) => {
           console.log(res.data);
         })

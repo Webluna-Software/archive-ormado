@@ -77,8 +77,7 @@ const Reserve = () => {
     });
 
     if (isValid) {
-      axios
-        .post(`${ApiLink}/reserve`, {
+      axios.post(`${ApiLink}/reserve`, {
           fullName: fullName,
           email: email,
           phone: phone,

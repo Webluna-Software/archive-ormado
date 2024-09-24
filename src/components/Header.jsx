@@ -42,8 +42,7 @@ const Header = () => {
 
     setIsLoading(true);
 
-    axios
-      .get(`${ApiLink}/product`)
+    axios.get(`${ApiLink}/product`)
       .then((res) => {
         const filteredProducts = res.data.products.filter((product) =>
           product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -61,8 +60,7 @@ const Header = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${loginApiLink}/user/${validateUserID()}`)
+    axios.get(`${loginApiLink}/user/${validateUserID()}`)
       .then((res) => {
         setUser(res.data.data);
         console.log(res.data.data, "user");

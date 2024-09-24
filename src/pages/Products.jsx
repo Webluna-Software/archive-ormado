@@ -15,9 +15,11 @@ import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
 import  Timer  from "../components/countdowntimer/Timer";
 
+
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink, ApiLink3 } = useContext(ApiLinkContext);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -27,6 +29,21 @@ const Products = ({ _id }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
 
+//TIMER
+// const campaign = "2024-08-22T23:59:59";
+// const [campaign, setCampaign] = useState(null);
+
+// useEffect(() => {
+//   // API sorğusu
+//   axios.get(`${ApiLink3}/campaign`)  
+//     .then((response) => {
+//       setCampaign(response.data.campaign);
+//       console.log(res.data.campaign, "Campaign Data");
+//     })
+//     .catch((error) => {
+//       console.error('Error fetching campaign:', error);
+//     });
+// }, []);
 
   useEffect(() => {
     axios.get(`${ApiLink}/product`)
@@ -102,8 +119,7 @@ if (userID) {
   }, [userID, navigate, dispatch, quantity]);
 
 
-// TIMER
-  const endDate = "2024-08-22T23:59:59";
+
 
   return (
     <>
@@ -187,7 +203,7 @@ if (userID) {
                                 fd.stock
                               )}>
                               {/* <i className={`${findCart(fd._id) ? 'fa-solid' : 'fa-regular'} fa-bag-shopping`}></i> */}
-                              {/* <Timer endDate={endDate} /> */}
+                              {/* <Timer campaign={campaign} /> */}
                               <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                             </div>
                           </div>

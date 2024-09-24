@@ -31,8 +31,7 @@ const Contactus = () => {
   const [messageError, setMessageError] = useState(false);
 
   useEffect(()=>{
-    Promise.all([
-      axios.get(`${ApiLink2}/leftSection`),
+    Promise.all([axios.get(`${ApiLink2}/leftSection`),
     ])
     .then(([leftRes])=>{
       const leftData = leftRes.data.leftSection[0] ;
@@ -64,8 +63,7 @@ const Contactus = () => {
     });
 
     if (isValid) {
-      axios
-        .post(`${ApiLink2}/admin/contactForm`, {
+      axios.post(`${ApiLink2}/admin/contactForm`, {
           fullName: fullName,
           email: email,
           number: number,

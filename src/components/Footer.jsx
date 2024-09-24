@@ -16,8 +16,7 @@ const Footer = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/contactSetting`)
+    axios.get(`${ApiLink2}/contactSetting`)
       .then((res) => {
         const contact = res.data.data.contactSettings[0];
         setData(contact);
@@ -283,6 +282,7 @@ const Footer = () => {
                   <i className="fa-brands fa-pinterest"></i>
                 </a>
               </div> */}
+              <SocialMedia/>
             </div>
 
             <div className="services-contact d-flex align-items-center justify-content-between">

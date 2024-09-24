@@ -24,7 +24,7 @@ const OurStory = () => {
     // About
     axios.get(`${ApiLink}/about`).then((res) => {
       setLoading(false);
-      setAbout(res.data.data[0]);
+      setAbout(res.data.data);
     });
 
     // API ALL
@@ -37,12 +37,12 @@ const OurStory = () => {
       axios.get(`${ApiLink2}/roastingHouse`)
     ]).then(([ourstory,missonRes, visionRes, greatRes,countRes,roastingRes]) => {
       setLoading1(false);
-      setOurstory(ourstory.data.data[0]);
-      setMission(missonRes.data.data[0]);
-      setVision(visionRes.data.data[0]);
-      setGreat(greatRes.data.data[0]);
-      setCount(countRes.data.data[0])
-      setRoasting(roastingRes.data.data[0])
+      setOurstory(ourstory.data.data);
+      setMission(missonRes.data.data);
+      setVision(visionRes.data.data);
+      setGreat(greatRes.data.data);
+      setCount(countRes.data.data)
+      setRoasting(roastingRes.data.data)
     });
   }, []);
 

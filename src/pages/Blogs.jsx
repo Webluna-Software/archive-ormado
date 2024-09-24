@@ -21,8 +21,7 @@ const Blogs = () => {
 
   useEffect(() => {
     // Fetch Blog data
-    axios
-      .get(`${ApiLink2}/blog`)
+    axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         let blogData = res.data.blog;
         if (id === "all") {

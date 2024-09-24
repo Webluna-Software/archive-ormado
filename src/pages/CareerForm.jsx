@@ -187,8 +187,7 @@ const CareerForm = () => {
     console.log(formData.get("lastWork"));
 
     if (isValid) {
-      axios
-        .post(`${ApiLink2}/career`, formData)
+      axios.post(`${ApiLink2}/career`, formData)
         .then((res) => {
           if (res.data.status === "success") {
             console.log(res, "POSTED");

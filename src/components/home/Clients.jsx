@@ -9,12 +9,11 @@ const Clients = () => {
   const [partners, setPartners] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/ourClients`)
+    axios.get(`${ApiLink2}/ourClients`)
       .then((res) => {
         setPartners(res.data.data);
         setLoading(false);
-        console.log(res.data.data,"clients");
+        // console.log(res.data.data,"clients");
       })
       .catch((err) => {
         console.log(err);

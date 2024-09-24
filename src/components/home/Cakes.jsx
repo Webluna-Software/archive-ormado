@@ -11,8 +11,7 @@ const Cakes = () => {
   const [cake, setCake] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/cakes`)
+    axios.get(`${ApiLink2}/cakes`)
       .then((res) => {
         setCake(res.data.data);
         setLoading(false);
