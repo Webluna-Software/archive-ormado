@@ -8,12 +8,9 @@ export const ApiLinkProvider = (props) => {
     // Esas link asagidaki olacaq
     const ApiLink2 = "https://ormadoapi.webluna.org/api";
 
-//Social Media Links
-    const ApiLink3 ="https://ormadoapi.webluna.org/api"
-
     return (
 
-        <ApiLinkContext.Provider value={{ApiLink,ApiLink2,ApiLink3}} >
+        <ApiLinkContext.Provider value={{ApiLink,ApiLink2}} >
             {props.children}
         </ApiLinkContext.Provider>
         

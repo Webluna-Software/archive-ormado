@@ -1,11 +1,11 @@
-import imgone from "../assets/img/gallery/1.png";
-import imgtwo from "../assets/img/gallery/2.png";
-import imgthree from "../assets/img/gallery/3.png";
-import imgfour from "../assets/img/gallery/4.png";
-import imgfive from "../assets/img/gallery/5.png";
-import imgsix from "../assets/img/gallery/6.png";
-import imgseven from "../assets/img/gallery/7.png";
-import bgimg from "../assets/img/bgimg.png";
+// import imgone from "../assets/img/gallery/1.png";
+// import imgtwo from "../assets/img/gallery/2.png";
+// import imgthree from "../assets/img/gallery/3.png";
+// import imgfour from "../assets/img/gallery/4.png";
+// import imgfive from "../assets/img/gallery/5.png";
+// import imgsix from "../assets/img/gallery/6.png";
+// import imgseven from "../assets/img/gallery/7.png";
+// import bgimg from "../assets/img/bgimg.png";
 import { Helmet } from "react-helmet" ;
 import { useState } from "react";
 import { useContext } from "react";
@@ -23,9 +23,11 @@ const Gallery = () => {
   useEffect(()=>{
     Promise.all([
       axios.get(`${ApiLink2}/galeryBanner`),
-      axios.get(`${ApiLink2}/galeryPhoto`)
+      axios.get(`${ApiLink2}/galeryPhoto`),
+      axios.get(`${ApiLink2}/faqGalery`)
     ])
-    .then(([bannerRes,galleryRes])=>{
+    .then(([bannerRes,galleryRes,galleryFaq])=>{
+      console.log(galleryFaq);
       const galleryData = galleryRes.data.galeryPhoto ;
       const bannerData = bannerRes.data.galeryBanner[0] ;
       setBanner(bannerData) ;

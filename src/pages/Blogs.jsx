@@ -28,7 +28,8 @@ const Blogs = () => {
           // Sort blogs by date before setting state
           blogData = blogData.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(blogData);
-        } else {
+        } 
+        else {
           const filtered = blogData.filter(
             (item) => item.blogCategory[0] == id
           );

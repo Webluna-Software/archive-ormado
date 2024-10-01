@@ -8,7 +8,7 @@ const checkCookies = () => {
   const cartItems = getCookie('cartItems');
   return cartItems ? JSON.parse(cartItems) : [];
 }
-
+ 
 const initialState = {
   products: checkCookies(),
 };

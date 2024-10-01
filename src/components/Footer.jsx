@@ -55,6 +55,7 @@ const Footer = () => {
                 Sign up for email subscription to be aware of discounts and
                 updates! You get email only offers when you join
               </p>
+
               {/* <div className="socialmedia-icons">
                 <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
                   <i className="fa-brands fa-square-instagram" />
@@ -87,6 +88,7 @@ const Footer = () => {
                   <i className="fa-brands fa-pinterest"></i>
                 </a>
               </div> */}
+
               <SocialMedia/>
             </div>
 

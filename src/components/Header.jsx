@@ -319,9 +319,18 @@ const Header = () => {
           </ul>
           <ul>
             <Link
-              to="/contact"
+              to="/events"
               className={` navA ${active == 8 ? "active" : ""}`}
               onClick={() => setActive(8)}
+            >
+              <li>EVENTS</li>
+            </Link>
+          </ul>
+          <ul>
+            <Link
+              to="/contact"
+              className={` navA ${active == 9 ? "active" : ""}`}
+              onClick={() => setActive(9)}
             >
               <li>CONTACT</li>
             </Link>
@@ -329,8 +338,8 @@ const Header = () => {
           <ul>
             <Link
               to="/gallery"
-              className={` navA ${active == 9 ? "active" : ""}`}
-              onClick={() => setActive(9)}
+              className={` navA ${active == 10 ? "active" : ""}`}
+              onClick={() => setActive(10)}
             >
               <li>GALLERY</li>
             </Link>

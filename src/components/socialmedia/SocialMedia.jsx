@@ -3,30 +3,46 @@ import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";
 
 const SocialMedia = () => {
-  const { ApiLink3 } = useContext(ApiLinkContext);
-  const [socialData, setSocialData] = useState(null);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [social, setSocial] = useState([]);
 
   useEffect(() => {
-    axios.get(`${ApiLink3}/social`)
+    axios.get(`${ApiLink2}/social`)
       .then((res) => {
-        setSocialData(res.data.data);
-        // console.log(res.data.data, "social");
+        console.log(social);
+        const socialData = res.data.data;
+        setSocial(socialData);
       })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, [ApiLink3]);
+      .catch((err) => {
+        console.log("Xəta:", err);
+      });
+  }, []);
+
+  const formatLink = (link) => {
+    if (!link.startsWith("http://") && !link.startsWith("https://")) {
+      return `https://${link}`;
+    }
+    return link;
+  };
+
   return (
     <>
-     {socialData && (
-        <ul className="socialmedia-icons">
-          {socialData.map((item) => (
-            <li key={item._id} >
-              <a href={`https://${item.link}`} target="_blank" rel="noopener noreferrer">
-                {item.name}
+      <div className="socialmediaIcons">
+        <ul>
+          {social.map((item) => (
+            <li key={item._id}>
+            <a href={formatLink(item.link)} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="img-fluid me-2"
+                />
+                {/* {item.name}  */}
               </a>
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </>
   );
 };
