@@ -14,11 +14,13 @@ import { useEffect } from "react";
 import axios from "axios";
 import PreLoader from "./PreLoader"
 import LazyLoad from "react-lazy-load";
+import Faq from "../components/home/Faq";
 const Gallery = () => {
   const [banner,setBanner] = useState([]) ;
   const [gallery,setGallery] = useState([]) ;
   const [loading,setLoading] = useState(true) ;
   const {ApiLink2} = useContext(ApiLinkContext)
+  const [faq,setFaq] = useState([])
 
   useEffect(()=>{
     Promise.all([
@@ -30,6 +32,8 @@ const Gallery = () => {
       console.log(galleryFaq);
       const galleryData = galleryRes.data.galeryPhoto ;
       const bannerData = bannerRes.data.galeryBanner[0] ;
+      const faqData = galleryFaq.data.data ;
+      setFaq(faqData)
       setBanner(bannerData) ;
       setGallery(galleryData) ;
       setLoading(false)
@@ -79,7 +83,7 @@ const Gallery = () => {
        
           </div>
         </div>
-        {/* <Faq /> */}
+        <Faq faqs={faq}/>
       </section>
         )
       }
