@@ -70,6 +70,11 @@ a {
 //Campaign Page
 @import "./campaign/CampaignPage";
 
+//EventPage
+@import "./eventpage/event";
+@import "./eventpage/eventDetails";
+
+
 .ormado-con-main {
   width: 100%;
   display: flex;

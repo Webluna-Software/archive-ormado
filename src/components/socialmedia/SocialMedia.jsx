@@ -9,14 +9,13 @@ const SocialMedia = () => {
   useEffect(() => {
     axios.get(`${ApiLink2}/social`)
       .then((res) => {
-        console.log(social);
         const socialData = res.data.data;
         setSocial(socialData);
       })
       .catch((err) => {
         console.log("Xəta:", err);
       });
-  }, []);
+  }, [ApiLink2]);
 
   const formatLink = (link) => {
     if (!link.startsWith("http://") && !link.startsWith("https://")) {
@@ -30,7 +29,7 @@ const SocialMedia = () => {
       <div className="socialmediaIcons">
         <ul>
           {social.map((item) => (
-            <li key={item._id}>
+            <li  key={item._id}>
             <a href={formatLink(item.link)} target="_blank" rel="noopener noreferrer">
                 <img
                   src={item.image}

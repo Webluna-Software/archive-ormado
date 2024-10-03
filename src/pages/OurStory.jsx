@@ -1,32 +1,33 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../context/ApiLinkContext";
-import { useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 import PreLoader from "./PreLoader";
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
+// import Faq from "../components/home/Faq";
+
+
 const OurStory = () => {
-  const { ApiLink, ApiLink2 } = useContext(ApiLinkContext);
-  const [about, setAbout] = useState([]);
+  const { ApiLink2 } = useContext(ApiLinkContext);
   const [loading, setLoading] = useState(true);
   const [loading1, setLoading1] = useState(true);
 
   // NEW API
-  const [ourstory, setOurstory] = useState([])  ;
-  const [mission, setMission] = useState([])  ;
-  const [vision, setVision] = useState([])    ;
-  const [great, setGreat] = useState([])      ;
-  const [count,setCount] = useState([])       ;
-  const [roasting,setRoasting] = useState([]) ;
+  const [ourStory, setOurStory] = useState([]);
+  const [mission, setMission] = useState([]);
+  const [vision, setVision] = useState([]);
+  const [greatThink, setGreatThink] = useState([]);
+  const [count, setCount] = useState([]);
+  const [roastingHouse, setRoastingHouse] = useState([]);
+  // const [faqOurstory, setFaqOurstory] = useState([]);
 
   useEffect(() => {
     // About
-    axios.get(`${ApiLink}/about`).then((res) => {
+    axios.get(`${ApiLink2}/ourStory`).then((res) => {
       setLoading(false);
-      setAbout(res.data.data);
+      setOurStory(res.data.data);
+      console.log(res.data.data, "OurStory ");
     });
-
     // API ALL
     Promise.all([
       axios.get(`${ApiLink2}/ourStory`),
@@ -34,21 +35,63 @@ const OurStory = () => {
       axios.get(`${ApiLink2}/vision`),
       axios.get(`${ApiLink2}/greatThink`),
       axios.get(`${ApiLink2}/count`),
-      // axios.get(`${ApiLink2}/roastingHouse`)
-    ]).then(([ourstory,missonRes, visionRes, greatRes,countRes,roastingRes]) => {
-      setLoading1(false);
-      setOurstory(ourstory.data.data);
-      setMission(missonRes.data.data);
-      setVision(visionRes.data.data);
-      setGreat(greatRes.data.data);
-      setCount(countRes.data.data)
-      setRoasting(roastingRes.data.data)
-    });
-  }, []);
+      axios.get(`${ApiLink2}/roastingHouse`),
+      // axios.get(`${ApiLink2}/faqOurstory`),
+    ])
+      .then(
+        ([
+          ourStory,
+          missionRes,
+          visionRes,
+          greatRes,
+          countRes,
+          roastingRes,
+          faqOurstoryRes,
+          seoAboutRes,
+        ]) => {
+          setLoading1(false);
+          setOurStory(ourStory.data.data);
+          console.log(ourStory.data.data, "ourStory");
+          setMission(missionRes.data.data);
+          console.log(missionRes.data.data, "Mission");
+          setVision(visionRes.data.data);
+          console.log(visionRes.data.data, "Vision");
+          setGreatThink(greatRes.data.data);
+          console.log(greatRes.data.data, "GreatThink");
+          setCount(countRes.data.data);
+          console.log(countRes.data.data, "Count");
+          setRoastingHouse(roastingRes.data.data);
+          console.log(roastingRes.data.data, "roastingHouse");
+          // setFaqOurstory(faqOurstoryRes.data.data);
+          // console.log(faqOurstoryRes.data.data, "FaqOurstory");
+        }
+      )
+      .catch((error) => {
+        console.error("Failed to fetch data:", error);
+        setLoading1(false);
+      });
+  }, [ApiLink2]);
 
-  const iframeVideo = mission.videoUrl
-    ? mission.videoUrl.replace("watch?v=", "embed/")
-    : "";
+  const getYoutubeEmbedUrl = (url) => {
+    let videoId = null;
+
+    if (url.includes("youtu.be")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("youtube.com")) {
+      const params = new URLSearchParams(url.split("?")[1]);
+      videoId = params.get("v");
+    }
+
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return "";
+  };
+  const removeHtmlTags = (text) => {
+    const doc = new DOMParser().parseFromString(text, "text/html");
+    return doc.body.textContent || "";
+  };
+  
 
   return (
     <>
@@ -56,116 +99,140 @@ const OurStory = () => {
         <PreLoader />
       ) : (
         <>
-        <Helmet>
-          <title>Our story</title>
-        </Helmet>
-        <section className="ourstory">
-          <div className="container-fluid ">
-            <div className="row">
-              <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                <div className="desc">
-                  <h3>{ourstory.title}</h3>
-                  <p dangerouslySetInnerHTML={{ __html: ourstory.text }} />
-                </div>
-              </div>
-              <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                <div className="ourstoryImg">
-                  {/* style={{width:"659px",height:"332px"}} */}
-                  <img src={ourstory.image} alt="" className="img-fluid rounded" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="roasting">
-            <h3 className="ms-1">
-              {roasting.title}
-            </h3>
-            <p className="ms-2" dangerouslySetInnerHTML={{__html:roasting.text}}/>
-            <div className="container-fluid">
-              <div className="row g-3">
-              {roasting.images.map((image, index) => (
-                <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-4">
-                  <LazyLoad>
-                    <img src={image} alt={`Roasting image ${index + 1}`} className="img-fluid" />
-                  </LazyLoad>
-                </div>
-              ))}
-              </div>
-            </div>
-          </div>
-          <div className="missionVision">
-            <div className="container-fluid">
-              <div className="row g-4">
-                <div className="col-12  col-sm-4 ">
-                  <div className="missonDesc">
-                    <h3>{mission.title}</h3>
-                    <p dangerouslySetInnerHTML={{ __html: mission.text }} />
+          <Helmet>
+            <title>Our story</title>
+          </Helmet>
+          <section className="ourstory">
+            <div className="container-fluid ">
+              <div className="row">
+                <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                  <div className="desc">
+                    <h3>{ourStory[0].title}</h3>
+                    <p dangerouslySetInnerHTML={{ __html: ourStory[0].text }} />
                   </div>
                 </div>
-                <div className="col-12  col-sm-4  text-center">
-                  <h1>&</h1>
-                </div>
-                <div className="col-12  col-sm-4 ">
-                  <div className="visionDesc">
-                    <h3>{vision.title}</h3>
-                    <p dangerouslySetInnerHTML={{ __html: vision.text }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="weareperfect">
-            <div className="container-fluid">
-              <div className="row g-3">
-                <div className="col-12 col-sm-12 col-md-5 col-lg-5 ">
-                  <div className="imgBox">
-                    
-                    <iframe
-                      width="100%"
-                      height="600px"
-                      src="https://www.youtube.com/embed/GWIAwS09PpM?si=y8oA1wSGDkE_3Rb2"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                </div>
-                <div className="col-12 col-sm-12 col-md-7 col-lg-7 ">
-                  <div className="weAreDesc">
-                    <h3>{great.title}</h3>
-                    <p
-                      className="pb-5"
-                      dangerouslySetInnerHTML={{ __html: great.text }}
+                <div className="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                  <div className="ourstoryImg">
+                    {/* style={{width:"659px",height:"332px"}} */}
+                    <img
+                      src={ourStory[0].image}
+                      alt=""
+                      className="img-fluid rounded"
                     />
                   </div>
-                  <div className="row">
-                    <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
-                      <div className="counter">
-                        <h2>{count.count1}+</h2>
-                        <p className="ms-2">{count.title1}</p>
-                      </div>
+                </div>
+              </div>
+            </div>
+            <div className="roasting">
+              <h3 className="ms-1">{roastingHouse[0].title} </h3>
+              <p
+                className="ms-2"
+                dangerouslySetInnerHTML={{ __html: roastingHouse[0].text }}
+              />
+              <div className="container-fluid">
+                <div className="row g-3">
+                  {roastingHouse[0].images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="col-12 col-sm-6 col-md-4 col-lg-4"
+                    >
+                      <LazyLoad>
+                        <img
+                          src={image}
+                          alt={`Roasting image ${index + 1}`}
+                          className="img-fluid"
+                        />
+                      </LazyLoad>
                     </div>
-                    <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
-                      <div className="counter">
-                        <h2>{count.count2}+</h2>
-                        <p className="ms-2">{count.title2}</p>
-                      </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="missionVision">
+              <div className="container-fluid">
+                <div className="row g-4">
+                  <div className="col-12  col-sm-4 ">
+                    <div className="missonDesc">
+                      <h3>{mission[0].title}</h3>
+                      <p dangerouslySetInnerHTML={{ __html: mission[0].text }}/>
                     </div>
-                    <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
-                      <div className="counter">
-                        <h2>{count.count3}+</h2>
-                        <p className="ms-2">{count.title3}</p>
+                  </div>
+                  <div className="col-12  col-sm-4  text-center">
+                    <h1>&</h1>
+                  </div>
+                  <div className="col-12  col-sm-4 ">
+                    <div className="visionDesc">
+                      <h3>{vision[0].title}</h3>
+                      <p dangerouslySetInnerHTML={{ __html: vision[0].text }} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="weareperfect">
+              <div className="container-fluid">
+                <div className="row g-3">
+                  <div className="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                    <div className="imgBox">
+                      {greatThink[0].videoUrl ? (
+                        greatThink[0].videoUrl.includes("youtube.com") ||
+                        greatThink[0].videoUrl.includes("youtu.be") ? (
+                          <iframe
+                            width="100%"
+                            height="315"
+                            src={getYoutubeEmbedUrl(greatThink[0].videoUrl)}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            title={greatThink[0].title}
+                          ></iframe>
+                        ) : (
+                          <video
+                            src={greatThink[0].videoUrl}
+                            controls
+                            width="100%"
+                            poster={greatThink[0].image}
+                          />
+                        )
+                      ) : (
+                        <p>Video not available</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-7 col-lg-7 ">
+                    <div className="weAreDesc">
+                      <h3>{greatThink[0].title}</h3>
+                      <p
+                        className="pb-5"
+                        dangerouslySetInnerHTML={{ __html: greatThink[0].text }}
+                      />
+                    </div>
+                    <div className="row">
+                      <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
+                        <div className="counter">
+                          <h2>{count[0].count1}+</h2>
+                          <p className="ms-2">{count[0].title1}</p>
+                        </div>
+                      </div>
+                      <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
+                        <div className="counter">
+                          <h2>{count[0].count2}+</h2>
+                          <p className="ms-2">{count[0].title2}</p>
+                        </div>
+                      </div>
+                      <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
+                        <div className="counter">
+                          <h2>{count[0].count3}+</h2>
+                          <p className="ms-2">{count[0].title3}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
         </>
       )}
     </>

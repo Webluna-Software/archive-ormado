@@ -185,6 +185,7 @@ const Header = () => {
                 className="fa-solid fa-heart"
                 onClick={() => {
                   navigate("/wishlist");
+                  
                 }}
               ></i>
               {/* <span className="badge text-black">{getWishlistItemCount()}</span> */}
@@ -258,7 +259,8 @@ const Header = () => {
             <Link
               to="/"
               className={` navA ${active == 1 ? "active" : ""}`}
-              onClick={() => setActive(1)}
+              onClick={() => setActive(1) }
+              
             >
               <li>HOME</li>
             </Link>
@@ -536,6 +538,15 @@ const Header = () => {
                         <div className="col-11 ">
                           <div className="d-flex justify-content-between">
                             <div>BLOGS</div>
+                            <div></div>
+                          </div>
+                          <hr />
+                        </div>
+                      </Link>
+                      <Link to={"/events"} className="mobile-title">
+                        <div className="col-11 ">
+                          <div className="d-flex justify-content-between">
+                            <div>EVENTS</div>
                             <div></div>
                           </div>
                           <hr />

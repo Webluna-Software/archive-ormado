@@ -253,7 +253,7 @@ const Password = () => {
           className="forgot-btn"
           onClick={() => {
             navigate("/forgotpass");
-            window.scrollTo(0,0)
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
           }}
         >
           Forgot password?
