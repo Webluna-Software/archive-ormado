@@ -9,8 +9,7 @@ const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/testimonal`)
+    axios.get(`${ApiLink2}/testimonal`)
       .then((res) => {
         setTestimonials(res.data.data);
         setLoading(false);

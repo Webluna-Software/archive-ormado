@@ -11,8 +11,7 @@ const WhyUs = () => {
   const [whyus, setWhyUs] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/whyUs`)
+    axios.get(`${ApiLink2}/whyUs`)
       .then((res) => {
         setWhyUs(res.data.data[0]);
         setLoading(false);

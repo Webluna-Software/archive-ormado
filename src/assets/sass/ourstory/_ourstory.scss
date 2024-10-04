@@ -15,6 +15,31 @@
           font-style: normal;
           font-weight: 700;
           line-height: 64px;
+
+          @media (max-width: 1300px) {
+            font-size: 60px;
+          }
+          @media (max-width: 1100px) {
+            font-size: 55px;
+          }
+          @media (max-width: 880px) {
+            font-size: 53px;
+          }
+          @media (max-width: 730px) {
+            font-size: 50px;
+          }
+          @media (max-width: 600px) {
+            font-size: 40px;
+          }
+          @media (max-width: 500px) {
+            font-size: 35px;
+          }
+          @media (max-width: 400px) {
+            font-size: 30px;
+          }
+          @media (max-width: 350px) {
+            font-size: 25px;
+          }
         }
         p {
           color: #4a3024;
@@ -61,6 +86,30 @@
       //styleName: H3/Bold;
       font-family: Montserrat;
       letter-spacing: 0em;
+      @media (max-width: 1300px) {
+        font-size: 60px;
+      }
+      @media (max-width: 1100px) {
+        font-size: 55px;
+      }
+      @media (max-width: 880px) {
+        font-size: 53px;
+      }
+      @media (max-width: 730px) {
+        font-size: 50px;
+      }
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+      @media (max-width: 500px) {
+        font-size: 35px;
+      }
+      @media (max-width: 400px) {
+        font-size: 30px;
+      }
+      @media (max-width: 350px) {
+        font-size: 25px;
+      }
 
     }
     p {
@@ -74,11 +123,15 @@
       line-height: 24px;
     }
     .container-fluid{
-      .col-12{
+      .roasting-img{
+        display: flex;
         img{
           width: 300px;
           height: 300px;
           object-fit: cover;
+        }
+        @media (max-width:576px) {
+             justify-content: center;
         }
       }
     }
@@ -94,6 +147,8 @@
           font-style: normal;
           font-weight: 700;
           line-height: 60%;
+
+
         }
         .missonDesc {
           h3 {
@@ -104,6 +159,30 @@
             font-style: normal;
             font-weight: 700;
             line-height: 64px;
+            @media (max-width: 1300px) {
+              font-size: 60px;
+            }
+            @media (max-width: 1100px) {
+              font-size: 55px;
+            }
+            @media (max-width: 880px) {
+              font-size: 53px;
+            }
+            @media (max-width: 730px) {
+              font-size: 50px;
+            }
+            @media (max-width: 600px) {
+              font-size: 40px;
+            }
+            @media (max-width: 500px) {
+              font-size: 35px;
+            }
+            @media (max-width: 400px) {
+              font-size: 30px;
+            }
+            @media (max-width: 350px) {
+              font-size: 25px;
+            }
           }
           p {
             // width: 482px;
@@ -124,6 +203,30 @@
             font-style: normal;
             font-weight: 700;
             line-height: 64px;
+            @media (max-width: 1300px) {
+              font-size: 60px;
+            }
+            @media (max-width: 1100px) {
+              font-size: 55px;
+            }
+            @media (max-width: 880px) {
+              font-size: 53px;
+            }
+            @media (max-width: 730px) {
+              font-size: 50px;
+            }
+            @media (max-width: 600px) {
+              font-size: 40px;
+            }
+            @media (max-width: 500px) {
+              font-size: 35px;
+            }
+            @media (max-width: 400px) {
+              font-size: 30px;
+            }
+            @media (max-width: 350px) {
+              font-size: 25px;
+            }
           }
           p {
             // width: 482px;

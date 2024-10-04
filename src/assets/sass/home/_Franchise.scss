@@ -1,10 +1,10 @@
 .myfranchise {
   width: 100%;
   height: auto;
-  padding: 120px 84px 120px 84px;
+  padding: 20px 84px 120px 84px;
 
     @media (max-width:1070px) {
-        padding: 90px 50px;
+        padding: 10px 50px;
     }
     @media (max-width:790px) {
         padding: 70px 20px;
@@ -264,9 +264,10 @@
   }
   .roasting {
     margin-top: 50px;
-    @media (max-width: 768px) {
+    @media (max-width: 790px) {
       margin-top: 0;
     }
+    
     // padding: 0px 84px 0px 84px;
   
     //   @media (max-width:1070px) {
@@ -286,6 +287,25 @@
       line-height: 64px;
       font-family: Montserrat;
       letter-spacing: 0em;
+      @media (max-width: 1400px) {
+        font-size: 45px;
+      }
+      @media (max-width: 790px) {
+        font-size: 38px;
+        line-height: 50px;
+      }
+      @media (max-width: 560px) {
+        font-size: 30px;
+        line-height: 40px;
+      }
+      @media (max-width: 375px) {
+        font-size: 25px;
+        line-height: 38px;
+      }
+      @media (max-width: 280px) {
+        font-size: 20px;
+        line-height: 30px;
+      }
   
     }
     p {

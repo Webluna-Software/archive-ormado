@@ -7,6 +7,7 @@ import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
+
 const BlogDetails = () => {
   const { blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
@@ -17,8 +18,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     //Blog
-    axios
-      .get(`${ApiLink2}/blog`)
+    axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         setBlog(res.data.blog);
         setLoading(false);
@@ -28,8 +28,7 @@ const BlogDetails = () => {
         setLoading(false);
       });
     //BlogSection
-    axios
-      .get(`${ApiLink2}/blogSection`)
+    axios.get(`${ApiLink2}/blogSection`)
       .then((res) => {
         setBlogSec(res.data.blogSection);
         setLoading(false);
@@ -39,6 +38,7 @@ const BlogDetails = () => {
         setLoading(false);
       });
   }, [path]);
+
   const filterSection = (blogSec, blogSecId) => {
     const check = blogSec.find((id) => id == blogSecId);
     if (check) {
@@ -60,6 +60,7 @@ const BlogDetails = () => {
       return false;
     }
   };
+  
   let blogDetails = blog.find(
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
@@ -71,8 +72,7 @@ const BlogDetails = () => {
       formData.append("readCount", updateCount);
       formData.append("title", blogDetails.title);
       formData.append("description", blogDetails.description);
-      axios
-        .put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, formData)
+      axios.put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, formData)
         .then((res) => {
           console.log(res.data);
         })
@@ -251,7 +251,7 @@ const BlogDetails = () => {
                                 fd.title
                               ).toLowerCase()}`}
                               onClick={() => {
-                                window.scrollTo({ top: 0 });
+                                window.scrollTo({ top: 0, behavior: 'smooth' }); 
                               }}
                             >
                               <figure>
@@ -290,7 +290,7 @@ const BlogDetails = () => {
                         style={{ color: "#000" }}
                         to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
                         onClick={() => {
-                          window.scrollTo({ top: 0 });
+                          window.scrollTo({ top: 0, behavior: 'smooth' }); 
                         }}
                       >
                         <figure>

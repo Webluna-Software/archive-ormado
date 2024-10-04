@@ -64,6 +64,16 @@ a {
 //Modal
 @import "./modal/modal";
 
+//SocialMedia
+@import "./socialmedia/socialmedia" ;
+
+//Campaign Page
+@import "./campaign/CampaignPage";
+
+//EventPage
+@import "./eventpage/event";
+@import "./eventpage/eventDetails";
+
 
 .ormado-con-main {
   width: 100%;

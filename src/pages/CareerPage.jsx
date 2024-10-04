@@ -102,18 +102,18 @@ const CareerPage = () => {
             support and resources they need to thrive and grow professionally
           </p>
           <Slider {...settings}>
-            {ourTeam.map((i) => (
-              <div className="testimonials-inner">
+            {ourTeam.map((item, i) => (
+              <div className="testimonials-inner" key={i}>
                 <div className="card">
                   <LazyLoad>
-                    <img src={i.image} className="card-img-top" alt="..."></img>
+                    <img src={item.image} className="card-img-top" alt="..."></img>
                   </LazyLoad>
                   <div className="card-body">
-                    <h5 className="card-title">{i.title}</h5>
-                    <h6 className="card-subtitle">{i.position}</h6>
+                    <h5 className="card-title">{item.title}</h5>
+                    <h6 className="card-subtitle">{item.position}</h6>
                     <p
                       className="card-text"
-                      dangerouslySetInnerHTML={{ __html: i.text }}
+                      dangerouslySetInnerHTML={{ __html: item.text }}
                     />
                   </div>
                 </div>

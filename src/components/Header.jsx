@@ -42,8 +42,7 @@ const Header = () => {
 
     setIsLoading(true);
 
-    axios
-      .get(`${ApiLink}/product`)
+    axios.get(`${ApiLink}/product`)
       .then((res) => {
         const filteredProducts = res.data.products.filter((product) =>
           product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -61,8 +60,7 @@ const Header = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${loginApiLink}/user/${validateUserID()}`)
+    axios.get(`${loginApiLink}/user/${validateUserID()}`)
       .then((res) => {
         setUser(res.data.data);
         console.log(res.data.data, "user");
@@ -187,6 +185,7 @@ const Header = () => {
                 className="fa-solid fa-heart"
                 onClick={() => {
                   navigate("/wishlist");
+                  
                 }}
               ></i>
               {/* <span className="badge text-black">{getWishlistItemCount()}</span> */}
@@ -260,7 +259,8 @@ const Header = () => {
             <Link
               to="/"
               className={` navA ${active == 1 ? "active" : ""}`}
-              onClick={() => setActive(1)}
+              onClick={() => setActive(1) }
+              
             >
               <li>HOME</li>
             </Link>
@@ -321,9 +321,18 @@ const Header = () => {
           </ul>
           <ul>
             <Link
-              to="/contact"
+              to="/events"
               className={` navA ${active == 8 ? "active" : ""}`}
               onClick={() => setActive(8)}
+            >
+              <li>EVENTS</li>
+            </Link>
+          </ul>
+          <ul>
+            <Link
+              to="/contact"
+              className={` navA ${active == 9 ? "active" : ""}`}
+              onClick={() => setActive(9)}
             >
               <li>CONTACT</li>
             </Link>
@@ -331,8 +340,8 @@ const Header = () => {
           <ul>
             <Link
               to="/gallery"
-              className={` navA ${active == 9 ? "active" : ""}`}
-              onClick={() => setActive(9)}
+              className={` navA ${active == 10 ? "active" : ""}`}
+              onClick={() => setActive(10)}
             >
               <li>GALLERY</li>
             </Link>
@@ -529,6 +538,15 @@ const Header = () => {
                         <div className="col-11 ">
                           <div className="d-flex justify-content-between">
                             <div>BLOGS</div>
+                            <div></div>
+                          </div>
+                          <hr />
+                        </div>
+                      </Link>
+                      <Link to={"/events"} className="mobile-title">
+                        <div className="col-11 ">
+                          <div className="d-flex justify-content-between">
+                            <div>EVENTS</div>
                             <div></div>
                           </div>
                           <hr />

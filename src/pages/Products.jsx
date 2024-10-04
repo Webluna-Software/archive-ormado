@@ -13,11 +13,13 @@ import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
-import  Timer  from "../components/countdowntimer/Timer";
+import CampaignPage from "../components/campaign/CampaignPage";
+
 
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
-  const { ApiLink } = useContext(ApiLinkContext);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -27,9 +29,8 @@ const Products = ({ _id }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
 
-
   useEffect(() => {
-    axios.get(`${ApiLink}/product`)
+    axios.get(`${ApiLink2}/product`)
       .then((res) => {
         setLoading(false);
         setProducts(res.data.products);
@@ -37,7 +38,7 @@ const Products = ({ _id }) => {
       }).catch((error) => {
         console.error('Error fetching products:', error);
       });
-  }, [ApiLink]);
+  }, [ApiLink2]);
 
   const localCart = getCookie("cartItems");
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
@@ -102,8 +103,7 @@ if (userID) {
   }, [userID, navigate, dispatch, quantity]);
 
 
-// TIMER
-  const endDate = "2024-08-22T23:59:59";
+
 
   return (
     <>
@@ -133,7 +133,7 @@ if (userID) {
                   </div>
                 </div>
               </div>
-
+              <CampaignPage  />
               <div className="product-cards d-md-block d-lg-block p-0 mt-5">
                 <div className="yourormado-products row g-3">
                   {products.map((fd, i) => (
@@ -187,7 +187,6 @@ if (userID) {
                                 fd.stock
                               )}>
                               {/* <i className={`${findCart(fd._id) ? 'fa-solid' : 'fa-regular'} fa-bag-shopping`}></i> */}
-                              {/* <Timer endDate={endDate} /> */}
                               <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
                             </div>
                           </div>

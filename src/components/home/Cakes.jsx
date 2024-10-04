@@ -11,8 +11,7 @@ const Cakes = () => {
   const [cake, setCake] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/cakes`)
+    axios.get(`${ApiLink2}/cakes`)
       .then((res) => {
         setCake(res.data.data);
         setLoading(false);
@@ -48,6 +47,7 @@ const Cakes = () => {
                         <h5 className="card-title cardHeadText">
                           {cake.title}
                         </h5>
+                        {/* <p className="price-box" >${cake.price}</p> */}
                       </div>
                     </div>
                   </div>

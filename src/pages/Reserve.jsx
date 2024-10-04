@@ -37,8 +37,8 @@ const Reserve = () => {
 
   useEffect(() => {
     Promise.all([
-      axios .get(`${ApiLink2}/reservBanner`),
-      axios .get(`${ApiLink2}/faqReservation`)
+      axios.get(`${ApiLink2}/reservBanner`),
+      axios.get(`${ApiLink2}/faqReservation`)
     ])
       .then(([bannerRes,faqRes]) => {
         const faqResData = faqRes.data.faqReservation ;
@@ -77,8 +77,7 @@ const Reserve = () => {
     });
 
     if (isValid) {
-      axios
-        .post(`${ApiLink}/reserve`, {
+      axios.post(`${ApiLink}/reserve`, {
           fullName: fullName,
           email: email,
           phone: phone,

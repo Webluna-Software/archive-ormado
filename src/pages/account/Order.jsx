@@ -27,7 +27,7 @@ const Order = () => {
                   className="button"
                   onClick={() => {
                     navigate("/orderdetails");
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
                   }}
                 >
                   <i className="fa-solid fa-circle-info"></i>Detail

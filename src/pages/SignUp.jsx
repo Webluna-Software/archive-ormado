@@ -104,8 +104,7 @@ const SignUp = () => {
       throw new Error("Privacy policy checkbox is empty");
     }
 
-    axios
-      .post(`${loginApiLink}/user`, {
+    axios.post(`${loginApiLink}/user`, {
         name: name,
         surname: surname,
         email: email,

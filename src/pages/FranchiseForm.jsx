@@ -58,8 +58,7 @@ const FranchiseForm = () => {
     });
 
     if (isValid) {
-      axios
-        .post(`${ApiLink2}/franchiseForm`, {
+      axios.post(`${ApiLink2}/franchiseForm`, {
           fullName: fullName,
           email: email,
           phone: phone,

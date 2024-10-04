@@ -14,8 +14,7 @@ const NewSweets = () => {
   const [sliderData,setSliderData] = useState([])
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/newSweets`)
+    axios.get(`${ApiLink2}/newSweets`)
       .then((res) => {
         setSliderData(res.data.data[0]);
         setLoading(false);
@@ -33,6 +32,7 @@ const NewSweets = () => {
   //     setSliderData(res.data.data)
   //   }) 
   // },[])
+  
   return (
   <> {  loading ? <p>Loading</p> :
     ( <div className='new-sweet my-5'>

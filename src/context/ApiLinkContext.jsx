@@ -6,7 +6,6 @@ export const ApiLinkContext = createContext()
 export const ApiLinkProvider = (props) => {
 
     const ApiLink = "https://ormadoapi.webluna.org/api";
-    
     // Esas link asagidaki olacaq
     const ApiLink2 = "https://ormadoapi.webluna.org/api";
 

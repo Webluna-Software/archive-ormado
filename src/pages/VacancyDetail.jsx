@@ -44,13 +44,11 @@ const VacancyDetail = () => {
             <font color="orange">{findData.position}</font> with outstanding interpersonal skills to actively seek out and engage prospective customers.
             </h6>
           </div>
-
           <div className="firstbox ">
             <div className="upperside ">
               <h5>Responsibilities</h5>
               <div className="one"></div>
               <div dangerouslySetInnerHTML={{__html:findData.text}}/>
-
             </div>
           </div>
           <a  className="btn btn-warning" href="mailto:info@ormado.de">
@@ -61,8 +59,6 @@ const VacancyDetail = () => {
       <div className="Faqs">
           <div className="container1">
             <div className="Center">
-              
-
               <div className="accordion " id="accordionExample">
                 <Faq faqs={faq}/>
               </div>

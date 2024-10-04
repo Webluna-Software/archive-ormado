@@ -9,14 +9,16 @@ import Faq from '../components/home/Faq'
 import Slider from 'react-slick'
 import LazyLoad from 'react-lazy-load'
 import { Helmet } from 'react-helmet'
+
 const Franchise = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
-  const [franchiseFaq,setFranchiseFaq] = useState([])
   const [why,setWhy] = useState([])
   const [provide,setProvide] = useState([])
   const [company,setCompany] = useState([])
   const [franchiseTestimonal,setFranchiseTestimonal] = useState([])
   const [loading,setLoading] = useState(true)
+  const [faqFranchise ,setFaqFranchise] = useState([])
+
   useEffect(()=>{
     Promise.all([
       axios.get(`${ApiLink2}/faqFranchise`),
@@ -35,7 +37,7 @@ const Franchise = () => {
       setCompany(company)
       setProvide(provide[0])
       setWhy(why)
-      setFranchiseFaq(faq)
+      setFaqFranchise(faq)
       setLoading(false)
     })
     .catch((err)=>{
@@ -128,14 +130,14 @@ const Franchise = () => {
         </div>
       </div>
       <div className="roasting">
-        <h3 className="ms-1 my-5">
+        <h3 className="ms-1">
           <font color="#D59729">{provide.title}</font>
         </h3>
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
 
         <div className="franchise-cards mb-5">
           <LazyLoad>
-          <div className="row justify-content-between" >
+          <div className="row  franchise-image" >
             <img className='img' src={provide.image[0]} alt="" />
             <img src={provide.image[1]} alt="" />
             <img src={provide.image[2] ? provide.image[2] : ""} alt="" />
@@ -234,7 +236,15 @@ const Franchise = () => {
         </div>
       </div>
     </div>
-   <Faq faqs={franchiseFaq}/>
+    {/* <div className="Faqs">
+          <div className="container1">
+            <div className="Center">
+              <div className="accordion " id="accordionExample">
+                <Faq faq={faqFranchise}/>
+              </div>
+            </div>
+          </div>
+        </div> */}
   
 
   </div>

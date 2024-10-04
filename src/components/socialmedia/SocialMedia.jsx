@@ -1,40 +1,49 @@
-import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
-import ApiLinkContext from '../../context/ApiLinkContext';
+import { useContext, useEffect, useState } from "react";
+import ApiLinkContext from "../../context/ApiLinkContext";
+import axios from "axios";
 
 const SocialMedia = () => {
-    
-    const [socialLinks, setSocialLinks] = useState([]);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [social, setSocial] = useState([]);
 
-    const { ApiLink2 } = useContext(ApiLinkContext);
+  useEffect(() => {
+    axios.get(`${ApiLink2}/social`)
+      .then((res) => {
+        const socialData = res.data.data;
+        setSocial(socialData);
+      })
+      .catch((err) => {
+        console.log("Xəta:", err);
+      });
+  }, [ApiLink2]);
 
-    useEffect(() => {
-        axios
-            .get(`${ApiLink2}/social`)
-            .then((res) => {
-                const social = res.data.data;
-                setSocialLinks(social);
-            })
-            .catch((err) => {
-                console.log("Xəta:", err);
-            });
-    }, [ApiLink2]);
+  const formatLink = (link) => {
+    if (!link.startsWith("http://") && !link.startsWith("https://")) {
+      return `https://${link}`;
+    }
+    return link;
+  };
 
   return (
     <>
-            <ul className='d-flex' style={{paddingLeft:"0"}}>
-            {socialLinks.map((link, i) => (
-                 <li key={link.id} style={{listStyle:"none"}}>
-                 <a href={link.link} target="_blank" rel="noopener noreferrer">
-                     <img src="https://1000logos.net/wp-content/uploads/2017/02/insta-logo.png" alt="" className="img-fluid me-2" style={{width:"20px"}} />
-                     {/* {link.name}  */}
-                 </a>
-             </li>
-                ))}
-            </ul>
-
+      <div className="socialmediaIcons">
+        <ul>
+          {social.map((item) => (
+            <li  key={item._id}>
+            <a href={formatLink(item.link)} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="img-fluid me-2"
+                />
+                {/* {item.name}  */}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default SocialMedia
+export default SocialMedia;
