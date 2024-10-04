@@ -4,7 +4,7 @@
 .CakesSection {
     display: flex;
     justify-content: center;
-
+    
     .headText {
         color: #4A3024;
         font-family: Montserrat;
@@ -53,6 +53,7 @@
 
                 @media(max-width:860px){
                     font-size: 23px; 
+                    margin-top: 10px;
                 }
             }
 
@@ -93,26 +94,24 @@
                 font-weight: 700;
                 line-height: 48px;
                 margin-bottom: 0;
+
                 @media(max-width:860px){
                     font-size: 20px; 
                 }
-
                 @media(max-width: 592px){
-                    font-size: 15px;
+                    font-size: 18px;
                 }
+                // @media(max-width: 471px){
+                //     font-size: 12px;
+                //  }
 
-                
-                @media(max-width: 471px){
-                    font-size: 12px;
-                 }
+                //  @media(max-width: 376px){
+                //     font-size: 10px;
+                //  }
 
-                 @media(max-width: 376px){
-                    font-size: 10px;
-                 }
-
-                 @media(max-width: 328px){
-                    font-size: 8px;
-                 }
+                //  @media(max-width: 328px){
+                //     font-size: 8px;
+                //  }
 
             }
 

@@ -130,7 +130,7 @@ const Franchise = () => {
         </div>
       </div>
       <div className="roasting">
-        <h3 className="ms-1">
+        <h3 className="ms-1 mt-sm-5" >
           <font color="#D59729">{provide.title}</font>
         </h3>
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
@@ -248,6 +248,7 @@ const Franchise = () => {
   
 
   </div>
+  {/* <Faq faq={faqFranchise}/> */}
    </>
    }
    
