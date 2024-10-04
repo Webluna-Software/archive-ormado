@@ -597,7 +597,7 @@ const Header = () => {
                         </Link>
                       </div>
                       <div
-                        className="header_location mt-4 ms-2"
+                        className="header_location mt-4 "
                         style={{ backgroundColor: "#502D1E" }}
                       >
                         <div className="location_icon">

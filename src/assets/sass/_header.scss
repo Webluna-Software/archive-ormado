@@ -263,6 +263,11 @@ header {
     border-radius: 8px;
     border: 1px solid #979797;
     width: 49%;
+    margin:2px;
+    @media (max-width: 408px) {
+      width: 100%!important;
+
+      }
     span {
       font-family: "Lato", sans-serif;
       color: #4a3024;
