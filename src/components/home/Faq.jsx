@@ -1,14 +1,20 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import ApiLinkContext from "../../context/ApiLinkContext";
+import React from 'react'
 
+const decodeHtmlEntities = (text) => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = text;
+  return txt.value;
+};
+
+const stripHtmlTags = (html) => {
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+};;
 const Faq = ({ faqs }) => {
-  const active = faqs.map((item)=>item.active)
+  const activeFaqs = faqs.filter((item)=>item.active);
+
   return (
     <>
-      {
-        active 
-        == true && faqs.length > 0 && (
+      {activeFaqs.length > 0 &&  (
           <div className="Faqs">
         <div className="container1">
           <div className="Center">
@@ -26,7 +32,7 @@ const Faq = ({ faqs }) => {
             </div>
 
             <div className="accordion " id="accordionExample">
-              {faqs.map((item, i) => {
+              {activeFaqs.map((item, i) => {
                 return  ( 
                   <div
                     className="accordion-item"
@@ -54,10 +60,11 @@ const Faq = ({ faqs }) => {
                       data-bs-parent="#accordionExample"
                     >
                       <div className="accordion-body">
-                        <p
+                        {/* <p
                           className="lorem1"
                           dangerouslySetInnerHTML={{ __html: item.text }}
-                        />
+                        /> */}
+                        <p className="lorem1">   {stripHtmlTags(decodeHtmlEntities(item.text))}</p>
                       </div>
                     </div>
                   </div>

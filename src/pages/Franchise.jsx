@@ -130,14 +130,14 @@ const Franchise = () => {
         </div>
       </div>
       <div className="roasting">
-        <h3 className="ms-1 my-5">
+        <h3 className="ms-1">
           <font color="#D59729">{provide.title}</font>
         </h3>
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
 
         <div className="franchise-cards mb-5">
           <LazyLoad>
-          <div className="row justify-content-between" >
+          <div className="row  franchise-image" >
             <img className='img' src={provide.image[0]} alt="" />
             <img src={provide.image[1]} alt="" />
             <img src={provide.image[2] ? provide.image[2] : ""} alt="" />

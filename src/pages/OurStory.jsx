@@ -4,8 +4,17 @@ import axios from "axios";
 import PreLoader from "./PreLoader";
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
-// import Faq from "../components/home/Faq";
+import Faq from "../components/home/Faq";
 
+const decodeHtmlEntities = (text) => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = text;
+  return txt.value;
+};
+
+const stripHtmlTags = (html) => {
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+};;
 
 const OurStory = () => {
   const { ApiLink2 } = useContext(ApiLinkContext);
@@ -19,14 +28,14 @@ const OurStory = () => {
   const [greatThink, setGreatThink] = useState([]);
   const [count, setCount] = useState([]);
   const [roastingHouse, setRoastingHouse] = useState([]);
-  // const [faqOurstory, setFaqOurstory] = useState([]);
+  const [faqOurstory, setFaqOurstory] = useState([]);
 
   useEffect(() => {
     // About
     axios.get(`${ApiLink2}/ourStory`).then((res) => {
       setLoading(false);
       setOurStory(res.data.data);
-      console.log(res.data.data, "OurStory ");
+      // console.log(res.data.data, "OurStory ");
     });
     // API ALL
     Promise.all([
@@ -36,7 +45,7 @@ const OurStory = () => {
       axios.get(`${ApiLink2}/greatThink`),
       axios.get(`${ApiLink2}/count`),
       axios.get(`${ApiLink2}/roastingHouse`),
-      // axios.get(`${ApiLink2}/faqOurstory`),
+      axios.get(`${ApiLink2}/faqOurstory`),
     ])
       .then(
         ([
@@ -47,23 +56,22 @@ const OurStory = () => {
           countRes,
           roastingRes,
           faqOurstoryRes,
-          seoAboutRes,
         ]) => {
           setLoading1(false);
           setOurStory(ourStory.data.data);
-          console.log(ourStory.data.data, "ourStory");
+          // console.log(ourStory.data.data, "ourStory");
           setMission(missionRes.data.data);
-          console.log(missionRes.data.data, "Mission");
+          // console.log(missionRes.data.data, "Mission");
           setVision(visionRes.data.data);
-          console.log(visionRes.data.data, "Vision");
+          // console.log(visionRes.data.data, "Vision");
           setGreatThink(greatRes.data.data);
-          console.log(greatRes.data.data, "GreatThink");
+          // console.log(greatRes.data.data, "GreatThink");
           setCount(countRes.data.data);
-          console.log(countRes.data.data, "Count");
+          // console.log(countRes.data.data, "Count");
           setRoastingHouse(roastingRes.data.data);
-          console.log(roastingRes.data.data, "roastingHouse");
-          // setFaqOurstory(faqOurstoryRes.data.data);
-          // console.log(faqOurstoryRes.data.data, "FaqOurstory");
+          // console.log(roastingRes.data.data, "roastingHouse");
+          setFaqOurstory(faqOurstoryRes.data.data);
+          console.log(faqOurstoryRes.data.data, "FaqOurstory");
         }
       )
       .catch((error) => {
@@ -116,7 +124,7 @@ const OurStory = () => {
                     {/* style={{width:"659px",height:"332px"}} */}
                     <img
                       src={ourStory[0].image}
-                      alt=""
+                      alt={ourStory[0].title}
                       className="img-fluid rounded"
                     />
                   </div>
@@ -130,11 +138,11 @@ const OurStory = () => {
                 dangerouslySetInnerHTML={{ __html: roastingHouse[0].text }}
               />
               <div className="container-fluid">
-                <div className="row g-3">
+                <div className="row g-3 ">
                   {roastingHouse[0].images.map((image, index) => (
                     <div
                       key={index}
-                      className="col-12 col-sm-6 col-md-4 col-lg-4"
+                      className="roasting-img col-12 col-sm-6 col-md-4 col-lg-4"
                     >
                       <LazyLoad>
                         <img
@@ -154,7 +162,8 @@ const OurStory = () => {
                   <div className="col-12  col-sm-4 ">
                     <div className="missonDesc">
                       <h3>{mission[0].title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: mission[0].text }}/>
+                      <p>{stripHtmlTags(decodeHtmlEntities(mission[0].text ))}</p>
+                      {/* <p dangerouslySetInnerHTML={{ __html: mission[0].text }}/> */}
                     </div>
                   </div>
                   <div className="col-12  col-sm-4  text-center">
@@ -163,7 +172,8 @@ const OurStory = () => {
                   <div className="col-12  col-sm-4 ">
                     <div className="visionDesc">
                       <h3>{vision[0].title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: vision[0].text }} />
+                      {/* <p dangerouslySetInnerHTML={{ __html: vision[0].text }} /> */}
+                      <p>{stripHtmlTags(decodeHtmlEntities(vision[0].text ))}</p>
                     </div>
                   </div>
                 </div>
@@ -233,6 +243,7 @@ const OurStory = () => {
               </div>
             </div>
           </section>
+          <Faq faqs={faqOurstory} />
         </>
       )}
     </>

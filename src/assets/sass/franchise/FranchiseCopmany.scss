@@ -975,11 +975,19 @@
 .myfranchise {
   .roasting {
     .franchise-cards {
-      img {
-        width: 360px;
-        height: 350px;
-        object-fit: cover;
+      .franchise-image{
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 760px) {
+          justify-content: center;
+        }
+        img {
+          width: 360px;
+          height: 350px;
+          object-fit: cover;
+        }
       }
+
     }
   }
   
