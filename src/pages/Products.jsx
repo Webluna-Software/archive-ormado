@@ -14,6 +14,7 @@ import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
 import CampaignPage from "../components/campaign/CampaignPage";
+import Faq from "../components/home/Faq";
 
 
 const Products = ({ _id }) => {
@@ -28,17 +29,25 @@ const Products = ({ _id }) => {
   //MODAL
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
+//FAQ
+const [faqProducts, setFaqProducts] = useState([]);
 
-  useEffect(() => {
-    axios.get(`${ApiLink2}/product`)
-      .then((res) => {
-        setLoading(false);
-        setProducts(res.data.products);
-        console.log(res.data.products, "Products Data");
-      }).catch((error) => {
-        console.error('Error fetching products:', error);
-      });
-  }, [ApiLink2]);
+useEffect(() => {
+  Promise.all([
+    axios.get(`${ApiLink2}/product`),
+    axios.get(`${ApiLink2}/faqProduct`)
+  ])
+    .then(([productRes, faqRes]) => {
+      setProducts(productRes.data.products);
+      setFaqProducts(faqRes.data.data); 
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error("Failed to fetch data:", error);
+      setLoading(false);
+    });
+}, [ApiLink2]);
+
 
   const localCart = getCookie("cartItems");
   const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
@@ -199,6 +208,7 @@ if (userID) {
             </div>
           </div>
         </section>
+        <Faq faqs={faqProducts} />
        </>
       )}
 

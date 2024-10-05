@@ -13,7 +13,7 @@ useEffect(() => {
   axios.get(`${ApiLink2}/campaign`)  
     .then((res) => {
       setCampaign(res.data.data);
-      console.log(res.data.data, "Campaign Data");
+      // console.log(res.data.data, "Campaign Data");
     })
     .catch((error) => {
       console.error('Error fetching campaign:', error);
