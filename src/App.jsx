@@ -34,6 +34,7 @@ import Account from './pages/account/Account';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import TermsandConditions from './pages/TermsandConditions';
+import CampaignPage from './pages/campaign/CampaignPage';
 
 const App = () => {
 
@@ -104,6 +105,7 @@ const App = () => {
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
                 <Route path='/franchise' element={<Franchise />}  ></Route>
                 <Route path='/termsandconditions' element={<TermsandConditions />}  ></Route>
+                <Route path='/campaignpage' element={<CampaignPage />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             <Footer />

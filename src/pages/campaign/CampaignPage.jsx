@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import axios from 'axios';
+import productImg from "../../assets/img/products-banner.png";
 import ApiLinkContext from '../../context/ApiLinkContext';
 import CampaignTimer from "./CampaignTimer";
 const CampaignPage = () => {
@@ -21,6 +22,7 @@ useEffect(() => {
  <section className="CampaignPage mt-3">
         <div className="container">
           <div className="row">
+
             <div className="cardsBlogs row m-0">
               {campaign && campaign.length > 0 ? (
                 campaign.map((item, i) => (
@@ -30,10 +32,8 @@ useEffect(() => {
                     </figure>
                     <div className="card-header">
                       <p className="p-title">{item.title}</p>
-                    </div>
-                    {/* <div className="card-description">
-                    <p  dangerouslySetInnerHTML={{ __html: item.desc }}/>
-                    </div> */}
+                      <p  dangerouslySetInnerHTML={{ __html: item.desc }}/>
+                    </div> 
                     <p className="card-timer p-title card-header">Discount ends in:
                       <CampaignTimer endTime={item.time} />
                     </p>
