@@ -36,7 +36,7 @@ const CampaignTimer = ({ endTime }) => {
 
     const [timeLeft, setTimeLeft] = useState(() => {
         const savedStartTime = localStorage.getItem('campaignStartTime');
-        const startTime = savedStartTime ? Number(savedStartTime) : Math.floor(Date.now() / 1000); // Saniyə ilə vaxt
+        const startTime = savedStartTime ? Number(savedStartTime) : Math.floor(Date.now() / 1000); 
         return calculateTimeLeft(startTime);
     });
 

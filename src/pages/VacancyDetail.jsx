@@ -56,7 +56,8 @@ const VacancyDetail = () => {
           </a>
         </div>
       </div>
-      <div className="Faqs">
+      <Faq faqs={faq}/>
+      {/* <div className="Faqs">
           <div className="container1">
             <div className="Center">
               <div className="accordion " id="accordionExample">
@@ -64,7 +65,7 @@ const VacancyDetail = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
          </>
         )
       }

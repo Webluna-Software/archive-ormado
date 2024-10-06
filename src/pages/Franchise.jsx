@@ -2,6 +2,7 @@
 import img from '../assets/img/&.png'
 import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import PreLoader from "./PreLoader"
@@ -12,6 +13,7 @@ import { Helmet } from 'react-helmet'
 
 const Franchise = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
+  const navigate = useNavigate();
   const [why,setWhy] = useState([])
   const [provide,setProvide] = useState([])
   const [company,setCompany] = useState([])
@@ -85,6 +87,13 @@ const Franchise = () => {
     newExpandedArray[index] = !newExpandedArray[index];
     setExpandedArray(newExpandedArray);
   }
+
+
+
+  const handleRedirect = () => {
+    navigate('/termsandConditions')
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
    <>
    {
@@ -200,7 +209,7 @@ const Franchise = () => {
         <div className="part2">
           <img src={img} alt="error" />
         </div>
-        <div className="termConditions">
+        <div className="termConditions"  onClick={handleRedirect}>
           <div className="termConditions-icon mt-2">
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path opacity="0.5" d="M8 26.6654C8 16.6087 8 11.5804 11.1242 8.45623C14.2484 5.33203 19.2767 5.33203 29.3333 5.33203H34.6667C44.7233 5.33203 49.7516 5.33203 52.8758 8.45623C56 11.5804 56 16.6087 56 26.6654V37.332C56 47.3887 56 52.417 52.8758 55.5412C49.7516 58.6654 44.7233 58.6654 34.6667 58.6654H29.3333C19.2767 58.6654 14.2484 58.6654 11.1242 55.5412C8 52.417 8 47.3887 8 37.332V26.6654Z" fill="#D59729" />

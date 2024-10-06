@@ -2,24 +2,20 @@ import { useContext, useState, useEffect } from "react";
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
 import CampaignTimer from "./CampaignTimer";
-
 const CampaignPage = () => {
-
     const { ApiLink2 } = useContext(ApiLinkContext);
-     const [campaign, setCampaign] = useState(null);
-
+const [campaign, setCampaign] = useState(null);
 useEffect(() => {
   // API sorğusu
   axios.get(`${ApiLink2}/campaign`)  
     .then((res) => {
       setCampaign(res.data.data);
-      // console.log(res.data.data, "Campaign Data");
+      console.log(res.data.data, "Campaign Data");
     })
     .catch((error) => {
       console.error('Error fetching campaign:', error);
     });
 }, [ApiLink2]);
-
   return (
     <>
  <section className="CampaignPage mt-3">
@@ -53,5 +49,4 @@ useEffect(() => {
     </>
   )
 }
-
 export default CampaignPage
