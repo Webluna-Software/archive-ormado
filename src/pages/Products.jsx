@@ -13,7 +13,7 @@ import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
-import CampaignPage from "../components/campaign/CampaignPage";
+// import CampaignPage from "../components/campaign/CampaignPage";
 import Faq from "../components/home/Faq";
 
 
@@ -142,7 +142,7 @@ if (userID) {
                   </div>
                 </div>
               </div>
-              <CampaignPage  />
+              {/* <CampaignPage  /> */}
               <div className="product-cards d-md-block d-lg-block p-0 mt-5">
                 <div className="yourormado-products row g-3">
                   {products.map((fd, i) => (

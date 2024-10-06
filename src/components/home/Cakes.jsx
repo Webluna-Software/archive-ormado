@@ -47,7 +47,7 @@ const Cakes = () => {
                         <h5 className="card-title cardHeadText">
                           {cake.title}
                         </h5>
-                        <p className="card-price " >${cake.price}</p>
+                        {/* <p className="card-price " >${cake.price}</p> */}
                       </div>
                     </div>
                   </div>
