@@ -6,7 +6,7 @@ import CampaignTimer from "./CampaignTimer";
 const CampaignPage = () => {
 
     const { ApiLink2 } = useContext(ApiLinkContext);
-const [campaign, setCampaign] = useState(null);
+     const [campaign, setCampaign] = useState(null);
 
 useEffect(() => {
   // API sorğusu
