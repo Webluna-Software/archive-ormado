@@ -33,6 +33,7 @@ import Password from './pages/account/Password';
 import Account from './pages/account/Account';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
+import TermsandConditions from './pages/TermsandConditions';
 
 const App = () => {
 
@@ -102,6 +103,7 @@ const App = () => {
                 <Route path='/forgotpass' element={<ForgotPass />}  ></Route>
                 <Route path='/branches' element={<SearchBranch />}  ></Route>
                 <Route path='/franchise' element={<Franchise />}  ></Route>
+                <Route path='/termsandconditions' element={<TermsandConditions />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             <Footer />
