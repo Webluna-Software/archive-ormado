@@ -6,15 +6,16 @@ import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
 import Faq from "../components/home/Faq";
 
+//Dahboardan elave tag ile gelen text ve desc qarsisini almaq ucun!
+const stripHtmlTags = (html) => {
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+};
 const decodeHtmlEntities = (text) => {
   const txt = document.createElement('textarea');
   txt.innerHTML = text;
   return txt.value;
 };
 
-const stripHtmlTags = (html) => {
-  return html.replace(/<\/?[^>]+(>|$)/g, "");
-};;
 
 const OurStory = () => {
   const { ApiLink2 } = useContext(ApiLinkContext);
@@ -95,11 +96,7 @@ const OurStory = () => {
     }
     return "";
   };
-  const removeHtmlTags = (text) => {
-    const doc = new DOMParser().parseFromString(text, "text/html");
-    return doc.body.textContent || "";
-  };
-  
+
 
   return (
     <>

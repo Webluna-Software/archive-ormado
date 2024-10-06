@@ -5,6 +5,16 @@ import axios from "axios";
 import Modal from "../modal/modal";
 import { useEffect } from "react";
 
+//Dahboardan elave tag ile gelen text ve desc qarsisini almaq ucun!
+const stripHtmlTags = (html) => {
+  return html.replace(/<\/?[^>]+(>|$)/g, "");
+};
+const decodeHtmlEntities = (text) => {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = text;
+  return txt.value;
+};
+
 const Contactus = () => {
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [leftSec,setLeftSec] = useState([]);
@@ -113,6 +123,8 @@ const Contactus = () => {
   //   setNumberError(false);
   // };
 
+
+
   return (
     <>
       <div className="Contactus">
@@ -129,7 +141,11 @@ const Contactus = () => {
 
                   <div className="loremone">
                     <div className="first">
-                      <h6 className="col-10" dangerouslySetInnerHTML={{__html:leftSec.text}}/>
+                      <h6 className="col-10" 
+                      // dangerouslySetInnerHTML={{__html:leftSec.text}} 
+                      >
+                          {stripHtmlTags(decodeHtmlEntities(leftSec.text ))}
+                      </h6>
                     </div>
                     {/* <div className="second">
                       <h6 className="col-10">
