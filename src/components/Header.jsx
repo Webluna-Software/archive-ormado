@@ -413,7 +413,7 @@ const Header = () => {
             <div className="cart">
               <img
                 src={cart}
-                alt=""
+                alt="cartLogoImage"
                 className="img-fluid"
                 onClick={() => {
                   navigate("/basket");

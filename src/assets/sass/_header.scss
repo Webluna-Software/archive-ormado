@@ -77,6 +77,7 @@ header {
       border-radius: 100px;
     }
     .cart {
+      cursor: pointer;
       position: relative;
       img {
         width: 26px;
@@ -88,6 +89,7 @@ header {
       }
     }
     .wishlist {
+      cursor: pointer;
       position: relative;
       i {
         color: #4a3024;
