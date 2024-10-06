@@ -1,49 +1,50 @@
-.socialmediaIcons {
+.socialmediaIconss {
     display: flex;
     justify-content: start; 
     padding: 10px; 
 }
 
-.socialmediaIcons ul {
+.socialmediaIconss ul {
     display: flex;
     padding-left: 0;
     flex-wrap: wrap;
     justify-content: center; 
 }
 
-.socialmediaIcons li {
+.socialmediaIconss li {
     list-style: none;
     margin: 5px; 
 }
 
-.socialmediaIcons a {
+.socialmediaIconss a {
     font-size: 30px;
-    color: #4A3024;
 }
 
-.socialmediaIcons img {
+.socialmediaIconss img {
     display: block;
     max-width: 30px;
     height: auto;
-    mix-blend-mode: multiply;
+
+
 }
 
 @media (max-width: 768px) {
-    .socialmediaIcons a {
+    .socialmediaIconss a {
         font-size: 20px; 
     }
 
-    .socialmediaIcons img {
+    .socialmediaIconss img {
         max-width: 25px; 
     }
 }
 
 @media (max-width: 480px) {
-    .socialmediaIcons a {
+    .socialmediaIconss a {
         font-size: 18px; 
     }
 
-    .socialmediaIcons img {
+    .socialmediaIconss img {
         max-width: 20px; 
     }
 }
+

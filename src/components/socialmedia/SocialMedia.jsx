@@ -26,7 +26,7 @@ const SocialMedia = () => {
 
   return (
     <>
-      <div className="socialmediaIcons">
+      <div className="socialmediaIconss">
         <ul>
           {social.map((item) => (
             <li  key={item._id}>
@@ -36,7 +36,6 @@ const SocialMedia = () => {
                   alt={item.name}
                   className="img-fluid me-2"
                 />
-                {/* {item.name}  */}
               </a>
             </li>
           ))}
