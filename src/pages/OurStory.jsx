@@ -71,7 +71,7 @@ const OurStory = () => {
           setRoastingHouse(roastingRes.data.data);
           // console.log(roastingRes.data.data, "roastingHouse");
           setFaqOurstory(faqOurstoryRes.data.data);
-          console.log(faqOurstoryRes.data.data, "FaqOurstory");
+          // console.log(faqOurstoryRes.data.data, "FaqOurstory");
         }
       )
       .catch((error) => {

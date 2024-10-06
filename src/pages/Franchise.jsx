@@ -17,7 +17,7 @@ const Franchise = () => {
   const [company,setCompany] = useState([])
   const [franchiseTestimonal,setFranchiseTestimonal] = useState([])
   const [loading,setLoading] = useState(true)
-  const [faqFranchise ,setFaqFranchise] = useState([])
+  const [faqFranchise ,setFaqFranchise] = useState([]);
 
   useEffect(()=>{
     Promise.all([
@@ -38,6 +38,7 @@ const Franchise = () => {
       setProvide(provide[0])
       setWhy(why)
       setFaqFranchise(faq)
+      console.log(faq)
       setLoading(false)
     })
     .catch((err)=>{
@@ -130,7 +131,7 @@ const Franchise = () => {
         </div>
       </div>
       <div className="roasting">
-        <h3 className="ms-1">
+        <h3 className="ms-1 mt-sm-5" >
           <font color="#D59729">{provide.title}</font>
         </h3>
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
@@ -236,18 +237,11 @@ const Franchise = () => {
         </div>
       </div>
     </div>
-    {/* <div className="Faqs">
-          <div className="container1">
-            <div className="Center">
-              <div className="accordion " id="accordionExample">
-                <Faq faq={faqFranchise}/>
-              </div>
-            </div>
-          </div>
-        </div> */}
-  
+    <Faq faqs={faqFranchise}/>
+
 
   </div>
+
    </>
    }
    

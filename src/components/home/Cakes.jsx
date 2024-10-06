@@ -41,13 +41,13 @@ const Cakes = () => {
                       <img
                         src={cake.image}
                         className="card-img-top"
-                        alt="..."
+                        alt={cake.title}
                       />
                       <div className="card-body">
                         <h5 className="card-title cardHeadText">
                           {cake.title}
                         </h5>
-                        {/* <p className="price-box" >${cake.price}</p> */}
+                        <p className="card-price " >${cake.price}</p>
                       </div>
                     </div>
                   </div>
