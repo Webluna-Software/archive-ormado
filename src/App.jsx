@@ -33,6 +33,7 @@ import Password from './pages/account/Password';
 import Account from './pages/account/Account';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
+import StickyCookie from './components/home/StickyCookie';
 
 const App = () => {
 
@@ -104,6 +105,7 @@ const App = () => {
                 <Route path='/franchise' element={<Franchise />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
+            <StickyCookie/>
             <Footer />
         </>
     )

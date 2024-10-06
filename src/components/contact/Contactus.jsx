@@ -63,10 +63,10 @@ const Contactus = () => {
     });
 
     if (isValid) {
-      axios.post(`${ApiLink2}/admin/contactForm`, {
+      axios.post(`${ApiLink2}/contactForm`, {
           fullName: fullName,
           email: email,
-          number: number,
+          number: parseInt(number),
           country: country,
           companyName: companyName,
           interestedIn: interestedIn,
@@ -80,6 +80,7 @@ const Contactus = () => {
               body: "Your form has been submitted successfully!",
             });
           }
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -111,6 +112,7 @@ const Contactus = () => {
   //   setnumber(value);
   //   setNumberError(false);
   // };
+
   return (
     <>
       <div className="Contactus">
