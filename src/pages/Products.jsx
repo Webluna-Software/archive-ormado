@@ -147,7 +147,7 @@ if (userID) {
                     <div className="col-12 col-sm-6 col-md-4" key={i}>
                       <div className="card w-100">
                         <LazyLoad>
-                        <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt="..." /></Link>
+                        <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt={fd.title} /></Link>
                         </LazyLoad>
                         <div className="wishlist-modal">
                           <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"
@@ -212,9 +212,11 @@ if (userID) {
                   <div className="img-text-context">
                   <h2>Special Campaign</h2>
                   <h4>Get the best deals for a limited time!</h4>
-                      <Link  to="/campaignpage" ><button className="shopBtn">
-                    Shop now
-                      </button></Link>
+                      <Link  to="/campaignpage" >
+                      <button className="shopBtn">
+                             Shop now
+                      </button>
+                      </Link>
                   </div>
                 </div>
               </div>
@@ -224,7 +226,7 @@ if (userID) {
                     <div className="col-12 col-sm-6 col-md-4" key={i}>
                       <div className="card w-100">
                         <LazyLoad>
-                        <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt="..." /></Link>
+                        <Link to={`/productsdetails/${fd._id}`}><img src={fd.coverImage} className="card-img-top py-5" alt={fd.title} /></Link>
                         </LazyLoad>
                         <div className="wishlist-modal">
                           <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"

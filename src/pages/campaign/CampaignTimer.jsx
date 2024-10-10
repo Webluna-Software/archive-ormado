@@ -1,66 +1,65 @@
 import React, { useEffect, useState } from 'react';
 
-const CampaignTimer = ({ endTime }) => {
-    const parseTime = (timeString) => {
-        const timeParts = timeString.split(':').map(Number);
-        let hours = 0, minutes = 0, seconds = 0;
+const CampaignTimer = ({ endTime, onEnd }) => {
+  const isValidDate = (dateString) => {
+    const regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?$/;
+    return regex.test(dateString);
+  };
 
-        if (timeParts.length === 2) { 
-            [hours, minutes] = timeParts;
-        } else if (timeParts.length === 3) { 
-            [hours, minutes, seconds] = timeParts;
-        }
+  const parseTime = (timeString) => {
+    if (!isValidDate(timeString)) {
+      console.error('Tarixi düzgün daxil edin: YYYY-MM-DD HH:MM:SS');
+      return null;
+    }
+    return new Date(timeString);
+  };
 
-        return { hours, minutes, seconds };
+  const calculateTimeLeft = (endDate) => {
+    const now = new Date();
+    const difference = endDate - now;
+
+    if (difference <= 0) {
+      onEnd(); 
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
     };
+  };
 
-    const calculateTimeLeft = (startTime) => {
-        const { hours, minutes, seconds } = parseTime(endTime);
-        const totalDuration = hours * 3600 + minutes * 60 + seconds; 
-        const now = Math.floor(Date.now() / 1000); 
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const parsedTime = parseTime(endTime);
+    if (parsedTime) {
+      return calculateTimeLeft(parsedTime);
+    }
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  });
 
-        const timePassed = now - startTime;
+  useEffect(() => {
+    const parsedTime = parseTime(endTime);
+    if (!parsedTime) return;
 
-        const remainingTime = totalDuration - timePassed;
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft(parsedTime));
+    }, 1000);
 
-        if (remainingTime <= 0) {
-            return { hours: 0, minutes: 0, seconds: 0 };
-        }
+    return () => clearInterval(timer);
+  }, [endTime]);
 
-        const remainingHours = Math.floor(remainingTime / 3600);
-        const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
-        const remainingSeconds = remainingTime % 60;
-
-        return { hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds };
-    };
-
-    const [timeLeft, setTimeLeft] = useState(() => {
-        const savedStartTime = localStorage.getItem('campaignStartTime');
-        const startTime = savedStartTime ? Number(savedStartTime) : Math.floor(Date.now() / 1000); 
-        return calculateTimeLeft(startTime);
-    });
-
-    useEffect(() => {
-        const savedStartTime = localStorage.getItem('campaignStartTime');
-        const startTime = savedStartTime ? Number(savedStartTime) : Math.floor(Date.now() / 1000);
-
-        if (!savedStartTime) {
-            localStorage.setItem('campaignStartTime', startTime);
-        }
-
-        const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft(startTime));
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [endTime]);
-
-    return (
-        <h6 className='p-title'>
-            {timeLeft.hours}:{timeLeft.minutes < 10 ? `0${timeLeft.minutes}` : timeLeft.minutes}:
-            {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
-        </h6>
-    );
+  return (
+    <div>
+      <h3 >
+        {timeLeft.days > 0 && `${timeLeft.days} days `}
+        {timeLeft.hours < 10 ? `0${timeLeft.hours}` : timeLeft.hours}:
+        {timeLeft.minutes < 10 ? `0${timeLeft.minutes}` : timeLeft.minutes}:
+        {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
+      </h3>
+    </div>
+  );
 };
 
 export default CampaignTimer;

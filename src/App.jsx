@@ -34,7 +34,7 @@ import Account from './pages/account/Account';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import TermsandConditions from './pages/TermsandConditions';
-import StickyCookie from './components/home/StickyCookie';
+// import StickyCookie from './components/home/StickyCookie';
 import CampaignPage from './pages/campaign/CampaignPage';
 
 const App = () => {
@@ -109,7 +109,7 @@ const App = () => {
                 <Route path='/campaignpage' element={<CampaignPage />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
-            <StickyCookie/>
+            {/* <StickyCookie/> */}
             <Footer />
         </>
     )
