@@ -57,18 +57,18 @@ const Blogs = () => {
     });
   }, [path, id]);
 
-  const filterSection = (blogSection, blogSecId) => {
-    return blogSection.find((id) => id == blogSecId) ? true : false;
-  };
+  // const filterSection = (blogSection, blogSecId) => {
+  //   return blogSection.find((id) => id == blogSecId) ? true : false;
+  // };
 
-  const findFirstSection = (fd) => {
-    const sections = blogSection.filter((item) =>
-      filterSection(fd.blogSection, item._id)
-    );
+  // const findFirstSection = (fd) => {
+  //   const sections = blogSection.filter((item) =>
+  //     filterSection(fd.blogSection, item._id)
+  //   );
 
-    const firstText = sections.find((i) => i.row == 1);
-    return firstText ? firstText.text : false;
-  };
+  //   const firstText = sections.find((i) => i.row == 1);
+  //   return firstText ? firstText.text : false;
+  // };
 
   const visibleShow = () => {
     setVisible((prev) => prev + 6);
@@ -147,12 +147,12 @@ const Blogs = () => {
                             </figure>
                             <div className="card-header">
                               <p className="p-title">{item.title}</p>
-                              <p
+                              {/* <p
                                 className="p-body-text"
                                 dangerouslySetInnerHTML={{
                                   __html: findFirstSection(item),
                                 }}
-                              />
+                              /> */}
                               <p className="p-body-read">
                                 <span> Read more</span>
                               </p>

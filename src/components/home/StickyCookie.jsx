@@ -4,7 +4,7 @@ import logo from "../../assets/img/Logo.png";
 const StickyCookie = () => {
   return (
     <>
-      <section className="stickyCookie">
+      <section className="stickyCookie d-none">
         <div className="container-fluid">
           <div className="row">
             <div className="col-1 ">
