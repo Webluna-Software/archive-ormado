@@ -42,7 +42,7 @@ const CampaignPage = () => {
  <section className="CampaignPage">
       <div className="container-fluid">
         <div className="row row-cols-1 row-cols-md-4 g-4">
-          {campaign.filter((item) => !expiredCampaigns.includes(item._id)).map((item) => (
+          {campaign.filter((item) =>item.active && !expiredCampaigns.includes(item._id)).map((item) => (
             <div className="col-lg-3 col-md-4 col-sm-6 col-12  " key={item._id}>
               <div className="card campaign-card  h-100 ">
                 <img src={item.image} alt={item.title} className="campaign-image card-img-top" />

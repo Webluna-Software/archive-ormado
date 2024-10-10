@@ -94,8 +94,8 @@ const Events = () => {
                     </div>
                   ))}
                 </div> */}
-                                  <div className="cardsEvents row row-cols-1 row-cols-md-4 g-4">
-                    {event.map((fd, index) => (
+                  <div className="cardsEvents row row-cols-1 row-cols-md-4 g-4">
+                    {event .filter((fd) => fd.active) .map((fd, index) => (
                       <div  className="col-lg-3 col-md-4 col-sm-6 col-12 "  key={index}>
                         <div className="card  eventcard  h-100">
                           <LazyLoad>
