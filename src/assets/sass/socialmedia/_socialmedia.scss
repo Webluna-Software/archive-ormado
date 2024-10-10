@@ -1,14 +1,13 @@
 .socialmediaIconss {
     display: flex;
-    justify-content: start; 
-    padding: 10px; 
+    justify-content: flex-start; 
 }
 
 .socialmediaIconss ul {
     display: flex;
     padding-left: 0;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: flex-start; 
 }
 
 .socialmediaIconss li {
@@ -48,3 +47,8 @@
     }
 }
 
+@media (max-width: 425px) {
+    .socialmediaIconss ul{
+        justify-content: flex-end;
+    }
+}

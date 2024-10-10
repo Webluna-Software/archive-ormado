@@ -9,7 +9,6 @@ const CampaignPage = () => {
   const [expiredCampaigns, setExpiredCampaigns] = useState([]);
 
   useEffect(() => {
-    // API sorğusu
     axios.get(`${ApiLink2}/campaign`)
       .then((res) => {
         setCampaign(res.data.data);
