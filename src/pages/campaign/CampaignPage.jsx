@@ -47,17 +47,13 @@ const CampaignPage = () => {
               <div className="card campaign-card  h-100 ">
                 <img src={item.image} alt={item.title} className="campaign-image card-img-top" />
                 <div className="card-body campaign-content">
-                  <h5 className="card-title  ">{item.title}</h5>
+                  <h5 className="card-title ">{item.title}</h5>
                   <p className="card-text p-desc" style={{ maxHeight: expandedCampaigns[item._id] ? 'none' : '6em', overflow: 'hidden' }} dangerouslySetInnerHTML={{ __html: item.desc }} />
                   {item.desc.split(' ').length > 60 && (
-                    <span 
-                      className="read-more-text" 
-                      onClick={() => toggleReadMore(item._id)} 
-                      style={{ cursor: 'pointer', color: ' #4A3024', textDecoration: 'none' }}>
+                    <span className="read-more-text" onClick={() => toggleReadMore(item._id)} >
                       {expandedCampaigns[item._id] ? 'Read Less' : 'Read More'}
                     </span>
                   )}
-  
                 </div>
                 <div className="card-footer campaign-footer">
                 <CampaignTimer endTime={item.time} onEnd={() => handleCampaignEnd(item._id)} />

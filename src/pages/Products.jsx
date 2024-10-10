@@ -212,7 +212,7 @@ if (userID) {
                   <div className="img-text-context">
                   <h2>Special Campaign</h2>
                   <h4>Get the best deals for a limited time!</h4>
-                      <Link  to="/campaignpage" >
+                      <Link  to="/campaignpage" onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
                       <button className="shopBtn">
                              Shop now
                       </button>

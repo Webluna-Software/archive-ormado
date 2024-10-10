@@ -94,7 +94,7 @@ const Blogs = () => {
     <>
       <section className="blogsPage">
         <hr style={{ color: "orange", fontWeight: "bold" }} />
-        <div className="container">
+        <div className="container-fluid">
           {loading ? (
             <PreLoader />
           ) : (
@@ -134,7 +134,7 @@ const Blogs = () => {
                   <div className="cardsBlogs row m-0 ">
                     {blog.slice(0, visible).map((item, i) => (
                       <div
-                        className="blogcard col-12 col-md-4 col-lg-3"
+                        className="blogcard col-12 col-md-4 col-lg-3 h-100"
                         key={i}
                       >
                         <LazyLoad>
@@ -145,7 +145,7 @@ const Blogs = () => {
                             <figure>
                               <img src={item.coverImage} alt="rectangle127" />
                             </figure>
-                            <div className="card-header">
+                            <div className="card-header ">
                               <p className="p-title">{item.title}</p>
                               {/* <p
                                 className="p-body-text"
