@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import slugify from "slugify";
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import PreLoader from "./PreLoader";
 // import { Helmet } from "react-helmet";
 import LazyLoad from "react-lazy-load";
 
-const EventDetails = ({_id}) => {
+const EventDetails = () => {
   const { id } = useParams();
   const [eventDetails, setEventDetails] = useState(null);
   const [loading, setLoading] = useState(true);

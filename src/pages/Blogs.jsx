@@ -14,7 +14,7 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true);
 
   const [blog, setBlog] = useState([]);
-  const [blogSection, setBlogSec] = useState([]);
+  const [blogSection, setBlogSection] = useState([]);
   const [blogCategory, setBlogCategory] = useState([]);
   const [visible, setVisible] = useState(4);
   const path = window.location.pathname;
@@ -46,14 +46,14 @@ const Blogs = () => {
 
     // Fetch Blog Section data
     axios.get(`${ApiLink2}/blogSection`).then((res) => {
-      setBlogSec(res.data.blogSection);
+      setBlogSection(res.data.blogSection);
       setLoading(false);
     });
 
     // Fetch Blog Category data
     axios.get(`${ApiLink2}/blogCategory`).then((res) => {
       setBlogCategory(res.data.data);
-      console.log(res.data.data);
+      // console.log(res.data.data);
     });
   }, [path, id]);
 
@@ -139,7 +139,8 @@ const Blogs = () => {
                       >
                         <LazyLoad>
                           <Link
-                            to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
+                            // to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
+                            to={`/blogDetails/${item._id}/${slugify(item.title).toLowerCase()}`}
                             style={{ color: "#000" }}
                           >
                             <figure>

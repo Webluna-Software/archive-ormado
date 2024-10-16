@@ -148,8 +148,8 @@ const Franchise = () => {
         <div className="franchise-cards mb-5">
           <LazyLoad>
           <div className="row  franchise-image" >
-            <img className='img' src={provide.image[0]} alt="" />
-            <img src={provide.image[1]} alt="" />
+            <img className='img' src={provide.image[0]} alt="franchiseImage" />
+            <img src={provide.image[1]} alt="franchiseImage" />
             <img src={provide.image[2] ? provide.image[2] : ""} alt="" />
           </div>
           </LazyLoad>
