@@ -6,6 +6,7 @@ import PreLoader from "./PreLoader";
 import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
+// import Faq from "../components/home/Faq";
 
 const Blogs = () => {
   const { id } = useParams();
@@ -19,21 +20,43 @@ const Blogs = () => {
   const [visible, setVisible] = useState(4);
   const path = window.location.pathname;
 
+  // const [faqBlog ,setFaqBlog] = useState([])
+
+  // useEffect(()=>{
+  //   Promise.all([
+  //     axios.get(`${ApiLink2}/faqBlog`),
+  //   ]) 
+  //   .then(([faqRes])=>{
+  //     const faq = faqRes.data.faqBlog ;
+  //     console.log(faq);
+  //     setFaqBlog(faq)
+  //   })
+  //   .catch((err)=>{
+  //     console.log(err)
+  //   })
+  // },[ApiLink2])
+
+
   useEffect(() => {
     // Fetch Blog data
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         let blogData = res.data.blog;
+        console.log(res.data.blog,  "BLOQ MELUMATLARI")
+          // Blogların aktiv olanlarını süz
+          blogData = blogData.filter((item) => item.active);
+
         if (id === "all") {
-          // Sort blogs by date before setting state
+         // Blogları tarixə görə sıralayırıq
           blogData = blogData.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(blogData);
+
         } 
         else {
           const filtered = blogData.filter(
             (item) => item.blogCategory[0] == id
           );
-          // Sort filtered blogs by date
+           // Müəyyən kateqoriyaya əsasən filtrle
           const sortedFiltered = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(sortedFiltered);
         }
@@ -44,13 +67,13 @@ const Blogs = () => {
         console.error("Error fetching blog data:", error);
       });
 
-    // Fetch Blog Section data
+   // Blog bölməsini fetch et
     axios.get(`${ApiLink2}/blogSection`).then((res) => {
       setBlogSection(res.data.blogSection);
       setLoading(false);
     });
 
-    // Fetch Blog Category data
+   // Blog kateqoriyasını fetch et
     axios.get(`${ApiLink2}/blogCategory`).then((res) => {
       setBlogCategory(res.data.data);
       // console.log(res.data.data);
@@ -70,6 +93,7 @@ const Blogs = () => {
   //   return firstText ? firstText.text : false;
   // };
 
+    // Gözdə görülən blogları artır
   const visibleShow = () => {
     setVisible((prev) => prev + 6);
   };
@@ -139,7 +163,6 @@ const Blogs = () => {
                       >
                         <LazyLoad>
                           <Link
-                            // to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
                             to={`/blogDetails/${item._id}/${slugify(item.title).toLowerCase()}`}
                             style={{ color: "#000" }}
                           >
@@ -148,12 +171,12 @@ const Blogs = () => {
                             </figure>
                             <div className="card-header ">
                               <p className="p-title">{item.title}</p>
-                              {/* <p
+                              <p
                                 className="p-body-text"
                                 dangerouslySetInnerHTML={{
-                                  __html: findFirstSection(item),
+                                  __html: (item.description),
                                 }}
-                              /> */}
+                              />
                               <p className="p-body-read">
                                 <span> Read more</span>
                               </p>
@@ -183,7 +206,9 @@ const Blogs = () => {
             </>
           )}
         </div>
+        {/* <Faq  faqs={faqBlog}/> */}
       </section>
+
     </>
   );
 };

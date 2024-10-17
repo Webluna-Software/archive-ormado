@@ -1,0 +1,19 @@
+.VipBlog{
+    h3 {
+        color: #4A3024;
+        font-family: Montserrat;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 64px;
+
+     @media(max-width:1492px){
+        font-size: 40px;
+     }
+
+     @media(max-width:718px){
+        font-size: 34px;
+     }
+    }
+
+}

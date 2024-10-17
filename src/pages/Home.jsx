@@ -16,6 +16,7 @@ import {testimonalsforhome} from '../data/data';
 import { useContext, useState, useEffect } from "react";
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
+import VipBlog from "../components/home/VipBlog"
 
 const Home = () => {
 
@@ -46,6 +47,7 @@ const Home = () => {
       <Testimonials senddata={testimonalsforhome} />
       <Clients />
       <WhyUs />
+      <VipBlog/>
       <NewSweets />
       <Cakes />
       <Franchise />
