@@ -124,7 +124,7 @@ if (userID) {
        </Helmet>
         <section className="container-fluid">
           <div className="products-page row pb-5 my-5 d-flex justify-content-center">
-            <div className="col-md-9">
+            <div className="col-md-12">
               <div className="img-transparent d-md-block d-lg-block">
                 <div className="image-container">
                   <img
@@ -143,7 +143,7 @@ if (userID) {
               </div>
               <div className="product-cards d-md-block d-lg-block p-0 mt-5">
                 <div className="yourormado-products row g-3">
-                  {products.slice(0,3) .map((fd, i) => (
+                  {products.map((fd, i) => (
                     <div className="col-12 col-sm-6 col-md-4" key={i}>
                       <div className="card w-100">
                         <LazyLoad>
@@ -211,7 +211,7 @@ if (userID) {
                   />
                   <div className="img-text-context">
                   <h2>Special Campaign</h2>
-                  <h4>Get the best deals for a limited time!</h4>
+                  <h4 className="mt-2">Get the best deals for a limited time!</h4>
                       <Link  to="/campaignpage" onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
                       <button className="shopBtn">
                              Shop now

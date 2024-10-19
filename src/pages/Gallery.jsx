@@ -44,7 +44,8 @@ const Gallery = () => {
       {loading ? (
         <PreLoader />
       ) : (
-        <section className="gallery">
+        <div>
+                  <section className="gallery">
           <div className="image-container">
             <img src={banner.image} alt={banner.title} className="img-fluid" />
             <div className="image-overlay">
@@ -90,8 +91,10 @@ const Gallery = () => {
               ))}
             </div>
           </div>
-          <Faq faqs={faq} />
+
         </section>
+        <Faq faqs={faq} />
+        </div>
       )}
     </>
   );

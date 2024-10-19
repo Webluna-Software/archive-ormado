@@ -32,12 +32,12 @@ const SearchBranch = () => {
           <img
             className="img-fluid col-12 col-md-12 col-sm-12"
             src={searchB.image}
-            alt=""
+            alt="SearchABranch image"
           />
         </div>
         {/* <img className="background img-fluid" src={background} alt="" /> */}
         <div className="first-card-title">
-          <p>{searchB.title}</p>
+          {/* <p>{searchB.title}</p> */}
         </div>
       </div>
       <Contactlocation />
