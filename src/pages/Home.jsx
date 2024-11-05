@@ -17,6 +17,10 @@ import { useContext, useState, useEffect } from "react";
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import VipBlog from "../components/home/VipBlog"
+import YourFavoriteCoffee from "../components/home/YourFavoriteCoffee"
+import KsmSec from "../components/home/KsmSec"
+import DeliverySec from "../components/home/DeliverySec"
+import GiftCardSec from "../components/home/GiftCardSec"
 
 const Home = () => {
 
@@ -47,10 +51,14 @@ const Home = () => {
       <Testimonials senddata={testimonalsforhome} />
       <Clients />
       <WhyUs />
+      <YourFavoriteCoffee/>
       <VipBlog/>
       <NewSweets />
       <Cakes />
       <Franchise />
+      <DeliverySec/>
+      <KsmSec/>
+      <GiftCardSec/>
       <Faq faqs={faq}/>
       
       {/* <OurRecentBlog/> */}

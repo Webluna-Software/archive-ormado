@@ -124,7 +124,7 @@ if (userID) {
        </Helmet>
         <section className="container-fluid">
           <div className="products-page row pb-5 my-5 d-flex justify-content-center">
-            <div className="col-md-12">
+            <div className="col-md-10">
               <div className="img-transparent d-md-block d-lg-block">
                 <div className="image-container">
                   <img

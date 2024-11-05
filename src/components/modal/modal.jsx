@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const Modal = ({ show, onClose, title, body }) => {
+const Modal = ({ show, onClose, title, body, showLoginButton }) => {
   const [fadeClass, setFadeClass] = useState("");
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (show) {
       setTimeout(() => {
@@ -18,6 +20,10 @@ const Modal = ({ show, onClose, title, body }) => {
     if (e.target.className.includes("modal")) {
       onClose();
     }
+  };
+  const handleLoginRedirect = () => {
+    onClose();
+    navigate('/login');  
   };
 
   return (
@@ -48,7 +54,19 @@ const Modal = ({ show, onClose, title, body }) => {
             </div>
             <div className="modal-body">
               {body}
+              <div className="modal-btn">
+            {showLoginButton && (
+                <button
+                  type="button"
+                  className="button  btn "
+                  onClick={handleLoginRedirect}
+                >
+                  Login 
+                </button>
+              )}
             </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -61,6 +79,10 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  showLoginButton: PropTypes.bool, 
+};
+Modal.defaultProps = {
+  showLoginButton: false, 
 };
 
 export default Modal;

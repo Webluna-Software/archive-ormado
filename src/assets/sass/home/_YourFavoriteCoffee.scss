@@ -1,0 +1,232 @@
+.YourFavoriteCoffee {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+ background-color: #965A3914;
+  .coffee-beans {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    z-index: -10;
+    @media (max-width: 786px){
+      display: none;
+    }
+
+    &.color-1 {
+      background-image: url("/src/assets/img/Ellipse8.png");
+      top: 0;
+      left: 0;
+      width: 25%;
+      height: 30vh;
+    }
+    &.color-2 {
+      background-image: url("/src/assets/img/Ellipse9.png");
+      bottom: 0;
+      left: 0;      
+      width: 63%;
+      height: 31vh;
+    }
+    &.bean-1 {
+      background-image: url("/src/assets/img/Layer11.png");
+      top: 0;
+      left: 40%;
+    }
+
+    &.bean-2 {
+      background-image: url("/src/assets/img/Layer6.png");
+      top: 30%;
+      right: 80%;
+      width: 80px;
+      height: 70px;
+    }
+
+    &.bean-3 {
+      background-image: url("/src/assets/img/Layer7.png");
+      bottom: 20%;
+      left: 10%;
+      width: 80px;
+      height: 120px;
+    }
+
+    &.bean-4 {
+      background-image: url("/src/assets/img/Layer8.png");
+      bottom: 9%;
+      right: 38%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px; 
+
+    .coffee-beans {
+      width: 80px;
+      height: 80px;
+
+      &.bean-1 {
+        top: 10%;
+        left: 5%;
+      }
+
+      &.bean-2 {
+        top: 15%;
+        right: 5%;
+      }
+
+      &.bean-3 {
+        bottom: 10%;
+        left: 10%;
+      }
+
+      &.bean-4 {
+        bottom: 10%;
+        right: 10%;
+      }
+    }
+  }
+  .container-fluid{
+
+    .row {
+      h2 {
+        color: #965A39;
+        font-family: Montserrat;
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 600;
+        // line-height: 130%;
+        // padding-bottom:30px ;
+        @media (min-width: 1600px) {
+          font-size: 74px;
+        }
+        @media (max-width: 1330px) {
+          font-size: 50px;
+        }
+        @media (max-width: 1024px) {
+          font-size: 43px;
+        }
+        @media (max-width: 991px) {
+          font-size: 39px;
+        }
+                @media (max-width: 768px) {
+          font-size: 36px; // Kiçik ekranlar üçün font ölçüsünü azaldır
+        }
+        @media (max-width: 320px) {
+          font-family: Lato;
+          font-size: 32px;
+          font-weight: 800;
+          line-height: 48px;
+        }
+      }
+      .favorite-coffee-section {
+        display: flex;
+        .coffee-options {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          .option-click {
+            display: flex;
+            @media (max-width: 768px){
+              flex-direction: column;
+            }
+            .option-main {
+              padding: 0 20px;
+              cursor: pointer;
+              transition: transform 0.3s ease;
+  
+              &:hover {
+                transform: scale(1.05);
+              }
+  
+              figure{
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background-color: #ffffff;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img {
+                  width: 150px;
+                  height: 150px;
+  
+                }
+              }
+  
+              p {
+                margin-top: 10px;
+                font-size: 1.25rem;
+                color: #70483c;
+                font-weight: bold;
+              }
+            }
+          }
+
+        }
+
+        .step-indicators {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          span {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            font-weight: bold;
+            color: #70483c;
+            transition: background-color 0.3s ease;
+
+            &.active {
+              background-color: #70483c;
+              color: #ffffff;
+            }
+          }
+        }
+
+        @media (max-width: 768px) {
+          .coffee-options {
+            flex-direction: column;
+            gap: 20px;
+
+            .option-main {
+              img {
+                width: 120px;
+                height: 120px;
+              }
+
+              p {
+                font-size: 1.15rem;
+              }
+            }
+          }
+        }
+
+        @media (max-width: 480px) {
+          h1 {
+            font-size: 2rem;
+          }
+
+          .step-indicators {
+            margin-top: 20px;
+            span {
+              width: 25px;
+              height: 25px;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

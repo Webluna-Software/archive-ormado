@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-// import logo from "../assets/img/Logo.png";
 import lottie from 'lottie-web';
 import animationData from '../components/json/animation.json';
+// import animationData2 from "../assets/img/loading.gif"
 const PreLoader = () => {
 
   useEffect(() => {
@@ -19,12 +19,12 @@ const PreLoader = () => {
   }, []);
   return (
     <>
-      {/* <div className="d-flex justify-content-center align-items-center ">
-        <img src={logo} alt="" className="img-fluid  rotate-animation" />
-      </div> */}
      <div className="anime d-flex justify-content-center align-items-center ">
         <div id="animationContainer"></div>
      </div>
+     {/* <div className="anime d-flex justify-content-center align-items-center">
+        <img src={animationData2} alt="Loading..." className="img-fluid" />
+      </div> */}
     </>
   );
 };

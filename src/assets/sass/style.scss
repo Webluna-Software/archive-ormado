@@ -85,10 +85,14 @@ a {
 //Terms and Conditions
 @import "./TermsandConditions/TermsandConditions";
 
-//VipBlog Home Page
-@import "./home/VipBlog" ;
+//KSM
+@import "./ksm/Ksm" ;
 
+//Delivery
+@import "./delivery/Delivery" ;
 
+//GisftCard
+@import "./giftcard/GiftCard" ;
 
 .ormado-con-main {
   width: 100%;

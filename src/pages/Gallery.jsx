@@ -34,8 +34,24 @@ const Gallery = () => {
       });
   }, [ApiLink2]);
 
-  console.log(gallery, "gall");
+  // console.log(gallery, "gall");
 
+  const getYoutubeEmbedUrl = (url) => {
+    let videoId = null;
+
+    if (url.includes("youtu.be")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("youtube.com")) {
+      const params = new URLSearchParams(url.split("?")[1]);
+      videoId = params.get("v");
+    }
+
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return "";
+  };
+  
   return (
     <>
       <Helmet>
@@ -45,7 +61,7 @@ const Gallery = () => {
         <PreLoader />
       ) : (
         <div>
-                  <section className="gallery">
+        <section className="gallery">
           <div className="image-container">
             <img src={banner.image} alt={banner.title} className="img-fluid" />
             <div className="image-overlay">
