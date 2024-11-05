@@ -6,7 +6,7 @@ const TermsandConditions = () => {
     <section className="TermsandConditions">
         <div className="container-fluid">
             <div className="row">
-                <div class="terms-container">
+                <div className="terms-container">
                     <h2><strong>**Website Terms of Use**</strong></h2>
                     <p><strong>**Last Updated: 12.12.2023**</strong></p>
                     
