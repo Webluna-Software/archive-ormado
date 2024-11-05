@@ -13,15 +13,47 @@ const YourFavoriteCoffee = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
 
+
+  const apiData = [
+    {
+      step: 1,
+      options: [
+        { id: 1, label: 'Südlü', image: Coffee1 },
+        { id: 2, label: 'Südsüz', image: Coffee2 },
+      ],
+    },
+    {
+      step: 2,
+      options: [
+        { id: 3, label: 'Soyuq', image: Coffee1 },
+        { id: 4, label: 'İsti', image: Coffee2 },
+      ],
+    },
+    {
+      step: 3,
+      options: [
+        { id: 5, label: 'Şirin', image: Coffee1 },
+        { id: 6, label: 'Acı', image: Coffee2 },
+      ],
+    },
+    {
+      step: 4,
+      options: [
+        { id: 7, label: 'Güclü', image: Coffee1 },
+        { id: 8, label: 'Zəif', image: Coffee2 },
+      ],
+    },
+  ];
+
   const handleOptionClick = (option) => {
-   // Qeydiyyatdan keçməni yoxlayırıq
+    // Qeydiyyatdan keçməni yoxlayırıq
     // if (!isRegistered) {
     //     setModalContent({ title: "Qeydiyyatdan keçin", body: "Xahiş edirik, davam etmədən əvvəl qeydiyyatdan keçin!" });
     //     setShowModal(true);
     //     return;
     // }
     setSelectedOptions({ ...selectedOptions, [step]: option });
-    if (step < 4) {
+    if (step < apiData.length) {
       setStep(step + 1);
     } else {
       submitToBackend();
@@ -52,60 +84,19 @@ const YourFavoriteCoffee = () => {
             <h2>Südlü kofe sevirsiniz?</h2>
             <div className="favorite-coffee-section">
               <div className="coffee-options">
-                {step === 1 && (
-                  <div className="option-click">
-                    <div className="option-main" onClick={() => handleOptionClick('Südlü')}>
-                      <figure><img src={Coffee1} alt="Südlü Coffee" /></figure>
-                      <p>Südlü</p>
-                    </div>
-                    <div className="option-main" onClick={() => handleOptionClick('Südsüz')}>
-                      <figure><img src={Coffee2} alt="Südsüz Coffee" /></figure>
-                      <p>Südsüz</p>
+                {apiData[step - 1].options.map(option => (
+                  <div className="option-click" key={option.id}>
+                    <div className="option-main" onClick={() => handleOptionClick(option.label)}>
+                      <figure><img src={option.image} alt={option.label} /></figure>
+                      <p>{option.label}</p>
                     </div>
                   </div>
-                )}
-                {step === 2 && (
-                  <div className="option-click">
-                    <div className="option-main" onClick={() => handleOptionClick('Soyuq')}>
-                      <figure><img src={Coffee1} alt="Soyuq Coffee" /></figure>
-                      <p>Soyuq</p>
-                    </div>
-                    <div className="option-main" onClick={() => handleOptionClick('İsti')}>
-                      <figure><img src={Coffee2} alt="İsti Coffee" /></figure>
-                      <p>İsti</p>
-                    </div>
-                  </div>
-                )}
-                {step === 3 && (
-                  <div className="option-click">
-                    <div className="option-main" onClick={() => handleOptionClick('Şirin')}>
-                      <figure><img src={Coffee1} alt="Şirin Coffee" /></figure>
-                      <p>Şirin</p>
-                    </div>
-                    <div className="option-main" onClick={() => handleOptionClick('Acı')}>
-                      <figure><img src={Coffee2} alt="Acı Coffee" /></figure>
-                      <p>Acı</p>
-                    </div>
-                  </div>
-                )}
-                {step === 4 && (
-                  <div className="option-click">
-                    <div className="option-main" onClick={() => handleOptionClick('Güclü')}>
-                      <figure><img src={Coffee1} alt="Güclü Coffee" /></figure>
-                      <p>Güclü</p>
-                    </div>
-                    <div className="option-main" onClick={() => handleOptionClick('Zəif')}>
-                      <figure><img src={Coffee2} alt="Zəif Coffee" /></figure>
-                      <p>Zəif</p>
-                    </div>
-                  </div>
-                )}
+                ))}
               </div>
               <div className="step-indicators">
-                <span className={step === 1 ? 'active' : ''}>1</span>
-                <span className={step === 2 ? 'active' : ''}>2</span>
-                <span className={step === 3 ? 'active' : ''}>3</span>
-                <span className={step === 4 ? 'active' : ''}>4</span>
+                {apiData.map((_, index) => (
+                  <span key={index} className={step === index + 1 ? 'active' : ''}>{index + 1}</span>
+                ))}
               </div>
             </div>
           </div>

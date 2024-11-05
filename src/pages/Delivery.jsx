@@ -56,12 +56,12 @@ const Delivery = () => {
     <p>Today deserves delivery</p>
     </div>
                 <div className="section-banner">
-                <div className="row">
-                          <div className="text-part  col">
+                        <div className="row ">
+                          <div className="text-part  col-12 col-sm-6 col-md-6">
                           <h2 >Your <span> coffee</span> is on its way</h2>
                           <p className=" body-text ">Uber Eats and let your favorites come to you.</p>
                           </div>
-                          <div className="img-part  col">
+                          <div className="img-part  col-12 col-sm-6 col-md-6">
                             <img src={img} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy" />
                           </div>
                         </div>
@@ -70,11 +70,11 @@ const Delivery = () => {
                 <div className="section-brand">
                     <div className="row">
                     {brands.map((brand, index) => (
-                            <div className="brand col-md-6" key={index}>
+                            <div className="brand col-12 col-sm-6 col-md-5 " key={index}>
                                 <img src={brand.src} alt={brand.alt} />
                             </div>
                         ))}
-                         <div className=" brand endbrand  col-md-6" >
+                         <div className=" brand endbrand  col-12 col-sm-6 col-md-5" >
                          <h2>Your <span> coffee</span> is on its way</h2>
                          <p className=" body-text ">Uber Eats and let your favorites come to you.</p>
                         </div>

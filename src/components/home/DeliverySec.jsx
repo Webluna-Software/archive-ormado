@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import img from "../../assets/img/DeliveryImg.png"
+
 const DeliverySec = () => {
+  const navigate = useNavigate();
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    navigate("/Delivery");
+  };
   return (
     <>
     <section className='DeliverySec'>
@@ -14,7 +24,7 @@ const DeliverySec = () => {
                           <h2 >Your <span> coffee</span> is on its way</h2>
                           <p className=" body-text ">Uber Eats and let your favorites come to you.</p>
                             <div className="ormadoBtn ">
-                            <Link to="/Delivery"><button type="button" > Learn More</button></Link>
+                            <button type="button" onClick={handleScrollToTop}>Learn More</button>
                             </div>
                           </div>
                         </div>

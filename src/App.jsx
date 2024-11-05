@@ -36,9 +36,9 @@ import EventDetails from './pages/EventDetails';
 import TermsandConditions from './pages/TermsandConditions';
 // import StickyCookie from './components/home/StickyCookie';
 import CampaignPage from './pages/campaign/CampaignPage';
-import KSM from './pages/KSM';
 import Delivery from './pages/Delivery';
 import GiftCard from './pages/GiftCard';
+import CorporateSocialRes from './pages/CorporateSocialRes';
 
 const App = () => {
 
@@ -74,9 +74,9 @@ const App = () => {
                 <Route path='/blogDetails/:blogId/:blogTitle' element={<BlogDetails />}  ></Route>
                 <Route path='/events' element={<Events />}  ></Route>
                 <Route path="/eventDetails/:id" element={<EventDetails />} />
-                <Route path="/KSM" element={<KSM/>} />
-                <Route path="/Delivery" element={<Delivery/>} />
-                <Route path="/GiftCard" element={<GiftCard/>} />
+                <Route path="/CorporateSocialResponsibility" element={<CorporateSocialRes/>} ></Route>
+                <Route path="/delivery" element={<Delivery/>} />
+                <Route path="/giftcard" element={<GiftCard/>} />
                 <Route path='/reserve' element={<Reserve />}  ></Route>
  
                 {

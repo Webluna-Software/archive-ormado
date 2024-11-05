@@ -18,9 +18,9 @@ import { ApiLinkContext } from "../context/ApiLinkContext";
 import axios from "axios";
 import VipBlog from "../components/home/VipBlog"
 import YourFavoriteCoffee from "../components/home/YourFavoriteCoffee"
-import KsmSec from "../components/home/KsmSec"
 import DeliverySec from "../components/home/DeliverySec"
 import GiftCardSec from "../components/home/GiftCardSec"
+import CorporateSec from "../components/home/CorporateSec"
 
 const Home = () => {
 
@@ -57,7 +57,7 @@ const Home = () => {
       <Cakes />
       <Franchise />
       <DeliverySec/>
-      <KsmSec/>
+      <CorporateSec/>
       <GiftCardSec/>
       <Faq faqs={faq}/>
       
