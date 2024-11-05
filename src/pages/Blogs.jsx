@@ -54,7 +54,7 @@ const Blogs = () => {
       setBlogSection(res.data.blogSection);
       setLoading(false);
     });
-  
+     
     // Blog kateqoriyasını fetch et
     axios.get(`${ApiLink2}/blogCategory`).then((res) => {
       setBlogCategory(res.data.data);
