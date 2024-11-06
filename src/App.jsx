@@ -39,6 +39,7 @@ import CampaignPage from './pages/campaign/CampaignPage';
 import Delivery from './pages/Delivery';
 import GiftCard from './pages/GiftCard';
 import CorporateSocialRes from './pages/CorporateSocialRes';
+import CampaignDetails from './pages/campaign/CampaignDetails';
 
 const App = () => {
 
@@ -113,6 +114,7 @@ const App = () => {
                 <Route path='/franchise' element={<Franchise />}  ></Route>
                 <Route path='/termsandconditions' element={<TermsandConditions />}  ></Route>
                 <Route path='/campaignpage' element={<CampaignPage />}  ></Route>
+                <Route  path='/campaigndetails/:campaignid/:slug' element={<CampaignDetails />}  ></Route>
                 <Route path='/en' element={<Home />}  ></Route>
             </Routes>
             {/* <StickyCookie/> */}

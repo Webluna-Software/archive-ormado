@@ -1,9 +1,13 @@
 import { useContext, useState, useEffect } from "react";
+import { Link, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
+import slugify from "slugify";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import CampaignTimer from "./CampaignTimer";
 
 const CampaignPage = () => {
+  const { campaignid } = useParams();
+
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [campaign, setCampaign] = useState([]);
   const [expiredCampaigns, setExpiredCampaigns] = useState([]);
@@ -12,12 +16,12 @@ const CampaignPage = () => {
     axios.get(`${ApiLink2}/campaign`)
       .then((res) => {
         setCampaign(res.data.data);
-        console.log(res.data.data, "Campaign Data");
+        // console.log(res.data.data, "Campaign Data");
       })
       .catch((error) => {
         console.error("Error fetching campaign:", error);
       });
-  }, [ApiLink2]);
+  }, [ApiLink2, campaignid]);
 
   const handleCampaignEnd = (campaignId) => {
     setExpiredCampaigns((prevExpiredCampaigns) => {
@@ -41,26 +45,25 @@ const CampaignPage = () => {
     <>
  <section className="CampaignPage">
       <div className="container-fluid">
-        <div className="row row-cols-1 row-cols-md-4 g-4">
-          {campaign.filter((item) =>item.active && !expiredCampaigns.includes(item._id)).map((item) => (
-            <div className="col-lg-3 col-md-4 col-sm-6 col-12  " key={item._id}>
-              <div className="card campaign-card  h-100 ">
-                <img src={item.image} alt={item.title} className="campaign-image card-img-top" />
-                <div className="card-body campaign-content">
-                  <h5 className="card-title ">{item.title}</h5>
-                  <p className="card-text p-desc" style={{ maxHeight: expandedCampaigns[item._id] ? 'none' : '6em', overflow: 'hidden' }} dangerouslySetInnerHTML={{ __html: item.desc }} />
-                  {item.desc.split(' ').length > 60 && (
-                    <span className="read-more-text" onClick={() => toggleReadMore(item._id)} >
-                      {expandedCampaigns[item._id] ? 'Read Less' : 'Read More'}
-                    </span>
-                  )}
-                </div>
-                <div className="card-footer campaign-footer">
-                <CampaignTimer endTime={item.time} onEnd={() => handleCampaignEnd(item._id)} />
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="row">
+        {campaign.filter((item) =>item.active && !expiredCampaigns.includes(item._id)).map((item) => (
+          <div className="campaign-card col-12 col-lg-4 col-md-5 col-sm-6"  key={item._id}>
+     <Link    to={`/campaigndetails/${item._id}/${slugify(item.title).toLowerCase()}`} style={{ color: "#000" }}>
+          <div className=" img-part   ">
+          <img src={item.image} alt={item.title} className="campaign-image card-img-top" />
+          </div>
+           <div className=" text-part ">
+           <h5 className="card-title ">{item.title}</h5>
+           <div className="footer-part">
+             <div className="campaign-time">   <CampaignTimer endTime={item.time} onEnd={() => handleCampaignEnd(item._id)} /></div>
+            <div className="ormadoBtn"> <button type="button">Learn More</button></div>
+             </div>
+           </div>
+ 
+         </Link>
+          </div>
+
+         ))}
         </div>
       </div>
     </section>

@@ -51,14 +51,14 @@ const CampaignTimer = ({ endTime, onEnd }) => {
   }, [endTime]);
 
   return (
-    <div>
-      <h3 >
+    <>
+      <p>
         {timeLeft.days > 0 && `${timeLeft.days} days `}
         {timeLeft.hours < 10 ? `0${timeLeft.hours}` : timeLeft.hours}:
         {timeLeft.minutes < 10 ? `0${timeLeft.minutes}` : timeLeft.minutes}:
         {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
-      </h3>
-    </div>
+      </p>
+    </>
   );
 };
 
