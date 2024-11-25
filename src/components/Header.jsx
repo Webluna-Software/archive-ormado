@@ -4,9 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import cart from "../../src/assets/img/cart.svg";
-import { loginApiLink } from "../utils/login";
-import { validateUserID } from "../utils/user";
-// import { getCookie } from "../utils/cookie";
+
 
 const Header = () => {
   const { ApiLink } = useContext(ApiLinkContext);
@@ -57,18 +55,7 @@ const Header = () => {
       });
   }, [ApiLink, searchQuery]);
 
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${loginApiLink}/user/${validateUserID()}`)
-      .then((res) => {
-        setUser(res.data.data);
-        console.log(res.data.data, "user");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const [user, setUser] = useState(null);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -124,6 +111,13 @@ const Header = () => {
 
   const [active, setActive] = useState();
   const navigate = useNavigate();
+
+   useEffect(() => {
+    const storedUser = localStorage.getItem("userData") || sessionStorage.getItem("userData");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
   return (
     <>
       <header className="desktop-header">
@@ -244,11 +238,9 @@ const Header = () => {
                   />
                 </svg>
               </div>
-              <Link to="/login">
+              <Link to={user ? "/account/details" : "/login"}>
                 <span style={{ color: "#fff" }}>
-                  {user && user.name && user.surname
-                    ? user.name + " " + user.surname
-                    : "Log in"}
+                  {user ? `${user.name} ${user.surname}` : "Log in"}
                 </span>
               </Link>
             </div>
