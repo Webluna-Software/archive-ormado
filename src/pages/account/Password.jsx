@@ -80,7 +80,7 @@ const Password = () => {
     }
 
     // Tokeni localStorage-dən götür
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
 
     try {

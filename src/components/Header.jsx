@@ -55,7 +55,7 @@ const Header = () => {
       });
   }, [ApiLink, searchQuery]);
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -111,13 +111,43 @@ const Header = () => {
 
   const [active, setActive] = useState();
   const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [error, setError] = useState(false);
 
-   useEffect(() => {
-    const storedUser = localStorage.getItem("userData") || sessionStorage.getItem("userData");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+
+ 
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
     }
-  }, []);
+
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setName(userData.name || '');
+      setSurname(userData.surname || '');
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+console.log(user,"user");
+
   return (
     <>
       <header className="desktop-header">
@@ -240,7 +270,8 @@ const Header = () => {
               </div>
               <Link to={user ? "/account/details" : "/login"}>
                 <span style={{ color: "#fff" }}>
-                  {user ? `${user.name} ${user.surname}` : "Log in"}
+                  {/* {user ? `${user.name} ${user.surname}` : "Log in"} */}
+                  {user && user.name && user.surname ? `${user.name} ${user.surname}` : "Log in"}
                 </span>
               </Link>
             </div>
@@ -615,11 +646,9 @@ const Header = () => {
                             />
                           </svg>
                         </div>
-                        <Link to="/login">
+                        <Link to={user ? "/account/details" : "/login"}>
                           <span style={{ color: "#fff" }}>
-                            {user && user.name && user.surname
-                              ? user.name + " " + user.surname
-                              : "Log in"}
+                            {user && user.name && user.surname ? `${user.name} ${user.surname}` : "Log in"}
                           </span>
                         </Link>
                       </div>

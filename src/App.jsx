@@ -156,7 +156,7 @@ const App = () => {
     const [isRoutesLoaded, setIsRoutesLoaded] = useState(false); // Yüklənmə vəziyyəti
 
     useEffect(() => {
-        const token = localStorage.getItem("token"); // Token-i localStorage-dən alırıq
+        const token = localStorage.getItem("token") || sessionStorage.getItem("token"); // Token-i localStorage-dən alırıq
 
         if (token) {
             setIsAuthenticated(true); // Token varsa, istifadəçi login olunub

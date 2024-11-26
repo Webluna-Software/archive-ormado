@@ -18,7 +18,7 @@ const Account = () => {
   const { ApiLink2 } = useContext(ApiLinkContext); // API link contextdən istifadə
 
 useEffect(() => {
-  const token = localStorage.getItem("token"); // Tokeni localStorage-dən götür
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token"); // Tokeni localStorage-dən götür
 
   if (!token) {
     setError(true);

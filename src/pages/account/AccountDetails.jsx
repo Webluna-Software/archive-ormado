@@ -23,7 +23,7 @@ const AccountDetails = () => {
 
   // İstifadəçi məlumatlarını API-dən almaq
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
     if (!token) {
       setError(true);
@@ -73,7 +73,7 @@ const AccountDetails = () => {
       gender,
     };
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
     axios.put(`${ApiLink2}/auth/updatedetails`, sendData, {
       headers: {
