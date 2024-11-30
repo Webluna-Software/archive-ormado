@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Montserrat:wght@500;700&family=Noto+Sans&family=Poppins&family=Vujahday+Script&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f3f3f3;
 }
@@ -41,7 +45,7 @@ a {
 // Franchise pages
 @import "./franchise/FranchiseForm";
 @import "./reserve/Reserve";
-@import "./franchise/FranchiseCopmany.scss";
+@import "./franchise/FranchiseCopmany";
 
 // About us page
 @import "./ourstory/ourstory";
@@ -69,11 +73,27 @@ a {
 
 //Campaign Page
 @import "./campaign/CampaignPage";
+@import "./campaign/CampaignDetails";
 
 //EventPage
 @import "./eventpage/event";
 @import "./eventpage/eventDetails";
 
+
+//Sticky cookie
+@import "./home/stickycookie" ;
+
+//Terms and Conditions
+@import "./TermsandConditions/TermsandConditions";
+
+//KSM
+@import "./csr/Corporate" ;
+
+//Delivery
+@import "./delivery/Delivery" ;
+
+//GisftCard
+@import "./giftcard/GiftCard" ;
 
 .ormado-con-main {
   width: 100%;

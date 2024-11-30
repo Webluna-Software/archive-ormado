@@ -18,8 +18,8 @@ const Franchise = () => {
   },[])
   return (
     <>
-        <section className="franchise-mobile d-none" >
-      <div className="bg-clr">
+        <section className="franchise-mobile d-none mt-5" >
+      <div className="bg-clr ">
       <p>
       {franchiseApi.title}
         </p>
@@ -31,9 +31,9 @@ const Franchise = () => {
 
       </section>
 
-      <section className="myfranchise">
+      <section className="myfranchise ">
      
-     <div className="franc-con">
+     <div className="franc-con ">
        <div className="left">
         
          <div className="text">

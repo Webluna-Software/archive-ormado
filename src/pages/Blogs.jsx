@@ -6,6 +6,7 @@ import PreLoader from "./PreLoader";
 import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
+import Faq from "../components/home/Faq";
 
 const Blogs = () => {
   const { id } = useParams();
@@ -14,26 +15,30 @@ const Blogs = () => {
   const [loading, setLoading] = useState(true);
 
   const [blog, setBlog] = useState([]);
-  const [blogSection, setBlogSec] = useState([]);
+  const [blogSection, setBlogSection] = useState([]);
   const [blogCategory, setBlogCategory] = useState([]);
   const [visible, setVisible] = useState(4);
   const path = window.location.pathname;
+  const [faqBlog ,setFaqBlog] = useState([])
+
+
 
   useEffect(() => {
-    // Fetch Blog data
+    // Blog məlumatlarını fetch et
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         let blogData = res.data.blog;
+        console.log(res.data.blog, "BLOQ MELUMATLARI");
+        // Aktiv blogları süz
+        blogData = blogData.filter((item) => item.active);
+  
         if (id === "all") {
-          // Sort blogs by date before setting state
+          // Blogları tarixə görə sırala
           blogData = blogData.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(blogData);
-        } 
-        else {
-          const filtered = blogData.filter(
-            (item) => item.blogCategory[0] == id
-          );
-          // Sort filtered blogs by date
+        } else {
+          const filtered = blogData.filter((item) => item.blogCategory[0] == id);
+          // Filtrlənmiş blogları sırala
           const sortedFiltered = filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
           setBlog(sortedFiltered);
         }
@@ -43,33 +48,43 @@ const Blogs = () => {
         setLoading(false);
         console.error("Error fetching blog data:", error);
       });
-
-    // Fetch Blog Section data
+  
+    // Blog bölməsini fetch et
     axios.get(`${ApiLink2}/blogSection`).then((res) => {
-      setBlogSec(res.data.blogSection);
+      setBlogSection(res.data.blogSection);
       setLoading(false);
     });
-
-    // Fetch Blog Category data
+     
+    // Blog kateqoriyasını fetch et
     axios.get(`${ApiLink2}/blogCategory`).then((res) => {
       setBlogCategory(res.data.data);
-      console.log(res.data.data);
     });
+  
+    // FAQ məlumatlarını fetch et
+    axios.get(`${ApiLink2}/faqBlog`).then((res) => {
+      setFaqBlog(res.data.data); 
+      console.log(res.data.faqBlog, "FAQ MELUMATLARI");
+    }).catch((error) => {
+      console.error("Error fetching FAQ data:", error);
+    });
+  
   }, [path, id]);
+  
 
-  const filterSection = (blogSection, blogSecId) => {
-    return blogSection.find((id) => id == blogSecId) ? true : false;
-  };
+  // const filterSection = (blogSection, blogSecId) => {
+  //   return blogSection.find((id) => id == blogSecId) ? true : false;
+  // };
 
-  const findFirstSection = (fd) => {
-    const sections = blogSection.filter((item) =>
-      filterSection(fd.blogSection, item._id)
-    );
+  // const findFirstSection = (fd) => {
+  //   const sections = blogSection.filter((item) =>
+  //     filterSection(fd.blogSection, item._id)
+  //   );
 
-    const firstText = sections.find((i) => i.row == 1);
-    return firstText ? firstText.text : false;
-  };
+  //   const firstText = sections.find((i) => i.row == 1);
+  //   return firstText ? firstText.text : false;
+  // };
 
+    // Gözdə görülən blogları artır
   const visibleShow = () => {
     setVisible((prev) => prev + 6);
   };
@@ -94,7 +109,7 @@ const Blogs = () => {
     <>
       <section className="blogsPage">
         <hr style={{ color: "orange", fontWeight: "bold" }} />
-        <div className="container">
+        <div className="container-fluid">
           {loading ? (
             <PreLoader />
           ) : (
@@ -134,23 +149,23 @@ const Blogs = () => {
                   <div className="cardsBlogs row m-0 ">
                     {blog.slice(0, visible).map((item, i) => (
                       <div
-                        className="blogcard col-12 col-md-4 col-lg-3"
+                        className="blogcard col-12 col-md-4 col-lg-3 h-100"
                         key={i}
                       >
                         <LazyLoad>
                           <Link
-                            to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
+                            to={`/blogDetails/${item._id}/${slugify(item.title).toLowerCase()}`}
                             style={{ color: "#000" }}
                           >
                             <figure>
                               <img src={item.coverImage} alt="rectangle127" />
                             </figure>
-                            <div className="card-header">
+                            <div className="card-header ">
                               <p className="p-title">{item.title}</p>
                               <p
                                 className="p-body-text"
                                 dangerouslySetInnerHTML={{
-                                  __html: findFirstSection(item),
+                                  __html: (item.description),
                                 }}
                               />
                               <p className="p-body-read">
@@ -183,6 +198,8 @@ const Blogs = () => {
           )}
         </div>
       </section>
+      <Faq faqs={faqBlog} />
+
     </>
   );
 };

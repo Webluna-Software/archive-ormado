@@ -1,6 +1,6 @@
 .products-page {
   padding: 0 54px;
-  .col-md-9 {
+  .col-md-10 {
     .img-transparent {
       position: relative;
       .image-container {
@@ -57,6 +57,12 @@
           border: none;
           border-radius: 8px;
           background: #e3b142;
+          @media (max-width:768px) {
+            padding: 8px 10px;
+            font-size: 12px;
+            margin-top: 10px;
+          }
+
         }
       }
     }
@@ -411,7 +417,7 @@
           justify-content: center;
         }
 
-        .col-md-9 {
+        .col-md-10 {
           .card-title {
             margin-bottom: 0;
             overflow: hidden;
@@ -472,7 +478,7 @@
 
 @media (max-width: 991px) {
   .products-page {
-    .col-md-9 {
+    .col-md-10 {
       .yourormado-products {
         margin-top: 25px;
       }
@@ -508,7 +514,7 @@
   .products-page {
     padding: 0 12px;
 
-    .col-md-9 {
+    .col-md-10 {
       .yourormado-products {
         margin-top: 30px;
       }
@@ -544,7 +550,7 @@
   .products-page {
     padding: 0 12px;
 
-    .col-md-9 {
+    .col-md-10 {
       .img-transparent {
         .img-text-context {
           h4 {

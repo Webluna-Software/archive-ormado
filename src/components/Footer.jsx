@@ -20,6 +20,7 @@ const Footer = () => {
       .then((res) => {
         const contact = res.data.data.contactSettings[0];
         setData(contact);
+        console.log("budur",contact);
       })
       .catch((err) => {
         console.log(err);
@@ -39,14 +40,8 @@ const Footer = () => {
                   Join the family!
                 </label>
                 <form className="d-flex my-2">
-                  <input
-                    id="newsletter2"
-                    type="text"
-                    className="form-control"
-                    placeholder="Sign up!"
-                    name="email"
-                  />
-                  <button type="submit" className="btn btn-primary ms-3">
+                  <input  id="newsletter2"  type="text"  className="form-control"  placeholder="Sign up!"  name="email"/>
+                  <button type="submit" className="button  ms-3"  >
                     Send
                   </button>
                 </form>
@@ -55,40 +50,6 @@ const Footer = () => {
                 Sign up for email subscription to be aware of discounts and
                 updates! You get email only offers when you join
               </p>
-
-              {/* <div className="socialmedia-icons">
-                <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
-                  <i className="fa-brands fa-square-instagram" />
-                </a>
-                <a target="_blank" href="https://www.facebook.com/ormado.de">
-                  <i className="fa-brands fa-facebook"></i>
-                </a>
-                <a target="_blank" href="https://www.linkedin.com/company/72933606/admin/feed/posts/">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.youtube.com/@ormadokaffeehaus"
-                >
-                  <i className="fa-brands fa-youtube"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.tiktok.com/@ormadokaffeehaus"
-                >
-                  <i className="fa-brands fa-tiktok"></i>
-                </a>
-                <a target="_blank" href="https://twitter.com/OrmadoK">
-                  <i className="fa-brands fa-square-twitter"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.pinterest.de/ormadokaffeehaus/"
-                >
-                  <i className="fa-brands fa-pinterest"></i>
-                </a>
-              </div> */}
-
               <SocialMedia/>
             </div>
 
@@ -251,39 +212,7 @@ const Footer = () => {
         <footer>
           <div className="footer-top">
             <div className="logo-div d-flex align-items-center justify-content-between">
-              <img src={logo} alt="" />
-              {/* <div className="socialmedia-icons">
-                <a target="_blank" href="https://www.instagram.com/ormado_kaffeehaus/">
-                  <i className="fa-brands fa-square-instagram" />
-                </a>
-                <a target="_blank" href="https://www.facebook.com/ormado.de">
-                  <i className="fa-brands fa-facebook"></i>
-                </a>
-                <a target="_blank" href="https://www.linkedin.com/company/72933606/admin/feed/posts/">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.youtube.com/@ormadokaffeehaus"
-                >
-                  <i className="fa-brands fa-youtube"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.tiktok.com/@ormadokaffeehaus"
-                >
-                  <i className="fa-brands fa-tiktok"></i>
-                </a>
-                <a target="_blank" href="https://twitter.com/OrmadoK">
-                  <i className="fa-brands fa-square-twitter"></i>
-                </a>
-                <a
-                  target="_blank"
-                  href="https://www.pinterest.de/ormadokaffeehaus/"
-                >
-                  <i className="fa-brands fa-pinterest"></i>
-                </a>
-              </div> */}
+              <img src={logo} alt="logo" />
               <SocialMedia/>
             </div>
 
@@ -362,13 +291,8 @@ const Footer = () => {
             </div>
 
             <div className="d-flex flex-column flex-sm-row gap-2 mt-4 mb-3">
-              <input
-                id="newsletter1"
-                type="text"
-                className="form-control"
-                placeholder="Enter your email"
-              />
-              <button className="btn btn-primary" type="button">
+              <input  id="newsletter1"  type="text"  className="form-control"  placeholder="Enter your email"/>
+              <button className="button" type="button">
                 Send
               </button>
             </div>

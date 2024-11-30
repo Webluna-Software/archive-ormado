@@ -1,0 +1,43 @@
+.stickyCookie{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    z-index: 999999 !important;
+    padding: 12px 20px;
+    p{
+        font-family: "Lato",sans-serif;
+    }
+    .acceptBtn{
+        padding: 10px 30px;
+        background-color: #4A3024;
+        font-family: 'Lato',sans-serif;
+        color: #fff;
+        border-radius: 8px;
+        border: none;
+        border: 1px solid #cfcfcf;
+        transition: 250ms;
+        &:focus{
+            border: none;
+        }
+        &:hover{
+            background-color: #f9f9f9;
+            color: #000;
+        }
+    }
+    .rejectBtn{
+        padding: 8px 30px;
+        background-color: #f9f9f9;
+        font-family: 'Lato',sans-serif;
+        color: #000;
+        transition: 250ms;
+        border-radius: 8px;
+        border: none;
+        border: 1px solid #cfcfcf;
+        &:hover{
+            background-color: #4A3024;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,237 @@
+.GiftCard {
+  width: 100%;
+  height: auto;
+  .coffee-beans {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    z-index: -10;
+    @media (max-width: 1024px){
+      display: none;
+    }
+    &.bean-1 {
+      background-image: url("/src/assets/img/Layer15.png");
+      right: 5%;
+      top: 80%;
+      width: 80px;
+      height: 90px;
+    }
+
+    &.bean-2 {
+      background-image: url("/src/assets/img/Layer18.png");
+      top: 50%;
+      left: 3%;
+      width: 80px;
+      height: 70px;
+    }
+
+    &.bean-3 {
+      background-image: url("/src/assets/img/Layer21.png");
+      bottom:- 60%;
+      left: 4%;
+      width: 80px;
+      height: 120px;
+    }
+
+    &.bean-4 {
+      background-image: url("/src/assets/img/Layer20.png");
+      bottom: -60%;
+      right: 5%;
+      width: 90px;
+      height: 120px;
+    }
+  }
+
+
+    .container-fluid {
+      padding: 30px 200px;
+      @media (max-width: 1200px) {
+        padding: 30px 180px;
+      }
+      @media (max-width: 1040px) {
+          padding: 30px 150px;
+        }
+        @media (max-width: 991px) {
+          padding: 30px 100px;
+        }
+        @media (max-width: 768px) {
+          padding: 30px 70px;
+        }
+        @media (max-width: 650px) {
+          padding: 30px 50px;
+        }
+        @media (max-width: 450px) {
+          padding: 30px 30px;
+        }
+        @media (max-width: 375px) {
+          padding: 30px 20px;
+        }
+      .cards {
+        .gift-cards {
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+          @media (max-width: 768px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 9;
+          }
+          .card {
+            display: flex;
+            color: #ffff;
+            border-radius: 0;
+            background-color: #4e2922;
+            overflow: hidden;
+            padding: 25px 15px;
+            @media (max-width: 768px) {
+              width: 100%;
+            }
+            .card-content {
+                position: relative;
+                flex-direction: column;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                text-align: left;
+                z-index: 10;
+                .card-title {
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 37px;
+                  font-weight: 800;
+                  line-height: 44px;
+                  @media (max-width: 768px) {
+                    font-size: 25px;
+                  }
+                }
+                .card-description {
+                  list-style: none;
+                  padding: 0;
+                  line-height: 1.3;
+                  font-family: 'Lato', sans-serif;
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: 25px;
+                }
+                .card-description li {
+                  margin-bottom: 5px;
+                }
+              }
+              .card-image {
+                top: -30px;
+                right: -20px ;
+                bottom: -14px;
+                position: absolute;
+                  background-color:  #D59729;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width:170px;
+                  height: 116%; 
+                  border-top-left-radius: 500px;
+                  border-bottom-left-radius: 500px; 
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  z-index: 1;
+                  img{
+                      width: 170px;
+                  }
+      
+              }
+        }
+        .basic-card{
+            background-color: #D59729;
+            border-radius: 0; 
+            
+            .card-content{
+                position: relative; 
+                z-index: 10;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+          .moon-container {
+            position: absolute;
+            width: 200px; 
+            height: 400px;
+            transform: rotate(250deg); 
+            .moon {
+              width: 200px;
+              height: 150px;
+              border-radius: 50%;
+              background-color: #D59729;
+              position: absolute;
+              top: 0;
+              left: 0;
+              overflow: hidden;
+              z-index: 1;
+          }
+          .moon-overlay {
+            width: 400px;
+            height: 350px;
+            border-radius: 50%;
+            background-color: #4e2922;
+            position: absolute;
+            top: 0;
+            left: -40px;
+        }
+        }
+        }
+    }
+      }
+      .text-row {
+        width: 100%;
+        margin-top: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        .content {
+          font-family: 'Lato', sans-serif;
+          font-size: 25px;
+          font-weight: 700;
+          line-height: 31.45px;
+          color: #4e2922;
+          margin-bottom: 20px;
+          @media (max-width: 768px) {
+            font-size: 20px;
+          }
+          .title {
+            border-radius: 10px 0px 0px 0px;
+          }
+          .content-box {
+            background-color: #d5972921;
+            height: auto;
+            border-radius: 10px;
+            padding: 30px;
+            @media (max-width:768px) {
+              padding: 20px;
+            }
+            @media (max-width:450px) {
+              padding: 10px;
+            }
+            .content-text {
+              font-family: 'Lato', sans-serif;
+              font-size: 20.97px;
+              font-weight: 400;
+              line-height: 31.45px;
+              margin: 0;
+              @media (max-width:768px) {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+

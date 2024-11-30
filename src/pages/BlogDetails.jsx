@@ -9,78 +9,90 @@ import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
 
 const BlogDetails = () => {
-  const { blogTitle } = useParams();
+  const { blogId, blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [blog, setBlog] = useState([]);
+  const [blogDet, setBlogDet] = useState([]);
   const [blogSec, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
   const path = window.location.pathname;
 
+
   useEffect(() => {
-    //Blog
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
-        setBlog(res.data.blog);
-        setLoading(false);
+        const blogData = res.data.blog;
+        setBlog(blogData);
+        return axios.get(`${ApiLink2}/blog/${blogId}`);
       })
-      .catch((error) => {
-        console.log(error, "Blog data error");
-        setLoading(false);
-      });
-    //BlogSection
-    axios.get(`${ApiLink2}/blogSection`)
       .then((res) => {
-        setBlogSec(res.data.blogSection);
-        setLoading(false);
+        const blogDetails = res.data.blog;
+        setBlogDet(blogDetails);
+        // console.log(blogDetails, "BLOG");
+  
+        const sectionIds = blogDetails.blogSection; 
+        if (sectionIds.length > 0) {
+          const sectionPromises = sectionIds.map((id) =>
+            axios.get(`${ApiLink2}/blogSection/${id}`)
+          );
+          return Promise.all(sectionPromises);
+        } else {
+          setLoading(false); 
+          return [];
+        }
+      })
+      .then((sectionResponses) => {
+        const sections = sectionResponses.map((res) => res.data.blogSection);
+        setBlogSec(sections);
+        // console.log(sections, "BLOG SECTIONS");
+        setLoading(false); 
       })
       .catch((error) => {
-        console.log(error, "BlogSec error");
-        setLoading(false);
+        console.error("Error fetching data:", error);
+        setLoading(false); 
       });
-  }, [path]);
-
-  const filterSection = (blogSec, blogSecId) => {
-    const check = blogSec.find((id) => id == blogSecId);
-    if (check) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const findFirstSection = (fd) => {
-    const sections = blogSec.filter((item) =>
-      filterSection(fd.blogSection, item._id)
-    );
-
-    const firstText = sections.find((i) => i.row == 1);
-    if (firstText) {
-      return firstText.text;
-    } else {
-      return false;
-    }
-  };
+  }, [ApiLink2, blogId]);
   
+
+  // const filterSection = (blogSec, blogSecId) => {
+  //   const check = blogSec.find((section) => section._id === blogSecId);
+  //   return check;
+  // };
+  // const findFirstSection = (fd) => {
+  //   const sections = blogSec.filter((item) =>
+  //     filterSection(fd.blogSection, item._id)
+  //   );
+  //   const firstText = sections.find((i) => i.row === 1);
+  //   if (firstText) {
+  //     return firstText.text;
+  //   } else {
+  //     return false;
+  //   }
+  // };
+
   let blogDetails = blog.find(
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
 
-  useEffect(() => {
-    if (blogDetails) {
-      const updateCount = blogDetails && blogDetails.readCount + 1;
-      const formData = new FormData();
-      formData.append("readCount", updateCount);
-      formData.append("title", blogDetails.title);
-      formData.append("description", blogDetails.description);
-      axios.put(`${ApiLink2}/blog/${blogDetails && blogDetails._id}`, formData)
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err, "put error");
-        });
-    }
-  }, [blogDetails]);
+  // useEffect(() => {
+  //   if (blogDetails) {
+  //     const updateCount = blogDetails.readCount + 1;
+  //     const formData = {
+  //       readCount: updateCount,
+  //       title: blogDetails.title,
+  //       description: blogDetails.description
+  //     };
+  //     axios.put(`${ApiLink2}/blog/${blogDetails._id}`, formData)
+  //       .then((res) => {
+  //         // console.log(res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err, "put error");
+  //       });
+  //   }
+  // }, [blogDetails]);
+  
+
 
   function formatReadCount(count) {
     if (count < 1000) {
@@ -89,13 +101,11 @@ const BlogDetails = () => {
       return (count / 1000).toFixed(1) + "k";
     }
   }
+  const formattedReadCount = formatReadCount(  blogDet && blogDet.readCount);
 
-  const formattedReadCount = formatReadCount(
-    blogDetails && blogDetails.readCount
-  );
 
   // Eyni ID li bloglar ucun filter -A
-  const filteredBlogs = blog.filter((item) => item._id !== blogDetails._id);
+  const filteredBlogs = blog.filter((item) => item._id !== blogDet._id);
 
   return (
     <>
@@ -105,8 +115,8 @@ const BlogDetails = () => {
         ) : (
           <>
             <Helmet>
-              <title>{blogDetails.title}</title>
-              <meta property="og:title" content={`${blogDetails.title}`} />
+              <title>{blogDet.title}</title>
+              <meta property="og:title" content={`${blogDet.title}`} />
             </Helmet>
             <div className="container-fluid">
               <div className="row ">
@@ -119,8 +129,8 @@ const BlogDetails = () => {
                         alt="..."
                       />
                       <div className="img-text-context">
-                        <h3>{blogDetails.title}</h3>
-                        <p>{blogDetails.author}</p>
+                        <h3>{blogDet.title}</h3>
+                        <p>{blogDet.author}</p>
                         <div className="read">
                           <p>
                             <svg
@@ -142,7 +152,7 @@ const BlogDetails = () => {
                                 fill="#E3B142"
                               />
                             </svg>
-                            {blogDetails.date}
+                            {blogDet.date}
                           </p>
                           <p>
                             <svg
@@ -240,19 +250,17 @@ const BlogDetails = () => {
                     <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
-                        {filteredBlogs.slice(-2).map((fd, i) => (
+                        {filteredBlogs.slice(0, 3).map((fd, i) => (
                           <div
                             className="blogcard col-12 col-md-3 col-sm-6"
-                            key={i}
+                            key={fd._id}
                           >
                             <Link
-                              style={{ color: "#000" }}
-                              to={`/blogDetails/${slugify(
-                                fd.title
-                              ).toLowerCase()}`}
-                              onClick={() => {
-                                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                              }}
+                          style={{ color: "#000" }}
+                          to={`/blogDetails/${fd._id}/${slugify(fd.title).toLowerCase()}`}
+                          onClick={(e) => { 
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
                             >
                               <figure>
                                 <img src={fd.coverImage} alt="rectangle127" />
@@ -263,16 +271,15 @@ const BlogDetails = () => {
                                 <p
                                   className="p-body"
                                   dangerouslySetInnerHTML={{
-                                    __html: findFirstSection(fd),
+                                    __html: (fd.description),
                                   }}
                                 />
                                 <p className="p-body">
-                                  {" "}
-                                  <span> Read more</span>
+                                  <span>Read more</span>
                                 </p>
                                 <div className="date-number">
-                                  <span>1K read</span>
-                                  <span>June 28, 2023</span>
+                                <span>{formatReadCount(fd.readCount)} read</span>
+                                  <span>{fd.date}</span>
                                 </div>
                               </div>
                             </Link>
@@ -282,35 +289,38 @@ const BlogDetails = () => {
                     </div>
                   </div>
                 </div>
+
+
                 {/* <Blogs /> */}
                 <div className="cardsBlogs row m-0 mt-5">
-                  {filteredBlogs.slice(-4).map((item, i) => (
-                    <div className="blogcard col-12 col-md-4 col-lg-4" key={i}>
+                {filteredBlogs.slice(0, 4).map((fd, _id) => (
+                    <div className="blogcard col-12 col-md-4 col-lg-4" key={fd._id}>
                       <Link
                         style={{ color: "#000" }}
-                        to={`/blogDetails/${slugify(item.title).toLowerCase()}`}
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                        }}
+                        to={`/blogDetails/${fd._id}/${slugify(fd.title).toLowerCase()}`}
+                          onClick={(e) => { 
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
                       >
                         <figure>
-                          <img src={item.coverImage} alt="rectangle127" />
+                          <img src={fd.coverImage} alt="blogImage" />
                         </figure>
                         <div className="card-header">
-                          <p className="p-title">{item.title}</p>
+                          <p className="p-title">{fd.title}</p>
                           <p
                             className="p-body-text"
                             dangerouslySetInnerHTML={{
-                              __html: findFirstSection(item),
+                              __html: (fd.description),
                             }}
                           />
                           <p className="p-body-read">
-                            {" "}
+                          <Link  style={{ color: "#000" }}  to={`/blog/${fd._id}/${slugify(fd.title).toLowerCase()}`}  onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' });   }}> 
                             <span> Read more</span>
+                          </Link>
                           </p>
                           <div className="date-number">
-                            <span>{item.readCount} read</span>
-                            <span>{item.date}</span>
+                          <span>{formatReadCount(fd.readCount)} read</span>
+                            <span>{fd.date}</span>
                           </div>
                         </div>
                       </Link>

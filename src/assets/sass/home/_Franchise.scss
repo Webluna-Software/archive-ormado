@@ -1,18 +1,19 @@
 .myfranchise {
   width: 100%;
   height: auto;
-  padding: 20px 84px 120px 84px;
+  padding: 40px 84px 30px 84px;
 
     @media (max-width:1070px) {
         padding: 10px 50px;
     }
-    @media (max-width:790px) {
-        padding: 70px 20px;
-    }
-    @media (max-width: 577px) {
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
+    // @media (max-width:791px) {
+    //     padding: 70px 20px;
+    // }
+    // @media (max-width: 577px) {
+    //   padding-top: 0px;
+    //   padding-bottom: 0px;
+    // }
+
 
 
   .franc-con {
@@ -21,8 +22,6 @@
     width: 100%;
     background-color: #4a3024;
     border-radius: 20px 20px 20px 20px;
-    
-
     .left {
       width: 50%;
       height: auto;

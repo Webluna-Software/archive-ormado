@@ -8,6 +8,7 @@ header {
     border-bottom: 1px solid #f7f7f7;
     padding: 24px 84px 24px 84px;
 
+
     @media (max-width: 1070px) {
       padding-left: 50px;
       padding-right: 50px;
@@ -76,6 +77,7 @@ header {
       border-radius: 100px;
     }
     .cart {
+      cursor: pointer;
       position: relative;
       img {
         width: 26px;
@@ -87,6 +89,7 @@ header {
       }
     }
     .wishlist {
+      cursor: pointer;
       position: relative;
       i {
         color: #4a3024;
@@ -147,6 +150,14 @@ header {
     align-items: flex-start;
     padding: 24px 84px 24px 84px;
 
+    // @media (max-width: 1285px) {
+    //   padding-left: 50px;
+    //   padding-right: 50px;
+    // }
+    // @media (max-width: 1240px) {
+    //   padding-left: 40px;
+    //   padding-right:40px;
+    // }
     @media (max-width: 1070px) {
       padding-left: 50px;
       padding-right: 50px;
@@ -167,6 +178,16 @@ header {
         font-weight: 700;
         line-height: 24px;
         position: relative;
+   @media (max-width: 1285px) {
+    font-size: 17px;
+    }
+    @media (max-width: 1239px) {
+      font-size: 16px;
+      }
+      @media (max-width: 1101px) {
+        font-size: 15px;
+        }
+
 
         &::before {
           position: absolute;
@@ -244,6 +265,11 @@ header {
     border-radius: 8px;
     border: 1px solid #979797;
     width: 49%;
+    margin:2px;
+    @media (max-width: 408px) {
+      width: 100%!important;
+
+      }
     span {
       font-family: "Lato", sans-serif;
       color: #4a3024;
@@ -284,7 +310,7 @@ header {
     nav {
       ul {
         .navA {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }

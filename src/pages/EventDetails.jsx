@@ -1,35 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import slugify from "slugify";
 import { ApiLinkContext } from "../context/ApiLinkContext";
 import PreLoader from "./PreLoader";
 // import { Helmet } from "react-helmet";
 import LazyLoad from "react-lazy-load";
 
 const EventDetails = () => {
-  const { eventTitle } = useParams();
+  const { id } = useParams();
   const [eventDetails, setEventDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const { ApiLink2 } = useContext(ApiLinkContext);
 
   useEffect(() => {
-    axios
-      .get(`${ApiLink2}/event`)
+    // console.log("Event ID from URL:", id);
+    axios.get(`${ApiLink2}/event/${id}`)
       .then((res) => {
-        const allEvents = res.data.data;
-        const matchedEvent = allEvents.find(
-          (event) => slugify(event.title, { lower: true }) === eventTitle
-        );
-        setEventDetails(matchedEvent);
+        // console.log("API Response:", res.data.data);
+        setEventDetails(res.data.data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching event detail:", err);
         setLoading(false);
       });
-  }, [eventTitle, ApiLink2]);
-
+  }, [id, ApiLink2]);
+  
 
   const getYoutubeEmbedUrl = (url) => {
     let videoId = null;

@@ -53,7 +53,7 @@ const EnjoyOurCoffee = () => {
                 <div className="product">
                   <div className="learnmore">
                     <div className="learnbutton">
-                      <div className="button"> Learn More</div>
+                  <Link to="/products"><div className="button"> Learn More</div></Link>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width={24}
@@ -148,9 +148,8 @@ const EnjoyOurCoffee = () => {
                     </Swiper>
                   </div>
                   <div className="learn-button">
-                    <Link to="/products" className="btn">Learn more</Link>
+                    <Link to="/products"  className="btn">Learn more</Link>
                   </div>
-                
                 </div>
               </div>
             </div>

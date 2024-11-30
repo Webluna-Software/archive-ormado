@@ -1,5 +1,12 @@
 .blogsPage {
-    .container {
+    .container-fluid {
+        padding: 0 80px;
+        @media (max-width:1024px) {
+          padding: 0 60px;
+        }
+        @media (max-width:768px) {
+          padding: 0 20px;
+        }
         .row {
             .categoryTitle{
                 display: flex;

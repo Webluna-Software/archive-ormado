@@ -2,6 +2,7 @@
 import img from '../assets/img/&.png'
 import { Link } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import ApiLinkContext from '../context/ApiLinkContext'
 import axios from 'axios'
 import PreLoader from "./PreLoader"
@@ -12,12 +13,13 @@ import { Helmet } from 'react-helmet'
 
 const Franchise = () => {
   const {ApiLink2} = useContext(ApiLinkContext)
+  const navigate = useNavigate();
   const [why,setWhy] = useState([])
   const [provide,setProvide] = useState([])
   const [company,setCompany] = useState([])
   const [franchiseTestimonal,setFranchiseTestimonal] = useState([])
   const [loading,setLoading] = useState(true)
-  const [faqFranchise ,setFaqFranchise] = useState([])
+  const [faqFranchise ,setFaqFranchise] = useState([]);
 
   useEffect(()=>{
     Promise.all([
@@ -38,6 +40,7 @@ const Franchise = () => {
       setProvide(provide[0])
       setWhy(why)
       setFaqFranchise(faq)
+      console.log(faq)
       setLoading(false)
     })
     .catch((err)=>{
@@ -84,6 +87,13 @@ const Franchise = () => {
     newExpandedArray[index] = !newExpandedArray[index];
     setExpandedArray(newExpandedArray);
   }
+
+
+
+  const handleRedirect = () => {
+    navigate('/termsandConditions')
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
    <>
    {
@@ -130,7 +140,7 @@ const Franchise = () => {
         </div>
       </div>
       <div className="roasting">
-        <h3 className="ms-1">
+        <h3 className="ms-1 mt-sm-5" >
           <font color="#D59729">{provide.title}</font>
         </h3>
         <p className="ms-1 w-100" dangerouslySetInnerHTML={{__html:provide.text}}/>
@@ -138,8 +148,8 @@ const Franchise = () => {
         <div className="franchise-cards mb-5">
           <LazyLoad>
           <div className="row  franchise-image" >
-            <img className='img' src={provide.image[0]} alt="" />
-            <img src={provide.image[1]} alt="" />
+            <img className='img' src={provide.image[0]} alt="franchiseImage" />
+            <img src={provide.image[1]} alt="franchiseImage" />
             <img src={provide.image[2] ? provide.image[2] : ""} alt="" />
           </div>
           </LazyLoad>
@@ -199,7 +209,7 @@ const Franchise = () => {
         <div className="part2">
           <img src={img} alt="error" />
         </div>
-        <div className="termConditions">
+        <div className="termConditions"  onClick={handleRedirect}>
           <div className="termConditions-icon mt-2">
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path opacity="0.5" d="M8 26.6654C8 16.6087 8 11.5804 11.1242 8.45623C14.2484 5.33203 19.2767 5.33203 29.3333 5.33203H34.6667C44.7233 5.33203 49.7516 5.33203 52.8758 8.45623C56 11.5804 56 16.6087 56 26.6654V37.332C56 47.3887 56 52.417 52.8758 55.5412C49.7516 58.6654 44.7233 58.6654 34.6667 58.6654H29.3333C19.2767 58.6654 14.2484 58.6654 11.1242 55.5412C8 52.417 8 47.3887 8 37.332V26.6654Z" fill="#D59729" />
@@ -236,18 +246,11 @@ const Franchise = () => {
         </div>
       </div>
     </div>
-    {/* <div className="Faqs">
-          <div className="container1">
-            <div className="Center">
-              <div className="accordion " id="accordionExample">
-                <Faq faq={faqFranchise}/>
-              </div>
-            </div>
-          </div>
-        </div> */}
-  
+    <Faq faqs={faqFranchise}/>
+
 
   </div>
+
    </>
    }
    

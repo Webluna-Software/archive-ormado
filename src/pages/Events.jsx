@@ -4,7 +4,6 @@ import axios from "axios";
 import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
 
 const Events = () => {
@@ -44,7 +43,7 @@ const Events = () => {
             />
           </div>
         </div>
-        <div className="container">
+        <div className="container-fluid">
           {loading ? (
             <PreLoader />
           ) : (
@@ -57,40 +56,64 @@ const Events = () => {
                   <div className="title">
                     <h3>Events</h3>
                   </div>
-                  <div className="cardsEvents row m-0 ">
-                  {event.map((event, index) => (
+                  {/* <div className="cardsEvents row m-0 ">
+                  {event.map((fd, index) => (
                     <div
                       className="eventcard col-12 col-md-4 col-lg-3"
                       key={index}
                     >
                       <LazyLoad>
-                        <Link
-                          to={`/eventDetails/${slugify(
-                            event.title
-                          ).toLowerCase()}`}
+                        <Link    to={`/eventDetails/${fd._id}`}
                           style={{ color: "#000" }}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' }); 
                           }}
                         >
                           <figure>
-                            <img src={event.image} alt={event.title} />
+                            <img src={fd.image} alt={fd.title} />
                           </figure>
+                          </Link>
+                          </LazyLoad>
                           <div className="card-header">
-                            <p className="p-title">{event.title}</p>
+                            <p className="p-title">{fd.title}</p>
                             <p
                               className="p-body-text"
-                              dangerouslySetInnerHTML={{ __html: event.desc }}
+                              dangerouslySetInnerHTML={{ __html: fd.desc }}
                             />
+                        <Link     to={`/eventDetails/${fd._id}`}
+                          style={{ color: "#000" }}
+                          onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+                          }}
+                        >
                             <p className="p-body-read">
                               <span> Read more</span>
                             </p>
+                            </Link>
                           </div>
-                        </Link>
-                      </LazyLoad>
                     </div>
                   ))}
-                </div>
+                </div> */}
+                  <div className="cardsEvents row row-cols-1 row-cols-md-4 g-4">
+                    {event.filter((fd) => fd.active) .map((fd, index) => (
+                      <div  className="col-lg-3 col-md-4 col-sm-6 col-12 "  key={index}>
+                        <div className="card  eventcard  h-100">
+                          <LazyLoad>
+                            <Link  to={`/eventDetails/${fd._id}`}  style={{ color: "#000" }}  onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
+                              <img  src={fd.image}  alt={fd.title}  className="event-image card-img-top"/>
+                            </Link>
+                          </LazyLoad>
+                          <div className="card-body event-body">
+                            <h5 className="card-title">{fd.title}</h5>
+                            <p  className="card-text"  dangerouslySetInnerHTML={{ __html: fd.desc }}/>
+                            <Link  to={`/eventDetails/${fd._id}`}  style={{ color: "#000" }}  onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
+                                <span> Read more</span>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </>
