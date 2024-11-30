@@ -89,9 +89,9 @@ const App = () => {
                     <Route path='/productsdetails/:id' element={<ProductDetails />}></Route>
                     <Route path='/productinformation' element={<ProductInformation />}></Route>
                     <Route path='/blogs/:id' element={<Blogs />}  ></Route>
-                    <Route path='/blogDetails/:blogTitle' element={<BlogDetails />}  ></Route>
+                    <Route path='/blogDetails/:blogId/:blogTitle' element={<BlogDetails />}  ></Route>
                     <Route path='/events' element={<Events />}  ></Route>
-                    <Route path="/eventDetails/:eventTitle" element={<EventDetails />} />
+                    <Route path="/eventDetails/:id" element={<EventDetails />} />
                     <Route path="/CorporateSocialResponsibility" element={<CorporateSocialRes/>} ></Route>
                     <Route path="/delivery" element={<Delivery/>} />
                     <Route path="/giftcard" element={<GiftCard/>} />
