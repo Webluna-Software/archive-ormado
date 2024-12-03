@@ -1,23 +1,47 @@
-import React from 'react'
+import { useContext, useState, useEffect } from "react";
+import { ApiLinkContext } from "../context/ApiLinkContext";
+import axios from "axios";
+import PreLoader from "./PreLoader";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 import img from "../assets/img/pngwing1.png"
 
 const GiftCard = () => {
 
-    const cards = [
-        {
-          title: "Gift Card",
-          description: ["Aenean eleifend ante", "maecenas pulvinar", "montes lorem et pede dis", "dolor pretium"],
-          background: "brown",
-          showImage: true,
-        },
-        {
-          title: "50%",
-          description: ["Aenean eleifend ante", "maecenas pulvinar", "montes lorem et pede dis", "dolor pretium"],
-          background: "yellow",
-          showImage: false,
-        },
-      ];
-    const giftCards = [
+  // const [giftCard, setgiftCard] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const { ApiLink2 } = useContext(ApiLinkContext);
+
+  // useEffect(() => {
+  //     axios.get(`${ApiLink2}/giftcard`)
+  //     .then((res) => {
+  //       const giftCard = res.data.data;
+  //       console.log("giftCards data:", giftCard);
+  //       setEvent(giftCard);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error fetching data:", err);
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+    // const cards = [
+    //     {
+    //       title: "Gift Card",
+    //       description: ["Aenean eleifend ante", "maecenas pulvinar", "montes lorem et pede dis", "dolor pretium"],
+    //       background: "brown",
+    //       showImage: true,
+    //     },
+    //     {
+    //       title: "50%",
+    //       description: ["Aenean eleifend ante", "maecenas pulvinar", "montes lorem et pede dis", "dolor pretium"],
+    //       background: "yellow",
+    //       showImage: false,
+    //     },
+    //   ];
+    const giftCard = [
         {
           title: "Integer Maecenas Eget Viverra",
           content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet..."
@@ -74,7 +98,7 @@ const GiftCard = () => {
                 </div>
             </div>
             <div className="row text-row ">
-                {giftCards.map((card, index) => (
+                {giftCard.map((card, index) => (
                   <div className="content" key={index}>
                     <p className="title">{card.title}</p>
                     <div className="content-box">
