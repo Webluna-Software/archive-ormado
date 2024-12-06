@@ -15,7 +15,7 @@ const FranchiseForm = () => {
     });
   });
 
-  const [fullName, setfullName] = useState();
+  const [fullname, setfullName] = useState();
   const [email, setemail] = useState();
   const [phone, setPhone] = useState();
   const [city, setcity] = useState();
@@ -41,7 +41,7 @@ const FranchiseForm = () => {
     let isValid = true;
 
     const fieldCheck = [
-      { value: fullName, error: setNameError },
+      { value: fullname, error: setNameError },
       { value: email, error: setEmailError },
       { value: phone, error: setPhoneError },
       { value: city, error: setCityError },
@@ -59,7 +59,7 @@ const FranchiseForm = () => {
 
     if (isValid) {
       axios.post(`${ApiLink2}/franchiseForm`, {
-          fullName: fullName,
+          fullname: fullname,
           email: email,
           phone: phone,
           city: city,

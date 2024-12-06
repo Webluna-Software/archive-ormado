@@ -1,22 +1,114 @@
-import { useDispatch, useSelector } from "react-redux";
 import bgimg from "../assets/img/bgimg.png";
-import { addToCart } from "../features/cartSlice";
-import { removeFromWish } from "../features/wishSlice";
 import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import ApiLinkContext from "../context/ApiLinkContext";
+import axios from "axios";
 
 const Wishlist = () => {
-  const { wishlistsItems } = useSelector((state) => state.wish || {});
-  const dispatch = useDispatch();
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [wishProducts, setWishProducts] = useState([]); 
+  const [cartStatus, setCartStatus] = useState({});
 
-  const handleRemoveFromWish = (_id) => {
-    dispatch(removeFromWish(_id));
+  const handleRemoveFromWish = async (productId) => {
+    try {
+      const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+      if (!token) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+  
+      const response = await axios.delete(`${ApiLink2}/wishlist/${user._id}/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (response.status === 200) {
+        setWishProducts(prevProducts => prevProducts.filter(item => item.productId !== productId));
+        if (wishProducts.length === 1) {
+          setWishProducts([]);
+        }
+      }
+    } catch (err) {
+      console.error("Error deleting product:", err);
+      setError("Error deleting product from the wishlist.");
+      setLoading(false);
+    }
   };
   
-  const handleAddToCart = (product) => {
-    dispatch(addToCart({ ...product, quantity: 1 }));
-    handleRemoveFromWish(product._id);
+  const handleAddToCart = async(productId) => {
+    setLoading(true);
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+    try {
+      await axios.post(`${ApiLink2}/cart`, { productId, quantity:1 ,userId:user._id}, {
+              headers: {
+                Authorization: `Bearer ${token}` // Include the token in the Authorization header
+              }
+            });
+      setCartStatus((prevState) => ({
+        ...prevState,
+        [productId]: "active"
+      }));
+    } catch (error) {
+      setError(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+    } finally {
+      setLoading(false);
+    }
+    handleRemoveFromWish(productId);
   };
-  console.log(wishlistsItems);
+  
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setLoading(false);
+      
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+  
+  useEffect(() => {
+    if (!user._id) return;
+    const fetchCartData = async () => {
+      try {
+        const response = await axios.get(`${ApiLink2}/wishlist/${user._id}`) 
+        setWishProducts(response.data.data.items); 
+        setLoading(false); 
+        
+      } catch (err) {
+        setError('Error fetching cart data'); 
+        setLoading(false);
+      }
+    };
+
+    fetchCartData();
+  }, [user._id,ApiLink2]); 
+console.log(wishProducts,"wish");
 
   return (
     <section className="wishlist">
@@ -31,7 +123,7 @@ const Wishlist = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            {wishlistsItems.length > 0 ? (
+            {wishProducts.length > 0 ? (
               <table className="table border-0">
                 <thead>
                   <tr>
@@ -43,19 +135,17 @@ const Wishlist = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {wishlistsItems.map((item) => (
-                    <tr key={item._id}>
+                  {wishProducts.map((item) => (
+                    <tr key={item.productId}>
                       <td className="product-title d-flex align-items-center">
                         <div className="product-img">
-                          {console.log(item)
-                          }
                           <img
-                            src={item.title}
+                            src={item.coverImage}
                             alt=""
                             className="img-fluid"
                           />
                         </div>
-                        {item.coverImage}
+                        {item.title}
                       </td>
                       <td>
                         <span className="product-salePrice">${item.price}</span>
@@ -76,7 +166,7 @@ const Wishlist = () => {
                             item.stock ? "addcart" : "passivcart"
                           }`}
                           onClick={() => {
-                            item.stock ? handleAddToCart(item) : "";
+                            item.stock ? handleAddToCart(item.productId) : "";
                           }}
                         >
                           Add to cart
@@ -84,7 +174,7 @@ const Wishlist = () => {
                       </td>
                       <td
                         onClick={() => {
-                          handleRemoveFromWish(item._id);
+                          handleRemoveFromWish(item.productId);
                         }}
                       >
                         <i className="fa-solid fa-circle-xmark"></i>
@@ -103,8 +193,8 @@ const Wishlist = () => {
                 </Link>
               </div>
             )}
-            {wishlistsItems.map((item) => (
-              <div className="container mobile-wishlist" key={item._id}>
+            {wishProducts.map((item) => (
+              <div className="container mobile-wishlist" key={item.productId}>
                 <div className="d-flex flex-column align-items-center">
                   <div className="product-img">
                     <img src={item.coverImage} alt="" className="img-fluid" />{" "}
@@ -136,14 +226,14 @@ const Wishlist = () => {
                       item.stock ? "addcart" : "passivcart"
                     }`}
                     onClick={() => {
-                      item.stock ? handleAddToCart(item) : "";
+                      item.stock ? handleAddToCart(item.productId) : "";
                     }}
                   >
                     Add to cart
                   </button>
                   <span
                     onClick={() => {
-                      handleRemoveFromWish(item._id);
+                      handleRemoveFromWish(item.productId);
                     }}
                   >
                     <i className="fa-solid fa-circle-xmark"></i>

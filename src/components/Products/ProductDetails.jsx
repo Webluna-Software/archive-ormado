@@ -1,6 +1,6 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import productImg from "../../assets/img/products-banner.png"
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
 import Carousel from './Carousel';
@@ -15,10 +15,7 @@ import {
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../features/cartSlice';
-import { validateUserID } from '../../utils/user';
-import { getCookie } from '../../utils/cookie';
+
 
 import Modal from '../modal/modal';
 
@@ -37,33 +34,20 @@ const ProductDetails = ({_id}) => {
   const { id } = useParams()
   const [productDetails, setProductDetails] = useState([]);
   const path = window.location.pathname;
-
-
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
-
-  const handleUserCheck = () => {
-    if (!userID) {
-      setModalContent({ title: "Please Login", body: "Please login first!" });
-      setShowModal(true);
-      // window.location.reload();
-      return false;
-    }
-    return true;
-  };
+  const [quantity, setQuantity] = useState(1);
+  const [user, setUser] = useState({});
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios.get(`${ApiLink}/product/${id}`)
       .then((res) => {
-        // console.log(res.data, "ProductDetailsData");
         setProductDetails(res.data.product);
       })
   }, [ApiLink, id]);
-
-  const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
-
-const userID = validateUserID();
 
 
   const handleIncrement = () => {
@@ -76,44 +60,69 @@ const userID = validateUserID();
     }
   };
 
-  const navigate=useNavigate()
-  const localCart=getCookie("cartItems")
-  const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-  const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
-
-  const findCart = (_id) => {
-    // const localCart = localStorage.getItem('cartItems');
-    // const localCart=getCookie("cartItems")
-    const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-    return cartData ? true : false;
-  };
-
-  const cartClick = useCallback((_id, title, price, salePrice, coverImage, stock) => {
-    if (handleUserCheck()) {
-      if (findCart(_id)) {
-        navigate('/basket');
-      } else {
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price, stock }));
-        setCartStatus('active');
-      }
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
     }
-  }, [userID, navigate, dispatch, quantity]);
 
-  // const cartClick = useCallback(
-  //   (_id, title, price, salePrice, coverImage,stock) => {
-  //     if (!userID) {
-  //       alert("Please login first!");
-  //       return;
-  //     }
-  //     if (findCart(_id)) {
-  //       navigate('/basket');
-  //     } else {
-  //       dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price ,stock}));
-  //       setCartStatus('active');
-  //     }
-  //   },
-  //   [userID, navigate, dispatch, quantity]
-  // );
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+
+const handleUserCheck = () => {
+  const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+  if (!token) {
+    setModalContent({ title: "Please Login", body: "Please login first!" });
+    setShowModal(true);
+    return false;
+  }
+  return true;
+};
+
+const handlePost = async (productId) => {
+  if (!handleUserCheck()) return;
+
+  setLoading(true);
+  const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+  if (!token) {
+    setError(true);
+    setLoading(false);
+    return;
+  }
+
+  try {
+    await axios.post(`${ApiLink2}/cart`, { productId, quantity ,userId:user._id}, {
+            headers: {
+              Authorization: `Bearer ${token}` // Include the token in the Authorization header
+            }
+          });
+    setCartStatus((prevState) => ({
+      ...prevState,
+      [productId]: "active"
+    }));
+  } catch (error) {
+    setError(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
 
   return (
@@ -200,18 +209,7 @@ const userID = validateUserID();
                   </svg>
                 </div>
                 <button
-                //  onClick={() => { handleAddToCart({ coverImage, title, price,salePrice, _id }); }}
-                onClick={() => cartClick(
-                        productDetails._id,
-                        productDetails.title,
-                        productDetails.price,
-                        productDetails.salePrice,
-                        productDetails.coverImage,
-                        productDetails.stock,
-                        quantity,
-                
-                      )}
-                // onClick={()=>{userID ? handleAddToCart(productDetails) : alert("please login first")}}
+                onClick={() => handlePost(productDetails._id)}
                  >Add to cart</button>
               </div>
            

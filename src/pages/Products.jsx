@@ -1,15 +1,9 @@
-
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import productImg from "../assets/img/products-banner.png";
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { addToCart } from "../features/cartSlice";
-import { useDispatch } from "react-redux";
-import { addToWish, removeFromWish } from "../features/wishSlice";
-import { getCookie } from "../utils/cookie";
+import { Link } from "react-router-dom";
 import PreLoader from "../pages/PreLoader";
-import { validateUserID } from "../utils/user";
 import Modal from '../components/modal/modal';
 import LazyLoad from "react-lazy-load";
 import { Helmet } from "react-helmet";
@@ -19,101 +13,135 @@ import Faq from "../components/home/Faq";
 const Products = ({ _id }) => {
   const [loading, setLoading] = useState(true);
   const { ApiLink2 } = useContext(ApiLinkContext);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
-       
+  const [error, setError] = useState(false);
+  const [message,setMessage]=useState("")
+  const [cartStatus, setCartStatus] = useState({});
   //MODAL
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
-//FAQ
-const [faqProducts, setFaqProducts] = useState([]);
+  //FAQ
+  const [faqProducts, setFaqProducts] = useState([]);
+  const [user, setUser] = useState({});
 
-useEffect(() => {
-  Promise.all([
-    axios.get(`${ApiLink2}/product`),
-    axios.get(`${ApiLink2}/faqProduct`)
-  ])
-    .then(([productRes, faqRes]) => {
-      setProducts(productRes.data.products);
-      setFaqProducts(faqRes.data.data); 
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Failed to fetch data:", error);
-      setLoading(false);
-    });
-}, [ApiLink2]);
+  useEffect(() => {
+    Promise.all([
+      axios.get(`${ApiLink2}/product`),
+      axios.get(`${ApiLink2}/faqProduct`)
+    ])
+      .then(([productRes, faqRes]) => {
+        setProducts(productRes.data.products);
+        setFaqProducts(faqRes.data.data); 
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch data:", error);
+        setLoading(false);
+      });
+  }, [ApiLink2]);
 
-
-  const localCart = getCookie("cartItems");
-  const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-  const [cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
-
-  const findCart = (_id) => {
-    const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-    return cartData ? true : false;
-  };
-
-  const localWish = getCookie("wishItems");
-  const wishData = localWish ? JSON.parse(localWish).find((item) => item._id === _id) : false;
-  const [wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
-
-  const findWish = (_id) => {
-    const wishData = localWish ? JSON.parse(localWish).find((item) => item._id === _id) : false;
-    return wishData ? true : false;
-  };
   useEffect(()=>{
     setQuantity(quantity)
   },[quantity])
 
-  
-const userID = validateUserID();
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
 
-if (userID) {
-  console.log("Kullanıcı kimliği doğrulandı:", userID);
-} else {
-  console.log("Kullanıcı kimliği doğrulanamadı.");
-}
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+
   const handleUserCheck = () => {
-    if (!userID) {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
       setModalContent({ title: "Please Login", body: "Please login first!" });
       setShowModal(true);
-      // window.location.reload();
       return false;
     }
     return true;
   };
 
-  const wishClick = useCallback((_id, title, coverImage, price, salePrice, stock) => {
-    if (handleUserCheck()) {
-      if (findWish(_id)) {
-        dispatch(removeFromWish(_id));
-        setWishStatus("regular");
-      } else {
-        dispatch(addToWish({ _id, title, coverImage, salePrice, price, stock }));
-        setWishStatus("solid");
-      }
+  const handlePost = async (productId) => {
+    if (!handleUserCheck()) return;
+
+    setLoading(true);
+    setMessage(null);
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
     }
-  }, [dispatch, userID]);
 
-  const cartClick = useCallback((_id, title, price, salePrice, coverImage, stock) => {
-    if (handleUserCheck()) {
-      if (findCart(_id)) {
-        navigate('/basket');
-      } else {
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price, stock }));
-        setCartStatus('active');
-      }
+    try {
+      await axios.post(`${ApiLink2}/cart`, { productId, quantity ,userId:user._id}, {
+              headers: {
+                Authorization: `Bearer ${token}` // Include the token in the Authorization header
+              }
+            });
+      setCartStatus((prevState) => ({
+        ...prevState,
+        [productId]: "active"
+      }));
+      setMessage("Success: Item added to cart!");
+    } catch (error) {
+      setMessage(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+    } finally {
+      setLoading(false);
     }
-  }, [userID, navigate, dispatch, quantity]);
+  };
 
+  const handleWishlist = async (productId) => {
+    if (!handleUserCheck()) return;
 
+    setLoading(true);
+    setMessage(null);
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
 
-
-  return (
+    try {
+      await axios.post(`${ApiLink2}/wishlist`, { productId,userId:user._id,stock:products.stock},{
+        headers: {
+          Authorization: `Bearer ${token}` // Include the token in the Authorization header
+        }
+      });
+      setWishStatus((prevState) => ({
+        ...prevState,
+        [productId]: "solid"
+      }));
+      setMessage("Success: Item added to wishlist!");
+    } catch (error) {
+      setMessage(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+  console.log(products,"prod");
+  
+return (
     <>
       {loading ? (
         <PreLoader />
@@ -151,15 +179,9 @@ if (userID) {
                         </LazyLoad>
                         <div className="wishlist-modal">
                           <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"
-                            onClick={() => wishClick(
-                              fd._id,
-                              fd.title,
-                              fd.coverImage,
-                              fd.price,
-                              fd.salePrice,
-                              fd.stock
-                            )}>
-                            <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
+                            onClick={()=>{handleWishlist(fd._id)}}
+                            >
+                            <i className={`fa-regular fa-heart`}></i>
                           </div>
                           <Link to={`/productsdetails/${fd._id}`}>
                             <div className="quick-view">
@@ -185,15 +207,9 @@ if (userID) {
                               <p>${fd.salePrice}</p>
                             </div>
                             <div className="price-cart"
-                              onClick={() => cartClick(
-                                fd._id,
-                                fd.title,
-                                fd.price,
-                                fd.salePrice,
-                                fd.coverImage,
-                                fd.stock
-                              )}>
-                              <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
+                              onClick={() => handlePost(fd._id)}
+                              >
+                              <i className={`${cartStatus[fd._id] === "active" ? 'active' : 'disabled'}  fa-solid fa-bag-shopping`}></i>
                             </div>
                           </div>
                         </div>
@@ -230,15 +246,9 @@ if (userID) {
                         </LazyLoad>
                         <div className="wishlist-modal">
                           <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"
-                            onClick={() => wishClick(
-                              fd._id,
-                              fd.title,
-                              fd.coverImage,
-                              fd.price,
-                              fd.salePrice,
-                              fd.stock
-                            )}>
-                            <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
+                            onClick={()=>{handleWishlist(fd._id)}}
+                            >
+                            <i className={`fa-regular fa-heart`}></i>
                           </div>
                           <Link to={`/productsdetails/${fd._id}`}>
                             <div className="quick-view">
@@ -264,15 +274,9 @@ if (userID) {
                               <p>${fd.salePrice}</p>
                             </div>
                             <div className="price-cart"
-                              onClick={() => cartClick(
-                                fd._id,
-                                fd.title,
-                                fd.price,
-                                fd.salePrice,
-                                fd.coverImage,
-                                fd.stock
-                              )}>
-                              <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
+                              onClick={() => handlePost(fd._id)}
+                              >
+                              <i className={`${cartStatus[fd._id] === "active" ? 'active' : 'disabled'}  fa-solid fa-bag-shopping`}></i>
                             </div>
                           </div>
                         </div>

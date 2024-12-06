@@ -1,55 +1,180 @@
 /* eslint-disable react/prop-types */
 import { Link, useNavigate } from "react-router-dom";
 import bgimg from "../assets/img/bgimg.png";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, updateQuantity } from "../features/cartSlice";
-import { useState } from "react";
-import { addToWish } from "../features/wishSlice";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import ApiLinkContext from "../context/ApiLinkContext";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const cartProducts = useSelector((state) => state.cart.products);
-  const dispatch = useDispatch();
   const [modalProductId, setModalProductId] = useState(null);
+  const [cartProducts, setCartProducts] = useState([]); 
+  const [total, setTotal] = useState([]); 
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
+  const [message,setMessage]=useState("")
+  const [quantity, setQuantity] = useState(1);
+  const { ApiLink2 } = useContext(ApiLinkContext);
 
-  const handleRemoveFromCart = (productId) => {
-    dispatch(removeFromCart(productId));
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setLoading(false);
+      
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+  
+  useEffect(() => {
+    if (!user._id) return;
+    const fetchCartData = async () => {
+      try {
+        const response = await axios.get(`${ApiLink2}/cart/${user._id}`) // API sorğusunu buradan göndəririk
+        setCartProducts(response.data.data.items); // Alınan məlumatları state-də saxlayırıq
+        setTotal(response.data.data)
+        setLoading(false); // Yükləmə tamamlanıb
+        console.log(total,"total");
+        
+      } catch (err) {
+        setError('Error fetching cart data'); // Hata mesajını set edirik
+        setLoading(false);
+      }
+    };
+
+    fetchCartData();
+  }, [user._id,ApiLink2]); 
+
+  useEffect(()=>{
+    setQuantity(quantity)
+  },[quantity])
+
+  const handleUserCheck = () => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setModalContent({ title: "Please Login", body: "Please login first!" });
+      setShowModal(true);
+      return false;
+    }
+    return true;
   };
-  // const handleDeleteAll = () => {
-  //   dispatch(deleteAll());
-  // };
-  const handleQuantityChange = (productId, quantity) => {
-    if (quantity <= 0) {
-      dispatch(removeFromCart(productId));
-    } else {
-      dispatch(updateQuantity({ id: productId, quantity }));
+
+  const handleWishlist = async (productId) => {
+    if (!handleUserCheck()) return;
+  
+    setLoading(true);
+    setMessage(null);
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+    try {
+      await axios.post(`${ApiLink2}/wishlist`, { productId, quantity,userId:user._id },{
+        headers: {
+          Authorization: `Bearer ${token}` // Include the token in the Authorization header
+        }
+      });
+      setWishStatus((prevState) => ({
+        ...prevState,
+        [productId]: "solid"
+      }));
+      setMessage("Success: Item added to wishlist!");
+    } catch (error) {
+      setMessage(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+    } finally {
+      setLoading(false);
     }
   };
-  const totalPrice = cartProducts.reduce((total, product) => {
-    const price = product.salePrice ? product.salePrice : product.price;
-    const quantity = parseInt(product.quantity);
 
-    if (!isNaN(price) && !isNaN(quantity)) {
-      return total + price * quantity;
-    } else {
-      return total;
+  const handleDeleteFromCartAPI = async (productId) => {
+    try {
+      const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+      if (!token) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.delete(`${ApiLink2}/cart/${user._id}/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (response.status === 200) {
+      setCartProducts(prevProducts => prevProducts.filter(item => item.productId !== productId));
+      if (cartProducts.length === 1) {
+        setCartProducts([]);
+      }
     }
-  }, 0);
-
-
-  const handleDeleteProduct = (productId) => {
-    setModalProductId(null);
-    handleRemoveFromCart(productId);
+    } catch (err) {
+      console.error("Error deleting product:", err);
+      setError("Error deleting product from the cart.");
+      setLoading(false);
+    }
   };
-
+  
   const handleRefuse = () => {
     setModalProductId(null);
   };
 
   const handleDeleteAndWishlist = (product) => {
-    dispatch(addToWish({ ...product }));
-    dispatch(removeFromCart(product._id));
+    handleWishlist(product.productId)
+
+    handleDeleteFromCartAPI(product.productId)
     setModalProductId(null);
+  };
+
+
+  const handleDecreaseQuantity = (productId) => {
+    setCartProducts(prevProducts => {
+      const updatedProducts = prevProducts.map(product => {
+        if (product.productId === productId) {
+          const newQuantity = product.quantity - 1;
+          
+          if (newQuantity === 0) {
+            // If the quantity becomes 0, don't update, but open the modal instead
+            setModalProductId(productId);  
+            return product; 
+          }
+          
+          return { ...product, quantity: newQuantity };  // Decrease the quantity normally
+        }
+        return product;  // No change for other products
+      });
+      return updatedProducts;
+    });
+  };
+// // Plus düyməsinə basıldığında quantity dəyişməsi
+  const handleIncreaseQuantity = (productId) => {
+    setCartProducts(prevProducts => {
+      const updatedProducts = prevProducts.map(product => {
+        if (product.productId === productId) {
+          return { ...product, quantity: product.quantity + 1 }; // Miqdarı 1 artırırıq
+        }
+        return product;
+      });
+      return updatedProducts;
+    });
   };
 
   return (
@@ -62,7 +187,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      {cartProducts.length > 0 ? (
+      {cartProducts.length> 0 ? (
         <div className="row">
           <div className="col-12 col-lg-9">
             <table className="table ">
@@ -85,7 +210,7 @@ const Cart = () => {
               </thead>
               <tbody>
                 {cartProducts.map((product) => (
-                  <tr key={product._id}>
+                  <tr key={product.productId}>
                     <td>
                       <div className="product-img">
                         <img src={product.coverImage} alt="" />
@@ -103,21 +228,12 @@ const Cart = () => {
                       <div className="quantity-part">
                         <button
                           className="quantity-btn "
-                          onClick={() => {
-                            if (product.quantity === 1) {
-                              setModalProductId(product._id);
-                            } else {
-                              handleQuantityChange(
-                                product._id,
-                                product.quantity - 1
-                              );
-                            }
-                          }}
+                          onClick={() => handleDecreaseQuantity(product.productId)}
                         >
                           <i className="fa-solid fa-minus"></i>
                         </button>
 
-                        {modalProductId === product._id &&  (
+                        {modalProductId === product.productId &&  (
                           <div className="d-flex align-items-center justify-content-center">
                             <div className="modal-container">
                               <div className="modal-content">
@@ -136,7 +252,7 @@ const Cart = () => {
                                 <button
                                   className="btn btn-brown mb-4"
                                   onClick={() => {
-                                    handleDeleteProduct(product._id);
+                                    handleDeleteFromCartAPI(product.productId);
                                   }}
                                 >
                                   Delete
@@ -156,11 +272,9 @@ const Cart = () => {
                         <button
                           className="quantity-btn "
                           onClick={() => {
-                            handleQuantityChange(
-                              product._id,
-                              product.quantity + 1
-                            );
-                          }}
+                            handleIncreaseQuantity(product.productId)
+                         }
+                          }
                         >
                           <i className="fa-solid fa-plus"></i>
                         </button>
@@ -176,9 +290,9 @@ const Cart = () => {
                               : product.price)}
                         </p>
                         <span
-                          onClick={() => {
-                            handleRemoveFromCart(product._id);
-                          }}
+                         onClick={() => {
+                          handleDeleteFromCartAPI(product.productId);
+                        }}
                         >
                           <i className="fa-solid fa-xmark"></i>
                         </span>
@@ -189,7 +303,7 @@ const Cart = () => {
               </tbody>
             </table>
             {cartProducts.map((product) => (
-              <div className="cart-mobile container" key={product._id}>
+              <div className="cart-mobile container" key={product.productId}>
                 <div className="row mobile-version">
                   <div className="col-sm-12 col-md-12 col-lg-12 p-4 g-0 rounded-5  flex-md-row mb-4 shadow-sm">
                     <div className="d-flex align-items-center justify-content-between mobile-content">
@@ -216,25 +330,48 @@ const Cart = () => {
                       <div className="quantity-part">
                         <button
                           className="quantity-btn me-2"
-                          onClick={() => {
-                            handleQuantityChange(
-                              product._id,
-                              product.quantity - 1
-                            );
-                          }}
+                            onClick={() => handleDecreaseQuantity(product.productId)}
                         >
                           <i className="fa-solid fa-minus"></i>
                         </button>
-
+                        {modalProductId === product.productId &&  (
+                          <div className="d-flex align-items-center justify-content-center">
+                            <div className="modal-container">
+                              <div className="modal-content">
+                                <p>
+                                  Are you sure you want to remove the product
+                                  from the cart?
+                                </p>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={() => {
+                                    handleDeleteAndWishlist(product);
+                                  }}
+                                >
+                                  Delete and add to wishlist
+                                </button>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={() => {
+                                    handleDeleteFromCartAPI(product.productId);
+                                  }}
+                                >
+                                  Delete
+                                </button>
+                                <button
+                                  className="btn btn-brown mb-4"
+                                  onClick={handleRefuse}
+                                >
+                                  Refuse
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                         <span>{product.quantity}</span>
                         <button
                           className="quantity-btn ms-2"
-                          onClick={() => {
-                            handleQuantityChange(
-                              product._id,
-                              product.quantity + 1
-                            );
-                          }}
+                          onClick={() => handleIncreaseQuantity(product.productId)}
                         >
                           <i className="fa-solid fa-plus"></i>
                         </button>
@@ -251,7 +388,7 @@ const Cart = () => {
                         <span
                           className="delete-btn"
                           onClick={() => {
-                            handleRemoveFromCart(product._id);
+                            handleDeleteFromCartAPI(product.productId);
                           }}
                         >
                           <i className="fa-solid fa-xmark"></i>
@@ -275,7 +412,7 @@ const Cart = () => {
               <div className="pays my-3">
                 <div className="price-sec d-flex justify-content-between">
                   <p>Subtotal:</p>
-                  <p className="coffs">${totalPrice}</p>
+                  <p className="coffs">${total.totalPrice}</p>
                 </div>
                 <hr />
                 <div className="price-sec d-flex justify-content-between">
@@ -285,7 +422,7 @@ const Cart = () => {
                 <hr />
                 <div className="price-sec d-flex justify-content-between">
                   <p>Total:</p>
-                  <p className="color-text">${totalPrice}</p>
+                  <p className="color-text">${total.totalPrice}</p>
                 </div>
               </div>
               <button
@@ -300,7 +437,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="empty-cart-message text-center mt-5">
+        <div className="empty-cart-message text-center my-5">
           <div className="d-flex align-items-center justify-content-center">
             <svg
               className="shopBag ninetheme-cart-empty-icon"
@@ -326,3 +463,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

@@ -1,16 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useCallback, useState } from "react";
-// import { Carousel } from "react-responsive-carousel";
-import { addToWish, removeFromWish } from "../../features/wishSlice";
-import { getCookie } from "../../utils/cookie";
-import { useDispatch } from "react-redux";
-import { validateUserID } from "../../utils/user";
-
+import { useContext, useEffect, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import 'react-image-gallery/styles/css/image-gallery.css';
 import LazyLoad from "react-lazy-load";
-
 import Modal from "../modal/modal";
+import axios from "axios";
+import ApiLinkContext from "../../context/ApiLinkContext";
 
 
   const Carousel1 = ({ images, _id, products }) => {
@@ -18,86 +13,82 @@ import Modal from "../modal/modal";
     //MODAL
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState({ title: '', body: '' });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const { ApiLink2 } = useContext(ApiLinkContext);
+    const [user, setUser] = useState({});
 
-  const dispatch = useDispatch();
-  const userID = validateUserID();
 
-  // const local = localStorage.getItem("wishItems");
-  const local = getCookie("wishItems");
-  const wishData = local
-    ? JSON.parse(local).find((item) => item._id === _id)
-    : false;
-  const [wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
-
-  const findWish = (_id) => {
-    // const local = localStorage.getItem("wishItems");
-    const local = getCookie("wishItems");
-    const wishData = local
-      ? JSON.parse(local).find((item) => item._id === _id)
-      : false;
-    return wishData ? true : false;
-  };
-
-  // const wishClick = useCallback(
-  //   (_id, title, coverImage, price, salePrice, stock) => {
-  //     if (!userID) {
-  //       alert("Please login first!");
-  //       return;
-  //     }
-  //     if (findWish(_id)) {
-  //       dispatch(removeFromWish(_id));
-  //       setWishStatus("regular");
-  //     } else {
-  //       // const priceToAdd = salePrice ? salePrice : price;
-  //       dispatch(
-  //         addToWish({ _id, title, coverImage, salePrice, price, stock })
-  //       );
-  //       setWishStatus("solid");
-  //     }
-  //   },
-  //   [dispatch, userID]
-  // );
-
-  const wishClick = useCallback(
-    (_id, title, coverImage, price, salePrice, stock) => {
-      if (!userID) {
-        setModalContent({
-          title: "Login Required",
-          body: "Please login first!",
-        });
-        setShowModal(true);
+    useEffect(() => {
+      const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+      if (!token) {
+        setError(true);
+        setLoading(false);
         return;
       }
-      if (findWish(_id)) {
-        dispatch(removeFromWish(_id));
-        setWishStatus("regular");
-        setModalContent({
-          title: "Removed from WishList",
-          body: "This product has been removed from your WishList.",
-        });
-      } else {
-        dispatch(
-          addToWish({ _id, title, coverImage, salePrice, price, stock })
-        );
-        setWishStatus("solid");
-        setModalContent({
-          title: "Added to WishList",
-          body: "This product has been added to your WishList.",
-        });
+  
+      axios.get(`${ApiLink2}/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        const userData = res.data.data;
+        setUser(userData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("API Error:", err);
+        setLoading(false);
+        setError(true);
+      });
+    }, [ApiLink2]);
+
+    const handleUserCheck = () => {
+      const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+      if (!token) {
+        setModalContent({ title: "Please Login", body: "Please login first!" });
+        setShowModal(true);
+        return false;
       }
-      setShowModal(true);
-    },
-    [dispatch, userID]
-  );
+      return true;
+    };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+    const handleWishlist = async (productId) => {
+      if (!handleUserCheck()) return;
+    console.log("klik");
+    
+      setLoading(true);
+      const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+      if (!token) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+    
+      try {
+        await axios.post(`${ApiLink2}/wishlist`, { productId,userId:user._id },{
+          headers: {
+            Authorization: `Bearer ${token}` // Include the token in the Authorization header
+          }
+        });
+        setWishStatus((prevState) => ({
+          ...prevState,
+          [productId]: "solid"
+        }));
+      } catch (error) {
+        console.log(error,"err");
+        
+        setError(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const galleryImages = images.map(image => ({
-    original: image,
-    thumbnail: image
-  }));
+    const galleryImages = images.map(image => ({
+      original: image,
+      thumbnail: image
+    }));
 
   return (
     <>
@@ -107,28 +98,9 @@ import Modal from "../modal/modal";
         </LazyLoad>
         <span
           className="position-absolute"
-          // onClick={() =>
-          //   userID
-          //     ? wishClick(
-          //         products._id,
-          //         products.title,
-          //         products.coverImage,
-          //         products.price,
-          //         products.salePrice,
-          //         products.stock
-          //       )
-          //     : alert("Please login first!")
-          // }
-          onClick={() =>
-            wishClick(
-              products._id,
-              products.title,
-              products.coverImage,
-              products.price,
-              products.salePrice,
-              products.stock
-            )
-          }
+      
+          onClick={()=>{handleWishlist(products._id)}}
+         
         >
           {/* <i
             className={`fa-${
@@ -136,9 +108,8 @@ import Modal from "../modal/modal";
             } fa-heart`}
           ></i> */}
           <i
-            className={`fa-${
-              findWish(products._id) ? "solid" : "regular"
-            } fa-heart`}
+            className={`fa-regular
+             fa-heart`}
           ></i>
         </span>
       </div>
