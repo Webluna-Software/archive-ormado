@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Modal from '../modal/modal';
 
@@ -19,7 +19,10 @@ const YourOrmado = ({_id}) => {
   const { ApiLink2 } = useContext(ApiLinkContext);
   const [user, setUser] = useState({});
   const [error, setError] = useState(false);
+  const [wishStatus, setWishStatus] = useState({}); 
+  const [cartStatus, setCartStatus] = useState({});
 
+  const navigate= useNavigate()
   const handleCloseModal = () => {
     setShowModal(false);
     if (reloadOnClose) {
@@ -53,6 +56,8 @@ const YourOrmado = ({_id}) => {
     .then((res) => {
       const userData = res.data.data;
       setUser(userData);
+      fetchWishlist(userData._id, token);
+      fetchCartStatus(userData._id, token); 
       setLoading(false);
     })
     .catch((err) => {
@@ -72,60 +77,105 @@ const YourOrmado = ({_id}) => {
     return true;
   };
 
-const handlePost = async (productId) => {
-  if (!handleUserCheck()) return;
+  const fetchWishlist = async (userId, token) => {
+    try {
+      const response = await axios.get(`${ApiLink2}/wishlist/${user._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const wishlist = response.data.data.items; // Array of product IDs
+      const updatedWishStatus = {};
+      wishlist.forEach((item) => {
+        updatedWishStatus[item.productId] = "solid";
+      });
+      setWishStatus(updatedWishStatus);
+    } catch (error) {
+      console.error("Wishlist Fetch Error:", error);
+    }
+  };
 
-  setLoading(true);
-  const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-  if (!token) {
-    setError(true);
-    setLoading(false);
-    return;
-  }
+  const fetchCartStatus = async (userId, token) => {
+    try {
+      const response = await axios.get(`${ApiLink2}/cart/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const cartItems = response.data.data.items; // Assuming backend returns cart items
+      const status = {};
+      cartItems.forEach((item) => {
+        status[item.productId] = true; // Mark products in the cart
+      });
+      setCartStatus(status);
+    } catch (error) {
+      console.error("Fetch Cart Error:", error);
+    }
+  };
 
-  try {
-    await axios.post(`${ApiLink2}/cart`, { productId, quantity ,userId:user._id}, {
-            headers: {
-              Authorization: `Bearer ${token}` // Include the token in the Authorization header
-            }
-          });
-    setCartStatus((prevState) => ({
-      ...prevState,
-      [productId]: "active"
-    }));
-  } catch (error) {
-    setError(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
-  } finally {
-    setLoading(false);
-  }
-};
+  const handlePost=async(productId)=>{
+    if (!handleUserCheck()) return;
 
-const handleWishlist = async (productId) => {
-  if (!handleUserCheck()) return;
-
-  setLoading(true);
-  const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-  if (!token) {
-    setError(true);
-    setLoading(false);
-    return;
-  }
-  try {
-    await axios.post(`${ApiLink2}/wishlist`, { productId,userId:user._id },{
-      headers: {
-        Authorization: `Bearer ${token}` // Include the token in the Authorization header
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+    if (!cartStatus[productId]) {
+      // Add to cart
+      try {
+        await axios.post(
+          `${ApiLink2}/cart`,
+          { productId, quantity: 1, userId: user._id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setCartStatus((prevState) => ({ ...prevState, [productId]: true }));
+      } catch (error) {
+        console.error("Add to Cart Error:", error);
       }
-    });
-    setWishStatus((prevState) => ({
-      ...prevState,
-      [productId]: "solid"
-    }));
-  } catch (error) {
-    setError(`Error: ${error.response?.data?.message || "Something went wrong!"}`);
-  } finally {
-    setLoading(false);
+    } else {
+      // Redirect to cart page
+      navigate("/basket");
+    }
   }
-};
+  const handleWishlist = async (productId) => {
+    if (!handleUserCheck()) return;
+
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) return;
+
+    const isWished = wishStatus[productId] === "solid";
+
+    try {
+      if (isWished) {
+        // Remove from wishlist
+        await axios.delete(`${ApiLink2}/wishlist/${user._id}/${productId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else {
+        // Add to wishlist
+        await axios.post(
+          `${ApiLink2}/wishlist`,
+          { productId, userId: user._id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      }
+
+      // Update wishlist state
+      setWishStatus((prevState) => ({
+        ...prevState,
+        [productId]: isWished ? "regular" : "solid",
+      }));
+    } catch (error) {
+      console.error("Wishlist Error:", error);
+    }
+  };
+
+useEffect(() => {
+  if (user._id) {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    fetchWishlist(user._id, token); // Refetch wishlist when user changes
+    fetchCartStatus(user._id, token); 
+  }
+}, [user._id]);
+console.log(wishStatus,"status");
 
   return (
     <>    <div className="yourormado-div my-5">
@@ -147,7 +197,7 @@ const handleWishlist = async (productId) => {
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
                  onClick={()=>{handleWishlist(fd._id)}}
                 >
-                  <i className={`fa-regular fa-heart`}></i>
+                  <i  className={`fa-${wishStatus[fd._id] === "solid" ? "solid" : "regular"} fa-heart`}></i>
                 </div>
                 <Link to={`/productsdetails/${fd._id}`}>
                   <div className="quick-view">
@@ -194,7 +244,9 @@ const handleWishlist = async (productId) => {
                     onClick={() => handlePost(fd._id)}
                  
                   >
-                     <i className={`disabled fa-solid fa-bag-shopping`}></i>
+                     <i  className={`fa-solid fa-bag-shopping ${
+                        cartStatus[fd._id] ? "active" : ""
+                      }`}></i>
                   </div>
                 </div>
               </div>
