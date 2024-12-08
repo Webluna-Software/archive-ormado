@@ -154,10 +154,10 @@ console.log(wishProducts,"wish");
                       <td>
                         <button
                           className={`btn stock ${
-                            item.stock ? "instock" : "outofstock"
+                            item.active ? "instock" : "outofstock"
                           }`}
                         >
-                          {item.stock ? "Stock" : "Out of stock"}
+                          {item.active ? "Stock" : "Out of stock"}
                         </button>
                       </td>
                       <td>
