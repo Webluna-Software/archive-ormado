@@ -1,9 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import bgimg from "../assets/img/bgimg.png";
 import orderimg from "../assets/img/orderitem.png";
+import { useContext, useState } from "react";
+import ApiLinkContext from "../context/ApiLinkContext";
+import axios from "axios";
 
 const OrderDetails = () => {
   const navigate = useNavigate();
+  const { ApiLink2 } = useContext(ApiLinkContext); // API link contextdən istifadə
+  const [user, setUser] = useState(null);
+
+  const logOutUser = async (redirectUrl) => {
+    try {
+      await axios.get(`${ApiLink2}/auth/logout`);
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token')
+      setUser(null);
+      navigate(redirectUrl);
+      window.location.reload(); 
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Çıxış zamanı problem baş verdi, xahiş olunur yenidən cəhd edin.");
+    }
+  };
   return (
     <section className="orderdetails">
       <div className="section-fluid">
@@ -76,7 +95,7 @@ const OrderDetails = () => {
               </span>
               <p>Password</p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex"  onClick={() => logOutUser("/")}>
               <span>
                 <i className="fa-solid fa-right-from-bracket"></i>
               </span>

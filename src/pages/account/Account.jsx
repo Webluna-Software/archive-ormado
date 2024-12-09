@@ -1,13 +1,12 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import bgimg from "../../assets/img/bgimg.png";
-import { useEffect, useState } from "react";
-import { validateUserID } from "../../utils/user";
-import { logOutUser, loginApiLink } from "../../utils/login";
+import { useContext, useEffect, useState } from "react";
 import AccountDetails from "./AccountDetails";
 import Order from "./Order";
 import Password from "./Password";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import ApiLinkContext from "../../context/ApiLinkContext";
 
 const Account = () => {
   const { page } = useParams();
@@ -16,26 +15,54 @@ const Account = () => {
   const [user , setUser] = useState();
   const [loading , setLoading] = useState(true);
   const [error , setError ] = useState(false);
+  const { ApiLink2 } = useContext(ApiLinkContext); // API link contextdən istifadə
 
-  useEffect(()=>{
-    axios.get(`${loginApiLink}/user/${validateUserID()}`)
-    .then((res)=>{
-        setUser(res.data.data)
-        setLoading(false)
+useEffect(() => {
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token"); // Tokeni localStorage-dən götür
+
+  if (!token) {
+    setError(true);
+    setLoading(false);
+    return;
+  }
+
+  axios.get(`${ApiLink2}/auth/me`, {
+    headers: {
+      Authorization: `Bearer ${token}` // Tokeni başlığa əlavə et
+    }
+  })
+    .then((res) => {
+      console.log(res.data, "data");
+      setUser(res.data.data);
+      setLoading(false);
     })
-    .catch(()=>{
+    .catch((err) => {
+      console.error("API Error:", err);
       setLoading(false);
       setError(true);
-    })
-  },[])
+    });
+}, [ApiLink2]);
 
   // Page activation
   useLocation(()=>{
       setCurrentPage(page);
   },[])
 
-
+  const logOutUser = async (redirectUrl) => {
+    try {
+      await axios.get(`${ApiLink2}/auth/logout`);
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token')
+      setUser(null);
+      navigate(redirectUrl);
+      window.location.reload(); 
+    } catch (error) {
+      console.error("Logout failed:", error);
+      alert("Çıxış zamanı problem baş verdi, xahiş olunur yenidən cəhd edin.");
+    }
+  };
   const [currentPage, setCurrentPage] = useState();
+
   const pageRender = (name) => {
     switch (name) {
       case "details":
