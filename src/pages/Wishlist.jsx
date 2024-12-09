@@ -163,10 +163,10 @@ console.log(wishProducts,"wish");
                       <td>
                         <button
                           className={`btn cart ${
-                            item.stock ? "addcart" : "passivcart"
+                            item.active ? "addcart" : "passivcart"
                           }`}
                           onClick={() => {
-                            item.stock ? handleAddToCart(item.productId) : "";
+                            item.active ? handleAddToCart(item.productId) : "";
                           }}
                         >
                           Add to cart
@@ -213,20 +213,20 @@ console.log(wishProducts,"wish");
                     <p>Stock Status</p>
                     <p
                       className={`btn stock ${
-                        item.stock ? "instock" : "outofstock"
+                        item.active ? "instock" : "outofstock"
                       }`}
                     >
-                      {item.stock ? "In Stock" : "Out of Stock"}
+                      {item.active ? "In Stock" : "Out of Stock"}
                     </p>
                   </div>
                 </div>
                 <div className="d-flex mt-2 align-items-center">
                   <button
                     className={`btn cart me-3 ${
-                      item.stock ? "addcart" : "passivcart"
+                      item.active ? "addcart" : "passivcart"
                     }`}
                     onClick={() => {
-                      item.stock ? handleAddToCart(item.productId) : "";
+                      item.active ? handleAddToCart(item.productId) : "";
                     }}
                   >
                     Add to cart
