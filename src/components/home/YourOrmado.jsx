@@ -1,12 +1,7 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { addToCart } from "../../features/cartSlice";
-import { useDispatch } from "react-redux";
-import { addToWish, removeFromWish } from "../../features/wishSlice";
-import { getCookie } from "../../utils/cookie";
-import { validateUserID } from "../../utils/user";
 
 import Modal from '../modal/modal';
 
@@ -14,15 +9,20 @@ import Modal from '../modal/modal';
 const YourOrmado = ({_id}) => {
   const { ApiLink } = useContext(ApiLinkContext);
   const [products, setProducts] = useState([]);
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
   const [quantity,setQuantity]=useState(1);
 
   //MODAL
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
   const [reloadOnClose, setReloadOnClose] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+  const [user, setUser] = useState({});
+  const [error, setError] = useState(false);
+  const [wishStatus, setWishStatus] = useState({}); 
+  const [cartStatus, setCartStatus] = useState({});
 
+  const navigate= useNavigate()
   const handleCloseModal = () => {
     setShowModal(false);
     if (reloadOnClose) {
@@ -33,7 +33,6 @@ const YourOrmado = ({_id}) => {
   useEffect(() => {
     axios.get(`${ApiLink}/product`).then((res) => {
       setProducts(res.data.products);
-      // console.log(res.data.products, "Products Data");
     });
   }, [ApiLink]);
 
@@ -41,76 +40,142 @@ const YourOrmado = ({_id}) => {
     setQuantity(quantity)
   },[quantity]);
 
-const userID = validateUserID();
-
-  // const localCart = localStorage.getItem('cartItems');
-  const localCart=getCookie("cartItems")
-  const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-
-  const [ cartStatus, setCartStatus] = useState(cartData ? 'active' : 'disabled');
-
-  const findCart = (_id) => {
-    // const localCart = localStorage.getItem('cartItems');
-    const localCart=getCookie("cartItems")
-    const cartData = localCart ? JSON.parse(localCart).find((item) => item._id === _id) : false;
-    return cartData ? true : false;
-  };
-
-  const cartClick = useCallback(
-    (_id, title, price, salePrice, coverImage,stock) => {
-      if (!userID) {
-        // alert("Please login first!");
-        setShowModal(true);
-        setModalContent({
-          title: "Attention!",
-          body: "Please login first",
-        });
-        setReloadOnClose(false);
-        return;
-      }
-      if (findCart(_id)) {
-        navigate('/basket');
-      } else {
-        // const priceToAdd = salePrice ? salePrice : price;
-        dispatch(addToCart({ _id, coverImage, title, salePrice, quantity, price,stock }));
-        setCartStatus(_id,'active');
-      }
-    },
-    [userID, navigate, dispatch, quantity]
-  );
-
-  // const local = localStorage.getItem("wishItems");
-  const local=getCookie("wishItems")
-  const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
-
-  const [ wishStatus, setWishStatus] = useState(wishData ? "solid" : "regular");
-  const findWish = (_id) => {
-    // const local = localStorage.getItem("wishItems");
-    const local=getCookie("wishItems")
-    const wishData = local ? JSON.parse(local).find((item) => item._id === _id) : false;
-    return wishData ? true : false;
-  }
-
-  const wishClick = useCallback((_id,coverImage,title,price,salePrice,stock) => {
-    if (!userID) {
-      // alert("Please login first!");
-      setShowModal(true);
-      setModalContent({
-        title: "Attention!",
-        body: "Please login first",
-      });
-      setReloadOnClose(false);
+  useEffect(() => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
       return;
     }
-    if (findWish(_id)) {
-      dispatch(removeFromWish(_id));
-      setWishStatus("regular");
-    } else {
-      // const priceToAdd = salePrice ? salePrice : price;
-      dispatch(addToWish({ _id, title,coverImage,salePrice, price,  stock }));
-      setWishStatus(_id,"solid")
+
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      fetchWishlist(userData._id, token);
+      fetchCartStatus(userData._id, token); 
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
+    });
+  }, [ApiLink2]);
+
+  const handleUserCheck = () => {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setModalContent({ title: "Please Login", body: "Please login first!" });
+      setShowModal(true);
+      return false;
     }
-  }, [dispatch, userID])
+    return true;
+  };
+
+  const fetchWishlist = async (userId, token) => {
+    try {
+      const response = await axios.get(`${ApiLink2}/wishlist/${user._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const wishlist = response.data.data.items; // Array of product IDs
+      const updatedWishStatus = {};
+      wishlist.forEach((item) => {
+        updatedWishStatus[item.productId] = "solid";
+      });
+      setWishStatus(updatedWishStatus);
+    } catch (error) {
+      console.error("Wishlist Fetch Error:", error);
+    }
+  };
+
+  const fetchCartStatus = async (userId, token) => {
+    try {
+      const response = await axios.get(`${ApiLink2}/cart/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const cartItems = response.data.data.items; // Assuming backend returns cart items
+      const status = {};
+      cartItems.forEach((item) => {
+        status[item.productId] = true; // Mark products in the cart
+      });
+      setCartStatus(status);
+    } catch (error) {
+      console.error("Fetch Cart Error:", error);
+    }
+  };
+
+  const handlePost=async(productId)=>{
+    if (!handleUserCheck()) return;
+
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+    if (!cartStatus[productId]) {
+      // Add to cart
+      try {
+        await axios.post(
+          `${ApiLink2}/cart`,
+          { productId, quantity: 1, userId: user._id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setCartStatus((prevState) => ({ ...prevState, [productId]: true }));
+      } catch (error) {
+        console.error("Add to Cart Error:", error);
+      }
+    } else {
+      // Redirect to cart page
+      navigate("/basket");
+    }
+  }
+  const handleWishlist = async (productId) => {
+    if (!handleUserCheck()) return;
+
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) return;
+
+    const isWished = wishStatus[productId] === "solid";
+
+    try {
+      if (isWished) {
+        // Remove from wishlist
+        await axios.delete(`${ApiLink2}/wishlist/${user._id}/${productId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else {
+        // Add to wishlist
+        await axios.post(
+          `${ApiLink2}/wishlist`,
+          { productId, userId: user._id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      }
+
+      // Update wishlist state
+      setWishStatus((prevState) => ({
+        ...prevState,
+        [productId]: isWished ? "regular" : "solid",
+      }));
+    } catch (error) {
+      console.error("Wishlist Error:", error);
+    }
+  };
+
+useEffect(() => {
+  if (user._id) {
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    fetchWishlist(user._id, token); // Refetch wishlist when user changes
+    fetchCartStatus(user._id, token); 
+  }
+}, [user._id]);
+console.log(wishStatus,"status");
 
   return (
     <>    <div className="yourormado-div my-5">
@@ -130,24 +195,9 @@ const userID = validateUserID();
               </Link>
               <div className="wishlist-modal">
                 <div className="addtowishlist-box mb-2 d-flex justify-content-center align-items-center"  
-                onClick={() => {
-                  // if (userID) {
-                    wishClick(
-                      fd._id,
-                      fd.title,
-                      fd.coverImage,
-                      fd.price,
-                      fd.salePrice,
-                      fd.stock
-                    );
-                  // } 
-                  // else {
-                  //   alert("Please login first!");
-                  //   navigate('/login');
-                  // }
-                }}
+                 onClick={()=>{handleWishlist(fd._id)}}
                 >
-                  <i className={`fa-${findWish(fd._id) ? 'solid' : 'regular'} fa-heart`}></i>
+                  <i  className={`fa-${wishStatus[fd._id] === "solid" ? "solid" : "regular"} fa-heart`}></i>
                 </div>
                 <Link to={`/productsdetails/${fd._id}`}>
                   <div className="quick-view">
@@ -191,24 +241,12 @@ const userID = validateUserID();
                   </div>
                   <div
                     className="price-cart"
-                    onClick={() => {
-                      // if (userID) {
-                        cartClick(
-                          fd._id,
-                          fd.title,
-                          fd.price,
-                          fd.salePrice,
-                          fd.coverImage,
-                          fd.stock
-                        );
-                      // } 
-                      // else {
-                      //   alert("Please login first!");
-                      //   navigate('/login');
-                      // }
-                    }}
+                    onClick={() => handlePost(fd._id)}
+                 
                   >
-                     <i className={`${findCart(fd._id) ? 'active' : 'disabled'} fa-solid fa-bag-shopping`}></i>
+                     <i  className={`fa-solid fa-bag-shopping ${
+                        cartStatus[fd._id] ? "active" : ""
+                      }`}></i>
                   </div>
                 </div>
               </div>

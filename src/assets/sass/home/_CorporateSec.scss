@@ -1,5 +1,5 @@
 .csr-section {
-  background-color: #4E2922;
+  background-color: #D597290F;
   // height: auto;
   margin-top: 50px;
   @media (max-width: 768px) {
@@ -27,7 +27,7 @@
         position: relative;
         img {
         width: 100%;
-          height: 500px;
+          height: auto;
           border-radius: 40px;
           object-fit: cover;
 
@@ -61,7 +61,7 @@
       }
         
         h2 {
-          color: #ffffff;
+          color: #4E2922;
           font-family: Montserrat;
           font-size: 62px;
           font-weight: 700;
@@ -86,13 +86,13 @@
         }
 
         .body-text {
-          color: #ffffff;
+          color: #4A3024;
           font-family: Lato;
           font-size: 18px;
           line-height: 170%;
           margin-bottom: 0;
           @media (max-width: 768px) {
-            color: white; 
+            color: #4A3024; 
             font-size: 16px;
           }
           @media (min-width: 1600px) {

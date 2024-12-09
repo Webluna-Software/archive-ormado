@@ -158,7 +158,7 @@ const Blogs = () => {
                             style={{ color: "#000" }}
                           >
                             <figure>
-                              <img src={item.coverImage} alt="rectangle127" />
+                              <img src={item.coverImage} alt={item.title} />
                             </figure>
                             <div className="card-header ">
                               <p className="p-title">{item.title}</p>

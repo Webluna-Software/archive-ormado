@@ -6,6 +6,8 @@ import axios from "axios";
 import Preloader from "../pages/PreLoader";
 import { Helmet } from "react-helmet";
 
+import Modal from '../components/modal/modal';
+
 const LogIn = () => {
   const { ApiLink2 } = useContext(ApiLinkContext); 
   const [data, setData] = useState([]); 
@@ -18,6 +20,9 @@ const LogIn = () => {
 
   const [icon, setIcon] = useState("fa-eye");
   const [type, setType] = useState("password");
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', body: '' });
 
   const togglePasswordVisibility = () => {
     if (icon === "fa-eye") {
@@ -51,23 +56,44 @@ const LogIn = () => {
           sessionStorage.setItem("token", token);
           sessionStorage.setItem("user", JSON.stringify(user));
         }
-        alert("You have logged in successfully!")
-        navigate("/");
+        // alert("You have logged in successfully!")
+        setModalContent({ 
+          title: "Success", 
+          body: "You have logged in successfully!" 
+        });
+        setShowModal(true);
+        setTimeout(() => {
+          window.location.reload(); // This will refresh the page
+        }, 2000);
       } else {
-        alert("Either the email or password is incorrect!");
+        // alert("Either the email or password is incorrect!");
+        setModalContent({ 
+          title: "Login Failed", 
+          body: "Either the email or password is incorrect!" 
+        });
+        setShowModal(true);
       }
     } catch (error) {
       console.error("Giriş Hatası:", error);
 
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        alert(`Giriş Hatası: ${error.response.data.message}`);
-      } else {
-        alert("Bir hata oluştu. Lütfen tekrar deneyin.");
-      }
+      // if (
+      //   error.response &&
+      //   error.response.data &&
+      //   error.response.data.message
+      // ) {
+      //   alert(`Giriş Hatası: ${error.response.data.message}`);
+      // } else {
+      //   alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+      // }
+      const errorMessage = 
+      error.response?.data?.message || 
+      "An error occurred. Please try again.";
+
+    setModalContent({ 
+      title: "Login Error", 
+      body: `Error: ${errorMessage}` 
+    });
+    setShowModal(true);
     }
   };
 
@@ -205,8 +231,10 @@ const LogIn = () => {
               </div>
             </div>
           </div>
+
         </>
       )}
+      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
     </>
   );
 };

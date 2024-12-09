@@ -74,23 +74,23 @@ const BlogDetails = () => {
     (i) => slugify(i.title).toLowerCase() == blogTitle
   );
 
-  // useEffect(() => {
-  //   if (blogDetails) {
-  //     const updateCount = blogDetails.readCount + 1;
-  //     const formData = {
-  //       readCount: updateCount,
-  //       title: blogDetails.title,
-  //       description: blogDetails.description
-  //     };
-  //     axios.put(`${ApiLink2}/blog/${blogDetails._id}`, formData)
-  //       .then((res) => {
-  //         // console.log(res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, "put error");
-  //       });
-  //   }
-  // }, [blogDetails]);
+  useEffect(() => {
+    if (blogDetails) {
+      const updateCount = blogDetails.readCount + 1;
+      const formData = {
+        readCount: updateCount,
+        title: blogDetails.title,
+        description: blogDetails.description
+      };
+      axios.put(`${ApiLink2}/blog/${blogDetails._id}`, formData)
+        .then((res) => {
+          // console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err, "put error");
+        });
+    }
+  }, [blogDetails]);
   
 
 
@@ -106,6 +106,22 @@ const BlogDetails = () => {
 
   // Eyni ID li bloglar ucun filter -A
   const filteredBlogs = blog.filter((item) => item._id !== blogDet._id);
+
+  const getYoutubeEmbedUrl = (url) => {
+    let videoId = null;
+
+    if (url.includes("youtu.be")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("youtube.com")) {
+      const params = new URLSearchParams(url.split("?")[1]);
+      videoId = params.get("v");
+    }
+
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return "";
+  };
 
   return (
     <>
@@ -126,7 +142,7 @@ const BlogDetails = () => {
                       <img
                         src={productImg}
                         className="img-fluid rounded-start"
-                        alt="..."
+                        alt={blogDet.title}
                       />
                       <div className="img-text-context">
                         <h3>{blogDet.title}</h3>
@@ -183,9 +199,6 @@ const BlogDetails = () => {
                   <div className="blog-details-section2 md-my-5">
                     <div className="main-details ">
                       {blogSec.map((fd, i) => {
-                        const replaceVideoLink =
-                          fd.videoLink &&
-                          fd.videoLink.replace("watch?v=", "embed/");
                         const findSection =
                           blogDetails.blogSection &&
                           blogDetails.blogSection.find((i) => i == fd._id);
@@ -230,15 +243,14 @@ const BlogDetails = () => {
                                   ""
                                 ) : (
                                   <div>
-                                    <iframe
-                                      width="100%"
-                                      height={replaceVideoLink ? "400px" : ""}
-                                      src={`${replaceVideoLink}`}
-                                      title="YouTube video player"
-                                      frameBorder="0"
-                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                      allowFullScreen
-                                    ></iframe>
+                                  <iframe
+                                  width="100%"
+                                  height="400px"
+                                  src={getYoutubeEmbedUrl(fd.videoLink)}
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowFullScreen
+                                ></iframe>
                                   </div>
                                 )}
                               </div>
@@ -263,7 +275,7 @@ const BlogDetails = () => {
                           }}
                             >
                               <figure>
-                                <img src={fd.coverImage} alt="rectangle127" />
+                                <img src={fd.coverImage} alt={fd.title} />
                               </figure>
 
                               <div className="card-header">
@@ -291,42 +303,7 @@ const BlogDetails = () => {
                 </div>
 
 
-                {/* <Blogs /> */}
-                <div className="cardsBlogs row m-0 mt-5">
-                {filteredBlogs.slice(0, 4).map((fd, _id) => (
-                    <div className="blogcard col-12 col-md-4 col-lg-4" key={fd._id}>
-                      <Link
-                        style={{ color: "#000" }}
-                        to={`/blogDetails/${fd._id}/${slugify(fd.title).toLowerCase()}`}
-                          onClick={(e) => { 
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }}
-                      >
-                        <figure>
-                          <img src={fd.coverImage} alt="blogImage" />
-                        </figure>
-                        <div className="card-header">
-                          <p className="p-title">{fd.title}</p>
-                          <p
-                            className="p-body-text"
-                            dangerouslySetInnerHTML={{
-                              __html: (fd.description),
-                            }}
-                          />
-                          <p className="p-body-read">
-                          <Link  style={{ color: "#000" }}  to={`/blog/${fd._id}/${slugify(fd.title).toLowerCase()}`}  onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' });   }}> 
-                            <span> Read more</span>
-                          </Link>
-                          </p>
-                          <div className="date-number">
-                          <span>{formatReadCount(fd.readCount)} read</span>
-                            <span>{fd.date}</span>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
+
               </div>
             </div>
           </>

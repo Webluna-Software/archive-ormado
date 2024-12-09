@@ -2,7 +2,10 @@
     footer {
         background-color: #FFE7B2;
         padding: 32px 50px;
-        // margin-top: 50px;
+        margin-top: 50px;
+        @media (max-width:1200px){
+            display: none;
+        }
         .footer-top {
             width: 100%;
             display: flex;

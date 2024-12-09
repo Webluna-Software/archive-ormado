@@ -19,7 +19,7 @@ const Events = () => {
     ])
       .then(([bannerRes, res]) => {
         const eventData = res.data.data;
-        console.log("Event data:", eventData);
+        // console.log("Event data:", eventData);
         setEvent(eventData);
 
         const reservData = bannerRes.data.reservBanner[0];
@@ -32,6 +32,7 @@ const Events = () => {
         setLoading(false);
       });
   }, []);
+  
   return (
     <>
       <section className="eventsPage">
