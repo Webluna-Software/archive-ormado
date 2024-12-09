@@ -18,7 +18,7 @@ const DeliverySec = () => {
     <div class="container-fluid">
                 <div className="row ">
                           <div className="img-part  col-12 col-sm-6 col-md-6">
-                            <img src={img} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy" />
+                            <img src={img} className="d-block mx-lg-auto img-fluid" alt="Delivery Image"  loading="lazy" />
                           </div>
                           <div className="text-part  col-12 col-sm-6 col-md-6">
                           <h2 >Your <span> coffee</span> is on its way</h2>
