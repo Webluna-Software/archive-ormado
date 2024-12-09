@@ -21,8 +21,8 @@ const CorporateSec = () => {
     axios.get(`${ApiLink2}/ksmBanner`)
       .then((response) => {
         // console.log("Ksm Banner Data:", response.data);
-        console.log(ksmBanner.image); // URL-ni konsola çap edin
-      //  console.log(fd.image); // URL-ni konsola çap edin
+        console.log(ksmBanner.image); 
+      //  console.log(fd.image);
 
         setKsmBanner(response.data.ksmBanner[0]);
       })
