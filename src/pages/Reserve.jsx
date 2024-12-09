@@ -199,7 +199,7 @@ const Reserve = () => {
         <div className="reserve-form">
           <div className="reserve-part1">
             <LazyLoad>
-              <img className="reserve-img" src={reserv.leftImage} alt="error" />
+              <img className="reserve-img" src={reserv.leftImage} alt={reserv.title} />
             </LazyLoad>
           </div>
           <div className="reserve-part2">

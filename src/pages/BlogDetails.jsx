@@ -142,7 +142,7 @@ const BlogDetails = () => {
                       <img
                         src={productImg}
                         className="img-fluid rounded-start"
-                        alt="..."
+                        alt={blogDet.title}
                       />
                       <div className="img-text-context">
                         <h3>{blogDet.title}</h3>
@@ -275,7 +275,7 @@ const BlogDetails = () => {
                           }}
                             >
                               <figure>
-                                <img src={fd.coverImage} alt="rectangle127" />
+                                <img src={fd.coverImage} alt={fd.title} />
                               </figure>
 
                               <div className="card-header">

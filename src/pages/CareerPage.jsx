@@ -68,7 +68,7 @@ const CareerPage = () => {
       },
     ],
   };
-  console.log(faq);
+  // console.log(faq);
   return (
     <>
       <Helmet>
@@ -77,7 +77,7 @@ const CareerPage = () => {
       <section className="career-page">
         <div className="career-page-headline">
           <div className="image-container">
-            <img src={banner.image} alt="" className="img-fluid" />
+            <img src={banner.image} alt={banner.title} className="img-fluid" />
             <div className="image-overlay"></div>
           </div>
         </div>
@@ -87,7 +87,7 @@ const CareerPage = () => {
           <div className="career-page-iframe">
             <div className="career-page_teamimg">
               <LazyLoad>
-                <img src={join.image} className="img-fluid" alt="" />
+                <img src={join.image} className="img-fluid" alt={join.title} />
               </LazyLoad>
             </div>
             <div className="image-overlay"></div>
@@ -106,7 +106,7 @@ const CareerPage = () => {
               <div className="testimonials-inner" key={i}>
                 <div className="card">
                   <LazyLoad>
-                    <img src={item.image} className="card-img-top" alt="..."></img>
+                    <img src={item.image} className="card-img-top" alt={item.title}></img>
                   </LazyLoad>
                   <div className="card-body">
                     <h5 className="card-title">{item.title}</h5>
