@@ -1,14 +1,17 @@
 import { useSelector } from "react-redux";
 import bgimg from "../assets/img/bgimg.png";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { loginApiLink } from "../utils/login";
 import { validateUserID } from "../utils/user";
+import ApiLinkContext from "../context/ApiLinkContext";
 // import product1 from '../assets/img/product1.png';
 
 const Checkout = () => {
 
   const cartProducts = useSelector((state) => state.cart.products);
+  const { ApiLink2 } = useContext(ApiLinkContext);
+
 
   const totalPrice = cartProducts.reduce((total, product) => {
     const price = product.salePrice ? product.salePrice : product.price;
@@ -24,10 +27,36 @@ const Checkout = () => {
 
 
   useEffect(() => {
-    axios.get(`${loginApiLink}/user/${validateUserID()}`).then((res) => {
-      setUser(res.data.data);
+    const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+    if (!token) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    axios.get(`${ApiLink2}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      const userData = res.data.data;
+      setUser(userData);
+      setLoading(false);
+      
+    })
+    .catch((err) => {
+      console.error("API Error:", err);
+      setLoading(false);
+      setError(true);
     });
-  }, []);
+  }, [ApiLink2]);
+
+  // useEffect(() => {
+  //   axios.get(`${loginApiLink}/user/${validateUserID()}`).then((res) => {
+  //     setUser(res.data.data);
+  //   });
+  // }, []);
   if (!user) {
     return <div>Loading...</div>;
   }
