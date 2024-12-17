@@ -27,7 +27,7 @@ const Faq = ({ faqs }) => {
 
             <div className="question">
               <h1>
-                Questions ? <span>Look here</span>
+                 Questions ? <span>Look here</span>
               </h1>
             </div>
 

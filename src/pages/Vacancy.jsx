@@ -22,7 +22,7 @@ const Vacancy = () => {
   return (
     <>
       <div className="Vacancy">
-        <div className="container">
+        <div className="container-fluid px-0">
           {/* <div className="title">
             <h1>Our <span>Vacancies</span></h1>
             <p>If you want to evaluate the career opportunities at Ormado Kaffeehaus, fill out the form right now and we will contact you when our vacancy becomes active!</p>

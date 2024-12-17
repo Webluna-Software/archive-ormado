@@ -122,7 +122,7 @@ const CareerPage = () => {
           </Slider>
         </div>
         <div className="career-page-vacancies">
-          <h3>{vacancy.title}</h3>
+          <h3>{vacancy.title} </h3>
           <p
             className="text"
             dangerouslySetInnerHTML={{ __html: vacancy.text }}
