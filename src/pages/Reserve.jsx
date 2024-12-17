@@ -181,7 +181,7 @@ const Reserve = () => {
         <title>Reserve</title>
       </Helmet>
       <div className="reserve">
-        <div className="Reverse-title col-12 col-md-12 col-sm-12">
+        {/* <div className="Reverse-title col-12 col-md-12 col-sm-12">
           <div className="first-card-img">
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
@@ -190,7 +190,7 @@ const Reserve = () => {
               id="bannerImg"
             />
           </div>
-        </div>
+        </div> */}
         <div className="reserve-form-header">
           <div className="reserve-header-text">
             <h1>{reserv.title}</h1>

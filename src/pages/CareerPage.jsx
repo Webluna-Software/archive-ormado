@@ -87,7 +87,7 @@ const CareerPage = () => {
           <div className="career-page-iframe">
             <div className="career-page_teamimg">
               <LazyLoad>
-                <img src={join.image} className="img-fluid" alt={join.title} />
+                <img src={join.image} className="img-fluid" alt={join.title} id="careerImgBig" />
               </LazyLoad>
             </div>
             <div className="image-overlay"></div>
