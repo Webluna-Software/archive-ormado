@@ -41,6 +41,7 @@ import GiftCard from './pages/GiftCard';
 import CorporateSocialRes from './pages/CorporateSocialRes';
 import CampaignDetails from './pages/campaign/CampaignDetails';
 
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 const App = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Location hook-u ilə səhifə dəyişikliklərini izləyirik
@@ -75,6 +76,7 @@ const App = () => {
 
     return (
         <>
+         <ScrollToTop />
             <Header />
 
             {/* Yönləndirmə hazır olana qədər yüklənmə ekranı göstərin */}
