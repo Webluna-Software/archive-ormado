@@ -19,7 +19,7 @@ const Gallery = () => {
       axios.get(`${ApiLink2}/faqGalery`)
     ])
       .then(([bannerRes, galleryRes, galleryFaq]) => {
-        console.log(galleryFaq);
+        console.log(bannerRes);
         const galleryData = galleryRes.data.galeryPhoto;
         const bannerData = bannerRes.data.galeryBanner[0];
         const faqData = galleryFaq.data.data;

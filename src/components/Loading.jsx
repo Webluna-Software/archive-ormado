@@ -1,6 +1,3 @@
-
-// import logo  from '../assets/img/ormadologo.png'
-
 const Loading = () => {
   return (
     <div className='loading-frame'>

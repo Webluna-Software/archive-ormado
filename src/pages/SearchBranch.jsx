@@ -1,7 +1,4 @@
 import Contactlocation from "../components/contact/Contactlocation";
-// import Contactcards from '../components/contact/Contactcards'
-// import background from "../assets/img/Frame.png";
-import card from "../assets/img/searchbanner.png";
 import { useContext, useEffect, useState } from "react";
 import {ApiLinkContext} from "../context/ApiLinkContext"
 import axios from "axios";
@@ -33,6 +30,7 @@ const SearchBranch = () => {
             className="img-fluid col-12 col-md-12 col-sm-12"
             src={searchB.image}
             alt="SearchABranch image"
+            id="bannerImg"
           />
         </div>
         {/* <img className="background img-fluid" src={background} alt="" /> */}

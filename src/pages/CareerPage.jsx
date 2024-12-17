@@ -1,4 +1,4 @@
-// import HeadlineImg from '../assets/img/product-information.png';
+
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Vacancy from "./Vacancy";
@@ -77,7 +77,7 @@ const CareerPage = () => {
       <section className="career-page">
         <div className="career-page-headline">
           <div className="image-container">
-            <img src={banner.image} alt={banner.title} className="img-fluid" />
+            <img src={banner.image} alt={banner.title} className="img-fluid" id="bannerImg" />
             <div className="image-overlay"></div>
           </div>
         </div>

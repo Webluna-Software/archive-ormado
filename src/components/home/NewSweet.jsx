@@ -6,7 +6,6 @@ import 'swiper/css/effect-fade';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useEffect } from 'react';
-// import newsweetimg from '../../assets/img/NewSweet.png';
 import ApiLinkContext from '../../context/ApiLinkContext';
 
 const NewSweets = () => {

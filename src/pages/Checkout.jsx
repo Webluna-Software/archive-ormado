@@ -5,7 +5,6 @@ import axios from "axios";
 import { loginApiLink } from "../utils/login";
 import { validateUserID } from "../utils/user";
 import ApiLinkContext from "../context/ApiLinkContext";
-// import product1 from '../assets/img/product1.png';
 
 const Checkout = () => {
 

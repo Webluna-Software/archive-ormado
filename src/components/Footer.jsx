@@ -20,7 +20,6 @@ const Footer = () => {
       .then((res) => {
         const contact = res.data.data.contactSettings[0];
         setData(contact);
-        console.log("budur",contact);
       })
       .catch((err) => {
         console.log(err);

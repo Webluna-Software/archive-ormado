@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import lottie from 'lottie-web';
 import animationData from '../components/json/animation.json';
-// import animationData2 from "../assets/img/loading.gif"
 const PreLoader = () => {
 
   useEffect(() => {

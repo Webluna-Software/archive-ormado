@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import frenchiseFormimg from "../assets/img/FranchiseForm.png";
 import { Link } from "react-router-dom";
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";

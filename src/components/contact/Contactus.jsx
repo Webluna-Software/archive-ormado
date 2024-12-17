@@ -5,7 +5,6 @@ import axios from "axios";
 import Modal from "../modal/modal";
 import { useEffect } from "react";
 
-//Dahboardan elave tag ile gelen text ve desc qarsisini almaq ucun!
 const stripHtmlTags = (html) => {
   return html.replace(/<\/?[^>]+(>|$)/g, "");
 };
