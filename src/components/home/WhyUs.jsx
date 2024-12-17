@@ -1,6 +1,4 @@
 import { useState } from "react";
-// import whyus from "../../assets/img/why.png";
-// import ytlogo from "../../assets/img/ytlogo.png";
 import { useContext } from "react";
 import { useEffect } from "react";
 import axios from "axios";

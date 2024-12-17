@@ -1,5 +1,4 @@
 import Slider from "react-slick";
-// import removebg from "../../assets/img/removebg.png";
 import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";

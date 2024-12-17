@@ -56,6 +56,7 @@ const Modal = ({ show, onClose, title, body, showLoginButton }) => {
                 // data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={onClose}
+                id="modalBtnClose"
               />
             </div>
             <div className="modal-body">

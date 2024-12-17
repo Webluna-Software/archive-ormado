@@ -169,7 +169,7 @@ const CareerForm = () => {
       formData.append("file", portfolio);
     }
     formData.append("reason", workplace);
-    formData.append("status", marital);
+    formData.append("marStatus", marital);
     formData.append("education", education);
     formData.append("experience", applying);
     formData.append("language", languages);
@@ -183,7 +183,6 @@ const CareerForm = () => {
     formData.append("yourFeedback", feedback);
     formData.append("diseases", chronic);
     formData.append("lastWork", lastWork);
-    formData.append("howKnowAboutUs", aboutUs);
     formData.append("additionalInfo", information);
     console.log(formData.get("lastWork"));
 

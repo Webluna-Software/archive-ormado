@@ -1,7 +1,4 @@
-// import waffle from "../../assets/img/waffle.jpg"
-// import sansebastian from "../../assets/img/sansebastian.jpg"
-// import croissant from "../../assets/img/croissant.jpg"
-// import cheesecake from "../../assets/img/cheesecake.jpg"
+
 import { useContext, useEffect, useState } from "react";
 import ApiLinkContext from "../../context/ApiLinkContext";
 import axios from "axios";

@@ -6,6 +6,7 @@
     background-color: #fff;
     z-index: 999999 !important;
     padding: 12px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     p{
         font-family: "Lato",sans-serif;
     }
@@ -16,7 +17,7 @@
         color: #fff;
         border-radius: 8px;
         border: none;
-        border: 1px solid #cfcfcf;
+        border: 2px solid #cfcfcf;
         transition: 250ms;
         &:focus{
             border: none;
@@ -24,6 +25,7 @@
         &:hover{
             background-color: #f9f9f9;
             color: #000;
+            border: 2px solid #4A3024;
         }
     }
     .rejectBtn{

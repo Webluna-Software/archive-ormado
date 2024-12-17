@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { ApiLinkContext } from "../../context/ApiLinkContext";
 import axios from "axios";
-import img from "../../assets/img/pngwing1.png"
 import { useNavigate } from 'react-router-dom'
 
 const CorporateSec = () => {

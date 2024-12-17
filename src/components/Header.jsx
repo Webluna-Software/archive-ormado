@@ -56,7 +56,6 @@ const Header = () => {
       });
   }, [ApiLink, searchQuery]);
 
-  // const [user, setUser] = useState(null);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -147,8 +146,6 @@ const Header = () => {
       setError(true);
     });
   }, [ApiLink2]);
-
-// console.log(user,"user");
 
   return (
     <>
