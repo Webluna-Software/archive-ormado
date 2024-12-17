@@ -13,10 +13,7 @@ const CorporateSocialRes = () => {
   useEffect(() => {
     axios.get(`${ApiLink2}/ksmBanner`)
       .then((response) => {
-        // console.log("Ksm Banner Data:", response.data);
-        console.log(ksmBanner.image); // URL-ni konsola çap edin
-      //  console.log(fd.image); // URL-ni konsola çap edin
-
+        console.log("Ksm Banner Data:", response.data);
         setKsmBanner(response.data.ksmBanner[0]);
       })
       .catch((error) => {
@@ -39,16 +36,20 @@ const CorporateSocialRes = () => {
   return (
     <>
       <section className='Csr'>
-        <div className="section-banner">
+        <div className="section-banner" 
+        style={{
+          backgroundImage: ksmBanner.bg_image
+            ? `url(${ksmBanner.bg_image})`
+            : 'none',
+        }}>
           <div className="container">
-            <div className="row flex-lg-row-reverse">
-              <div className="img-part col-12 col-sm-6  col-md-6  ">
-                <img src={ksmBanner.image}  alt={ksmBanner.title}  />
-              </div>
+            <div className="row">
               <div className="text-part col-12 col-sm-6 col-md-6 ">
                 <h2>{ksmBanner.title}</h2>
-                {/* <h2 >Enjoy your  <span>coffee </span>   <span>before</span> your activity</h2> */}
                 <p  className="body-text " dangerouslySetInnerHTML={{ __html: ksmBanner.text }}/>
+              </div>
+              <div className="img-part col-12 col-sm-6  col-md-6 ">
+                <img src={ksmBanner.image}  alt={ksmBanner.title}  />
               </div>
             </div>
           </div>
@@ -66,7 +67,7 @@ const CorporateSocialRes = () => {
                   {ksmCard.map((fd, index) => (
                     <div className="card-main col-12" key={index}>
                       <div className="card-image">
-                        <LazyLoad height={200} offset={100} once>
+                        <LazyLoad >
                           <img src={fd.image} className="img-fluid" alt={fd.title} loading="lazy"    style={{ backgroundColor: "transparent" }} />
                         </LazyLoad>
                       </div>

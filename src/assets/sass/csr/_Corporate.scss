@@ -1,7 +1,30 @@
 .Csr{
     .section-banner{
-        background-color:#4E2922;
-        padding: 2rem 0;
+      width: 100%;
+      height: auto;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 2rem 0;
+      position: relative;
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); 
+        z-index: 0;
+      }
+    }
+
+        @media (max-width: 420px) {
+          padding: 6rem 0 ;
+        }
         .container{
             .row {
               position: relative;
@@ -22,18 +45,7 @@
                   mix-blend-mode: normal !important;
                 
                 }
-                // img {
-                //   width: 100%;
-                //   height: auto;
-                //   object-fit: cover;
-                //   background-color: transparent;
-                //   border-radius: 40px;
-                //   display: block;
-                //   @media (max-width: 768px) {
-                //     height: 400px;
-                //     filter: brightness(0.2); 
-                //   }
-                // }
+
               }
         
               .text-part {
@@ -42,6 +54,7 @@
                 justify-content: center;
                 position: relative; 
                 z-index: 1; 
+           
                 @media (max-width: 768px) {
                   position: absolute;
                   top: 50%;
@@ -54,9 +67,10 @@
                   padding: 60px 0;
               }
                 h2 {
-                  color: #ffffff;
+                  // color: #ffffff;
+                  color: #d59729;
                   font-family: Montserrat;
-                  font-size: 62px;
+                  font-size: 58px;
                   font-weight: 700;
                   line-height: 160%;
                   span {
