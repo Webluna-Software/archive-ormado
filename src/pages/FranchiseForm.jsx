@@ -191,6 +191,73 @@ const FranchiseForm = () => {
               {phoneError && (
                 <span className="invalid_message">Phone is required</span>
               )}
+
+
+             {/* bunlar yeni inputdu */}
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Additional Information
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  placeholder="Enter your number"
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    What do you personally expect from a partnershop ? 
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  placeholder="Enter your number"
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    What makes you the perfect Ormado Kaffehaus franchisee? 
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  placeholder="Enter your number"
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Why did you choose our Ormado Kaffehaus coffee house franchisee? 
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  placeholder="Enter your number"
+                />
+              </div>
+
+              {/* burda yeni input bitdi */}
+
+
+ 
               <div className="franchiseform-country-city">
                 <div className="franchiseform-country">
                   <div className="franchiseform-input-text">
