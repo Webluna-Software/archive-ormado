@@ -147,7 +147,8 @@ const Header = () => {
       setError(true);
     });
   }, [ApiLink2]);
-console.log(user,"user");
+
+// console.log(user,"user");
 
   return (
     <>

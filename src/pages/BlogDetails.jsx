@@ -11,101 +11,87 @@ import LazyLoad from "react-lazy-load";
 const BlogDetails = () => {
   const { blogId, blogTitle } = useParams();
   const { ApiLink2 } = useContext(ApiLinkContext);
-  const [blog, setBlog] = useState([]);
-  const [blogDet, setBlogDet] = useState([]);
-  const [blogSec, setBlogSec] = useState([]);
   const [loading, setLoading] = useState(true);
   const path = window.location.pathname;
 
+  const [blog, setBlog] = useState([]);
+  const [blogDetail, setBlogDetail] = useState([]);
+  const [blogSection, setBlogSection] = useState([]);
 
   useEffect(() => {
-    axios.get(`${ApiLink2}/blog`)
+    // Blog listəsini yükləmək
+    axios
+      .get(`${ApiLink2}/blog`)
       .then((res) => {
-        const blogData = res.data.blog;
-        setBlog(blogData);
-        return axios.get(`${ApiLink2}/blog/${blogId}`);
-      })
-      .then((res) => {
-        const blogDetails = res.data.blog;
-        setBlogDet(blogDetails);
-        // console.log(blogDetails, "BLOG");
-  
-        const sectionIds = blogDetails.blogSection; 
-        if (sectionIds.length > 0) {
-          const sectionPromises = sectionIds.map((id) =>
-            axios.get(`${ApiLink2}/blogSection/${id}`)
-          );
-          return Promise.all(sectionPromises);
-        } else {
-          setLoading(false); 
-          return [];
-        }
-      })
-      .then((sectionResponses) => {
-        const sections = sectionResponses.map((res) => res.data.blogSection);
-        setBlogSec(sections);
-        // console.log(sections, "BLOG SECTIONS");
-        setLoading(false); 
+        console.log("Blog List Data:", res.data);
+        setBlog(res.data.blog);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false); 
+        console.error("Blog data error", error);
+        setLoading(false);
       });
-  }, [ApiLink2, blogId]);
+  //Blog detallarini yükləmək
+    axios
+    .get(`${ApiLink2}/blog/${blogId}`)
+    .then((res) => {
+      console.log("Blog Detail Data:", res.data);
+      setBlogDetail(res.data.blog);
   
-
-  // const filterSection = (blogSec, blogSecId) => {
-  //   const check = blogSec.find((section) => section._id === blogSecId);
-  //   return check;
-  // };
-  // const findFirstSection = (fd) => {
-  //   const sections = blogSec.filter((item) =>
-  //     filterSection(fd.blogSection, item._id)
-  //   );
-  //   const firstText = sections.find((i) => i.row === 1);
-  //   if (firstText) {
-  //     return firstText.text;
-  //   } else {
-  //     return false;
-  //   }
-  // };
-
-  let blogDetails = blog.find(
-    (i) => slugify(i.title).toLowerCase() == blogTitle
-  );
-
-  useEffect(() => {
-    if (blogDetails) {
-      const updateCount = blogDetails.readCount + 1;
-      const formData = {
-        readCount: updateCount,
-        title: blogDetails.title,
-        description: blogDetails.description
-      };
-      axios.put(`${ApiLink2}/blog/${blogDetails._id}`, formData)
+      const updatedReadCount = Number(res.data.blog.readCount) + 1; 
+      console.log("Updated Read Count (before PUT):", updatedReadCount); 
+  
+      axios
+        .put(
+          `${ApiLink2}/blog/${blogId}`,
+          {
+            readCount: updatedReadCount,
+          },
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDU1YzIwYzVlODU0ZTRiODVmMmM5ZSIsImlhdCI6MTczNDQzMDYyMSwiZXhwIjoxNzM3MDIyNjIxfQ.4LBR83Ak3ea0c84XqzOjP92eybSe6S1mQ1KGave_hBg`,
+            },
+          }
+        )
         .then((res) => {
-          // console.log(res.data);
+          console.log("Read count updated successfully", res);
+          setBlogDetail((prevDetail) => {
+            const updatedDetail = {
+              ...prevDetail,
+              readCount: updatedReadCount,
+            };
+            console.log("Updated Blog Detail (after PUT):", updatedDetail);
+            return updatedDetail;
+          });
         })
-        .catch((err) => {
-          console.log(err, "put error");
+        .catch((error) => {
+          console.error("Error updating read count:", error);
         });
-    }
-  }, [blogDetails]);
+    })
+    .catch((error) => {
+      console.error("BlogDetails error", error);
+      setLoading(false);
+    });
   
-
-
-  function formatReadCount(count) {
-    if (count < 1000) {
-      return count.toString();
-    } else {
-      return (count / 1000).toFixed(1) + "k";
-    }
-  }
-  const formattedReadCount = formatReadCount(  blogDet && blogDet.readCount);
+  
+    // Blog bölmələrini yükləmək
+    axios
+      .get(`${ApiLink2}/blog/${blogId}/blogSection`)
+      .then((res) => {
+        console.log("Blog Section Data:", res.data.data);
+        setBlogSection(res.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("Error in fetching blog section:", error);
+        setLoading(false);
+      });
+  }, [blogId, ApiLink2]);
+  
 
 
   // Eyni ID li bloglar ucun filter -A
-  const filteredBlogs = blog.filter((item) => item._id !== blogDet._id);
+  const filteredBlogs = blog.filter((item) => item._id !== blogDetail._id);
 
   const getYoutubeEmbedUrl = (url) => {
     let videoId = null;
@@ -123,6 +109,11 @@ const BlogDetails = () => {
     return "";
   };
 
+  let blogDetails = blog.find(
+    (i) => slugify(i.title).toLowerCase() == blogTitle
+  );
+
+
   return (
     <>
       <section className="BlogDetails">
@@ -131,8 +122,8 @@ const BlogDetails = () => {
         ) : (
           <>
             <Helmet>
-              <title>{blogDet.title}</title>
-              <meta property="og:title" content={`${blogDet.title}`} />
+              <title>{blogDetail.title}</title>
+              <meta property="og:title" content={`${blogDetail.title}`} />
             </Helmet>
             <div className="container-fluid">
               <div className="row ">
@@ -142,11 +133,11 @@ const BlogDetails = () => {
                       <img
                         src={productImg}
                         className="img-fluid rounded-start"
-                        alt={blogDet.title}
+                        alt={blogDetail.title}
                       />
                       <div className="img-text-context">
-                        <h3>{blogDet.title}</h3>
-                        <p>{blogDet.author}</p>
+                        <h3>{blogDetail.title}</h3>
+                        <p>{blogDetail.author}</p>
                         <div className="read">
                           <p>
                             <svg
@@ -168,7 +159,7 @@ const BlogDetails = () => {
                                 fill="#E3B142"
                               />
                             </svg>
-                            {blogDet.date}
+                            {blogDetail.date}
                           </p>
                           <p>
                             <svg
@@ -190,90 +181,96 @@ const BlogDetails = () => {
                                 fill="#E3B142"
                               />
                             </svg>
-                            {formattedReadCount}
+                            {blogDetail.readCount}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="blog-details-section2 md-my-5">
-                    <div className="main-details ">
-                      {blogSec.map((fd, i) => {
-                        const findSection =
-                          blogDetails.blogSection &&
-                          blogDetails.blogSection.find((i) => i == fd._id);
-                        // console.log(findSection,"budur");
-                        if (findSection) {
-                          return (
-                            <div className="blog-details-text" key={i}>
-                              <div className="blog-details-text-part1 my-5">
-                                {fd.title == "undefined" ? (
-                                  ""
-                                ) : (
-                                  <p>{fd.title}</p>
-                                )}
-                                {fd.text == "undefined" ? (
-                                  ""
-                                ) : (
-                                  <div>
-                                    <p
-                                      dangerouslySetInnerHTML={{
-                                        __html: fd.text,
-                                      }}
-                                    />
-                                  </div>
-                                )}
+                    <div className="main-details">
+                      <div className="blog-details-text mt-5">
+                             <p
+                               dangerouslySetInnerHTML={{
+                                 __html: blogDetail.description,
+                               }}
+                             />
+                                <LazyLoad>
+                                  <img
+                                    src={blogDetail.image}
+                                    className="img-fluid w-100"
+                                    alt="section-img"
+                                  />
+                                </LazyLoad>
+                            </div>
+                      {blogSection.map((section, index) => (
+                        <div className="blog-details-text" key={index}>
+                          {/* Başlıq */}
+                          {section.title && section.title !== "undefined" && (
+                            <div className="blog-details-text-part1 my-5">
+                              <p>{section.title}</p>
+                            </div>
+                          )}
+
+                          {/* Mətn */}
+                          {section.text && section.text !== "undefined" && (
+                            <div>
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: section.text,
+                                }}
+                              />
+                            </div>
+                          )}
+
+                          {/* Şəkil */}
+                          {section.image && section.image.length > 0 && (
+                            <div className="blog-details-text-part2">
+                              <div className="blog-details-part2-text">
+                                <LazyLoad>
+                                  <img
+                                    src={section.image}
+                                    className="img-fluid w-100"
+                                    alt="section-img"
+                                  />
+                                </LazyLoad>
                               </div>
-                              <div className="blog-details-text-part2 ">
-                                <div className="blog-details-part2-text">
-                                  {fd.image.length == 0 ? (
-                                    ""
-                                  ) : (
-                                    <LazyLoad>
-                                      <img
-                                        src={fd.image}
-                                        className="img-fluid w-100"
-                                      />
-                                    </LazyLoad>
-                                  )}
-                                </div>
-                              </div>
+                            </div>
+                          )}
+
+                          {/* Video */}
+                          {section.videoLink &&
+                            section.videoLink !== "undefined" && (
                               <div className="blog-details-text-part3">
-                                {fd.videoLink === "undefined" ? (
-                                  ""
-                                ) : (
-                                  <div>
-                                  <iframe
+                                <iframe
                                   width="100%"
                                   height="400px"
-                                  src={getYoutubeEmbedUrl(fd.videoLink)}
+                                  src={getYoutubeEmbedUrl(section.videoLink)}
                                   frameBorder="0"
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                   allowFullScreen
                                 ></iframe>
-                                  </div>
-                                )}
                               </div>
-                            </div>
-                          );
-                        }
-                      })}
+                            )}
+                        </div>
+                      ))}
                     </div>
                     <div className="blog-details-card my-5">
                       <p className="latest-news"> Explore More</p>
                       <div className="blog-details-lastes">
-                        {filteredBlogs.slice(0, 3).map((fd, i) => (
+                        {filteredBlogs.slice(-3).map((fd, i) => (
                           <div
                             className="blogcard col-12 col-md-3 col-sm-6"
                             key={fd._id}
                           >
-                            <Link
-                          style={{ color: "#000" }}
-                          to={`/blogDetails/${fd._id}/${slugify(fd.title).toLowerCase()}`}
-                          onClick={(e) => { 
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }}
-                            >
+                      <Link
+                        style={{ color: "#000" }}
+                        to={`/blogDetails/${fd._id}/${slugify(fd.title).toLowerCase()}`}
+                        onClick={(e) => {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                      >
+
                               <figure>
                                 <img src={fd.coverImage} alt={fd.title} />
                               </figure>
@@ -283,14 +280,14 @@ const BlogDetails = () => {
                                 <p
                                   className="p-body"
                                   dangerouslySetInnerHTML={{
-                                    __html: (fd.description),
+                                    __html: fd.description,
                                   }}
                                 />
                                 <p className="p-body">
                                   <span>Read more</span>
                                 </p>
                                 <div className="date-number">
-                                <span>{formatReadCount(fd.readCount)} read</span>
+                                  {/* <span>{formatReadCount(fd.readCount)} read</span> */}
                                   <span>{fd.date}</span>
                                 </div>
                               </div>
@@ -301,9 +298,6 @@ const BlogDetails = () => {
                     </div>
                   </div>
                 </div>
-
-
-
               </div>
             </div>
           </>

@@ -7,33 +7,39 @@ const Modal = ({ show, onClose, title, body, showLoginButton }) => {
   const navigate = useNavigate();
   
   useEffect(() => {
+    let timeout;
     if (show) {
-      setTimeout(() => {
+      timeout= setTimeout(() => {
         setFadeClass("show");
       }, 10); 
     } else {
       setFadeClass(""); 
     }
+    return () =>clearTimeout(timeout);
   }, [show]);
 
   const handleOutsideClick = (e) => {
-    if (e.target.className.includes("modal")) {
+    if (e.target === e.currentTarget) {
       onClose();
     }
   };
   const handleLoginRedirect = () => {
-    onClose();
-    navigate('/login');  
+    try {
+      onClose();
+      navigate("/login");
+    } catch (error) {
+      console.error("Navigation error:", error);
+    }
   };
 
   return (
     <>
-      {show && <div className="modal-backdrop show"></div>}
+      {show && <div className="modal-backdrop fade show" />}
       <div
-        className={`modal fade ${fadeClass}`}
+        className={`modal  ${fadeClass}`}
         id="exampleModalToggle"
         aria-hidden={!show}
-        aria-labelledby="exampleModalToggleLabel"
+        // aria-labelledby="exampleModalToggleLabel"
         tabIndex={-1}
         onClick={handleOutsideClick}
         style={{ display: show ? "block" : "none" }}
@@ -47,7 +53,7 @@ const Modal = ({ show, onClose, title, body, showLoginButton }) => {
               <button
                 type="button"
                 className="btn-close"
-                data-bs-dismiss="modal"
+                // data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={onClose}
               />

@@ -90,7 +90,7 @@ const CareerForm = () => {
 
   const formPost = (e) => {
     e.preventDefault();
-    console.log("1")
+    // console.log("1")
     let isValid = true;
 
     const fieldCheck = [
@@ -128,7 +128,8 @@ const CareerForm = () => {
         item.error(true);
         isValid = false;
       } else {
-        isValid = true;
+        item.error(false); 
+        // isValid = true;
       }
     });
 
@@ -190,7 +191,7 @@ const CareerForm = () => {
       axios.post(`${ApiLink2}/career`, formData)
         .then((res) => {
           if (res.data.status === "success") {
-            console.log(res, "POSTED");
+            // console.log(res, "POSTED");
             setModalContent({
               title: "Thank you!",
               body: "Your form has been submitted successfully!",
@@ -200,13 +201,13 @@ const CareerForm = () => {
         })
 
         .catch((err) => {
-          console.log("APIDE PROBLEM", err);
+          // console.log("APIDE PROBLEM", err);
           setModalContent({
             title: "Something went wrong!",
             body: "Something went wrong. Please try again.",
           });
           setShowModal(true);
-          console.log("API ERROR:", err);
+          // console.log("API ERROR:", err);
         });
     }
   };
@@ -254,6 +255,7 @@ const CareerForm = () => {
     setChoose(value);
     setChooseError(false);
   };
+
   return (
     <>
       <div className="careerForm">

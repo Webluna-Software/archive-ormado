@@ -28,7 +28,7 @@ const Blogs = () => {
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         let blogData = res.data.blog;
-        console.log(res.data.blog, "BLOQ MELUMATLARI");
+        // console.log(res.data.blog, "BLOQ MELUMATLARI");
         // Aktiv blogları süz
         blogData = blogData.filter((item) => item.active);
   
