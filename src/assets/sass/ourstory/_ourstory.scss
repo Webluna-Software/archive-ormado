@@ -244,94 +244,129 @@
   .weareperfect {
     .container-fluid {
       .row {
-        .imgBox {
-          position: relative;
-          img {
-            border-radius: 10px;
-          }
-          .overlayImg {
-            position: absolute;
-            inset: 0;
-          }
+        @media (max-width: 1200px) {
+          display: flex;
+          flex-direction: column;
         }
-        .weAreDesc {
-          h3 {
-            color: #4a3024;
-            font-family: Montserrat;
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 50px;
-            @media (min-width:1500px){
-
-              font-size: 50px;
-            }
-            @media (min-width:1600px){
-              line-height: 60px;
-              font-size: 58px;
-            }
-            @media (max-width:768px){
-              font-size: 25px;
-              line-height: normal;
-            }
-          }
-          p {
-            max-width: 625px;
+        .video-part{
+          @media (max-width: 1200px) {
             width: 100%;
-            color: #979797;
-            font-family: "Lato", sans-serif;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-            @media (min-width:1500px){
-              max-width: 700px;
-              font-size: 17px;
-              line-height: 26px;
-
+          }
+  
+          .imgBox {
+            position: relative;
+            img {
+              border-radius: 10px;
             }
-            @media (min-width:1600px){
-              max-width: 800px;
-              font-size: 19px;
-              line-height: 29px;
+            .overlayImg {
+              position: absolute;
+              inset: 0;
             }
           }
         }
-        .counter {
-          h2 {
-            color: #d59729;
-            text-align: center;
-            font-family: Montserrat;
-            font-size: 54px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 130%;
-            @media (min-width:1500px){
 
-              font-size: 70px;
-              line-height: 150%;
+        .number-part{
+          @media (max-width: 1200px) {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+          .numbers{
+            @media (max-width: 1200px) {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
             }
-            @media (min-width:1600px){
-              font-size: 80px;
-              line-height: 150%;
+            @media (max-width: 460px) {
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+            }
+            .weAreDesc {
+              h3 {
+                color: #4a3024;
+                font-family: Montserrat;
+                font-size: 40px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 50px;
+                @media (min-width:1500px){
+    
+                  font-size: 50px;
+                }
+                @media (min-width:1600px){
+                  line-height: 60px;
+                  font-size: 58px;
+                }
+                @media (max-width:768px){
+                  font-size: 25px;
+                  line-height: normal;
+                }
+              }
+              p {
+                max-width: 625px;
+                width: 100%;
+                color: #979797;
+                font-family: "Lato", sans-serif;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+                @media (min-width:1500px){
+                  max-width: 700px;
+                  font-size: 17px;
+                  line-height: 26px;
+    
+                }
+                @media (min-width:1600px){
+                  max-width: 800px;
+                  font-size: 19px;
+                  line-height: 29px;
+                }
+
+
+              }
+            }
+            .counter {
+              h2 {
+                color: #d59729;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 54px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 130%;
+                @media (min-width:1500px){
+    
+                  font-size: 70px;
+                  line-height: 150%;
+                }
+                @media (min-width:1600px){
+                  font-size: 80px;
+                  line-height: 150%;
+                }
+              }
+              p {
+                color:  #979797;
+                font-family: Lato;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px; 
+                text-align: center;
+                @media (min-width:1500px){
+    
+                  font-size: 20px;
+                }
+                @media (min-width:1600px){
+                  font-size: 22px;
+                }
+              }
             }
           }
-          p {
-            color:  #979797;
-            font-family: Lato;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px; 
-            text-align: center;
-            @media (min-width:1500px){
 
-              font-size: 20px;
-            }
-            @media (min-width:1600px){
-              font-size: 22px;
-            }
-          }
         }
       }
     }

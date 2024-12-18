@@ -180,7 +180,7 @@ const OurStory = () => {
             <div className="weareperfect">
               <div className="container-fluid">
                 <div className="row g-3">
-                  <div className="col-12 col-sm-12 col-md-5 col-lg-5 ">
+                  <div className="col-12 col-sm-12 col-md-5 col-lg-5  video-part">
                     <div className="imgBox">
                       {greatThink[0].videoUrl ? (
                         greatThink[0].videoUrl.includes("youtube.com") ||
@@ -207,15 +207,15 @@ const OurStory = () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-12 col-sm-12 col-md-7 col-lg-7 ">
+                  <div className="col-12 col-sm-12 col-md-7 col-lg-7  number-part">
                     <div className="weAreDesc">
                       <h3>{greatThink[0].title}</h3>
                       <p
-                        className="pb-5"
+                        className="pb-xl-5"
                         dangerouslySetInnerHTML={{ __html: greatThink[0].text }}
                       />
                     </div>
-                    <div className="row">
+                    <div className="row numbers">
                       <div className="col-6 col-sm-4 col-md-4 col-lg-4 ">
                         <div className="counter">
                           <h2>{count[0].count1}+</h2>
