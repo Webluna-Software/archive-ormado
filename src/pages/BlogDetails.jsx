@@ -19,7 +19,6 @@ const BlogDetails = () => {
   const [blogSection, setBlogSection] = useState([]);
 
   useEffect(() => {
-    // Blog listəsini yükləmək
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
         console.log("Blog List Data:", res.data);
