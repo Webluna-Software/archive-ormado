@@ -43,6 +43,21 @@ const EventDetails = () => {
     return "";
   };
 
+  //  // Mətnin boşluqla bitməməsini yoxlayan funksiya
+  //  const isValidText = (text) => {
+  //   return text && text.trim() !== "";
+  // };
+
+  // // Şəkil URL-inin düzgünlüyünü yoxlayan funksiya
+  // const isValidImageUrl = (url) => {
+  //   return url && url.trim() !== "" && url !== "undefined";
+  // };
+
+  // // Video URL-inin düzgünlüyünü yoxlayan funksiya
+  // const isValidVideoUrl = (url) => {
+  //   return url && url.trim() !== "" && url !== "undefined" && getYoutubeEmbedUrl(url);
+  // };
+
   return (
     <>
       <section className="EventDetails">
@@ -73,16 +88,18 @@ const EventDetails = () => {
                             }}
                           />
                         </div>
-                        <div className=" event-video">
-                          <iframe
-                            width="100%"
-                            height="400px"
-                            src={getYoutubeEmbedUrl(eventDetails.video)}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
-                        </div>
+                        {eventDetails.video && eventDetails.video.trim() !== "" && eventDetails.video !== "undefined" && (
+                           <div className="event-video">
+                             <iframe
+                               width="100%"
+                               height="400px"
+                               src={getYoutubeEmbedUrl(eventDetails.video)}
+                               frameBorder="0"
+                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                               allowFullScreen
+                             ></iframe>
+                           </div>
+                        )}
                 </div>
               </div>
             </div>

@@ -22,37 +22,99 @@ const Blogs = () => {
   const [faqBlog, setFaqBlog] = useState([]);
 
   useEffect(() => {
-    // Blog məlumatlarını fetch et
-    axios
-      .get(`${ApiLink2}/blog`)
-      .then((res) => {
-        let blogData = res.data.blog;
-        // console.log(res.data.blog, "BLOQ MELUMATLARI");
-        // Aktiv blogları süz
-        blogData = blogData.filter((item) => item.active);
+    // // Blog məlumatlarını fetch et
+    // axios.get(`${ApiLink2}/blog`)
+    //   .then((res) => {
+    //     let blogData = res.data.blog;
+    //     // console.log(res.data.blog, "BLOQ MELUMATLARI");
+    //     // Aktiv blogları süz
+    //     blogData = blogData.filter((item) => item.active);
 
-        if (id === "all") {
-          // Blogları tarixə görə sırala
-          blogData = blogData.sort(
-            (a, b) => new Date(b.date) - new Date(a.date)
-          );
-          setBlog(blogData);
-        } else {
-          const filtered = blogData.filter(
-            (item) => item.blogCategory[0] == id
-          );
-          // Filtrlənmiş blogları sırala
-          const sortedFiltered = filtered.sort(
-            (a, b) => new Date(b.date) - new Date(a.date)
-          );
-          setBlog(sortedFiltered);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error("Error fetching blog data:", error);
-      });
+    //     if (id === "all") {
+    //       // Blogları tarixə görə sırala
+    //       blogData = blogData.sort(
+    //         (a, b) => new Date(b.date) - new Date(a.date)
+    //       );
+    //       setBlog(blogData);
+    //     } else {
+    //       const filtered = blogData.filter(
+    //         (item) => item.blogCategory[0] == id
+    //       );
+    //       // Filtrlənmiş blogları sırala
+    //       const sortedFiltered = filtered.sort(
+    //         (a, b) => new Date(b.date) - new Date(a.date)
+    //       );
+    //       setBlog(sortedFiltered);
+    //     }
+    //     setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setLoading(false);
+    //     console.error("Error fetching blog data:", error);
+    //   });
+    axios
+    .get(`${ApiLink2}/blog`)
+    .then((res) => {
+      let blogData = res.data.blog;
+
+      // Aktiv blogları süz
+      blogData = blogData.filter((item) => item.active);
+
+      if (id === "all") {
+        // Bütün blogları birdən çox kriteriyaya əsasən sırala
+        blogData = blogData.sort((a, b) => {
+          // Əvvəlcə id-yə görə sırala (ən böyük id birinci olsun)
+          if (a.id > b.id) return -1;
+          if (a.id < b.id) return 1;
+
+          // Əgər id-lər eynidirsə, tarixə görə sırala
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          if (dateA > dateB) return -1;
+          if (dateA < dateB) return 1;
+
+          // Əgər tarix də eynidirsə, order-ə görə sırala
+          if (a.order > b.order) return 1;
+          if (a.order < b.order) return -1;
+
+          return 0; // Əgər bütün kriteriyalar eynidirsə, sıranı dəyişmə
+        });
+
+        setBlog(blogData);
+      } else {
+        // Müəyyən kateqoriyaya aid olan blogları filtrlə
+        const filtered = blogData.filter(
+          (item) => item.blogCategory[0] === id
+        );
+
+        // Filtrlənmiş blogları birdən çox kriteriyaya əsasən sırala
+        const sortedFiltered = filtered.sort((a, b) => {
+          // Əvvəlcə id-yə görə sırala (ən böyük id birinci olsun)
+          if (a.id > b.id) return -1;
+          if (a.id < b.id) return 1;
+
+          // Əgər id-lər eynidirsə, tarixə görə sırala
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          if (dateA > dateB) return -1;
+          if (dateA < dateB) return 1;
+
+          // Əgər tarix də eynidirsə, order-ə görə sırala
+          if (a.order > b.order) return 1;
+          if (a.order < b.order) return -1;
+
+          return 0; // Əgər bütün kriteriyalar eynidirsə, sıranı dəyişmə
+        });
+
+        setBlog(sortedFiltered);
+      }
+
+      setLoading(false);
+    })
+    .catch((error) => {
+      setLoading(false);
+      console.error("Error fetching blog data:", error);
+    });
 
     // Blog bölməsini fetch et
     axios.get(`${ApiLink2}/blogSection`).then((res) => {
@@ -154,13 +216,13 @@ const Blogs = () => {
                   </div>
                   <div className="cardsBlogs row m-0 ">
                     {blog
-                      .sort((a, b) => {
-                        if (a.row > b.row) {
-                          return 1;
-                        } else {
-                          return -1;
-                        }
-                      })
+                      // .sort((a, b) => {
+                      //   if (a.row > b.row) {
+                      //     return 1;
+                      //   } else {
+                      //     return -1;
+                      //   }
+                      // })
                       .slice(0, visible)
                       .map((item, i) => (
                         <div
