@@ -77,33 +77,33 @@ const Blogs = () => {
           if (a.order > b.order) return 1;
           if (a.order < b.order) return -1;
 
-          return 0; // Əgər bütün kriteriyalar eynidirsə, sıranı dəyişmə
+          return 0; 
         });
 
         setBlog(blogData);
       } else {
-        // Müəyyən kateqoriyaya aid olan blogları filtrlə
+
         const filtered = blogData.filter(
           (item) => item.blogCategory[0] === id
         );
 
-        // Filtrlənmiş blogları birdən çox kriteriyaya əsasən sırala
+
         const sortedFiltered = filtered.sort((a, b) => {
-          // Əvvəlcə id-yə görə sırala (ən böyük id birinci olsun)
+
           if (a.id > b.id) return -1;
           if (a.id < b.id) return 1;
 
-          // Əgər id-lər eynidirsə, tarixə görə sırala
+  
           const dateA = new Date(a.date);
           const dateB = new Date(b.date);
           if (dateA > dateB) return -1;
           if (dateA < dateB) return 1;
 
-          // Əgər tarix də eynidirsə, order-ə görə sırala
+
           if (a.order > b.order) return 1;
           if (a.order < b.order) return -1;
 
-          return 0; // Əgər bütün kriteriyalar eynidirsə, sıranı dəyişmə
+          return 0; 
         });
 
         setBlog(sortedFiltered);
