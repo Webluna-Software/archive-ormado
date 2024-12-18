@@ -19,7 +19,7 @@ const Events = () => {
     ])
       .then(([bannerRes, res]) => {
         const eventData = res.data.data;
-        // console.log("Event data:", eventData);
+        console.log("Event data:", eventData);
         setEvent(eventData);
 
         const reservData = bannerRes.data.reservBanner[0];
@@ -32,11 +32,11 @@ const Events = () => {
         setLoading(false);
       });
   }, []);
-  
+
   return (
     <>
       <section className="eventsPage">
-      <div className="Reverse-title col-12 col-md-12 col-sm-12">
+        <div className="Reverse-title col-12 col-md-12 col-sm-12">
           <div className="first-card-img">
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
@@ -97,24 +97,61 @@ const Events = () => {
                   ))}
                 </div> */}
                   <div className="cardsEvents row row-cols-1 row-cols-md-4 g-4">
-                    {event.filter((fd) => fd.active) .map((fd, index) => (
-                      <div  className="col-lg-3 col-md-4 col-sm-6 col-12 "  key={index}>
-                        <div className="card  eventcard  h-100">
-                          <LazyLoad>
-                            <Link  to={`/eventDetails/${fd._id}`}  style={{ color: "#000" }}  onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
-                              <img  src={fd.image}  alt={fd.title}  className="event-image card-img-top"/>
-                            </Link>
-                          </LazyLoad>
-                          <div className="card-body event-body">
-                            <h5 className="card-title">{fd.title}</h5>
-                            <p  className="card-text"  dangerouslySetInnerHTML={{ __html: fd.desc }}/>
-                            <Link  to={`/eventDetails/${fd._id}`}  style={{ color: "#000" }}  onClick={() => {    window.scrollTo({ top: 0, behavior: "smooth" });  }}>
+                    {event
+                      .sort((a, b) => {
+                        if (a.row > b.row) {
+                          return -1;
+                        } else {
+                          return 1;
+                        }
+                      })
+                      .filter((fd) => fd.active)
+                      .map((fd, index) => (
+                        <div
+                          className="col-lg-3 col-md-4 col-sm-6 col-12 "
+                          key={index}
+                        >
+                          <div className="card  eventcard  h-100">
+                            <LazyLoad>
+                              <Link
+                                to={`/eventDetails/${fd._id}`}
+                                style={{ color: "#000" }}
+                                onClick={() => {
+                                  window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth",
+                                  });
+                                }}
+                              >
+                                <img
+                                  src={fd.image}
+                                  alt={fd.title}
+                                  className="event-image card-img-top"
+                                />
+                              </Link>
+                            </LazyLoad>
+                            <div className="card-body event-body">
+                              <h5 className="card-title">{fd.title}</h5>
+                              <p
+                                className="card-text"
+                                dangerouslySetInnerHTML={{ __html: fd.desc }}
+                              />
+                              <Link
+                                to={`/eventDetails/${fd._id}`}
+                                style={{ color: "#000" }}
+                                onClick={() => {
+                                  window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth",
+                                  });
+                                }}
+                              >
                                 <span> Read more</span>
-                            </Link>
+                              </Link>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>

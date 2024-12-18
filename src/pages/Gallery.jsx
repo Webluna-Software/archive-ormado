@@ -30,11 +30,9 @@ const Gallery = () => {
       })
       .catch(() => {
         setLoading(false);
-        // Optionally, handle the error (e.g., show an error message)
       });
   }, [ApiLink2]);
 
-  // console.log(gallery, "gall");
 
   const getYoutubeEmbedUrl = (url) => {
     let videoId = null;

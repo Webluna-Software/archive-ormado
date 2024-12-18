@@ -145,7 +145,7 @@ const OurStory = () => {
                         <img
                           src={image}
                           alt={`Roasting image ${index + 1}`}
-                          className="img-fluid"
+                          className="img-fluid w-100"
                         />
                       </LazyLoad>
                     </div>
