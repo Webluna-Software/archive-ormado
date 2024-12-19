@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const decodeHtmlEntities = (text) => {
   const txt = document.createElement('textarea');
@@ -8,157 +8,73 @@ const decodeHtmlEntities = (text) => {
 
 const stripHtmlTags = (html) => {
   return html.replace(/<\/?[^>]+(>|$)/g, "");
-};;
+};
+
 const Faq = ({ faqs }) => {
-  const activeFaqs = faqs.filter((item)=>item.active);
+  const activeFaqs = faqs.filter((item) => item.active);
+  const [openIndex, setOpenIndex] = useState(0); 
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? -1 : index);
+  };
 
   return (
     <>
-      {activeFaqs.length > 0 &&  (
-          <div className="Faqs">
-        <div className="container1">
-          <div className="Center">
-            <div className="title">
-              <div className="line"></div>
-              <div className="upper">
-                <h5>FAQ</h5>
+      {activeFaqs.length > 0 && (
+        <div className="Faqs">
+          <div className="container1">
+            <div className="Center">
+              <div className="title">
+                <div className="line"></div>
+                <div className="upper">
+                  <h5>FAQ</h5>
+                </div>
               </div>
-            </div>
 
-            <div className="question">
-              <h1>
-                 Questions ? <span>Look here</span>
-              </h1>
-            </div>
+              <div className="question">
+                <h1>
+                  Questions ? <span>Look here</span>
+                </h1>
+              </div>
 
-            <div className="accordion " id="accordionExample">
-              {activeFaqs.map((item, i) => {
-                return  ( 
-                  <div
-                    className="accordion-item"
-                    id={`first${i}`}
+              <div className="accordion" id="accordionExample">
+                {activeFaqs.map((item, i) => (
+                  <AccordionItem
                     key={item._id}
-                  >
-                    <h2 className="accordion-header">
-                      <button
-                        id={i}
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target={`#collapse${i}`}
-                        aria-expanded="false"
-                        aria-controls={`collapse${i}`}
-                      >
-                        <h6>{item.title}</h6>
-                      </button>
-                    </h2>
-                    <div
-                      id={`collapse${i}`}
-                      className={`accordion-collapse collapse ${
-                        i == 0 ? "show" : ""
-                      }`}
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        {/* <p
-                          className="lorem1"
-                          dangerouslySetInnerHTML={{ __html: item.text }}
-                        /> */}
-                        <p className="lorem1">   {stripHtmlTags(decodeHtmlEntities(item.text))}</p>
-                      </div>
-                    </div>
-                  </div>
-                ) 
-              })}
+                    index={i}
+                    title={item.title}
+                    text={item.text}
+                    isOpen={openIndex === i} 
+                    toggleAccordion={toggleAccordion}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-        )
-      }
+      )}
     </>
   );
 };
 
+const AccordionItem = ({ index, title, text, isOpen, toggleAccordion }) => {
+  return (
+    <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button    className={`custom-accordion-button ${isOpen ? 'open' : 'collapsed'}`}    type="button"    onClick={() => toggleAccordion(index)} >
+          <h6 className="accordion-title">{title}</h6>
+          <i    className={`accordion-icon fa-solid fa-chevron-right ${isOpen ? 'rotate' : ''}`} ></i>
+        </button>
+      </h2>
+      <div className={`accordion-collapse collapse ${isOpen ? 'show' : ''}`} data-bs-parent="#accordionExample">
+        <div className="accordion-body">
+          <p className="lorem1">{stripHtmlTags(decodeHtmlEntities(text))}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
 export default Faq;
-
-
-
-// import axios from "axios";
-// import { useContext, useEffect, useState } from "react";
-// import ApiLinkContext from "../../context/ApiLinkContext";
-
-// const Faq = ({ faqs }) => {
-//   const [faq, setFaq] = useState([]);
-//   const { ApiLink2 } = useContext(ApiLinkContext);
-//   useEffect(() => {
-//     axios.get(`${ApiLink2}/faq`)
-//       .then((res) => {
-//         setFaq(res.data.data); 
-//         console.log(res.data.data, "Faq");
-//       })
-//       .catch((error) => {
-//         console.error("FAQ verisi alınamadı:", error);
-//       });
-//   }, [ApiLink2, faqs]); 
-
-//   return (
-//     <>
-//       {faq.length > 0 && (
-//         <div className="Faqs">
-//           <div className="container1">
-//             <div className="Center">
-//               <div className="title">
-//                 <div className="line"></div>
-//                 <div className="upper">
-//                   <h5>FAQ</h5>
-//                 </div>
-//               </div>
-
-//               <div className="question">
-//                 <h1>
-//                   Questions ? <span>Look here</span>
-//                 </h1>
-//               </div>
-
-//               <div className="accordion" id="accordionExample">
-//                 {faq.map((item, i) => (
-//                   <div className="accordion-item" key={item._id}>
-//                     <h2 className="accordion-header">
-//                       <button
-//                         className="accordion-button collapsed"
-//                         type="button"
-//                         data-bs-toggle="collapse"
-//                         data-bs-target={`#collapse${i}`}
-//                         aria-expanded="false"
-//                         aria-controls={`collapse${i}`}
-//                       >
-//                         <h6>{item.title}</h6>
-//                       </button>
-//                     </h2>
-//                     <div
-//                       id={`collapse${i}`}
-//                       className={`accordion-collapse collapse ${
-//                         i === 0 ? "show" : ""
-//                       }`}
-//                       data-bs-parent="#accordionExample"
-//                     >
-//                       <div className="accordion-body">
-//                         <p
-//                           className="lorem1"
-//                           dangerouslySetInnerHTML={{ __html: item.text }}
-//                         />
-//                       </div>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </>
-//   );
-// };
-
-// export default Faq;
