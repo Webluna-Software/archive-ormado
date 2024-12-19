@@ -28,7 +28,7 @@ const PaymentsWithMpay = () => {
             <div className="mobileImg">
               <img
                 src={mobile}
-                alt="mobile image"
+                alt="Mobile Image"
                 className="img-fluid "
                 style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />

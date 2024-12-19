@@ -114,7 +114,7 @@ console.log(wishProducts,"wish");
     <section className="wishlist">
       <div className="section-fluid">
         <div className="image-container">
-          <img src={bgimg} alt="wishlist banner image" className="img-fluid" />
+          <img src={bgimg} alt="Wishlist Banner Image" className="img-fluid" />
           <div className="image-overlay">
             <h3>My Wishlist</h3>
           </div>
@@ -141,7 +141,7 @@ console.log(wishProducts,"wish");
                         <div className="product-img">
                           <img
                             src={item.coverImage}
-                            alt="product image"
+                            alt="Product Image"
                             className="img-fluid"
                           />
                         </div>
@@ -197,7 +197,7 @@ console.log(wishProducts,"wish");
               <div className="container mobile-wishlist" key={item.productId}>
                 <div className="d-flex flex-column align-items-center">
                   <div className="product-img">
-                    <img src={item.coverImage} alt="product image" className="img-fluid" />{" "}
+                    <img src={item.coverImage} alt="Product Image" className="img-fluid" />{" "}
                   </div>
                   <div className="title">{item.title}</div>
                 </div>

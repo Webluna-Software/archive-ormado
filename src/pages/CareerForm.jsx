@@ -263,10 +263,10 @@ const CareerForm = () => {
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
               src={card}
-              alt="banner image"
+              alt="Banner Image"
             />
           </div>
-          <img className="background img-fluid" src={background} alt="backgorund image" />
+          <img className="background img-fluid" src={background} alt="" />
           <div className="firtst-card-title">
             <p>Career</p>
           </div>

@@ -65,7 +65,7 @@ const OurRecentBlog = () => {
                   {blog.slice(0,3).map((item, i) => (
 
                     <div className="blogcard col-12 col-md-4 col-lg-3" key={i}>
-                      <figure><img src={item.coverImage} alt="rectangle127" /></figure>
+                      <figure><img src={item.coverImage} alt="Image" /></figure>
                       <div className="card-header">
                         <p className='p-title'>{item.title}</p>
                         <p

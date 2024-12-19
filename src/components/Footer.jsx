@@ -33,7 +33,7 @@ const Footer = () => {
         <footer>
           <div className="footer-top">
             <div className="logo-div">
-              <img src={logo} alt="logo image" />
+              <img src={logo} alt="Logo Image" />
               <div className="form-group">
                 <label htmlFor="newsletter1" className="mt-3">
                   Join the family!
@@ -211,7 +211,7 @@ const Footer = () => {
         <footer>
           <div className="footer-top">
             <div className="logo-div d-flex align-items-center justify-content-between">
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="Logo Image" />
               <SocialMedia/>
             </div>
 

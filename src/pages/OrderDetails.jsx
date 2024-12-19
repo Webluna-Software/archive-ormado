@@ -27,7 +27,7 @@ const OrderDetails = () => {
     <section className="orderdetails">
       <div className="section-fluid">
       <div className="image-container">
-            <img src={bgimg} alt="order banner image" className='img-fluid' />
+            <img src={bgimg} alt="Order Banner Image" className='img-fluid' />
             <div className="image-overlay">
                 <h3>My Order</h3>
             </div>

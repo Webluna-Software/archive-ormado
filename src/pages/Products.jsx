@@ -195,7 +195,7 @@ return (
                   <img
                     src={productImg}
                     className="img-fluid rounded"
-                    alt="bannerImage"
+                    alt="Banner Image"
                   />
                   <div className="img-text-context">
                     <h4>New Product</h4>
@@ -262,7 +262,7 @@ return (
                   <img
                     src={ productImg}
                     className="img-fluid rounded"
-                    alt="bannerImage"
+                    alt="Banner Image"
                   />
                   <div className="img-text-context">
                   <h2>Special Campaign</h2>

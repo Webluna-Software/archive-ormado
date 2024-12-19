@@ -61,7 +61,7 @@ const Franchise = () => {
           </div>
 
           <div className="right">
-            <img className="img-fluid" src={franchise} alt="franchise image" />
+            <img className="img-fluid" src={franchise} alt="Franchise Image" />
           </div>
         </div>
 

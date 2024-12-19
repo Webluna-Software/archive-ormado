@@ -86,7 +86,7 @@ const Clients = () => {
                         <div className="clients-img">
                           <img
                             src={partner.image}
-                            alt="partner image"
+                            alt="Partner image"
                             className="img-fluid"
                             style={{cursor:"pointer"}}
                             onClick={() => {

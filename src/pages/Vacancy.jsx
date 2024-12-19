@@ -53,7 +53,7 @@ const Vacancy = () => {
                           </a>
                         </div>
                         <div className="lowerside mt-2">
-                          <img src={iconlocation} alt="location icon image" />
+                          <img src={iconlocation} alt="Location icon image" />
                           <h2 className="ms-2 mt-2">{item.adress}</h2>
                         </div>
                       </div>

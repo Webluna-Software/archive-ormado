@@ -65,7 +65,7 @@ const NewSweets = () => {
         <SwiperSlide>
         <div className="swiper-main">
              <div className="img">
-                <img src={sliderData.image} alt="slider image" className='img-fluid' /> 
+                <img src={sliderData.image} alt="Slider image" className='img-fluid' /> 
               </div>
               <div className="swiper-background"></div>
               <div className="swiper-text container">

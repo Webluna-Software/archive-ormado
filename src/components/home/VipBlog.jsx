@@ -54,7 +54,7 @@ const VipBlog = () => {
                         onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                       >
                         <figure>
-                          <img src={fd.coverImage} alt="blogImage" />
+                          <img src={fd.coverImage} alt="Blog Image" />
                         </figure>
                         <div className="card-header">
                           <p className="p-title">{fd.title}</p>

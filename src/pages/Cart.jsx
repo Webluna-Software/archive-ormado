@@ -181,7 +181,7 @@ const Cart = () => {
     <section className="cart">
       <div className="section-fluid">
         <div className="image-container">
-          <img src={bgimg} alt="cart banner image" className="img-fluid" />
+          <img src={bgimg} alt="Cart Banner Image" className="img-fluid" />
           <div className="image-overlay">
             <h3>My Cart</h3>
           </div>
@@ -213,7 +213,7 @@ const Cart = () => {
                   <tr key={product.productId}>
                     <td>
                       <div className="product-img">
-                        <img src={product.coverImage} alt="product image" />
+                        <img src={product.coverImage} alt="Product Image" />
                       </div>
                     </td>
                     <td className="product-title">{product.title}</td>
@@ -310,7 +310,7 @@ const Cart = () => {
                       <div className="cart-img">
                         <img
                           src={product.coverImage}
-                          alt="product image"
+                          alt="Product Image"
                           className="img-fluid"
                         />
                       </div>

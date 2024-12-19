@@ -81,7 +81,7 @@ const BestOffer = () => {
                         {cartData.slice(0, 3).map((item) => (
                           <div className='card-part2 ' key={item.id}>
                             <div className="card-img col-md-3 col-lg-3 " >
-                              <img src={item.coverImage[0]} className="img-fluid rounded-start " alt="bestoffer image" />
+                              <img src={item.coverImage[0]} className="img-fluid rounded-start " alt="Bestoffer Image" />
                             </div>
                             <div className="card-body-main col-md-8 d-flex justify-content-center">
                               <div className="card-main-text">

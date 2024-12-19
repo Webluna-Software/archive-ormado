@@ -62,7 +62,7 @@ const Delivery = () => {
                           <p className=" body-text ">Uber Eats and let your favorites come to you.</p>
                           </div>
                           <div className="img-part  col-12 col-sm-6 col-md-6">
-                            <img src={img} className="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"  loading="lazy" />
+                            <img src={img} className="d-block mx-lg-auto img-fluid" alt="Delivery Image"  loading="lazy" />
                           </div>
                         </div>
                 </div>

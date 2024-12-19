@@ -73,7 +73,7 @@ useEffect(() => {
                       <SwiperSlide   key={i}>
                         <div className="d-flex justify-content-end swiperImgBox ">
                           <div className="imagesfluid">
-                            <img src={fd.image[0]} alt="swiperimage" className=" imgSwiperCoffe"/> 
+                            <img src={fd.image[0]} alt="Swiper image" className=" imgSwiperCoffe"/> 
                           </div>
                           <div className="swiperOpacity">
                             <div className="swiperMobileContainer" style={{ display: "block" }}>   

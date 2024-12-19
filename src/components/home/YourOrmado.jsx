@@ -190,7 +190,7 @@ console.log(wishStatus,"status");
                 <img
                   src={fd.coverImage}
                   className="card-img-top py-5"
-                  alt="product image"
+                  alt="Product Image"
                 />
               </Link>
               <div className="wishlist-modal">

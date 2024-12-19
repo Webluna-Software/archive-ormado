@@ -173,7 +173,7 @@ const SignUp = () => {
         <div className="signup-card">
           <div className="signup-logo">
             <Link to={"/"}>
-              <img src={logo} alt="Logo" />
+              <img src={logo} alt="Logo Image" />
             </Link>
           </div>
           <div className="signup-card-main">

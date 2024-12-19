@@ -63,7 +63,7 @@ const Checkout = () => {
     <section className="checkout">
       <div className="section-fluid">
         <div className="image-container">
-          <img src={bgimg} alt="checkout banner image" className="img-fluid" />
+          <img src={bgimg} alt="Checkout Banner Image" className="img-fluid" />
           <div className="image-overlay">
             <h3>My Checkout</h3>
           </div>
@@ -153,7 +153,7 @@ const Checkout = () => {
            {cartProducts.map((item)=>(
             <div className="checkout-item d-flex justify-content-between align-items-center mb-4" key={item._id}>
               <div className="checkout-img">
-                <img src={item.coverImage} className="img-fluid" alt="product image" />
+                <img src={item.coverImage} className="img-fluid" alt="Product Image" />
               </div>
               <p className="checkout-title">
               {item.title} <span>x{item.quantity}</span>

@@ -206,7 +206,7 @@ const Franchise = () => {
           </div>
         </div>
         <div className="part2">
-          <img src={img} alt="ampersand image" />
+          <img src={img} alt="Ampersand Image" />
         </div>
         <div className="termConditions"  onClick={handleRedirect}>
           <div className="termConditions-icon mt-2">

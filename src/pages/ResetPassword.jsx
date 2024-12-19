@@ -86,7 +86,7 @@ const ResetPassword = () => {
               <div className="login-card">
                 <div className="login-logo">
                   <Link to={'/'}>
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt="Logo Image" />
                   </Link>
                 </div>
                 <div className="login-card-main">
@@ -150,7 +150,7 @@ const ResetPassword = () => {
               </div>
               <div className="login-img">
                 <div className="image-container">
-                  <img src={loginimg} alt="login banner image" className="img-fluid" />
+                  <img src={loginimg} alt="Login Image" className="img-fluid" />
                   <div className="image-overlay">
                     <h1>WELCOME TO ORMADO KAFFEEHAUS</h1>
                   </div>

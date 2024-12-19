@@ -111,7 +111,7 @@ const FranchiseForm = () => {
           <img
             className="franchiseform-img"
             src={img.image}
-            alt="franchise image"
+            alt="Franchise Image"
           />
         </div>
         <div className="franchiseform-part2">

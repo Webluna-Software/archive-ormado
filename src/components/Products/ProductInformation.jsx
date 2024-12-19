@@ -8,7 +8,7 @@ const ProductInformation = () => {
       <section className='product-information-page'>
         <div className="product-information-headline">
           <div className="image-container">
-            <img src={HeadlineImg} alt="banner image" className='img-fluid' />
+            <img src={HeadlineImg} alt="Banner Image" className='img-fluid' />
             <div className="image-overlay">
                 <h3>NUTRITION AND ALLERGENS</h3>
             </div>
@@ -17,7 +17,7 @@ const ProductInformation = () => {
 
           <div className="product-information-context my-5 pt-lg-5">
             <div className="img-context">
-                <img src={ProductInfoImg} alt="product info image" className='img-fluid' />
+                <img src={ProductInfoImg} alt="Product  Image" className='img-fluid' />
             </div>
             <div className="text-context">
                 <h3>Product <span>information</span></h3>

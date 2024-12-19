@@ -31,7 +31,7 @@ const EnjoyOurCoffee = () => {
                 <div className="EnjoyOurCoffeeImage">
                   <img
                     src={enjoyImage}
-                    alt="EnjoyOurCoffeeImage"
+                    alt="EnjoyOurCoffee Image"
                     className="img-fluid "
                   />
                 </div>
@@ -137,7 +137,7 @@ const EnjoyOurCoffee = () => {
                                   </div> */}
                                 </div>
                                 <div className="imagefluid">
-                                  <img src={i.coverImage} alt="energy_drink" />
+                                  <img src={i.coverImage} alt="Energy drink" />
                                 </div>
                                 <p className="name text-center">{i.title}</p>
                               </div>

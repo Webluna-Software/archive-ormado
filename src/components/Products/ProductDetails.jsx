@@ -134,7 +134,7 @@ const handlePost = async (productId) => {
               <img
                 src={productImg}
                 className="img-fluid rounded"
-                alt="product banner image"
+                alt="Product Banner Image"
               />
               <div className="img-text-context">
                 <h4>New Product</h4>

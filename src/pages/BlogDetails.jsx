@@ -220,7 +220,7 @@ const BlogDetails = () => {
                                   <img
                                     src={section.image}
                                     className="img-fluid w-100"
-                                    alt="section-img"
+                                    alt="Blog Section Image"
                                   />
                                 </LazyLoad>
                               </div>
