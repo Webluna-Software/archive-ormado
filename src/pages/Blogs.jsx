@@ -61,8 +61,7 @@ const Blogs = () => {
     });
 
     // FAQ məlumatlarını fetch et
-    axios
-      .get(`${ApiLink2}/faqBlog`)
+    axios.get(`${ApiLink2}/faqBlog`)
       .then((res) => {
         setFaqBlog(res.data.data);
         console.log(res.data.faqBlog, "FAQ MELUMATLARI");

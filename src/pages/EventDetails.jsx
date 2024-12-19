@@ -43,21 +43,6 @@ const EventDetails = () => {
     return "";
   };
 
-  //  // Mətnin boşluqla bitməməsini yoxlayan funksiya
-  //  const isValidText = (text) => {
-  //   return text && text.trim() !== "";
-  // };
-
-  // // Şəkil URL-inin düzgünlüyünü yoxlayan funksiya
-  // const isValidImageUrl = (url) => {
-  //   return url && url.trim() !== "" && url !== "undefined";
-  // };
-
-  // // Video URL-inin düzgünlüyünü yoxlayan funksiya
-  // const isValidVideoUrl = (url) => {
-  //   return url && url.trim() !== "" && url !== "undefined" && getYoutubeEmbedUrl(url);
-  // };
-
   return (
     <>
       <section className="EventDetails">
