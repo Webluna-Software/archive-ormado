@@ -27,7 +27,7 @@ const OrderDetails = () => {
     <section className="orderdetails">
       <div className="section-fluid">
       <div className="image-container">
-            <img src={bgimg} alt="" className='img-fluid' />
+            <img src={bgimg} alt="order banner image" className='img-fluid' />
             <div className="image-overlay">
                 <h3>My Order</h3>
             </div>
@@ -146,7 +146,7 @@ const OrderDetails = () => {
               
               <div className="d-flex w-100 justify-content-between">
               <div className="orderdetails-item__img">
-                <img src={orderimg} alt="" className="img-fluid" />
+                <img src={orderimg} alt="order image" className="img-fluid" />
               </div>
                 <div className="orderdetail-card-parts">
                   <p className="detail-title">Name</p>
@@ -170,7 +170,7 @@ const OrderDetails = () => {
               
               <div className="d-flex w-100 justify-content-between">
               <div className="orderdetails-item__img">
-                <img src={orderimg} alt="" className="img-fluid" />
+                <img src={orderimg} alt="order image" className="img-fluid" />
               </div>
                 <div className="orderdetail-card-parts">
                   <p className="detail-title">Name</p>
@@ -195,7 +195,7 @@ const OrderDetails = () => {
                 <div className="col-sm-12 col-md-12 col-lg-12 p-4 g-0 border rounded-5  flex-md-row mb-4 shadow-sm">
                   <div className="d-flex align-items-center justify-content-between mobile-content">
                     <div className="order-img">
-                      <img src={orderimg} alt="err" className="img-fluid" />
+                      <img src={orderimg} alt="order image" className="img-fluid" />
                     </div>
                     <div className="mobile-content-header">
                       <div className="d-flex content-title text-end">
@@ -216,7 +216,7 @@ const OrderDetails = () => {
                 <div className="col-sm-12 col-md-12 col-lg-12 p-4 g-0 border rounded-5  flex-md-row mb-4 shadow-sm">
                   <div className="d-flex align-items-center justify-content-between mobile-content">
                     <div className="order-img">
-                      <img src={orderimg} alt="err" className="img-fluid" />
+                      <img src={orderimg} alt="order image" className="img-fluid" />
                     </div>
                     <div className="mobile-content-header">
                       <div className="d-flex content-title text-end">

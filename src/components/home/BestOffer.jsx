@@ -42,7 +42,7 @@ const BestOffer = () => {
             <div className="bestOffer-img  ">
               <div className="img-main ms-5">
                 <div className=" bestofferImg">
-                <img className='bestofferImg' src={BestOfferImg} alt="error" />
+                <img className='bestofferImg' src={BestOfferImg} alt="Best Offer image" />
                 </div>
                 <div className="background"></div>
                 <div className="card-main">
@@ -81,7 +81,7 @@ const BestOffer = () => {
                         {cartData.slice(0, 3).map((item) => (
                           <div className='card-part2 ' key={item.id}>
                             <div className="card-img col-md-3 col-lg-3 " >
-                              <img src={item.coverImage[0]} className="img-fluid rounded-start " alt="..." />
+                              <img src={item.coverImage[0]} className="img-fluid rounded-start " alt="bestoffer image" />
                             </div>
                             <div className="card-body-main col-md-8 d-flex justify-content-center">
                               <div className="card-main-text">
@@ -100,7 +100,7 @@ const BestOffer = () => {
                 {/* {cartData.map((item)=>(
                   <div className='card-part2'>
                   <div className="card-img col-md-3 col-lg-3 " >
-                   <img src={item.coverImage[0]}className="img-fluid rounded-start m-1" alt="..." />
+                   <img src={item.coverImage[0]}className="img-fluid rounded-start m-1" alt="image" />
                   </div>
                   <div className="card-body col-md-8 d-flex align-items-center justify-content-center">
                   <div className="card-body-main">

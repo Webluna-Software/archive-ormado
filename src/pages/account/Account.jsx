@@ -80,7 +80,7 @@ useEffect(() => {
       <section className="account">
         <div className="section-fluid">
           <div className="image-container">
-            <img src={bgimg} alt="" className="img-fluid" />
+            <img src={bgimg} alt="account banner image" className="img-fluid" />
             <div className="image-overlay">
               <h3>My Account</h3>
             </div>

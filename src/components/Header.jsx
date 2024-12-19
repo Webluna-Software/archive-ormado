@@ -153,7 +153,7 @@ const Header = () => {
         <div className="header_container">
           <div>
             <Link to="/">
-              <img src={Logo} alt="" />
+              <img src={Logo} alt="logo image" />
             </Link>
           </div>
           <div className="header_search" ref={searchFormRef}>
@@ -195,7 +195,7 @@ const Header = () => {
             <div className="cart">
               <img
                 src={cart}
-                alt=""
+                alt="cart icon image"
                 className="img-fluid"
                 onClick={() => {
                   navigate("/basket");
@@ -374,7 +374,7 @@ const Header = () => {
       <header className="mobile-header">
         <div className="d-flex align-items-center justify-content-between">
           <Link to="/">
-            <img src={Logo} alt="" className="mobile-logo" />
+            <img src={Logo} alt="logo image" className="mobile-logo" />
           </Link>
           <div className="mobile-icons d-flex align-items-center">
             <svg

@@ -139,7 +139,7 @@ const CareerPage = () => {
             </div>
             </div>
             <p className="card-text"><i className="fa-solid fa-angle-right"></i></p>
-            <p className='location'> <img src={location} alt="" /><span>Berlin (Germany)</span></p>
+            <p className='location'> <img src={location} alt="location image" /><span>Berlin (Germany)</span></p>
           </div>
         </div>
         </div>
@@ -154,7 +154,7 @@ const CareerPage = () => {
             </div>
             </div>
             <p className="card-text"><i className="fa-solid fa-angle-right"></i></p>
-            <p className='location'> <img src={location} alt="" /><span>Berlin (Germany)</span></p>
+            <p className='location'> <img src={location} alt="location image" /><span>Berlin (Germany)</span></p>
           </div>
         </div>
         </div>
@@ -169,7 +169,7 @@ const CareerPage = () => {
             </div>
             </div>
             <p className="card-text"><i className="fa-solid fa-angle-right"></i></p>
-            <p className='location'> <img src={location} alt="" /><span>Berlin (Germany)</span></p>
+            <p className='location'> <img src={location}alt=" location image" /><span>Berlin (Germany)</span></p>
           </div>
         </div>
         </div> */}

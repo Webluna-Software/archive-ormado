@@ -84,7 +84,7 @@ const ForgotPass = () => {
       </div>
       <div className="forgotpass-img">
         <div className="image-container">
-          <img src={loginimg} alt="" className="img-fluid" />
+          <img src={loginimg} alt="login banner image" className="img-fluid" />
           <div className="image-overlay">
             <h1>WELCOME TO ORMADO KAFFEEHAUS</h1>
           </div>

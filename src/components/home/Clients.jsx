@@ -86,7 +86,7 @@ const Clients = () => {
                         <div className="clients-img">
                           <img
                             src={partner.image}
-                            alt=""
+                            alt="partner image"
                             className="img-fluid"
                             style={{cursor:"pointer"}}
                             onClick={() => {
@@ -101,30 +101,6 @@ const Clients = () => {
                         </div>
                       </div>
                     ))}
-                    {/* <div className="col-12 col-md-2">
-                  <div className="clients-img">
-                    <img src='https://i0.wp.com/www.modest.coffee/wp-content/uploads/2018/02/la-marzocco-logo.png?fit=285%2C166&ssl=1' alt="" className="img-fluid" />
-                  </div>
-                </div> <div className="col-12 col-md-2">
-                  <div className="clients-img">
-                    <img src='https://b2b.mallofberlin.de/wp-content/themes/dshg/images/logo-min.png' alt="" className="img-fluid" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-2">
-                  <div className="clients-img">
-                    <img src='https://res.cloudinary.com/westfielddg/image/upload/westfield-media/de/retailer/logos/o8l8x0qb6xnjfstrqpll.png' alt="" className="img-fluid" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-2">
-                  <div className="clients-img">
-                    <img src={removebg} alt="" className="img-fluid" />
-                  </div>
-                </div>
-                <div className="col-12 col-md-2">
-                  <div className="clients-img">
-                    <img src='https://cdn.metro-online.com/-/media/Project/MCW/shared/Bucket-Header/METRO.svg?rev=-1&w=129&hash=DB804DB52AB628282509929F5704CC77' alt="" className="img-fluid" />
-                  </div>
-                </div> */}
                   </Slider>
                 </div>
               </div>

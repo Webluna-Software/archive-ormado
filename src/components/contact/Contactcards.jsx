@@ -10,18 +10,18 @@ const Contactcards = () => {
       
         <div className="row ms-0 mt-3">
             <div className="image1">
-              <img src={first} alt="" />
+              <img src={first} alt="contact cards image" />
             </div>
           <div className="image2">
-              <img src={second} alt="" />
+              <img src={second} alt="conract cards image" />
             </div>
           
           <div className="image3">
-              <img src={third} alt="" />
+              <img src={third} alt="contact cards image" />
             </div>
           
           <div className="image4">
-              <img src={fourth} alt="" />
+              <img src={fourth} alt="contact cards image" />
             </div>
         </div>
     </div>

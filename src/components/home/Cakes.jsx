@@ -53,7 +53,7 @@ const Cakes = () => {
                 {/* 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={sansebastian}  className="card-img-top" alt="..." />
+                        <img src={sansebastian}  className="card-img-top" alt="image" />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">San Sebastian </h5>
 
@@ -63,7 +63,7 @@ const Cakes = () => {
 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={croissant} className="card-img-top" alt="..." />
+                        <img src={croissant} className="card-img-top" alt="image" />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Croissant</h5>
                         </div>                        
@@ -72,7 +72,7 @@ const Cakes = () => {
 
                 <div className="col-6 col-lg-4 col-xl-3">
                     <div className="card mt-4 " >
-                        <img src={cheesecake} className="card-img-top" alt="..." />
+                        <img src={cheesecake} className="card-img-top" alt="image" />
                             <div className="card-body">
                             <h5 className="card-title cardHeadText">Honey Cake</h5>
                         </div>                        

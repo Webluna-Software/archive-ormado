@@ -33,7 +33,7 @@ const Footer = () => {
         <footer>
           <div className="footer-top">
             <div className="logo-div">
-              <img src={logo} alt="" />
+              <img src={logo} alt="logo image" />
               <div className="form-group">
                 <label htmlFor="newsletter1" className="mt-3">
                   Join the family!
@@ -192,7 +192,7 @@ const Footer = () => {
                     </div>
                   </Link>
                 </div>
-                <img src={qrimg} alt="" />
+                <img src={qrimg} qr image />
               </div>
             </div>
           </div>

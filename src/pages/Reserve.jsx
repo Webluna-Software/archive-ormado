@@ -186,7 +186,7 @@ const Reserve = () => {
             <img
               className="img-fluid col-12 col-md-12 col-sm-12"
               src={reserv.image}
-              alt=""
+              alt="reserve image"
               id="bannerImg"
             />
           </div>

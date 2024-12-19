@@ -50,7 +50,7 @@ const NewSweets = () => {
 //     <SwiperSlide className='swiper-slide'>
 //     <div className="swiper-main">
 //       <div className="img">
-//       <img src="https://ormado.webluna.org/cdn/img/Rectangle603.png" alt="" /> 
+//       <img src="https://ormado.webluna.org/cdn/img/Rectangle603.png" alt="slider image" /> 
 //       </div>
 //       <div className="swiper-background"></div>
 //       <div className="swiper-text container">
@@ -65,7 +65,7 @@ const NewSweets = () => {
         <SwiperSlide>
         <div className="swiper-main">
              <div className="img">
-                <img src={sliderData.image} alt="" className='img-fluid' /> 
+                <img src={sliderData.image} alt="slider image" className='img-fluid' /> 
               </div>
               <div className="swiper-background"></div>
               <div className="swiper-text container">

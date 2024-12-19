@@ -64,7 +64,7 @@ const ContactLocation = () => {
                         <h6>{item.phone}</h6>
                         <h6>{item.workTime}</h6>
                         <h6>
-                          <img src={icon} alt="error" />
+                          <img src={icon} alt="icon image" />
                           <span className="ms-1">{item.address}</span>
                         </h6>
                       </div>

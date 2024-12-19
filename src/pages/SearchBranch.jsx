@@ -33,7 +33,7 @@ const SearchBranch = () => {
             id="bannerImg"
           />
         </div>
-        {/* <img className="background img-fluid" src={background} alt="" /> */}
+        {/* <img className="background img-fluid" src={background} alt="searchabranch image" /> */}
         <div className="first-card-title">
           {/* <p>{searchB.title}</p> */}
         </div>
