@@ -1,5 +1,7 @@
 .blogsPage {
     .container-fluid {
+        display: flex;
+        justify-content: center;
         padding: 0 80px;
         @media (max-width:1024px) {
           padding: 0 60px;
@@ -7,7 +9,10 @@
         @media (max-width:768px) {
           padding: 0 20px;
         }
-        .row {
+        .all-category {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
             .categoryTitle{
                 display: flex;
                 justify-content: center;
@@ -43,6 +48,7 @@
                     &:focus{
                         outline: none;
                     }
+                    
                 }
             }
             .blogs {
@@ -50,7 +56,7 @@
                 justify-content: flex-start;
                 flex-direction: column;
                 gap: 24px;
-                @media (min-width:"1600px") {
+                @media (min-width:1600px) {
                     padding: 0;
                     margin: 0;
                 }
