@@ -61,7 +61,7 @@ const Gallery = () => {
         <div>
         <section className="gallery">
           <div className="image-container">
-            <img src={banner.image} alt={banner.title} className="img-fluid" />
+            <img src={banner.image} alt={banner.title} className="img-fluid" id="bannerImg"/>
             <div className="image-overlay">
               <h3>{banner.title}</h3>
             </div>
