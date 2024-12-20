@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import productImg from "../assets/img/BlogComment.png";
+import productImg from "../assets/img/BlogComment.webp";
 import axios from "axios";
 import ApiLinkContext from "../context/ApiLinkContext";
 import { Link, useParams } from "react-router-dom";
