@@ -126,7 +126,7 @@ const FranchiseForm = () => {
               <div className="franchiseform-input-text">
                 <label htmlFor="name">
                   <p>
-                    Full name<span>*</span>
+                    Full name,or legal name of the company<span>*</span>
                   </p>
                 </label>
               </div>
@@ -171,7 +171,7 @@ const FranchiseForm = () => {
               <div className="franchiseform-input-text">
                 <label htmlFor="phone">
                   <p>
-                    Phone<span>*</span>
+                    Contact phone numbers<span>*</span>
                   </p>
                 </label>
               </div>
@@ -182,6 +182,7 @@ const FranchiseForm = () => {
                   value={phone}
                   onChange={handlePhoneChange}
                   placeholder="Enter your number"
+                  
                   // onChange={(e) => {
                   //   setphone(e.target.value)
                   //   setPhoneError(false)
@@ -205,14 +206,12 @@ const FranchiseForm = () => {
                 <input
                   id="phone"
                   type="text"
-                  placeholder="Enter your number"
                 />
               </div>
-
               <div className="franchiseform-input-text">
                 <label htmlFor="phone">
                   <p>
-                    What do you personally expect from a partnershop ? 
+                    Age <span>*</span>
                   </p>
                 </label>
               </div>
@@ -220,7 +219,173 @@ const FranchiseForm = () => {
                 <input
                   id="phone"
                   type="text"
-                  placeholder="Enter your number"
+                  
+                />
+              </div>
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    City of residence <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    City,where you plan to open Ormado Kaffehaus? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Desired opening date for Ormado Kaffehaus ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    What size of investments do you intend to invest in the project ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                   Availability of premises (short description)  <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                   Do you any experience in doing business in the field of F&B ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Do you have any experience in franchising ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                   Do you intend to personally engage in direct managment of Ormado Kaffehaus ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Will this franchise be for you a sole source of income ? <span>*</span>
+                  </p> 
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    From what source did you hear about the Ormado Kaffehaus franchise ? <span>*</span>
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
+                />
+              </div>
+              
+
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    What do you personally expect from a partnership ? 
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
                 />
               </div>
 
@@ -235,7 +400,7 @@ const FranchiseForm = () => {
                 <input
                   id="phone"
                   type="text"
-                  placeholder="Enter your number"
+                  
                 />
               </div>
 
@@ -250,64 +415,26 @@ const FranchiseForm = () => {
                 <input
                   id="phone"
                   type="text"
-                  placeholder="Enter your number"
+                  
+                />
+              </div>
+              <div className="franchiseform-input-text">
+                <label htmlFor="phone">
+                  <p>
+                    Application date <span>*</span> : 
+                  </p>
+                </label>
+              </div>
+              <div className="franchiseform-input">
+                <input
+                  id="phone"
+                  type="text"
+                  
                 />
               </div>
 
               {/* burda yeni input bitdi */}
 
-
- 
-              <div className="franchiseform-country-city">
-                <div className="franchiseform-country">
-                  <div className="franchiseform-input-text">
-                    <label htmlFor="country">
-                      <p>
-                        County<span>*</span>
-                      </p>
-                    </label>
-                  </div>
-                  <div className="franchiseform-input">
-                    <input
-                      id="country"
-                      placeholder="Faroe Islands"
-                      type="text"
-                      onChange={(e) => {
-                        setcountry(e.target.value);
-                        setCountryError(false);
-                      }}
-                    />
-                    {countryError && (
-                      <span className="invalid_message">
-                        Country is required
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="franchiseform-city">
-                  <div className="franchiseform-input-text">
-                    <label htmlFor="city">
-                      <p>
-                        City<span>*</span>
-                      </p>
-                    </label>
-                  </div>
-                  <div className="franchiseform-input">
-                    <input
-                      id="city"
-                      placeholder="Redlands"
-                      type="text"
-                      onChange={(e) => {
-                        setcity(e.target.value);
-                        setCityError(false);
-                      }}
-                    />
-                    {cityError && (
-                      <span className="invalid_message">City is required</span>
-                    )}
-                  </div>
-                </div>
-              </div>
               <div className="franchiseform-text">
                 <p>
                   Your personal data will be used to process your enquiry,

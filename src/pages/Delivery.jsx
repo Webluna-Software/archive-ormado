@@ -1,8 +1,8 @@
 import React from 'react'
-import img from "../assets/img/DeliveryImg.png"
-import img2 from "../assets/img/wolt.png"
-import img3 from "../assets/img/uber.png"
-import img4 from "../assets/img/dhl.png"
+import img from "../assets/img/DeliveryImg.webp"
+import img2 from "../assets/img/wolt.webp"
+import img3 from "../assets/img/uber.webp"
+import img4 from "../assets/img/dhl.webp"
 const Delivery = () => {
     const brands = [
         { src: img2, alt: "Wolt" },

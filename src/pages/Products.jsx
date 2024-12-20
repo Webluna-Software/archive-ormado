@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import productImg from "../assets/img/products-banner.png";
+import productImg from "../assets/img/products-banner.webp";
 import ApiLinkContext from "../context/ApiLinkContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";

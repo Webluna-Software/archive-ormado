@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import { Container, Row, Col, Button, Form, InputGroup } from "react-bootstrap";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import loginimg from '../assets/img/Login.png';
+import loginimg from '../assets/img/Login.webp';
 import logo from '../assets/img/Logo.png';
 
 const ResetPassword = () => {
