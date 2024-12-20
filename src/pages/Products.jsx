@@ -333,7 +333,7 @@ return (
        </>
       )}
 
-      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
+      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} showLoginButton={true} />
     </>
   );
 };

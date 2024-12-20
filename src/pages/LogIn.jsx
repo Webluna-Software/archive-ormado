@@ -23,6 +23,7 @@ const LogIn = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', body: '' });
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     if (icon === "fa-eye") {
@@ -36,7 +37,7 @@ const LogIn = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-
+    setLoginLoading(true); 
     try {
       const response = await axios.post(`${ApiLink2}/auth/login`, {
         email,
@@ -94,6 +95,8 @@ const LogIn = () => {
       body: `Error: ${errorMessage}` 
     });
     setShowModal(true);
+    }finally{
+      setLoginLoading(false); 
     }
   };
 
@@ -195,8 +198,8 @@ const LogIn = () => {
 
                     {/* Giriş Butonu */}
                     <div className="login-btn">
-                      <button type="submit">
-                        <p>Sign in</p>
+                      <button type="submit" disabled={loginLoading} >
+                      <p>{loginLoading ? "Processing..." : "Sign in"}</p>
                       </button>
                     </div>
                   </form>
