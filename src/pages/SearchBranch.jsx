@@ -30,7 +30,7 @@ const SearchBranch = () => {
             className="img-fluid col-12 col-md-12 col-sm-12"
             src={searchB.image}
             alt="SearchABranch image"
-            id="Banner Image"
+            id="bannerImg"
           />
         </div>
         {/* <img className="background img-fluid" src={background} alt="searchabranch image" /> */}
