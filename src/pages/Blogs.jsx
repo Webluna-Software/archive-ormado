@@ -24,7 +24,7 @@ const Blogs = () => {
   useEffect(() => {
     axios.get(`${ApiLink2}/blog`)
       .then((res) => {
-        let blogData = res.data.blog;
+        let blogData = res.data;
 
         blogData = blogData.filter((item) => item.active);
 
