@@ -61,8 +61,7 @@ const Blogs = () => {
     });
 
     // FAQ məlumatlarını fetch et
-    axios
-      .get(`${ApiLink2}/faqBlog`)
+    axios.get(`${ApiLink2}/faqBlog`)
       .then((res) => {
         setFaqBlog(res.data.data);
         console.log(res.data.faqBlog, "FAQ MELUMATLARI");
@@ -159,7 +158,7 @@ const Blogs = () => {
                       .slice(0, visible)
                       .map((item, i) => (
                         <div
-                          className="blogcard col-12 col-md-4 col-lg-3 h-100"
+                          className="blogcard col-12 col-md-4 col-lg-3 "
                           key={i}
                         >
                           <LazyLoad>
@@ -173,9 +172,8 @@ const Blogs = () => {
                                 <img src={item.coverImage} alt={item.title} />
                               </figure>
                               <div className="card-header ">
-                                <p className="p-title">{item.title}</p>
+                                <h5 >{item.title}</h5>
                                 <p
-                                  className="p-body-text"
                                   dangerouslySetInnerHTML={{
                                     __html: item.description,
                                   }}

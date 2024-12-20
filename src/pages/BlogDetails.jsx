@@ -7,6 +7,7 @@ import PreLoader from "./PreLoader";
 import { Helmet } from "react-helmet";
 import slugify from "slugify";
 import LazyLoad from "react-lazy-load";
+import Cookies from 'js-cookie';
 
 const BlogDetails = () => {
   const { blogId, blogTitle } = useParams();
@@ -33,7 +34,7 @@ const BlogDetails = () => {
     axios.get(`${ApiLink2}/blog/${blogId}`)
       .then((res) => {
           console.log("Blog Detail Data:", res.data);
-          setBlogDetail(res.data.blog);
+          setBlogDetail(res.data);
     })
     .catch((error) => {
       console.error("BlogDetails error", error);
@@ -53,31 +54,62 @@ const BlogDetails = () => {
   }, [blogId, ApiLink2]);
   
   useEffect(() => {
-    if (blogDetail) {
-      const updateCount = blogDetail.readCount + 1;
-      const formData = {
-        readCount: updateCount,
-        title: blogDetail.title,
-        description: blogDetail.description,
-      };
-  
-      axios .put(
-          `${ApiLink2}/blog/${blogDetail._id}`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDU1YzIwYzVlODU0ZTRiODVmMmM5ZSIsImlhdCI6MTczNDQ1OTk4NSwiZXhwIjoxNzM3MDUxOTg1fQ.cmyKZB6YuyigSZO_aaAVg-6ZAEiDTi_6QVUPmld5eqY`, 
-            },
-          }
-        )
-        .then((res) => {
-          console.log("Blog updated successfully:", res.data);
-        })
-        .catch((err) => {
-          console.error("Error updating blog:", err);
+    const fetchBlogDetails = async () => {
+      try {
+        // Blogu əldə edirik
+        const response = await axios.get(`https://ormadoapi.webluna.org/api/blog/${blogId}`, {
+          withCredentials: true, // Cookie-ləri göndərmək üçün
         });
-    }
-  }, [blogDetail]);
+
+        console.log('Blog data fetched:', response.data);
+        setBlogDetail(response.data);
+
+        // İlk dəfə ziyarət edildiyini yoxlamaq üçün cookie istifadə edirik
+        if (!Cookies.get(`readCount_${blogId}`)) {
+          // Əgər cookie yoxdursa, blogu oxumağa başladıqda baxış sayını artırın
+          await axios.get(`https://ormadoapi.webluna.org/api/blog/${blogId}`, {
+            withCredentials: true, // Cookie-ləri göndərmək üçün
+          });
+
+          // Cookie-də ziyarət olunduğunu saxlayırıq
+          Cookies.set(`readCount_${blogId}`, 'true', { expires: 365 }); // 365 gün ərzində saxlamaq
+        }
+      } catch (error) {
+        console.error('Error fetching blog details:', error);
+      }
+    };
+
+    fetchBlogDetails();
+  }, [blogId]);
+
+
+  
+  // useEffect(() => {
+  //   if (blogDetail) {
+  //     const updateCount = blogDetail.readCount + 1;
+  //     const formData = {
+  //       readCount: updateCount,
+  //       title: blogDetail.title,
+  //       description: blogDetail.description,
+  //     };
+  
+  //     axios .put(
+  //         `${ApiLink2}/blog/${blogDetail._id}`,
+  //         formData,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDU1YzIwYzVlODU0ZTRiODVmMmM5ZSIsImlhdCI6MTczNDQ1OTk4NSwiZXhwIjoxNzM3MDUxOTg1fQ.cmyKZB6YuyigSZO_aaAVg-6ZAEiDTi_6QVUPmld5eqY`, 
+  //           },
+  //         }
+  //       )
+  //       .then((res) => {
+  //         console.log("Blog updated successfully:", res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.error("Error updating blog:", err);
+  //       });
+  //   }
+  // }, [blogDetail]);
   
   
   
@@ -186,7 +218,8 @@ const BlogDetails = () => {
                                 fill="#E3B142"
                               />
                             </svg>
-                            {formattedReadCount}
+                            {/* {formattedReadCount} */}
+                            {blogDetail.readCount}
                           </p>
                         </div>
                       </div>
