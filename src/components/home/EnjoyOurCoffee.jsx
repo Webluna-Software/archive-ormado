@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { ApiLinkContext } from "../../context/ApiLinkContext";
-import enjoyImage from "../../assets/img/Rectangle 7.png";
+import enjoyImage from "../../assets/img/Rectangle 7.webp";
 import axios from "axios";
 import { Link } from "react-router-dom";
 

@@ -7,4 +7,4 @@ const careerdata = [
   }
 ]
 
-export default careerdata; 
+export default careerdata;   

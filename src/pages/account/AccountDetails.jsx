@@ -20,6 +20,7 @@ const AccountDetails = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [loginLoading, setLoginLoading] = useState(false);
 
   // İstifadəçi məlumatlarını API-dən almaq
   useEffect(() => {
@@ -52,7 +53,7 @@ const AccountDetails = () => {
       console.error("API Error:", err);
       setLoading(false);
       setError(true);
-    });
+    })
   }, [ApiLink2]);
 
   const handleGenderBackground = (gender) => {
@@ -63,6 +64,7 @@ const AccountDetails = () => {
   // Məlumatları yeniləmək üçün API çağırışı
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoginLoading(true); 
 
     const sendData = {
       name,
@@ -107,6 +109,9 @@ const AccountDetails = () => {
     })
     .catch((err) => {
       console.error("Update failed:", err);
+    }).finally(() => {
+      // Finally blokunda login loading state-in yenidən false təyin edilməsi
+      setLoginLoading(false);
     });
   };
 
@@ -172,7 +177,7 @@ const AccountDetails = () => {
               Male
             </span>
           </div>
-          <button className="btn">Update</button>
+          <button className="btn" disabled={loginLoading}>{loginLoading ? "Processing..." : "Update"}</button>
         </form>
       </div>
       <Modal

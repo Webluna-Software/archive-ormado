@@ -7,6 +7,11 @@
     z-index: 999999 !important;
     padding: 12px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    .stickyImgLogo{
+        @media (max-width:768px){
+            display: none;
+        }
+    }
     p{
         font-family: "Lato",sans-serif;
     }

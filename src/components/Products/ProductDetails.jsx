@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import productImg from "../../assets/img/products-banner.png"
+import productImg from "../../assets/img/products-banner.webp"
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import ApiLinkContext from '../../context/ApiLinkContext';
@@ -254,7 +254,7 @@ const handlePost = async (productId) => {
         </section>
       }
 
-<Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
+<Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} showLoginButton={true}/>
     </>
   )
 }

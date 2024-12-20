@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ApiLinkContext from '../context/ApiLinkContext';
-import loginimg from '../assets/img/Login.png';
+import loginimg from '../assets/img/Login.webp';
 import logo from '../assets/img/Logo.png';
 
 const ForgotPass = () => {

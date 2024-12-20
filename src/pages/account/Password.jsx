@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // axios'u import etməyi unutmayın
 import ApiLinkContext from "../../context/ApiLinkContext";
+import Modal from "../../components/modal/modal";
 
 const Password = () => {
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ const Password = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+  const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [showModal, setShowModal] = useState(false);
 
   const handleCase = (value) => {
     setCharactersLength(value.length >= 8);
@@ -70,12 +73,19 @@ const Password = () => {
     e.preventDefault();
 
     if (!isPasswordValid) {
-      alert("New password doesn't meet the requirements.");
+      setModalContent({
+        title: "Warning!",
+        body: "New password doesn't meet the requirements.",
+      });
+      alert("");
       return;
     }
 
     if (!passwordsMatch) {
-      alert("Passwords do not match.");
+      setModalContent({
+        title: "Warning!",
+        body: "Passwords do not match.",
+      });
       return;
     }
 
@@ -98,126 +108,140 @@ const Password = () => {
       );
       console.log("Password updated successfully:", response.data);
 
-      // Parol uğurla yeniləndikdə mesaj göstərin və ya yenidən yönləndirin
-      alert("Password updated successfully!");
-      navigate("/account/details");
+      setModalContent({
+        title: "Thank you!",
+        body: "Password updated successfully!",
+      });
+      setShowModal(true)
+      // navigate("/account/details");
     } catch (err) {
       console.error("Failed to update password:", err);
-      alert("Failed to update password. Please try again.");
+      setModalContent({
+        title: "Error",
+        body: "Failed to update password. Please try again.",
+      });
     }
   };
 
   return (
-    <div className="col-12 col-md-7">
-      <p>Change password</p>
-      <span>
-        Your password must be at least 8 characters and should include letters
-        and special characters(!@#%*&^).
-      </span>
-      <form onSubmit={handleSubmit}>
-        <p>Current password</p>
-        <div className="position-relative">
-          <input
-            type={type}
-            name="currentPassword"
-            className="form-control"
-            placeholder="Current password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
-          <span onClick={eye}>
-            <i className={`fa-solid ${icon}`}></i>
-          </span>
-        </div>
-        <p>New password</p>
-        <div className="position-relative">
-          <input
-            type={newType}
-            name="newPassword"
-            id="password1"
-            className="form-control"
-            placeholder="Type new password"
-            onChange={(e) => {
-              handleCase(e.target.value);
-              setPassword(e.target.value);
+    <>
+      <div className="col-12 col-md-7">
+        <p>Change password</p>
+        <span>
+          Your password must be at least 8 characters and should include letters
+          and special characters(!@#%*&^).
+        </span>
+        <form onSubmit={handleSubmit}>
+          <p>Current password</p>
+          <div className="position-relative">
+            <input
+              type={type}
+              name="currentPassword"
+              className="form-control"
+              placeholder="Current password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <span onClick={eye}>
+              <i className={`fa-solid ${icon}`}></i>
+            </span>
+          </div>
+          <p>New password</p>
+          <div className="position-relative">
+            <input
+              type={newType}
+              name="newPassword"
+              id="password1"
+              className="form-control"
+              placeholder="Type new password"
+              onChange={(e) => {
+                handleCase(e.target.value);
+                setPassword(e.target.value);
+              }}
+            />
+            <span onClick={newEye}>
+              <i className={`fa-solid ${newIcon}`}></i>
+            </span>
+          </div>
+          <p>Confirm new password</p>
+          <div className="position-relative">
+            <input
+              type={confirmType}
+              name="confirmPassword"
+              id="password2"
+              className="form-control"
+              placeholder="Re-type new password"
+              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+            />
+            <span onClick={confirmEye}>
+              <i className={`fa-solid ${confirmIcon}`}></i>
+            </span>
+          </div>
+          <p className="mt-1 text-danger">
+            {passwordsMatch ? "" : "Passwords are not the same"}
+          </p>
+
+          <div className="part2-main d-flex">
+            {charactersLength ? (
+              <span className="list-icon green">
+                <i className="fa-solid fa-check"></i>
+              </span>
+            ) : (
+              <span className="list-icon">
+                <i className="fa-solid fa-times"></i>
+              </span>
+            )}
+            <div className="main-text ms-2">At least 8 characters</div>
+          </div>
+
+          <div className="part2-main d-flex">
+            {capitalLetter ? (
+              <span className="list-icon green">
+                <i className="fa-solid fa-check"></i>
+              </span>
+            ) : (
+              <span className="list-icon">
+                <i className="fa-solid fa-times"></i>
+              </span>
+            )}
+            <div className="main-text ms-2">One capital letter</div>
+          </div>
+
+          <div className="part2-main d-flex">
+            {oneSymbol ? (
+              <span className="list-icon green">
+                <i className="fa-solid fa-check"></i>
+              </span>
+            ) : (
+              <span className="list-icon">
+                <i className="fa-solid fa-times"></i>
+              </span>
+            )}
+            <div className="main-text ms-2">One symbol</div>
+          </div>
+
+          <p
+            className="forgot-btn"
+            onClick={() => {
+              navigate("/forgotpass");
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-          />
-          <span onClick={newEye}>
-            <i className={`fa-solid ${newIcon}`}></i>
-          </span>
-        </div>
-        <p>Confirm new password</p>
-        <div className="position-relative">
-          <input
-            type={confirmType}
-            name="confirmPassword"
-            id="password2"
-            className="form-control"
-            placeholder="Re-type new password"
-            onChange={(e) => handleConfirmPasswordChange(e.target.value)}
-          />
-          <span onClick={confirmEye}>
-            <i className={`fa-solid ${confirmIcon}`}></i>
-          </span>
-        </div>
-        <p className="mt-1 text-danger">
-          {passwordsMatch ? "" : "Passwords are not the same"}
-        </p>
+          >
+            Forgot password?
+          </p>
 
-        <div className="part2-main d-flex">
-          {charactersLength ? (
-            <span className="list-icon green">
-              <i className="fa-solid fa-check"></i>
-            </span>
-          ) : (
-            <span className="list-icon">
-              <i className="fa-solid fa-times"></i>
-            </span>
-          )}
-          <div className="main-text ms-2">At least 8 characters</div>
-        </div>
-
-        <div className="part2-main d-flex">
-          {capitalLetter ? (
-            <span className="list-icon green">
-              <i className="fa-solid fa-check"></i>
-            </span>
-          ) : (
-            <span className="list-icon">
-              <i className="fa-solid fa-times"></i>
-            </span>
-          )}
-          <div className="main-text ms-2">One capital letter</div>
-        </div>
-
-        <div className="part2-main d-flex">
-          {oneSymbol ? (
-            <span className="list-icon green">
-              <i className="fa-solid fa-check"></i>
-            </span>
-          ) : (
-            <span className="list-icon">
-              <i className="fa-solid fa-times"></i>
-            </span>
-          )}
-          <div className="main-text ms-2">One symbol</div>
-        </div>
-
-        <p
-          className="forgot-btn"
-          onClick={() => {
-            navigate("/forgotpass");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          Forgot password?
-        </p>
-
-        <button className="btn" type="submit">
-          Update Password
-        </button>
-      </form>
-    </div>
+          <button className="btn" type="submit">
+            Update Password
+          </button>
+        </form>
+      </div>
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)} 
+        title={modalContent.title}
+        body={modalContent.body}
+      />
+    </>
   );
 };
 

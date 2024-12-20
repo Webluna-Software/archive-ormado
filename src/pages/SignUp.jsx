@@ -39,6 +39,7 @@ const SignUp = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
   const [reloadOnClose, setReloadOnClose] = useState(true);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   // Password görünürlüğü değiştirme fonksiyonları
   const togglePasswordVisibility = () => {
@@ -75,6 +76,7 @@ const SignUp = () => {
   // Form submit fonksiyonu
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoginLoading(true); 
 
     if (!privacyCheck) {
       setShowModal(true);
@@ -485,9 +487,9 @@ const SignUp = () => {
                     className={`signin-btn-main ${
                       isPasswordValid && passwordsMatch ? "" : "disabled"
                     }`}
-                    disabled={!isPasswordValid || !passwordsMatch}
+                    disabled={!isPasswordValid || !passwordsMatch || loginLoading} 
                   >
-                    <p>Sign up</p>
+                    <p>{loginLoading ? "Processing..." : "Sign up"}</p>
                   </button>
                   <button type="button" className="signin-with-btn mt-2">
                     {/* Google SVG */}

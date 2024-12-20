@@ -134,7 +134,7 @@ const Carousel1 = ({ images, _id, products }) => {
           ></i>
         </span>
       </div>
-      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} />
+      <Modal show={showModal} onClose={() => setShowModal(false)} title={modalContent.title} body={modalContent.body} showLoginButton={true} />
     </>
   );
 };

@@ -1,7 +1,7 @@
-import first from "../../assets/img/first.png"
-import second from "../../assets/img/second.png"
-import third from "../../assets/img/third.png"
-import fourth from "../../assets/img/fourth.png"
+import first from "../../assets/img/first.webp"
+import second from "../../assets/img/second.webp"
+import third from "../../assets/img/third.webp"
+import fourth from "../../assets/img/fourth.webp"
 
 const Contactcards = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import {  useNavigate } from 'react-router-dom'
-import img from "../../assets/img/DeliveryImg.png"
+import img from "../../assets/img/DeliveryImg.webp"
 
 const GiftCardSec = () => {
   const navigate = useNavigate();

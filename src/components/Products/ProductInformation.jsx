@@ -1,6 +1,6 @@
 import React from 'react'
-import HeadlineImg from '../../assets/img/product-information.png'
-import ProductInfoImg from '../../assets/img/product-information-img.png'
+import HeadlineImg from '../../assets/img/product-information.webp'
+import ProductInfoImg from '../../assets/img/product-information-img.webp'
 // import Faq from '../../components/home/Faq';
 const ProductInformation = () => {
     return (
