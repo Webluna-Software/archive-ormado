@@ -62,7 +62,7 @@ const StickyCookie = () => {
         <div className="row">
           <div className="col-lg-1 col-md-1 col-sm-12 col-12">
             <div className="d-flex justify-content-center align-items-center">
-            <img src={logo} alt="" className="img-fluid" />
+            <img src={logo} alt="" className="img-fluid stickyImgLogo" />
             </div>
           </div>
           <div className="col-11">
